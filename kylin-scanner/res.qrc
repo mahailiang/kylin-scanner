@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>icon/close-click.png</file>
+        <file>icon/close.png</file>
+        <file>icon/max.png</file>
+        <file>icon/min-click.png</file>
+        <file>icon/min.png</file>
+        <file>icon/scanner.gif</file>
+        <file>icon/max-click.png</file>
+        <file>icon/beautify.png</file>
+        <file>icon/norscan.png</file>
+        <file>icon/rectify.png</file>
+        <file>icon/orc.png</file>
+    </qresource>
+</RCC>
