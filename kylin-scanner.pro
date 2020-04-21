@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    kylincombobox.cpp \
         main.cpp \
         widget.cpp \
     title_bar.cpp \
@@ -32,6 +33,7 @@ SOURCES += \
     scan_set.cpp
 
 HEADERS += \
+    kylincombobox.h \
         widget.h \
     title_bar.h \
     func_bar.h \
