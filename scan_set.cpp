@@ -1,5 +1,5 @@
 #include "scan_set.h"
-
+QString curPath;
 ScanSet::ScanSet(QWidget *parent)
     : QWidget(parent)
 {
@@ -19,7 +19,8 @@ ScanSet::ScanSet(QWidget *parent)
     line4 = new QFrame();
 
     btnMail = new QPushButton();
-    btnText = new QPushButton();
+    btnSave = new QPushButton();
+    btnLocation = new QPushButton();
 
     textDevice = new QLabel();
     textType = new QLabel();
@@ -28,7 +29,6 @@ ScanSet::ScanSet(QWidget *parent)
     textSize = new KylinComboBox();
     textFormat = new KylinComboBox();
     textName = new QLabel();
-    textLocation = new KylinComboBox();
 
     hBoxDevice = new QHBoxLayout();
     hBoxType = new QHBoxLayout();
@@ -63,17 +63,24 @@ ScanSet::ScanSet(QWidget *parent)
 
     btnMail->setText("发送至邮件");
     btnMail->setFixedSize(120,32);
-    btnText->setText("存储文本");
-    btnText->setFixedSize(100,32);
+    btnSave->setText("另存为");
+    btnSave->setFixedSize(100,32);
+
+    QFontMetrics elideFont(btnLocation->font());
+    if(curPath.isEmpty())
+        curPath=QCoreApplication::applicationDirPath(); //获取应用程序的路径
+    btnLocation->setText(elideFont.elidedText(curPath,Qt::ElideRight,150));
+    btnLocation->setFixedSize(180,32);
+
 
 
     btnMail->setStyleSheet("QPushButton{background-color:rgb(32,30,29);border:1px solid #939393;color:rgb(232,232,232);border-radius:16px;}"
                               "QPushButton:hover{border:none;background-color:rgb(39,208,127);border:rgb(147,147,147);color:rgb(232,232,232);border-radius:16px;}"
                                 "QPushButton:checked{border:none;background-color:rgb(39,208,127);border:rgb(147,147,147);color:rgb(232,232,232);border-radius:16px;}");
-    btnText->setStyleSheet("QPushButton{background-color:rgb(32,30,29);border:1px solid #939393;color:rgb(232,232,232);border-radius:16px;}"
+    btnSave->setStyleSheet("QPushButton{background-color:rgb(32,30,29);border:1px solid #939393;color:rgb(232,232,232);border-radius:16px;}"
                               "QPushButton:hover{border:none;background-color:rgb(39,208,127);color:rgb(232,232,232);border-radius:16px;}"
                                 "QPushButton:checked{border:none;background-color:rgb(39,208,127);color:rgb(232,232,232)border-radius:16px;}");
-
+    btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/max.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:rgb(232,232,232);border-radius:6px;text-align:left;}");
 
 
     setKylinLable();
@@ -113,6 +120,7 @@ ScanSet::ScanSet(QWidget *parent)
 //    hBoxScanSet->addSpacing(0);
     hBoxScanSet->addStretch();
     setLayout(hBoxScanSet);
+    connect(btnLocation,SIGNAL(clicked()),this,SLOT(on_btnLocation_clicked()));
 }
 
 ScanSet::~ScanSet()
@@ -149,8 +157,8 @@ void ScanSet::setKylinComboBox()
     strListFormat<<tr("jpg")<<tr("png")<<tr("pdf")<<tr("bmp")<<tr("rtf");
     setKylinComboBoxAttributes(textFormat, strListFormat);
 
-    strListLocation<<"本地磁盘"<<"外接设备";
-    setKylinComboBoxAttributes(textLocation, strListLocation);
+//    strListLocation<<"本地磁盘"<<"外接设备";
+//    setKylinComboBoxAttributes(textLocation, strListLocation);
 }
 
 void ScanSet::setKylinLable()
@@ -223,8 +231,12 @@ void ScanSet::setKylinHBoxLayout()
     setKylinHBoxLayoutAttributes(hBoxName, labName, textName);
     hBoxName->setContentsMargins(0,4,0,4);
 
-    setKylinHBoxLayoutAttributes(hBoxLocation, labLocation, textLocation);
-    hBoxLocation->setContentsMargins(0,4,0,4);
+//    setKylinHBoxLayoutAttributes(hBoxLocation, labLocation, btnLocation);
+//    hBoxLocation->setContentsMargins(0,4,0,4);
+    hBoxLocation->setSpacing(0);
+    hBoxLocation->addWidget(labLocation);
+    hBoxLocation->addSpacing(8);
+    hBoxLocation->addWidget(btnLocation);
 
     hBoxLine3->setSpacing(0);
     hBoxLine3->addWidget(line3);
@@ -237,7 +249,7 @@ void ScanSet::setKylinHBoxLayout()
     hBoxMailText->setSpacing(0);
     hBoxMailText->addWidget(btnMail);
     hBoxMailText->addSpacing(10);
-    hBoxMailText->addWidget(btnText);
+    hBoxMailText->addWidget(btnSave);
     hBoxMailText->setContentsMargins(0,20,0,20);
 
 }
@@ -259,5 +271,19 @@ void ScanSet::setKylinHBoxLayoutAttributes(QHBoxLayout *layout, QLabel *labelFir
     layout->setSpacing(8);
     layout->addWidget(combo);
 //    layout->setContentsMargins(16,4,16,4);
-//    layout->addStretch();
+    //    layout->addStretch();
+}
+
+void ScanSet::on_btnLocation_clicked()
+{
+    if(curPath.isEmpty())
+        curPath=QCoreApplication::applicationDirPath(); //获取应用程序的路径
+
+    QString dlgTitle="选择一个目录"; //对话框标题
+    QString selectedDir=QFileDialog::getExistingDirectory(this,dlgTitle,curPath,QFileDialog::ShowDirsOnly);
+    if (!selectedDir.isEmpty())
+    {
+        QFontMetrics elideFont(btnLocation->font());
+        btnLocation->setText(elideFont.elidedText(selectedDir,Qt::ElideRight,150));
+    }
 }

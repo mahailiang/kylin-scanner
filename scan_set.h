@@ -12,6 +12,11 @@
 #include <QPushButton>
 #include <QStyledItemDelegate>
 #include <QListView>
+#include <QDialog>
+#include <QFileDialog>
+#include <QCoreApplication>
+#include <QFont>
+#include <QPixmap>
 #include "kylincombobox.h"
 
 class ScanSet  : public QWidget
@@ -78,8 +83,9 @@ private:
     QFrame *line3;
     QFrame *line4;
 
-    QPushButton *btnMail;
-    QPushButton *btnText;
+    QPushButton *btnMail;         /**< 发送至邮件 */
+    QPushButton *btnSave;         /**< 另存为 */
+    QPushButton *btnLocation;    /**< 扫描至 */
 
     QLabel *textDevice;             /**< 设备 */
     QLabel *textType;               /**< 类型 */
@@ -88,7 +94,7 @@ private:
     KylinComboBox *textSize;        /**< 尺寸 */
     KylinComboBox *textFormat;      /**< 格式 */
     QLabel *textName;               /**< 名称 */
-    KylinComboBox *textLocation;    /**< 扫描至 */
+
 
     QHBoxLayout *hBoxDevice;
     QHBoxLayout *hBoxType;
@@ -104,6 +110,9 @@ private:
     QVBoxLayout *vBoxScanSet;
     QVBoxLayout *vBoxScanSet1;
     QHBoxLayout *hBoxScanSet;
+
+private slots:
+    void on_btnLocation_clicked();
 };
 
 #endif // SCAN_SET_H
