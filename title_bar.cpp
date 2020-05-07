@@ -42,8 +42,8 @@ TitleBar::TitleBar(QWidget *parent)
                               "QPushButton:hover{border-image: url(:/icon/icon/min-click.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
                                 "QPushButton:checked{border-image: url(:/icon/icon/min-click.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}");
 
-    m_pMaximizeButton->setStyleSheet("QPushButton{border-image: url(:/icon/icon/max.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
-                              "QPushButton:hover{border-image: url(:/icon/icon/max-click.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
+    m_pMaximizeButton->setStyleSheet("QPushButton{border-image: url(:/icon/icon/normal.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
+                              "QPushButton:hover{border-image: url(:/icon/icon/normal-click.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
                                 "QPushButton:checked{border-image: url(:/icon/icon/max-click.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}");
 
     m_pCloseButton->setStyleSheet("QPushButton{border-image: url(:/icon/icon/close.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
@@ -171,11 +171,17 @@ void TitleBar::updateMaximize()
         {
             m_pMaximizeButton->setToolTip(tr("Restore"));
             m_pMaximizeButton->setProperty("maximizeProperty", "restore");
+            m_pMaximizeButton->setStyleSheet("QPushButton{border-image: url(:/icon/icon/max.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
+                                      "QPushButton:hover{border-image: url(:/icon/icon/max-click.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
+                                        "QPushButton:checked{border-image: url(:/icon/icon/max-click.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}");
         }
         else
         {
             m_pMaximizeButton->setProperty("maximizeProperty", "maximize");
             m_pMaximizeButton->setToolTip(tr("Maximize"));
+            m_pMaximizeButton->setStyleSheet("QPushButton{border-image: url(:/icon/icon/normal.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
+                                      "QPushButton:hover{border-image: url(:/icon/icon/normal-click.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
+                                        "QPushButton:checked{border-image: url(:/icon/icon/max-click.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}");
         }
 
         m_pMaximizeButton->setStyle(QApplication::style());

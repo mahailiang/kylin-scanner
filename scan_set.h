@@ -17,6 +17,7 @@
 #include <QCoreApplication>
 #include <QFont>
 #include <QPixmap>
+#include <QLineEdit>
 #include "kylincombobox.h"
 
 class ScanSet  : public QWidget
@@ -93,7 +94,7 @@ private:
     KylinComboBox *textResalution;  /**< 分辨率 */
     KylinComboBox *textSize;        /**< 尺寸 */
     KylinComboBox *textFormat;      /**< 格式 */
-    QLabel *textName;               /**< 名称 */
+    QLineEdit *textName;               /**< 名称 */
 
 
     QHBoxLayout *hBoxDevice;

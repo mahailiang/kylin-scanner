@@ -12,5 +12,19 @@
         <file>icon/rectify.png</file>
         <file>icon/orc.png</file>
         <file>icon/down.png</file>
+        <file>icon/connect_device.png</file>
+        <file>icon/normal.png</file>
+        <file>icon/normal-click.png</file>
+        <file>icon/a.png</file>
+        <file>icon/toolbutton1.png</file>
+        <file>icon/toolbutton.png</file>
+        <file>icon/watermark.png</file>
+        <file>icon/watermark-click.png</file>
+        <file>icon/symmetry.png</file>
+        <file>icon/symmetry-click.png</file>
+        <file>icon/rotate-click.png</file>
+        <file>icon/rotate.png</file>
+        <file>icon/tailor.png</file>
+        <file>icon/tailor-click.png</file>
     </qresource>
 </RCC>

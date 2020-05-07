@@ -2,12 +2,16 @@
 #include "title_bar.h"
 #include "func_bar.h"
 #include <scan_set.h>
+#include "scan_display.h"
+#include "screen.h"
 #include <QVBoxLayout>
 #include <QIcon>
 #include <QPushButton>
 #include <QSplitter>
 #include <QLine>
 #include <QFrame>
+#include <QDebug>
+
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
 {
@@ -37,21 +41,33 @@ Widget::Widget(QWidget *parent)
     ScanSet *pScanSet = new ScanSet() ;
     installEventFilter(pScanSet);
 
+    scan_display *pScandisplay;
+    pScandisplay = new scan_display();
+    installEventFilter(pScandisplay);
+
+    QHBoxLayout *pHboxLayout = new QHBoxLayout();
+    pHboxLayout->setSpacing(0);
+    pHboxLayout->addWidget(pScanSet);
+    pHboxLayout->addWidget(pScandisplay);
+
     QVBoxLayout *pLayout = new QVBoxLayout();
     pLayout->setSpacing(0);
     pLayout->addWidget(pTitleBar);
     pLayout->addWidget(line);
     pLayout->addWidget(pFuncBar);
-    pLayout->addWidget(pScanSet);
+    pLayout->addLayout(pHboxLayout);
 //    pLayout->addStretch();
     pLayout->setContentsMargins(0, 0, 0, 0);
 
 
 
     setLayout(pLayout);
+
 }
 
 Widget::~Widget()
 {
 
 }
+
+

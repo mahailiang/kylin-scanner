@@ -30,14 +30,18 @@ SOURCES += \
         widget.cpp \
     title_bar.cpp \
     func_bar.cpp \
-    scan_set.cpp
+    scan_set.cpp \
+    scan_display.cpp \
+    my_label.cpp
 
 HEADERS += \
     kylincombobox.h \
         widget.h \
     title_bar.h \
     func_bar.h \
-    scan_set.h
+    scan_set.h \
+    scan_display.h \
+    my_label.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

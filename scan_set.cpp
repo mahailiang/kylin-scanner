@@ -28,7 +28,7 @@ ScanSet::ScanSet(QWidget *parent)
     textResalution = new KylinComboBox();
     textSize = new KylinComboBox();
     textFormat = new KylinComboBox();
-    textName = new QLabel();
+    textName = new QLineEdit();
 
     hBoxDevice = new QHBoxLayout();
     hBoxType = new QHBoxLayout();
@@ -105,6 +105,7 @@ ScanSet::ScanSet(QWidget *parent)
     vBoxScanSet->addStretch();
     vBoxScanSet->addLayout(hBoxLine4);
     vBoxScanSet->addLayout(hBoxMailText);
+    vBoxScanSet->setContentsMargins(0,0,0,0);
   //  vBoxScanSet->addStretch(5);
 
 
@@ -114,12 +115,12 @@ ScanSet::ScanSet(QWidget *parent)
     setPalette(pal);
 
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    hBoxScanSet->setSpacing(0);
-    hBoxScanSet->addLayout(vBoxScanSet);
+//    hBoxScanSet->setSpacing(0);
+//    hBoxScanSet->addLayout(vBoxScanSet);
 //    hBoxScanSet->addStretch();
 //    hBoxScanSet->addSpacing(0);
-    hBoxScanSet->addStretch();
-    setLayout(hBoxScanSet);
+//    hBoxScanSet->addStretch();
+    setLayout(vBoxScanSet);
     connect(btnLocation,SIGNAL(clicked()),this,SLOT(on_btnLocation_clicked()));
 }
 
@@ -196,7 +197,7 @@ void ScanSet::setKylinLable()
     textType->setFixedSize(180,32);
 
     textName->setText("扫描文件名");
-    textName->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:6px;}");
+    textName->setStyleSheet("QLineEdit{background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:6px;}");
     textName->setFixedSize(180,32);
 }
 
@@ -228,7 +229,11 @@ void ScanSet::setKylinHBoxLayout()
     setKylinHBoxLayoutAttributes(hBoxFormat, labFormat, textFormat);
     hBoxFormat->setContentsMargins(0,16,0,4);
 
-    setKylinHBoxLayoutAttributes(hBoxName, labName, textName);
+    hBoxName->setSpacing(0);
+    hBoxName->addWidget(labName);
+    hBoxName->addSpacing(8);
+    hBoxName->addWidget(textName);
+//    setKylinHBoxLayoutAttributes(hBoxName, labName, textName);
     hBoxName->setContentsMargins(0,4,0,4);
 
 //    setKylinHBoxLayoutAttributes(hBoxLocation, labLocation, btnLocation);
@@ -237,6 +242,7 @@ void ScanSet::setKylinHBoxLayout()
     hBoxLocation->addWidget(labLocation);
     hBoxLocation->addSpacing(8);
     hBoxLocation->addWidget(btnLocation);
+    hBoxLocation->setContentsMargins(0,4,0,4);
 
     hBoxLine3->setSpacing(0);
     hBoxLine3->addWidget(line3);
@@ -258,7 +264,7 @@ void ScanSet::setKylinHBoxLayoutAttributes(QHBoxLayout *layout, QLabel *labelFir
 {
     layout->setSpacing(0);
     layout->addWidget(labelFirst);
-    layout->setSpacing(8);
+    layout->addSpacing(8);
     layout->addWidget(labelSecond);
 //    layout->setContentsMargins(16,4,16,4);
 //    layout->addStretch();
@@ -268,7 +274,7 @@ void ScanSet::setKylinHBoxLayoutAttributes(QHBoxLayout *layout, QLabel *labelFir
 {
     layout->setSpacing(0);
     layout->addWidget(labelFirst);
-    layout->setSpacing(8);
+    layout->addSpacing(8);
     layout->addWidget(combo);
 //    layout->setContentsMargins(16,4,16,4);
     //    layout->addStretch();
