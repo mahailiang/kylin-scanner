@@ -55,4 +55,3 @@ void my_label::mouseMoveEvent(QMouseEvent *event)
 
 
 
-

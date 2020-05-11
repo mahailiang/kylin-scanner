@@ -32,7 +32,8 @@ SOURCES += \
     func_bar.cpp \
     scan_set.cpp \
     scan_display.cpp \
-    my_label.cpp
+    my_label.cpp \
+    mark_dialog.cpp
 
 HEADERS += \
     kylincombobox.h \
@@ -41,7 +42,8 @@ HEADERS += \
     func_bar.h \
     scan_set.h \
     scan_display.h \
-    my_label.h
+    my_label.h \
+    mark_dialog.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

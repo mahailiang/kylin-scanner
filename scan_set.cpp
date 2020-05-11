@@ -293,3 +293,4 @@ void ScanSet::on_btnLocation_clicked()
         btnLocation->setText(elideFont.elidedText(selectedDir,Qt::ElideRight,150));
     }
 }
+

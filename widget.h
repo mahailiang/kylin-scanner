@@ -12,6 +12,7 @@ public:
 
     Widget(QWidget *parent = 0);
     ~Widget();
+
 private:
     QFrame *line;
 

@@ -1,7 +1,8 @@
 #include "scan_display.h"
 #include "func_bar.h"
-#include "screen.h"
 #include <QDebug>
+#include <QToolTip>
+#include <QTextEdit>
 scan_display::scan_display(QWidget *parent)
     : QWidget(parent)
 {
@@ -41,9 +42,9 @@ scan_display::scan_display(QWidget *parent)
     labDisplay2->setMinimumSize(600,320);
     labDisplay3->setMinimumSize(600,231);
     labDisplay4->setMinimumSize(600,567);
-    labDisplay5->setMaximumSize(360,567);
+    labDisplay5->setMinimumSize(560,567);
     labDisplay6->setFixedWidth(40);
-    labDisplay7->setMinimumSize(360,567);
+    labDisplay7->setMinimumSize(560,567);
 
 
     labDisplay1->setText(" ");
@@ -87,10 +88,14 @@ scan_display::scan_display(QWidget *parent)
     labDisplay6->setStyleSheet("QLabel{background-color:#0f0801;}");
 
     hBoxScanSet->setSpacing(0);
+    hBoxScanSet->addSpacing(2);
     hBoxScanSet->addStretch();
     hBoxScanSet->addWidget(labDisplay5);
-    hBoxScanSet->addSpacing(65);
+//    hBoxScanSet->addSpacing(65);
+    hBoxScanSet->addStretch();
+    hBoxScanSet->addSpacing(2);
     hBoxScanSet->addWidget(labDisplay6);
+    hBoxScanSet->addSpacing(2);
     hBoxScanSet->addWidget(btnTool);
     hBoxScanSet->setContentsMargins(0,0,4,0);
     myWidget1->setLayout(hBoxScanSet);
@@ -110,10 +115,12 @@ scan_display::scan_display(QWidget *parent)
     btnTool1->setStyleSheet("QPushButton{border-image: url(:/icon/icon/toolbutton1.png);border:none;background-color:#0f0801;border-radius:0px;}");
 
     hBoxScanSet1->setSpacing(0);
+    hBoxScanSet1->addSpacing(2);
     hBoxScanSet1->addStretch();
     hBoxScanSet1->addWidget(labDisplay7);
-    hBoxScanSet1->addSpacing(65);
+//    hBoxScanSet1->addSpacing(65);
     hBoxScanSet1->addStretch();
+    hBoxScanSet1->addSpacing(2);
     hBoxScanSet1->addWidget(editlayout);
     hBoxScanSet1->addSpacing(2);
     hBoxScanSet1->addWidget(btnTool1);
@@ -142,6 +149,8 @@ scan_display::scan_display(QWidget *parent)
     connect(btnTool1,SIGNAL(clicked()),this,SLOT(switchPage()));
     connect(editlayout->btnRotate,SIGNAL(clicked()),this,SLOT(rotating()));
     connect(editlayout->btnTailor,SIGNAL(clicked()),this,SLOT(switchPage1()));
+    connect(editlayout->btnSymmetry,SIGNAL(clicked()),this,SLOT(symmetry()));
+    connect(editlayout->btnWatermark,SIGNAL(clicked()),this,SLOT(addmark()));
 }
 
 void scan_display::keyPressEvent(QKeyEvent *e)
@@ -163,9 +172,13 @@ void scan_display::keyPressEvent(QKeyEvent *e)
     if(e->key() == Qt::Key_Z && e->modifiers() ==  Qt::ControlModifier)
     {
 
-        *img2 = img4->copy();
-        labDisplay7->setPixmap(QPixmap::fromImage(*img2));
-        vStackedLayout->setCurrentIndex(index);
+//        *img2 = img4->copy();
+        if(!stack.isEmpty())
+        {
+            *img2 = stack.pop();
+            labDisplay7->setPixmap(QPixmap::fromImage(*img2));
+            vStackedLayout->setCurrentIndex(index);
+        }
     }
 }
 
@@ -174,9 +187,63 @@ void scan_display::rotating()
 
     QMatrix matrix;
     *img4 = img2->copy();
+    stack.push(*img4);
     matrix.rotate(270);
     *img2 = img2->transformed(matrix);
     labDisplay7->setPixmap(QPixmap::fromImage(*img2));
+
+}
+
+void scan_display::symmetry()
+{
+    *img4 = img2->copy();
+    stack.push(*img4);
+    *img2=img2->mirrored(true,false);
+    labDisplay7->setPixmap(QPixmap::fromImage(*img2));
+}
+
+void scan_display::addmark()
+{
+
+    if(n == 0)
+    {
+        n = 1;
+        img6 = new QImage();
+        *img6 = img2->copy();
+    }
+    QString text;
+    mark_dialog *dialog = new mark_dialog(this);
+    int ret=dialog->exec();// 以模态方式显示对话框，用户关闭对话框时返回 DialogCode值
+    if (ret==QDialog::Accepted) //OK键被按下,对话框关闭，若设置了setAttribute(Qt::WA_DeleteOnClose)，对话框被释放，无法获得返回值
+    { //OK键被按下，获取对话框上的输入，设置行数和列数
+        text = dialog->get_lineedit();
+        *img4 = img2->copy();
+        stack.push(*img4);
+        *img2 = img6->copy();
+        QPainter painter(img2);
+        int fontSize = 25, spacing = 10;
+        QFont font("微软雅黑", fontSize, QFont::Thin);
+        font.setLetterSpacing(QFont::AbsoluteSpacing, spacing);
+        painter.setFont(font);
+        painter.setPen(QColor(150, 150, 150));
+        painter.translate(img2->width() / 2, -img2->width() / 2);//调整位置
+        painter.rotate(15);
+
+        int squareEdgeSize = img2->width() * sin(45) + img2->height() * sin(45);//对角线长度
+        int hCount = squareEdgeSize / ((fontSize + spacing) * (text.size() + 1)) + 1;
+        int x = squareEdgeSize / hCount + (fontSize + spacing) * 3;
+        int y = x / 2;
+
+        for (int i = 0; i < hCount; i++)
+        {
+            for (int j = 0; j < hCount * 2; j++)
+            {
+               painter.drawText(x * i, y * j,text);
+            }
+        }
+        labDisplay7->setPixmap(QPixmap::fromImage(*img2));
+    }
+    delete dialog; //删除对话框
 
 }
 
@@ -198,12 +265,13 @@ void scan_display::switchPage1()
     myWidget3 = new QWidget();
     hBoxScanSet2 = new QHBoxLayout();
     img3 = new QImage();
-    labDisplay8->setMinimumSize(360,567);
+    labDisplay8->setMinimumSize(560,567);
     labDisplay8->setParent(myWidget3);
     btnTool2->setParent(myWidget3);
     editlayout1->setParent(myWidget3);
     *img3 = img2->copy();
     *img4 = img2->copy();
+    stack.push(*img4);
     labDisplay8->setPixmap(QPixmap::fromImage(*img3));
     labDisplay8->setAlignment(Qt::AlignCenter);
 
@@ -211,10 +279,12 @@ void scan_display::switchPage1()
     btnTool2->setStyleSheet("QPushButton{border-image: url(:/icon/icon/toolbutton1.png);border:none;background-color:#0f0801;border-radius:0px;}");
 
     hBoxScanSet2->setSpacing(0);
+    hBoxScanSet2->addSpacing(2);
     hBoxScanSet2->addStretch();
     hBoxScanSet2->addWidget(labDisplay8);
-    hBoxScanSet2->addSpacing(65);
+//    hBoxScanSet2->addSpacing(65);
     hBoxScanSet2->addStretch();
+    hBoxScanSet2->addSpacing(2);
     hBoxScanSet2->addWidget(editlayout1);
     hBoxScanSet2->addSpacing(2);
     hBoxScanSet2->addWidget(btnTool2);
@@ -243,8 +313,8 @@ edit_bar::edit_bar(QWidget *parent)
     btnTailor->setFixedSize(30,30);
     btnSymmetry->setFixedSize(30,30);
     btnWatermark->setFixedSize(30,30);
-
-
+    btnRotate->setToolTip("旋转");
+  //  btnTailor->setToolTip("裁剪");
 
     btnRotate->setStyleSheet("QPushButton{border-image: url(:/icon/icon/rotate.png);border:none;background-color:rgb(232,232,232);border-radius:0px;}"
                               "QPushButton:hover{border-image: url(:/icon/icon/rotate-click.png);border:none;background-color:rgb(232,232,232);border-radius:0px;}"

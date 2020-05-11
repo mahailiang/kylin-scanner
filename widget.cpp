@@ -3,7 +3,6 @@
 #include "func_bar.h"
 #include <scan_set.h>
 #include "scan_display.h"
-#include "screen.h"
 #include <QVBoxLayout>
 #include <QIcon>
 #include <QPushButton>
@@ -11,7 +10,7 @@
 #include <QLine>
 #include <QFrame>
 #include <QDebug>
-
+#include <QBitmap>
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
 {

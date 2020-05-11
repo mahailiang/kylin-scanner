@@ -8,7 +8,15 @@
 #include <QStackedLayout>
 #include <QImage>
 #include <QPushButton>
+#include <QPixmap>
+#include <QPainter>
+#include <QString>
+#include <QInputDialog>
+#include <qmath.h>
+#include <QStack>
 #include "my_label.h"
+#include "mark_dialog.h"
+
 class edit_bar  :   public QWidget
 {
     Q_OBJECT
@@ -30,7 +38,8 @@ public:
     void keyPressEvent(QKeyEvent *e);
     int flag = 0;
     int index = 0;
-//    int n = 0;
+    int n = 0;
+
 private:
     QLabel *labDisplay1;
     QLabel *labDisplay2;
@@ -50,6 +59,8 @@ private:
     QImage *img3;
     QImage *img4;
     QImage *img5;
+    QImage *img6;
+    QStack<QImage> stack;
     QVBoxLayout *vBoxScanSet;
     QVBoxLayout *vBoxScanSet1;
     QVBoxLayout *vBoxScanSet2;
@@ -69,7 +80,8 @@ private slots:
     void switchPage();
     void switchPage1();
     void rotating();
-
+    void symmetry();
+    void addmark();
 };
 
 
