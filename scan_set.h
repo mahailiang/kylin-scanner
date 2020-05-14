@@ -18,8 +18,13 @@
 #include <QFont>
 #include <QPixmap>
 #include <QLineEdit>
+#include <QProcess>
+#include <QFile>
 #include "kylincombobox.h"
+#include "send_mail.h"
 
+//#define MIMEINFO "/usr/share/applications/mimeinfo.cache"
+//#define MAILTYPE "x-scheme-handler/mailto"
 class ScanSet  : public QWidget
 {
     Q_OBJECT
@@ -114,6 +119,7 @@ private:
 
 private slots:
     void on_btnLocation_clicked();
+    void on_btnMail_clicked();
 };
 
 #endif // SCAN_SET_H

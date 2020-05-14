@@ -122,6 +122,7 @@ ScanSet::ScanSet(QWidget *parent)
 //    hBoxScanSet->addStretch();
     setLayout(vBoxScanSet);
     connect(btnLocation,SIGNAL(clicked()),this,SLOT(on_btnLocation_clicked()));
+    connect(btnMail,SIGNAL(clicked()),this,SLOT(on_btnMail_clicked()));
 }
 
 ScanSet::~ScanSet()
@@ -291,6 +292,28 @@ void ScanSet::on_btnLocation_clicked()
     {
         QFontMetrics elideFont(btnLocation->font());
         btnLocation->setText(elideFont.elidedText(selectedDir,Qt::ElideRight,150));
+    }
+}
+
+void ScanSet::on_btnMail_clicked()
+{
+    AppList * maillist = getAppIdList(MAILTYPE);
+    if(!maillist)
+    {
+        no_mail *dialog = new no_mail(this);
+        int ret= dialog->exec();// 以模态方式显示对话框，用户关闭对话框时返回 DialogCode值
+        if(ret==QDialog::Accepted)
+        {
+            QProcess *process = new QProcess();
+            process->start("/usr/bin/ubuntu-kylin-software-center");
+        }
+        delete dialog; //删除对话框
+    }
+    else
+    {
+        send_mail *dialog = new send_mail(this);
+        dialog->set_btnList();
+        dialog->exec();
     }
 }
 
