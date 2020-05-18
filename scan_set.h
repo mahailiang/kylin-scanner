@@ -23,8 +23,6 @@
 #include "kylincombobox.h"
 #include "send_mail.h"
 
-//#define MIMEINFO "/usr/share/applications/mimeinfo.cache"
-//#define MAILTYPE "x-scheme-handler/mailto"
 class ScanSet  : public QWidget
 {
     Q_OBJECT
@@ -75,7 +73,9 @@ public:
      * @param combo 水平布局中的组合框
      */
     void setKylinHBoxLayoutAttributes(QHBoxLayout *layout, QLabel *labelFirst, KylinComboBox *combo);
-
+Q_SIGNALS:
+//signals:
+    void save_image_signal(QString);
 private:
     QLabel *labDevice;              /**< 设备标签 */
     QLabel *labType;                /**< 类型标签 */
@@ -120,6 +120,7 @@ private:
 private slots:
     void on_btnLocation_clicked();
     void on_btnMail_clicked();
+    void on_btnSave_clicked();
 };
 
 #endif // SCAN_SET_H

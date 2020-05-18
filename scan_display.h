@@ -36,6 +36,7 @@ class scan_display  : public QWidget
 public:
     scan_display(QWidget *parent = nullptr);
     void keyPressEvent(QKeyEvent *e);
+    void imageSave(QString fileName);
     int flag = 0;
     int index = 0;
     int n = 0;
@@ -74,8 +75,8 @@ private:
     QStackedLayout *vStackedLayout;
     edit_bar *editlayout;
     edit_bar *editlayout1;
-signals:
-    void indexChanged(int value);
+//signals:
+//    void indexChanged(int value);
 private slots:
     void switchPage();
     void switchPage1();
@@ -83,6 +84,4 @@ private slots:
     void symmetry();
     void addmark();
 };
-
-
 #endif // SCAN_DISPLAY_H

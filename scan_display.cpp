@@ -182,6 +182,11 @@ void scan_display::keyPressEvent(QKeyEvent *e)
     }
 }
 
+void scan_display::imageSave(QString fileName)
+{
+    img2->save(fileName);
+}
+
 void scan_display::rotating()
 {
 

@@ -123,6 +123,7 @@ ScanSet::ScanSet(QWidget *parent)
     setLayout(vBoxScanSet);
     connect(btnLocation,SIGNAL(clicked()),this,SLOT(on_btnLocation_clicked()));
     connect(btnMail,SIGNAL(clicked()),this,SLOT(on_btnMail_clicked()));
+    connect(btnSave,SIGNAL(clicked()),this,SLOT(on_btnSave_clicked()));
 }
 
 ScanSet::~ScanSet()
@@ -315,5 +316,15 @@ void ScanSet::on_btnMail_clicked()
         dialog->set_btnList();
         dialog->exec();
     }
+}
+
+void ScanSet::on_btnSave_clicked()
+{//保存文件
+    QString dlgTitle="另存为..."; //对话框标题
+//    QString filter="文本文件(*.txt);;h文件(*.h);;C++文件(.cpp);;所有文件(*.*)"; //文件过滤器
+    QString aFileName=QFileDialog::getSaveFileName(this,dlgTitle,curPath);
+    if (!aFileName.isEmpty())
+        emit save_image_signal(aFileName);
+
 }
 
