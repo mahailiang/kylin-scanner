@@ -258,6 +258,7 @@ void send_mail::set_btnList()
         vBoxLayout1->addStretch();
         widget->setLayout(vBoxLayout1);
         scrollArea->setWidget(widget);
+        scrollArea->setFrameShape(QFrame::NoFrame);
         free(maillist);
     }
     vBoxLayout->addWidget(scrollArea);

@@ -143,7 +143,7 @@ void ScanSet::setKylinComboBoxAttributes(KylinComboBox *combo, QStringList strLi
     combo->setModel(listView->model());
     combo->setView(listView);   //使下拉选项样式生效
 }
-
+ 
 void ScanSet::setKylinComboBox()
 {
     QStringList strListColor, strListResalution, strListFormat, strListSize,strListLocation;
@@ -317,14 +317,29 @@ void ScanSet::on_btnMail_clicked()
         dialog->exec();
     }
 }
-
+QString filter="*.jpg;;*.png;;*.pdf;;*.bmp;;*.rtf"; //文件过滤器
 void ScanSet::on_btnSave_clicked()
 {//保存文件
     QString dlgTitle="另存为..."; //对话框标题
 //    QString filter="文本文件(*.txt);;h文件(*.h);;C++文件(.cpp);;所有文件(*.*)"; //文件过滤器
-    QString aFileName=QFileDialog::getSaveFileName(this,dlgTitle,curPath);
+    QString aFileName=QFileDialog::getSaveFileName(this,dlgTitle,curPath,filter);
     if (!aFileName.isEmpty())
         emit save_image_signal(aFileName);
 
+}
+
+void ScanSet::modify_save_button()
+{
+    if(flag == 0)
+    {
+        flag = 1;
+        btnSave->setText("存储文本");
+        filter ="*.txt";
+    }
+    else {
+        flag = 0;
+        btnSave->setText("另存为");
+        filter="*.jpg;;*.png;;*.pdf;;*.bmp;;*.rtf"; //文件过滤器
+    }
 }
 

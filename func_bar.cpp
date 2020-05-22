@@ -142,9 +142,38 @@ FuncBar::FuncBar(QWidget *parent)
     hBoxLay4->addLayout(hBoxLay3);
     setLayout(hBoxLay4);
 
+    connect(btnOrc,SIGNAL(clicked()),this,SLOT(on_btnOrc_clicked()));
+
 }
 
 FuncBar::~FuncBar()
 {
+
+}
+
+void FuncBar::keyPressEvent(QKeyEvent *e)
+{
+    if(e->key() == Qt::Key_Z && e->modifiers() ==  Qt::ControlModifier)
+    {
+        if(n == 1)
+        {
+            n = 0;
+            emit send_Orc_End();
+        }
+    }
+}
+//QString orc_text;
+void FuncBar::on_btnOrc_clicked()
+{
+    if(n == 0)
+    {
+        n = 1;
+        emit send_Orc_Begin();
+    }
+    else
+    {
+        n = 0;
+        emit send_Orc_End();
+    }
 
 }

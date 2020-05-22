@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QToolTip>
 #include <QTextEdit>
+QString outText;
 scan_display::scan_display(QWidget *parent)
     : QWidget(parent)
 {
@@ -54,7 +55,7 @@ scan_display::scan_display(QWidget *parent)
     labDisplay2->setPixmap(QPixmap::fromImage(*img));
     labDisplay2->setAlignment(Qt::AlignHCenter|Qt::AlignBottom);
 
-    img1->load(":/icon/icon/a.png");
+    img1->load("/home/test/e.png");
     labDisplay4->setPixmap(QPixmap::fromImage(*img1));
     labDisplay4->setAlignment(Qt::AlignCenter);
     QFont ft;
@@ -82,7 +83,7 @@ scan_display::scan_display(QWidget *parent)
     btnTool->setParent(myWidget1);
     btnTool->setFixedSize(12,30);
     btnTool->setStyleSheet("QPushButton{border-image: url(:/icon/icon/toolbutton.png);border:none;background-color:#0f0801;border-radius:0px;}");
-    img5->load(":/icon/icon/a.png");
+    img5->load("/home/test/e.png");
     labDisplay5->setPixmap(QPixmap::fromImage(*img5));
     labDisplay5->setAlignment(Qt::AlignCenter);
     labDisplay6->setStyleSheet("QLabel{background-color:#0f0801;}");
@@ -106,7 +107,7 @@ scan_display::scan_display(QWidget *parent)
     btnTool1->setParent(myWidget2);
     editlayout->setParent(myWidget2);
 
-    img2->load(":/icon/icon/a.png");
+    img2->load("/home/test/e.png");
     labDisplay7->setPixmap(QPixmap::fromImage(*img2));
     labDisplay7->setAlignment(Qt::AlignCenter);
 
@@ -151,6 +152,7 @@ scan_display::scan_display(QWidget *parent)
     connect(editlayout->btnTailor,SIGNAL(clicked()),this,SLOT(switchPage1()));
     connect(editlayout->btnSymmetry,SIGNAL(clicked()),this,SLOT(symmetry()));
     connect(editlayout->btnWatermark,SIGNAL(clicked()),this,SLOT(addmark()));
+    connect(&thread,SIGNAL(orcFinished()),this,SLOT(orcText()));
 }
 
 void scan_display::keyPressEvent(QKeyEvent *e)
@@ -171,8 +173,7 @@ void scan_display::keyPressEvent(QKeyEvent *e)
     }
     if(e->key() == Qt::Key_Z && e->modifiers() ==  Qt::ControlModifier)
     {
-
-//        *img2 = img4->copy();
+        qDebug() <<"a";
         if(!stack.isEmpty())
         {
             *img2 = stack.pop();
@@ -184,7 +185,18 @@ void scan_display::keyPressEvent(QKeyEvent *e)
 
 void scan_display::imageSave(QString fileName)
 {
-    img2->save(fileName);
+    if(flag1 == 0)
+    {
+        img2->save(fileName);
+        qDebug()<<fileName;
+    }
+    else {
+        QFile file(fileName);
+        file.open(QIODevice::ReadWrite | QIODevice::Text);
+        QByteArray str = outText.toUtf8();
+        file.write(str);
+        file.close();
+    }
 }
 
 void scan_display::rotating()
@@ -249,6 +261,117 @@ void scan_display::addmark()
         labDisplay7->setPixmap(QPixmap::fromImage(*img2));
     }
     delete dialog; //删除对话框
+
+}
+
+void scan_display::orcText()
+{
+    labDisplay10->setText(outText);
+    qDebug()<<outText;
+}
+
+void scan_display::orc()
+{
+    if(flag1 == 0)
+    {
+        flag1 = 1;
+        widgetindex = vStackedLayout->currentIndex();
+        labDisplay9 = new QLabel();
+        labDisplay10 = new QLabel();
+        img6 = new QImage();
+        vBoxScanSet3 = new QVBoxLayout();
+        hBoxScanSet3 = new QHBoxLayout();
+        myWidget4 = new QWidget();
+        scrollArea = new QScrollArea();
+        thread.start();
+        labDisplay9->setFixedWidth(120);
+//        labDisplay10->setMinimumHeight(503);
+        *img6 = img2->copy();
+        *img6 = img6->scaled(120,166);
+        QPalette palette;
+        palette.setColor(QPalette::Background, QColor(192,253,123,100));
+        labDisplay9->setPalette(palette);
+        labDisplay9->setPixmap(QPixmap::fromImage(*img6));
+        labDisplay9->setAlignment(Qt::AlignTop);
+
+        outText = "正在识别中...";
+        QFont ft1;
+        ft1.setPointSize(14);
+        labDisplay10->setFont(ft1);
+        QPalette pa1;
+        pa1.setColor(QPalette::WindowText,QColor(255,255,255));
+        labDisplay10->setPalette(pa1);
+        labDisplay10->setText(outText);
+        labDisplay10->setStyleSheet("background-color:#2f2c2b;border:1px solid #717171;");
+        labDisplay10->setMargin(20);
+        labDisplay10->setAlignment(Qt::AlignTop);
+        labDisplay10->setWordWrap(true);
+        labDisplay9->setParent(myWidget4);
+        labDisplay10->setParent(myWidget4);
+        vBoxScanSet3->setSpacing(0);
+        vBoxScanSet3->addWidget(labDisplay10);
+        vBoxScanSet3->setContentsMargins(0,0,0,0);
+        scrollArea->setParent(myWidget4);
+        QWidget *widget = new QWidget();
+
+        widget->setMinimumHeight(labDisplay10->height());
+        widget->setWindowFlags(Qt::FramelessWindowHint | Qt::Tool | Qt::WindowStaysOnTopHint); // 去掉标题栏,去掉任务栏显示，窗口置顶
+        widget->setLayout(vBoxScanSet3);
+        widget->setContentsMargins(0,0,0,0);
+        scrollArea->setFixedWidth(392);
+        scrollArea->setMinimumHeight(503);
+        scrollArea->setWidget(widget);
+        scrollArea->setWidgetResizable(true);
+        scrollArea->setFrameShape(QFrame::NoFrame);
+        scrollArea->setStyleSheet("QScrollBar:vertical"
+                                  "{"
+                                  "width:6px;"
+                                  "background:#2f2c2b;"
+                                  "margin:0px,0px,0px,0px;"
+                                  "padding-top:0px;"
+                                  "padding-bottom:0px;"
+                                  "padding-right:3px"
+                                  "}"
+                                  "QScrollBar::handle:vertical"
+                                  "{"
+                                  "width:6px;"
+                                  "background:rgba(255,255,255,50%);"
+                                  " border-radius:3px;"
+                                  "min-height:20;"
+                                  "}"
+                                  "QScrollBar::handle:vertical:hover"
+                                  "{"
+                                  "width:6px;"
+                                  "background:rgba(255,255,255,80%);"
+                                  " border-radius:3px;"
+                                  "min-height:20;"
+                                  "}"
+                                  "QScrollBar::add-line:vertical"
+                                  "{"
+                                  "height:0px;width:0px;"
+                                  "}"
+                                  "QScrollBar::sub-line:vertical"
+                                  "{"
+                                  "height:0px;width:0px;"
+                                  "subcontrol-position:top;"
+                                  "}"
+                                  );
+        hBoxScanSet3->setSpacing(0);
+        hBoxScanSet3->addStretch();
+        hBoxScanSet3->addWidget(labDisplay9);
+        hBoxScanSet3->addSpacing(24);
+        hBoxScanSet3->addWidget(scrollArea);
+        hBoxScanSet3->addStretch();
+        hBoxScanSet3->setContentsMargins(32,32,32,32);
+        myWidget4->setLayout(hBoxScanSet3);
+        vStackedLayout->addWidget(myWidget4);
+        vStackedLayout->setCurrentWidget(myWidget4);
+    }
+    else
+    {
+        flag1 = 0;
+        vStackedLayout->setCurrentIndex(widgetindex);
+    }
 
 }
 
@@ -346,4 +469,24 @@ edit_bar::edit_bar(QWidget *parent)
     vBoxEditBar->setContentsMargins(5,0,5,0);
     setLayout(vBoxEditBar);
 
+}
+
+void myThread::run()
+{
+    tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
+    //使用中文初始化tesseract-ocr，而不指定tessdata路径。正在识别中
+    if (api->Init(NULL, "chi_sim")) {
+        fprintf(stderr, "Could not initialize tesseract.\n");
+        exit(1);
+    }
+    // 使用leptonica库打开输入图像。
+    Pix* image = pixRead("/home/test/e.png");
+    api->SetImage(image);
+    // 得到光学字符识别结果
+    outText = api->GetUTF8Text();
+    emit orcFinished();
+    // 销毁使用过的对象并释放内存。
+    api->End();
+    pixDestroy(&image);
+    quit();
 }

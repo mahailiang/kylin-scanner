@@ -54,6 +54,10 @@ Widget::Widget(QWidget *parent)
 
     setLayout(pLayout);
     connect(pScanSet,&ScanSet::save_image_signal,this,&Widget::save_image);
+    connect(pFuncBar,&FuncBar::send_Orc_Begin,pScandisplay,&scan_display::orc);
+    connect(pFuncBar,&FuncBar::send_Orc_End,pScandisplay,&scan_display::orc);
+    connect(pFuncBar,&FuncBar::send_Orc_Begin,pScanSet,&ScanSet::modify_save_button);
+    connect(pFuncBar,&FuncBar::send_Orc_End,pScanSet,&ScanSet::modify_save_button);
 }
 
 Widget::~Widget()

@@ -116,11 +116,14 @@ private:
     QVBoxLayout *vBoxScanSet;
     QVBoxLayout *vBoxScanSet1;
     QHBoxLayout *hBoxScanSet;
+    int flag = 0;
 
 private slots:
     void on_btnLocation_clicked();
     void on_btnMail_clicked();
     void on_btnSave_clicked();
+public slots:
+    void modify_save_button();
 };
 
 #endif // SCAN_SET_H

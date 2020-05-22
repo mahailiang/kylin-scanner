@@ -8,8 +8,9 @@
 #include <QLabel>
 #include <QToolButton>
 #include <QVBoxLayout>
-
-
+#include <QString>
+#include <QDebug>
+#include <QInputEvent>
 class FuncBar : public QWidget
 {
     Q_OBJECT
@@ -17,6 +18,9 @@ class FuncBar : public QWidget
 public:
     explicit FuncBar(QWidget *parent = nullptr);
     ~FuncBar();
+    void keyPressEvent(QKeyEvent *e);
+    int n = 0;
+
 
 private:
     QPushButton *btnNorScan ;
@@ -39,7 +43,11 @@ private:
     QHBoxLayout *hBoxLay3;
     QHBoxLayout *hBoxLay4;
 
+private slots:
+    void on_btnOrc_clicked();
+Q_SIGNALS:
+    void send_Orc_Begin();
+    void send_Orc_End();
 
 };
-
 #endif // FUNC_BAR_H
