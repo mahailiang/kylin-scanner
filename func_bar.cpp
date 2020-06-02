@@ -143,6 +143,7 @@ FuncBar::FuncBar(QWidget *parent)
     setLayout(hBoxLay4);
 
     connect(btnOrc,SIGNAL(clicked()),this,SLOT(on_btnOrc_clicked()));
+    connect(btnNorScan, SIGNAL(clicked()), this, SLOT(on_btnNorScan_clicked()));
 
 }
 
@@ -176,4 +177,12 @@ void FuncBar::on_btnOrc_clicked()
         emit send_Orc_End();
     }
 
+}
+
+void FuncBar::on_btnNorScan_clicked()
+{
+    KylinSane& instance = KylinSane::getInstance();
+
+    instance.start_scanning(instance.userInfo);
+    printf("yes\n");
 }

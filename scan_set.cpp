@@ -124,6 +124,41 @@ ScanSet::ScanSet(QWidget *parent)
     connect(btnLocation,SIGNAL(clicked()),this,SLOT(on_btnLocation_clicked()));
     connect(btnMail,SIGNAL(clicked()),this,SLOT(on_btnMail_clicked()));
     connect(btnSave,SIGNAL(clicked()),this,SLOT(on_btnSave_clicked()));
+
+
+
+    // For current combobox text, while not change current text
+    KylinSane & instance = KylinSane::getInstance();
+    QString curSize, curColor, curResolution;
+
+    curSize = textSize->currentText();
+    instance.userInfo.size = curSize;
+
+    curColor = textColor->currentText();
+    // Do not direct to return color, because color has been tr()
+    if(! QString::compare("黑白", curColor)
+            || ! QString::compare("Lineart", curColor))
+    {
+        instance.userInfo.color = "Lineart";
+    }
+    else if(! QString::compare("彩色", curColor)
+            || ! QString::compare("Color", curColor))
+    {
+       instance.userInfo.color = "Color";
+    }
+    else if(! QString::compare("灰度", curColor)
+            || ! QString::compare("Gray", curColor))
+    {
+        instance.userInfo.color = "Gray";
+    }
+    instance.userInfo.color = curColor;
+
+    curResolution = textResalution->currentText();
+    instance.userInfo.resolution = curResolution;
+
+    connect(textColor, SIGNAL(currentTextChanged(QString)), this, SLOT(on_textColor_current_text_changed(QString)));
+    connect(textResalution, SIGNAL(currentTextChanged(QString)), this, SLOT(on_textResolution_current_text_changed(QString)));
+    connect(textSize, SIGNAL(currentTextChanged(QString)), this, SLOT(on_textSize_current_text_changed(QString)));
 }
 
 ScanSet::~ScanSet()
@@ -147,14 +182,43 @@ void ScanSet::setKylinComboBoxAttributes(KylinComboBox *combo, QStringList strLi
 void ScanSet::setKylinComboBox()
 {
     QStringList strListColor, strListResalution, strListFormat, strListSize,strListLocation;
+    KylinSane& instance = KylinSane::getInstance();
 
-    strListColor<<tr("灰度")<<tr("黑白")<<tr("彩色");
+
+    strListColor = instance.getKylinSaneColors();
+    //strListColor<<tr("灰度")<<tr("黑白")<<tr(");
+
+    // For  default color
+    int defaultColor = 0;
+    for(int i=0; i<strListColor.size(); i++)
+    {
+       if(! QString::compare("灰度", strListColor[i], Qt::CaseSensitive)
+               || ! QString::compare("Gray", strListColor[i], Qt::CaseSensitive))
+       {
+           defaultColor = i;
+           break;
+       }
+    }
+
     setKylinComboBoxAttributes(textColor, strListColor);
+    textColor->setCurrentIndex(defaultColor);
 
-    strListResalution<<tr("4800dpi")<<tr("2400dpi")<<tr("1200dpi")<<tr("600dpi")<<tr("300dpi")<<tr("自动");
+    strListResalution = instance.getKylinSaneResolutions();
+    // For  default resolution
+    int defaultResolution = 0;
+    for(int i=0; i<strListResalution.size(); i++)
+    {
+       if(! QString::compare("300", strListResalution[i], Qt::CaseSensitive))
+       {
+           defaultResolution = i;
+           break;
+       }
+    }
+
     setKylinComboBoxAttributes(textResalution, strListResalution);
+    textResalution->setCurrentIndex(defaultResolution);
 
-    strListSize<<tr("A4")<<tr("A3");
+    strListSize<<tr("A4")<<tr("A3")<<tr("A5")<<tr("A6")<<tr("A2");
     setKylinComboBoxAttributes(textSize, strListSize);
 
     strListFormat<<tr("jpg")<<tr("png")<<tr("pdf")<<tr("bmp")<<tr("rtf");
@@ -166,6 +230,8 @@ void ScanSet::setKylinComboBox()
 
 void ScanSet::setKylinLable()
 {
+    KylinSane& instance = KylinSane::getInstance();
+
     labDevice->setText("设备");
     setKylinLabelAttributes(labDevice);
 
@@ -190,11 +256,13 @@ void ScanSet::setKylinLable()
     labLocation->setText("扫描至");
     setKylinLabelAttributes(labLocation);
 
-    textDevice->setText("无可用设备");
+    //textDevice->setText("无可用设备");
+    textDevice->setText(instance.getKylinSaneName());
     textDevice->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:6px;}");
     textDevice->setFixedSize(180,32);
 
-    textType->setText("平板式");
+    //textType->setText("平板式");
+    textType->setText(instance.getKylinSaneType());
     textType->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:6px;}");
     textType->setFixedSize(180,32);
 
@@ -343,3 +411,32 @@ void ScanSet::modify_save_button()
     }
 }
 
+void ScanSet::on_textColor_current_text_changed(QString color)
+{
+    KylinSane & instance = KylinSane::getInstance();
+
+    // Do not direct to return color, because color has been tr()
+    if(color == "黑白" || color == "Lineart")
+    {
+        instance.userInfo.color = "Lineart";
+    }
+    else if (color == "彩色" || color == "Color") {
+       instance.userInfo.color = "Color";
+    }
+    else {
+        instance.userInfo.color = "Gray";
+    }
+    qDebug() << "color: "<< instance.userInfo.color;
+}
+void ScanSet::on_textResolution_current_text_changed(QString resolution)
+{
+    KylinSane & instance = KylinSane::getInstance();
+    instance.userInfo.resolution = resolution;
+    qDebug() << "resolution: "<< instance.userInfo.resolution;
+}
+void ScanSet::on_textSize_current_text_changed(QString size)
+{
+    KylinSane & instance = KylinSane::getInstance();
+    instance.userInfo.size = size;
+    qDebug() << "size: "<< instance.userInfo.size;
+}

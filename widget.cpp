@@ -7,10 +7,18 @@
 #include <QFrame>
 #include <QDebug>
 #include <QBitmap>
+
+#include "kylin_sane.h"
+
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
 {
     setWindowFlags(Qt::FramelessWindowHint | windowFlags());
+
+    KylinSane &instance = KylinSane::getInstance();
+    instance.open_device();
+
+    qDebug() << instance.getKylinSaneResolutions();
 
     pTitleBar = new TitleBar(this);
     installEventFilter(pTitleBar);

@@ -11,6 +11,9 @@
 #include <QString>
 #include <QDebug>
 #include <QInputEvent>
+
+#include "kylin_sane.h"
+
 class FuncBar : public QWidget
 {
     Q_OBJECT
@@ -45,6 +48,8 @@ private:
 
 private slots:
     void on_btnOrc_clicked();
+    void on_btnNorScan_clicked();
+
 Q_SIGNALS:
     void send_Orc_Begin();
     void send_Orc_End();
