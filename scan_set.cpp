@@ -183,17 +183,36 @@ void ScanSet::setKylinComboBox()
 {
     QStringList strListColor, strListResalution, strListFormat, strListSize,strListLocation;
     KylinSane& instance = KylinSane::getInstance();
+    bool device_status = true;
 
+    device_status = instance.getKylinSaneStatus();
 
-    strListColor = instance.getKylinSaneColors();
-    //strListColor<<tr("灰度")<<tr("黑白")<<tr(");
+    if(!device_status)
+    {
+        // If not find scan device
+        strListColor<<tr("黑白")<<tr("彩色")<<tr("灰度");
+        setKylinComboBoxAttributes(textColor, strListColor);
+
+        strListResalution << tr("4800") << tr("2400") << tr("1200") << tr("600") << tr("300") << tr("自动");
+        setKylinComboBoxAttributes(textResalution, strListResalution);
+
+        strListSize<<tr("A4")<<tr("A3");
+        setKylinComboBoxAttributes(textSize, strListSize);
+
+        strListFormat<<tr("jpg")<<tr("png")<<tr("pdf")<<tr("bmp")<<tr("rtf");
+        setKylinComboBoxAttributes(textFormat, strListFormat);
+
+        return;
+    }
 
     // For  default color
+    strListColor = instance.getKylinSaneColors();
     int defaultColor = 0;
+
     for(int i=0; i<strListColor.size(); i++)
     {
-       if(! QString::compare("灰度", strListColor[i], Qt::CaseSensitive)
-               || ! QString::compare("Gray", strListColor[i], Qt::CaseSensitive))
+       if(! QString::compare("黑白", strListColor[i], Qt::CaseSensitive)
+               || ! QString::compare("Lineart", strListColor[i], Qt::CaseSensitive))
        {
            defaultColor = i;
            break;
@@ -203,9 +222,10 @@ void ScanSet::setKylinComboBox()
     setKylinComboBoxAttributes(textColor, strListColor);
     textColor->setCurrentIndex(defaultColor);
 
-    strListResalution = instance.getKylinSaneResolutions();
     // For  default resolution
+    strListResalution = instance.getKylinSaneResolutions();
     int defaultResolution = 0;
+
     for(int i=0; i<strListResalution.size(); i++)
     {
        if(! QString::compare("300", strListResalution[i], Qt::CaseSensitive))
@@ -231,6 +251,9 @@ void ScanSet::setKylinComboBox()
 void ScanSet::setKylinLable()
 {
     KylinSane& instance = KylinSane::getInstance();
+    bool device_status = true;
+
+    device_status = instance.getKylinSaneStatus();
 
     labDevice->setText("设备");
     setKylinLabelAttributes(labDevice);
@@ -256,13 +279,25 @@ void ScanSet::setKylinLable()
     labLocation->setText("扫描至");
     setKylinLabelAttributes(labLocation);
 
-    //textDevice->setText("无可用设备");
-    textDevice->setText(instance.getKylinSaneName());
+    if(!device_status)
+    {
+        // No find scan device
+        textDevice->setText("无可用设备");
+    }
+    else {
+        textDevice->setText(instance.getKylinSaneName());
+    }
     textDevice->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:6px;}");
     textDevice->setFixedSize(180,32);
 
-    //textType->setText("平板式");
-    textType->setText(instance.getKylinSaneType());
+    if(!device_status)
+    {
+        // No find scan device
+        textType->setText("平板式");
+    }
+    else {
+        textType->setText(instance.getKylinSaneType());
+    }
     textType->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:6px;}");
     textType->setFixedSize(180,32);
 

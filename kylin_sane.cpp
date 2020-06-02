@@ -1211,8 +1211,11 @@ void kylinNorScanOpen()
     if(sane_status)
     {
         instance.setKylinSaneStatus(false);
+        qDebug() << "set status false";
     }
-    instance.setKylinSaneStatus(true);
+    else {
+        instance.setKylinSaneStatus(true);
+    }
 
     /*
     // 6. release resources
