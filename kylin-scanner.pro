@@ -41,7 +41,8 @@ SOURCES += \
     scan_display.cpp \
     my_label.cpp \
     mark_dialog.cpp \
-    send_mail.cpp
+    send_mail.cpp \
+    kylin_sane.cpp
 
 HEADERS += \
     kylincombobox.h \
@@ -52,7 +53,8 @@ HEADERS += \
     scan_display.h \
     my_label.h \
     mark_dialog.h \
-    send_mail.h
+    send_mail.h \
+    kylin_sane.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -63,3 +65,8 @@ RESOURCES += \
     res.qrc
 
 FORMS +=
+
+unix:!macx: LIBS += -L$$PWD/../../../usr/lib/x86_64-linux-gnu/ -lsane
+
+INCLUDEPATH += $$PWD/../../../usr/lib/x86_64-linux-gnu
+DEPENDPATH += $$PWD/../../../usr/lib/x86_64-linux-gnu

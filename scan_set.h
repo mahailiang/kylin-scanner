@@ -20,8 +20,10 @@
 #include <QLineEdit>
 #include <QProcess>
 #include <QFile>
+
 #include "kylincombobox.h"
 #include "send_mail.h"
+#include "kylin_sane.h"
 
 class ScanSet  : public QWidget
 {
@@ -122,6 +124,11 @@ private slots:
     void on_btnLocation_clicked();
     void on_btnMail_clicked();
     void on_btnSave_clicked();
+
+    void on_textColor_current_text_changed(QString color);
+    void on_textResolution_current_text_changed(QString resolution);
+    void on_textSize_current_text_changed(QString size);
+
 public slots:
     void modify_save_button();
 };
