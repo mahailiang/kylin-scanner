@@ -87,12 +87,17 @@ FuncBar::FuncBar(QWidget *parent)
     hBoxLay3 = new QHBoxLayout();
     hBoxLay4 = new QHBoxLayout();
 
+    // 先隐藏
+    btnNorScan->hide();
+    labNorScan->hide();
+    /*
     vBoxLay1->setSpacing(0);
     vBoxLay1->addSpacing(2);
     vBoxLay1->addWidget(btnNorScan);
     vBoxLay1->addSpacing(10);
     vBoxLay1->addWidget(labNorScan);
    // vBoxLay1->addSpacing(10);
+   */
 
     vBoxLay2->setSpacing(0);
     vBoxLay2->addSpacing(2);
@@ -143,7 +148,7 @@ FuncBar::FuncBar(QWidget *parent)
     setLayout(hBoxLay4);
 
     connect(btnOrc,SIGNAL(clicked()),this,SLOT(on_btnOrc_clicked()));
-    connect(btnNorScan, SIGNAL(clicked()), this, SLOT(on_btnNorScan_clicked()));
+    connect(btnScan, SIGNAL(clicked()), this, SLOT(on_btnScan_clicked()));
 
 }
 
@@ -179,7 +184,7 @@ void FuncBar::on_btnOrc_clicked()
 
 }
 
-void FuncBar::on_btnNorScan_clicked()
+void FuncBar::on_btnScan_clicked()
 {
     KylinSane& instance = KylinSane::getInstance();
 
