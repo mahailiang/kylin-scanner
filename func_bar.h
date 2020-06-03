@@ -48,7 +48,7 @@ private:
 
 private slots:
     void on_btnOrc_clicked();
-    void on_btnNorScan_clicked();
+    void on_btnScan_clicked();
 
 Q_SIGNALS:
     void send_Orc_Begin();

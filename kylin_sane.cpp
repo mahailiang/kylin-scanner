@@ -343,8 +343,9 @@ SANE_Status do_scan(const char *fileName)
 
 	do
 	{
-        int dwProcessID = getpid();
-        sprintf (path, "%s%d.pnm", fileName, dwProcessID);
+        //int dwProcessID = getpid();
+        //sprintf (path, "%s%d.pnm", fileName, dwProcessID);
+        sprintf (path, "%s.pnm", fileName);
         strcpy (part_path, path);
         strcat (part_path, ".part");
 
@@ -1358,7 +1359,7 @@ int KylinSane::start_scanning(user_selected_info info)
       qDebug("cannot set option 2 to %s (%s)\n",s_size, sane_strstatus(status));
     }
 
-    ret = start_scan(instance.handle, "helloworld");
+    ret = start_scan(instance.handle, "scan");
     cancle_scan(instance.handle);
     //kylinNorScan();
     return ret;
