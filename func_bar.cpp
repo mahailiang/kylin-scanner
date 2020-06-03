@@ -184,5 +184,4 @@ void FuncBar::on_btnNorScan_clicked()
     KylinSane& instance = KylinSane::getInstance();
 
     instance.start_scanning(instance.userInfo);
-    printf("yes\n");
 }

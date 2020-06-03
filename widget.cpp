@@ -18,7 +18,7 @@ Widget::Widget(QWidget *parent)
     KylinSane &instance = KylinSane::getInstance();
     instance.open_device();
 
-    qDebug() << instance.getKylinSaneResolutions();
+    //qDebug() << instance.getKylinSaneResolutions();
 
     pTitleBar = new TitleBar(this);
     installEventFilter(pTitleBar);
