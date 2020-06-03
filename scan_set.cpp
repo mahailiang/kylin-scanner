@@ -184,6 +184,7 @@ void ScanSet::setKylinComboBox()
     QStringList strListColor, strListResalution, strListFormat, strListSize,strListLocation;
     KylinSane& instance = KylinSane::getInstance();
     bool device_status = true;
+    int defaultResolution = 0;
 
     device_status = instance.getKylinSaneStatus();
 
@@ -194,7 +195,16 @@ void ScanSet::setKylinComboBox()
         setKylinComboBoxAttributes(textColor, strListColor);
 
         strListResalution << tr("4800") << tr("2400") << tr("1200") << tr("600") << tr("300") << tr("自动");
+        for(int i=0; i<strListResalution.size(); i++)
+        {
+           if(! QString::compare("300", strListResalution[i], Qt::CaseSensitive))
+           {
+               defaultResolution = i;
+               break;
+           }
+        }
         setKylinComboBoxAttributes(textResalution, strListResalution);
+        textResalution->setCurrentIndex(defaultResolution);
 
         strListSize<<tr("A4")<<tr("A3");
         setKylinComboBoxAttributes(textSize, strListSize);
@@ -224,7 +234,6 @@ void ScanSet::setKylinComboBox()
 
     // For  default resolution
     strListResalution = instance.getKylinSaneResolutions();
-    int defaultResolution = 0;
 
     for(int i=0; i<strListResalution.size(); i++)
     {
