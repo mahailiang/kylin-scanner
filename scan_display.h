@@ -49,7 +49,9 @@ class scan_display  : public QWidget
 public:
     scan_display(QWidget *parent = nullptr);
     void keyPressEvent(QKeyEvent *e);
-    void imageSave(QString fileName);
+    QImage *imageSave(QString fileName);
+    void set_no_device();
+    void set_pixmap(QImage img, QLabel *lab);
     int flag = 0;
     int flag1 = 0;
     int index = 0;
@@ -110,6 +112,7 @@ private slots:
     void orcText();
 public slots:
     void orc();
+    void scan();
 };
 
 #endif // SCAN_DISPLAY_H

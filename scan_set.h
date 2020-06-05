@@ -75,6 +75,11 @@ public:
      * @param combo 水平布局中的组合框
      */
     void setKylinHBoxLayoutAttributes(QHBoxLayout *layout, QLabel *labelFirst, KylinComboBox *combo);
+    QString getTextResalution();
+    QString getTextSize();
+    QString getTextFormat();
+    QString getTextName();
+    QString getTextLocation();
 Q_SIGNALS:
 //signals:
     void save_image_signal(QString);

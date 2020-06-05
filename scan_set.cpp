@@ -206,7 +206,7 @@ void ScanSet::setKylinComboBox()
         setKylinComboBoxAttributes(textResalution, strListResalution);
         textResalution->setCurrentIndex(defaultResolution);
 
-        strListSize<<tr("A4")<<tr("A3");
+        strListSize<<tr("A4")<<tr("A5");
         setKylinComboBoxAttributes(textSize, strListSize);
 
         strListFormat<<tr("jpg")<<tr("png")<<tr("pdf")<<tr("bmp")<<tr("rtf");
@@ -394,6 +394,31 @@ void ScanSet::setKylinHBoxLayoutAttributes(QHBoxLayout *layout, QLabel *labelFir
     //    layout->addStretch();
 }
 
+QString ScanSet::getTextResalution()
+{
+    return textResalution->currentText();
+}
+
+QString ScanSet::getTextSize()
+{
+    return textSize->currentText();
+}
+
+QString ScanSet::getTextFormat()
+{
+    return textFormat->currentText();
+}
+
+QString ScanSet::getTextName()
+{
+    return textName->text();
+}
+
+QString ScanSet::getTextLocation()
+{
+    return curPath;
+}
+
 void ScanSet::on_btnLocation_clicked()
 {
     if(curPath.isEmpty())
@@ -404,6 +429,7 @@ void ScanSet::on_btnLocation_clicked()
     if (!selectedDir.isEmpty())
     {
         QFontMetrics elideFont(btnLocation->font());
+        curPath = selectedDir;
         btnLocation->setText(elideFont.elidedText(selectedDir,Qt::ElideRight,150));
     }
 }
@@ -434,7 +460,8 @@ void ScanSet::on_btnSave_clicked()
 {//保存文件
     QString dlgTitle="另存为..."; //对话框标题
 //    QString filter="文本文件(*.txt);;h文件(*.h);;C++文件(.cpp);;所有文件(*.*)"; //文件过滤器
-    QString aFileName=QFileDialog::getSaveFileName(this,dlgTitle,curPath,filter);
+    QString pathName = curPath + "/" + textName->text();
+    QString aFileName=QFileDialog::getSaveFileName(this,dlgTitle,pathName,filter);
     if (!aFileName.isEmpty())
         emit save_image_signal(aFileName);
 
