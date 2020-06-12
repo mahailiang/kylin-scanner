@@ -13,6 +13,7 @@
 #include <QInputEvent>
 
 #include "kylin_sane.h"
+#include "embelish.h"
 
 class FuncBar : public QWidget
 {
