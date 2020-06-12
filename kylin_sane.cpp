@@ -51,6 +51,36 @@ static void write_pnm_header (SANE_Frame format, int width, int height, int dept
     }
 }
 
+static void *
+advance (Image * image)
+{
+  if (++image->x >= image->width)
+    {
+      image->x = 0;
+      if (++image->y >= image->height || !image->data)
+	{
+	  size_t old_size = 0, new_size;
+
+	  if (image->data)
+        old_size = static_cast<size_t>(image->height * image->width);
+
+	  image->height += STRIP_HEIGHT;
+      new_size = static_cast<size_t>(image->height * image->width);
+
+	  if (image->data)
+        image->data = (uint8_t *) realloc (image->data, new_size);
+	  else
+        image->data = (uint8_t *) malloc (new_size);
+	  if (image->data)
+	    memset (image->data + old_size, 0, new_size - old_size);
+	}
+    }
+  if (!image->data)
+    fprintf (stderr, "can't allocate image buffer (%dx%d)\n",
+         image->width, image->height);
+  return image->data;
+}
+
 static SANE_Status scan_it (FILE *ofp)
 {
     int i, len, first_frame = 1, offset = 0, must_buffer = 0, hundred_percent;
@@ -147,13 +177,11 @@ static SANE_Status scan_it (FILE *ofp)
 
                 image.x = image.width - 1;
                 image.y = -1;
-                /*
                 if (!advance (&image))
                 {
                     status = SANE_STATUS_NO_MEM;
                     goto cleanup;
                 }
-                */
             }
         }
         else
@@ -194,13 +222,11 @@ static SANE_Status scan_it (FILE *ofp)
                         for (i = 0; i < len; ++i)
                         {
                             image.data[offset + 3 * i] = buffer[i];
-                            /*
                             if (!advance (&image))
                             {
                                 status = SANE_STATUS_NO_MEM;
                                 goto cleanup;
                             }
-                            */
                         }
                         offset += 3 * len;
                         break;
@@ -208,13 +234,11 @@ static SANE_Status scan_it (FILE *ofp)
                         for (i = 0; i < len; ++i)
                         {
                             image.data[offset + i] = buffer[i];
-                            /*
                             if (!advance (&image))
                             {
                                 status = SANE_STATUS_NO_MEM;
                                 goto cleanup;
                             }
-                            */
                         }
                         offset += len;
                         break;
@@ -222,13 +246,11 @@ static SANE_Status scan_it (FILE *ofp)
                         for (i = 0; i < len; ++i)
                         {
                             image.data[offset + i] = buffer[i];
-                            /*
                             if (!advance (&image))
                             {
                                 status = SANE_STATUS_NO_MEM;
                                 goto cleanup;
                             }
-                            */
                         }
                         offset += len;
                         break;
@@ -345,7 +367,7 @@ SANE_Status do_scan(const char *fileName)
 	{
         //int dwProcessID = getpid();
         //sprintf (path, "%s%d.pnm", fileName, dwProcessID);
-        sprintf (path, "%s.pnm", fileName);
+        sprintf (path, "/tmp/%s.pnm", fileName);
         strcpy (part_path, path);
         strcat (part_path, ".part");
 
