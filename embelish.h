@@ -105,7 +105,7 @@ QImage * psDrawFrame(QImage * origin, const char *filename);
 
 
 //一键美化
-void psOneClickEmbelish(Mat src, Mat &dst);
+void oneClickEmbelish(const char *filename);
 
 
 

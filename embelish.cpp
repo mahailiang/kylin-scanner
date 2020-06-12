@@ -8,10 +8,7 @@ embelish::embelish(QWidget *parent) : QWidget(parent)
 int readImagesAndTimesOne(Mat src, vector<Mat> &images, vector<float> &times)
 {
 
-  //int numImages = 1;
-
   static const float timesArray = 1/0.03f;
-  //times.assign(timesArray, timesArray + numImages);
 
   images.push_back(src);
   times.push_back(timesArray);
@@ -230,7 +227,7 @@ void psSharpenCV(Mat src, Mat &dst)
  */
 void psLuminanceContrastCV(Mat src, Mat &dst)
 {
-    cout << "lc"<<endl;
+    cout << "psLuminanceContrastCV()"<<endl;
     Mat new_image = Mat::zeros(src.size(), src.type());
     double alpha = 1.0; /*< Simple contrast control */
     int beta = 0;       /*< Simple brightness control */
@@ -251,7 +248,7 @@ void psLuminanceContrastCV(Mat src, Mat &dst)
     }
 
     dst = new_image.clone();
-    cout << "lc end"<<endl;
+    cout << "psLuminanceContrastCV() end"<<endl;
 }
 
 
@@ -603,9 +600,20 @@ QImage * psDrawFrame(QImage * origin, const char *filename)
     return newImage;
 }
 
-void psOneClickEmbelish(Mat src, Mat &dst)
+void oneClickEmbelish(const char *filename)
 {
-    const string filename = "/tmp/embelish.png";
+    Mat src, dst;
+
+    src = imread(filename);
+
+    //判断图像是否加载成功
+    if(!src.data)
+    {
+        cout << "图像加载失败!" << endl;
+        return;
+    }
+    else
+        cout << "图像加载成功!" << endl << endl;
 
     psBilateralFilterCV(src, dst);
 
