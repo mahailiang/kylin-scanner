@@ -363,11 +363,23 @@ SANE_Status do_scan(const char *fileName)
 	buffer_size = (32 * 1024);
     buffer = static_cast<SANE_Byte *>(malloc(buffer_size));
 
+    string dir = "/tmp/scanner/";
+    if(access(dir.c_str(), 0) == -1)
+    {
+        cout << dir << "is not existing, now create it." << endl;
+        int flag=mkdir(dir.c_str(), 0777);
+        if(flag == 0)
+            cout << "create successfully!" << endl;
+        else {
+            cout << "create failed!" << endl;
+        }
+    }
+
 	do
 	{
         //int dwProcessID = getpid();
         //sprintf (path, "%s%d.pnm", fileName, dwProcessID);
-        sprintf (path, "/tmp/%s.pnm", fileName);
+        sprintf (path, "%s/%s.pnm", dir.c_str(), fileName);
         strcpy (part_path, path);
         strcat (part_path, ".part");
 
