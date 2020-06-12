@@ -3,11 +3,13 @@
 #include <QDebug>
 #include <QToolTip>
 #include <QTextEdit>
+#include "kylin_sane.h"
 QString outText;
 scan_display::scan_display(QWidget *parent)
     : QWidget(parent)
 {
 
+    setMinimumSize(600,567);
     labDisplay1 = new QLabel();
     labDisplay2 = new QLabel();
     labDisplay3 = new QLabel();
@@ -43,9 +45,9 @@ scan_display::scan_display(QWidget *parent)
     labDisplay2->setMinimumSize(600,320);
     labDisplay3->setMinimumSize(600,231);
     labDisplay4->setMinimumSize(600,567);
-    labDisplay5->setMinimumSize(560,567);
+    labDisplay5->setMinimumSize(360,490);
     labDisplay6->setFixedWidth(40);
-    labDisplay7->setMinimumSize(560,567);
+    labDisplay7->setMinimumSize(360,490);
 
 
     labDisplay1->setText(" ");
@@ -55,7 +57,8 @@ scan_display::scan_display(QWidget *parent)
     labDisplay2->setPixmap(QPixmap::fromImage(*img));
     labDisplay2->setAlignment(Qt::AlignHCenter|Qt::AlignBottom);
 
-    img1->load("/home/test/e.png");
+//    img1->load("/home/test/e.png");
+    img1->load("scan.pnm");
     labDisplay4->setPixmap(QPixmap::fromImage(*img1));
     labDisplay4->setAlignment(Qt::AlignCenter);
     QFont ft;
@@ -83,22 +86,20 @@ scan_display::scan_display(QWidget *parent)
     btnTool->setParent(myWidget1);
     btnTool->setFixedSize(12,30);
     btnTool->setStyleSheet("QPushButton{border-image: url(:/icon/icon/toolbutton.png);border:none;background-color:#0f0801;border-radius:0px;}");
-    img5->load("/home/test/e.png");
-    labDisplay5->setPixmap(QPixmap::fromImage(*img5));
+
     labDisplay5->setAlignment(Qt::AlignCenter);
     labDisplay6->setStyleSheet("QLabel{background-color:#0f0801;}");
 
     hBoxScanSet->setSpacing(0);
-    hBoxScanSet->addSpacing(2);
+    hBoxScanSet->addSpacing(93);
     hBoxScanSet->addStretch();
     hBoxScanSet->addWidget(labDisplay5);
-//    hBoxScanSet->addSpacing(65);
     hBoxScanSet->addStretch();
-    hBoxScanSet->addSpacing(2);
+    hBoxScanSet->addSpacing(93);
     hBoxScanSet->addWidget(labDisplay6);
     hBoxScanSet->addSpacing(2);
     hBoxScanSet->addWidget(btnTool);
-    hBoxScanSet->setContentsMargins(0,0,4,0);
+    hBoxScanSet->setContentsMargins(0,45,0,32);
     myWidget1->setLayout(hBoxScanSet);
 
 
@@ -107,8 +108,7 @@ scan_display::scan_display(QWidget *parent)
     btnTool1->setParent(myWidget2);
     editlayout->setParent(myWidget2);
 
-    img2->load("/home/test/e.png");
-    labDisplay7->setPixmap(QPixmap::fromImage(*img2));
+
     labDisplay7->setAlignment(Qt::AlignCenter);
 
 
@@ -116,16 +116,15 @@ scan_display::scan_display(QWidget *parent)
     btnTool1->setStyleSheet("QPushButton{border-image: url(:/icon/icon/toolbutton1.png);border:none;background-color:#0f0801;border-radius:0px;}");
 
     hBoxScanSet1->setSpacing(0);
-    hBoxScanSet1->addSpacing(2);
+    hBoxScanSet1->addSpacing(93);
     hBoxScanSet1->addStretch();
     hBoxScanSet1->addWidget(labDisplay7);
-//    hBoxScanSet1->addSpacing(65);
     hBoxScanSet1->addStretch();
-    hBoxScanSet1->addSpacing(2);
+    hBoxScanSet1->addSpacing(93);
     hBoxScanSet1->addWidget(editlayout);
     hBoxScanSet1->addSpacing(2);
     hBoxScanSet1->addWidget(btnTool1);
-    hBoxScanSet1->setContentsMargins(0,0,4,0);
+    hBoxScanSet1->setContentsMargins(0,45,0,32);
     myWidget2->setLayout(hBoxScanSet1);
 
 
@@ -146,6 +145,7 @@ scan_display::scan_display(QWidget *parent)
     vBoxScanSet1->addLayout(vStackedLayout);
     vBoxScanSet1->setContentsMargins(0,0,0,0);
     setLayout(vBoxScanSet1);
+    vStackedLayout->setCurrentWidget(labDisplay1);
     connect(btnTool,SIGNAL(clicked()),this,SLOT(switchPage()));
     connect(btnTool1,SIGNAL(clicked()),this,SLOT(switchPage()));
     connect(editlayout->btnRotate,SIGNAL(clicked()),this,SLOT(rotating()));
@@ -166,37 +166,62 @@ void scan_display::keyPressEvent(QKeyEvent *e)
 
         newimage = img2->copy(x,y,labDisplay8->getX2()-labDisplay8->getX1(),labDisplay8->getY2()-labDisplay8->getY1());
         *img2 = newimage;
-        labDisplay7->setPixmap(QPixmap::fromImage(*img2));
+        set_pixmap(*img2,labDisplay7);
+       // labDisplay7->setPixmap(QPixmap::fromImage(*img2));
         vStackedLayout->setCurrentIndex(index);
         vStackedLayout->removeWidget(myWidget3);
 
     }
     if(e->key() == Qt::Key_Z && e->modifiers() ==  Qt::ControlModifier)
     {
-        qDebug() <<"a";
         if(!stack.isEmpty())
         {
             *img2 = stack.pop();
-            labDisplay7->setPixmap(QPixmap::fromImage(*img2));
+            set_pixmap(*img2,labDisplay7);
+           // labDisplay7->setPixmap(QPixmap::fromImage(*img2));
             vStackedLayout->setCurrentIndex(index);
         }
     }
 }
 
-void scan_display::imageSave(QString fileName)
+QImage *scan_display::imageSave(QString fileName)
 {
     if(flag1 == 0)
     {
-        img2->save(fileName);
-        qDebug()<<fileName;
+        *img2 = img5->copy();
+        if(fileName.endsWith(".pdf"))
+            return img2;
+        if(fileName.endsWith(".png") || fileName.endsWith(".jpg") || fileName.endsWith(".bmp"))
+            img2->save(fileName);
     }
     else {
+        if(!fileName.endsWith(".txt"))
+            fileName += ".txt";
         QFile file(fileName);
         file.open(QIODevice::ReadWrite | QIODevice::Text);
         QByteArray str = outText.toUtf8();
         file.write(str);
         file.close();
     }
+    return NULL;
+}
+
+void scan_display::set_no_device()
+{
+    vStackedLayout->setCurrentWidget(myWidget);
+}
+
+void scan_display::set_pixmap(QImage img, QLabel *lab)
+{
+    int width = lab->width();
+    int height = lab->height();
+    qDebug()<<"width:"<<width;
+    qDebug()<<"height:"<<height;
+    QPixmap pixmap = QPixmap::fromImage(img);
+    QPixmap fitpixmap = pixmap.scaled(width, height, Qt::KeepAspectRatioByExpanding, Qt::FastTransformation);  // 按比例缩放
+    lab->setPixmap(fitpixmap);
+    //lab->setScaledContents(false);
+    lab->setAlignment(Qt::AlignCenter);
 }
 
 void scan_display::rotating()
@@ -207,7 +232,8 @@ void scan_display::rotating()
     stack.push(*img4);
     matrix.rotate(270);
     *img2 = img2->transformed(matrix);
-    labDisplay7->setPixmap(QPixmap::fromImage(*img2));
+    set_pixmap(*img2,labDisplay7);
+    //labDisplay7->setPixmap(QPixmap::fromImage(*img2));
 
 }
 
@@ -216,7 +242,8 @@ void scan_display::symmetry()
     *img4 = img2->copy();
     stack.push(*img4);
     *img2=img2->mirrored(true,false);
-    labDisplay7->setPixmap(QPixmap::fromImage(*img2));
+    set_pixmap(*img2,labDisplay7);
+    //labDisplay7->setPixmap(QPixmap::fromImage(*img2));
 }
 
 void scan_display::addmark()
@@ -258,7 +285,8 @@ void scan_display::addmark()
                painter.drawText(x * i, y * j,text);
             }
         }
-        labDisplay7->setPixmap(QPixmap::fromImage(*img2));
+        set_pixmap(*img2,labDisplay7);
+      //  labDisplay7->setPixmap(QPixmap::fromImage(*img2));
     }
     delete dialog; //删除对话框
 
@@ -285,7 +313,8 @@ void scan_display::orc()
         scrollArea = new QScrollArea();
         thread.start();
         labDisplay9->setFixedWidth(120);
-//        labDisplay10->setMinimumHeight(503);
+        *img2 = img5->copy();
+        img2->save("/tmp/scanner/scan.pnm");
         *img6 = img2->copy();
         *img6 = img6->scaled(120,166);
         QPalette palette;
@@ -375,13 +404,30 @@ void scan_display::orc()
 
 }
 
+void scan_display::scan()
+{
+    img5->load("/tmp/scanner/scan.png");
+    set_pixmap(*img5,labDisplay5);
+    vStackedLayout->setCurrentWidget(myWidget1);
+    *img2 = img->copy();
+    set_pixmap(*img2,labDisplay7);
+}
 
 
 void scan_display::switchPage()
 {
     index++;
     if(index > 1)
+    {
         index = 0;
+        *img5 = img2->copy();
+        set_pixmap(*img5,labDisplay5);
+    }
+    else
+    {
+        *img2 = img5->copy();
+        set_pixmap(*img2,labDisplay7);
+    }
     vStackedLayout->setCurrentIndex(index);
 }
 
@@ -393,30 +439,30 @@ void scan_display::switchPage1()
     myWidget3 = new QWidget();
     hBoxScanSet2 = new QHBoxLayout();
     img3 = new QImage();
-    labDisplay8->setMinimumSize(560,567);
+    labDisplay8->setMinimumSize(360,490);
     labDisplay8->setParent(myWidget3);
     btnTool2->setParent(myWidget3);
     editlayout1->setParent(myWidget3);
     *img3 = img2->copy();
     *img4 = img2->copy();
     stack.push(*img4);
-    labDisplay8->setPixmap(QPixmap::fromImage(*img3));
+    set_pixmap(*img3,labDisplay8);
+  //  labDisplay8->setPixmap(QPixmap::fromImage(*img3));
     labDisplay8->setAlignment(Qt::AlignCenter);
 
     btnTool2->setFixedSize(12,30);
     btnTool2->setStyleSheet("QPushButton{border-image: url(:/icon/icon/toolbutton1.png);border:none;background-color:#0f0801;border-radius:0px;}");
 
     hBoxScanSet2->setSpacing(0);
-    hBoxScanSet2->addSpacing(2);
+    hBoxScanSet2->addSpacing(93);
     hBoxScanSet2->addStretch();
     hBoxScanSet2->addWidget(labDisplay8);
-//    hBoxScanSet2->addSpacing(65);
     hBoxScanSet2->addStretch();
-    hBoxScanSet2->addSpacing(2);
+    hBoxScanSet2->addSpacing(93);
     hBoxScanSet2->addWidget(editlayout1);
     hBoxScanSet2->addSpacing(2);
     hBoxScanSet2->addWidget(btnTool2);
-    hBoxScanSet2->setContentsMargins(0,0,4,0);
+    hBoxScanSet2->setContentsMargins(0,45,0,32);
     myWidget3->setLayout(hBoxScanSet2);
     vStackedLayout->addWidget(myWidget3);
     vStackedLayout->setCurrentWidget(myWidget3);
@@ -441,8 +487,6 @@ edit_bar::edit_bar(QWidget *parent)
     btnTailor->setFixedSize(30,30);
     btnSymmetry->setFixedSize(30,30);
     btnWatermark->setFixedSize(30,30);
-    btnRotate->setToolTip("旋转");
-  //  btnTailor->setToolTip("裁剪");
 
     btnRotate->setStyleSheet("QPushButton{border-image: url(:/icon/icon/rotate.png);border:none;background-color:rgb(232,232,232);border-radius:0px;}"
                               "QPushButton:hover{border-image: url(:/icon/icon/rotate-click.png);border:none;background-color:rgb(232,232,232);border-radius:0px;}"
@@ -476,11 +520,18 @@ void myThread::run()
     tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
     //使用中文初始化tesseract-ocr，而不指定tessdata路径。正在识别中
     if (api->Init(NULL, "chi_sim")) {
-        fprintf(stderr, "Could not initialize tesseract.\n");
+        qDebug()<<"Could not initialize tesseract.\n";
+        outText = "Unable to read text";
         exit(1);
     }
     // 使用leptonica库打开输入图像。
-    Pix* image = pixRead("/home/test/e.png");
+    Pix* image = pixRead("/tmp/scanner/scan.pnm");
+    if(!image)
+    {
+        qDebug()<<"pixRead error!";
+        outText = "Unable to read text";
+        exit(1);
+    }
     api->SetImage(image);
     // 得到光学字符识别结果
     outText = api->GetUTF8Text();

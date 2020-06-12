@@ -790,6 +790,7 @@ SANE_Status set_option_sizes_real(SANE_Handle sane_handle, SANE_Int val_size_br_
     SANE_Status status = SANE_STATUS_GOOD;
     qDebug("size Bottom-right xy=[%d, %d]\n", val_size_br_x, val_size_br_y);
 
+
     status = set_option_sizes(sane_handle, 10, SANE_FIX(val_size_br_x));
     status = set_option_sizes(sane_handle, 11, SANE_FIX(val_size_br_y));
 

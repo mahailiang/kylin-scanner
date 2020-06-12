@@ -54,6 +54,7 @@ private slots:
 Q_SIGNALS:
     void send_Orc_Begin();
     void send_Orc_End();
+    void send_Scan_End();
 
 };
 #endif // FUNC_BAR_H

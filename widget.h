@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QLabel>
 #include <QString>
+#include <QPdfWriter>
+#include <QPainter>
 #include "scan_display.h"
 #include <scan_set.h>
 #include "title_bar.h"
@@ -16,6 +18,8 @@ public:
 
     Widget(QWidget *parent = 0);
     ~Widget();
+    void set_pdf_size(QPdfWriter *pdfWriter,QString size);
+    void save_to_pdf(QImage img, QString pathName);
 
 private:
     TitleBar *pTitleBar;
@@ -27,6 +31,10 @@ private:
     QVBoxLayout *pLayout;
 private slots:
     void save_image(QString fileName);
+    void save_scan_file();
+
+
+
 };
 
 #endif // WIDGET_H

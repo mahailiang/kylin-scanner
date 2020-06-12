@@ -187,6 +187,10 @@ void FuncBar::on_btnOrc_clicked()
 void FuncBar::on_btnScan_clicked()
 {
     KylinSane& instance = KylinSane::getInstance();
-
-    instance.start_scanning(instance.userInfo);
+    if(instance.getKylinSaneStatus() == true)
+    {
+        instance.start_scanning(instance.userInfo);
+        qDebug()<<"start_scanning end!!!";
+        emit send_Scan_End();
+    }
 }
