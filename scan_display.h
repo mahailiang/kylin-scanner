@@ -22,6 +22,7 @@
 #include "mark_dialog.h"
 #include "func_bar.h"
 #include <QWidget>
+#include "rectify.h"
 class myThread : public QThread
 {
     Q_OBJECT
@@ -113,6 +114,7 @@ private slots:
 public slots:
     void orc();
     void scan();
+    void rectify();
 };
 
 #endif // SCAN_DISPLAY_H

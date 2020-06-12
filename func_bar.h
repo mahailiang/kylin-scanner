@@ -50,11 +50,13 @@ private:
 private slots:
     void on_btnOrc_clicked();
     void on_btnScan_clicked();
+    void on_btnRectify_clicked();
 
 Q_SIGNALS:
     void send_Orc_Begin();
     void send_Orc_End();
     void send_Scan_End();
+    void send_Rectify_Begin();
 
 };
 #endif // FUNC_BAR_H

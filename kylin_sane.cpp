@@ -1,6 +1,7 @@
 #include "kylin_sane.h"
 //KylinSane* KylinSane::instance=nullptr; //静态成员需要先初始化
 
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -367,7 +368,7 @@ SANE_Status do_scan(const char *fileName)
 	{
         //int dwProcessID = getpid();
         //sprintf (path, "%s%d.pnm", fileName, dwProcessID);
-        sprintf (path, "/tmp/%s.pnm", fileName);
+        sprintf (path, "/tmp/scanner/%s.pnm", fileName);
         strcpy (part_path, path);
         strcat (part_path, ".part");
 
@@ -1387,3 +1388,5 @@ int KylinSane::start_scanning(user_selected_info info)
     //kylinNorScan();
     return ret;
 }
+
+

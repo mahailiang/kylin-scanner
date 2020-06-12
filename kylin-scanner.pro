@@ -22,27 +22,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-# For opencv
-INCLUDEPATH += /usr/include/opencv \
-        /usr/include/opencv2
-
-LIBS += /usr/lib/x86_64-linux-gnu/libopencv_core.so.3.2
-LIBS += /usr/lib/x86_64-linux-gnu/libopencv_photo.so.3.2
-LIBS += /usr/lib/x86_64-linux-gnu/libopencv_imgcodecs.so.3.2
-LIBS += /usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.3.2
-LIBS += /usr/lib/x86_64-linux-gnu/libopencv_highgui.so.3.2
-
 #CONFIG += c++11
 ##加载gio库和gio-unix库，用于处理desktop文件
 CONFIG        += link_pkgconfig \
                  C++11
 PKGCONFIG     += gio-2.0 \
-                 gio-unix-2.0
+                 gio-unix-2.0 \
+                 opencv4
 LIBS +=-llept
 LIBS +=-ltesseract
 SOURCES += \
     kylincombobox.cpp \
         main.cpp \
+    rectify.cpp \
         widget.cpp \
     title_bar.cpp \
     func_bar.cpp \
@@ -56,6 +48,7 @@ SOURCES += \
 
 HEADERS += \
     kylincombobox.h \
+    rectify.h \
         widget.h \
     title_bar.h \
     func_bar.h \
