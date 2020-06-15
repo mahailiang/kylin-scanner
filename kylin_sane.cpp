@@ -1,6 +1,7 @@
 #include "kylin_sane.h"
 //KylinSane* KylinSane::instance=nullptr; //静态成员需要先初始化
 
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -1418,3 +1419,5 @@ int KylinSane::start_scanning(user_selected_info info)
     //kylinNorScan();
     return ret;
 }
+
+

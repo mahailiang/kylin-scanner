@@ -167,7 +167,8 @@ void scan_display::keyPressEvent(QKeyEvent *e)
         newimage = img2->copy(x,y,labDisplay8->getX2()-labDisplay8->getX1(),labDisplay8->getY2()-labDisplay8->getY1());
         *img2 = newimage;
         set_pixmap(*img2,labDisplay7);
-       // labDisplay7->setPixmap(QPixmap::fromImage(*img2));
+        *img5 = img2->copy();
+        set_pixmap(*img5,labDisplay5);
         vStackedLayout->setCurrentIndex(index);
         vStackedLayout->removeWidget(myWidget3);
 
@@ -178,7 +179,8 @@ void scan_display::keyPressEvent(QKeyEvent *e)
         {
             *img2 = stack.pop();
             set_pixmap(*img2,labDisplay7);
-           // labDisplay7->setPixmap(QPixmap::fromImage(*img2));
+            *img5 = img2->copy();
+            set_pixmap(*img5,labDisplay5);
             vStackedLayout->setCurrentIndex(index);
         }
     }
@@ -233,7 +235,8 @@ void scan_display::rotating()
     matrix.rotate(270);
     *img2 = img2->transformed(matrix);
     set_pixmap(*img2,labDisplay7);
-    //labDisplay7->setPixmap(QPixmap::fromImage(*img2));
+    *img5 = img2->copy();
+    set_pixmap(*img5,labDisplay5);
 
 }
 
@@ -243,7 +246,8 @@ void scan_display::symmetry()
     stack.push(*img4);
     *img2=img2->mirrored(true,false);
     set_pixmap(*img2,labDisplay7);
-    //labDisplay7->setPixmap(QPixmap::fromImage(*img2));
+    *img5 = img2->copy();
+    set_pixmap(*img5,labDisplay5);
 }
 
 void scan_display::addmark()
@@ -314,7 +318,7 @@ void scan_display::orc()
         thread.start();
         labDisplay9->setFixedWidth(120);
         *img2 = img5->copy();
-        img2->save("/tmp/scanner/scan.pnm");
+        img2->save("/tmp/scanner/scan1.png");
         *img6 = img2->copy();
         *img6 = img6->scaled(120,166);
         QPalette palette;
@@ -406,13 +410,24 @@ void scan_display::orc()
 
 void scan_display::scan()
 {
-    img5->load("/tmp/scanner/scan.png");
+    img5->load("/tmp/scanner/scan.pnm");
     set_pixmap(*img5,labDisplay5);
     vStackedLayout->setCurrentWidget(myWidget1);
-    *img2 = img->copy();
+    *img2 = img5->copy();
     set_pixmap(*img2,labDisplay7);
 }
 
+void scan_display::rectify()
+{
+    qDebug()<<"rectify\n";
+    *img2 = img5->copy();
+    img2->save("/tmp/scanner/scan1.png");
+    ImageRectify("/tmp/scanner/scan1.png");
+    img2->load("/tmp/scanner/scan1.png");
+    set_pixmap(*img2,labDisplay7);
+    *img5 = img2->copy();
+    set_pixmap(*img5,labDisplay5);
+}
 
 void scan_display::switchPage()
 {
@@ -525,12 +540,16 @@ void myThread::run()
         exit(1);
     }
     // 使用leptonica库打开输入图像。
-    Pix* image = pixRead("/tmp/scanner/scan.pnm");
+    Pix* image = pixRead("/tmp/scanner/scan1.png");
     if(!image)
     {
         qDebug()<<"pixRead error!";
         outText = "Unable to read text";
-        exit(1);
+        emit orcFinished();
+        // 销毁使用过的对象并释放内存。
+        api->End();
+       // pixDestroy(&image);
+        quit();
     }
     api->SetImage(image);
     // 得到光学字符识别结果

@@ -149,7 +149,7 @@ FuncBar::FuncBar(QWidget *parent)
 
     connect(btnOrc,SIGNAL(clicked()),this,SLOT(on_btnOrc_clicked()));
     connect(btnScan, SIGNAL(clicked()), this, SLOT(on_btnScan_clicked()));
-
+    connect(btnRectify, SIGNAL(clicked()), this, SLOT(on_btnRectify_clicked()));
 }
 
 FuncBar::~FuncBar()
@@ -193,4 +193,9 @@ void FuncBar::on_btnScan_clicked()
         qDebug()<<"start_scanning end!!!";
         emit send_Scan_End();
     }
+}
+void FuncBar::on_btnRectify_clicked()
+{
+    qDebug()<<"send_Rectify_Begin"<<endl;
+    emit send_Rectify_Begin();
 }
