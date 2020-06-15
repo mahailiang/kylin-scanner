@@ -10,12 +10,15 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
+#include "opencv2/imgproc/imgproc_c.h"
+
 #include <vector>
 #include <iostream>
 #include <fstream>
 using namespace cv;
 using namespace std;
 
+//#define CV_MINMAX       32
 
 /******************************* opencv 图像处理 **********************************/
 ////////////////////////start 高动态范围成像HDR

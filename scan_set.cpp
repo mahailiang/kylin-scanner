@@ -185,6 +185,7 @@ void ScanSet::setKylinComboBox()
     KylinSane& instance = KylinSane::getInstance();
     bool device_status = true;
     int defaultResolution = 0;
+    int defaultSize = 0;
 
     device_status = instance.getKylinSaneStatus();
 
@@ -247,8 +248,22 @@ void ScanSet::setKylinComboBox()
     setKylinComboBoxAttributes(textResalution, strListResalution);
     textResalution->setCurrentIndex(defaultResolution);
 
-    strListSize<<tr("A4")<<tr("A3")<<tr("A5")<<tr("A6")<<tr("A2");
+    // For  default sizes
+    strListSize = instance.getKylinSaneSizes();
+
+    for(int i=0; i<strListSize.size(); i++)
+    {
+       if(! QString::compare("A4", strListSize[i], Qt::CaseSensitive))
+       {
+           defaultSize = i;
+           break;
+       }
+    }
+
+    //strListSize<<tr("A4")<<tr("A3")<<tr("A5")<<tr("A6")<<tr("A2");
     setKylinComboBoxAttributes(textSize, strListSize);
+    textSize->setCurrentIndex(defaultSize);
+
 
     strListFormat<<tr("jpg")<<tr("png")<<tr("pdf")<<tr("bmp")<<tr("rtf");
     setKylinComboBoxAttributes(textFormat, strListFormat);
