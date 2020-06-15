@@ -753,6 +753,9 @@ SANE_Status set_option_resolutions(SANE_Handle sane_handle, SANE_Int val_resolut
  */
 void get_option_sizes(SANE_Handle sane_handle, int optnum)
 {
+    KylinSane& instance = KylinSane::getInstance();
+    QStringList sizes;
+
     const SANE_Option_Descriptor *opt;
     int res = 0;
     int i = 0;
@@ -766,7 +769,23 @@ void get_option_sizes(SANE_Handle sane_handle, int optnum)
 	{
         res = *(opt->constraint.word_list+i);
         qDebug("optnum[%d] sizes int: %d \n", optnum, res);
+
+        // Via br_x to decide scan sizes
+        if(optnum == 10)
+        {
+            if(res >= 420)
+                sizes << "A2";
+            if(res >= 297)
+                sizes << "A3";
+            if(res >= 210)
+                sizes << "A4";
+            if(res >= 148)
+                sizes << "A5";
+            if(res >= 105)
+                sizes << "A6";
+        }
     }
+    instance.setKylinSaneSizes(sizes);
 }
 
 /**

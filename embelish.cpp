@@ -69,7 +69,8 @@ void psHdrCV(Mat src)
   vector<Mat> images;
   vector<float> times;
 
-  readImagesAndTimes(images, times);
+  //readImagesAndTimes(images, times);
+  readImagesAndTimesOne(src, images, times);
 
 
   // Align input images
@@ -105,12 +106,14 @@ void psHdrCV(Mat src)
 
   // Tonemap using Durand's method obtain 24-bit color image
   cout << "Tonemaping using Durand's method ... ";
+  /*
   Mat ldrDurand;
   Ptr<TonemapDurand> tonemapDurand = createTonemapDurand(1.5,4,1.0,1,1);
   tonemapDurand->process(hdrDebevec, ldrDurand);
   ldrDurand = 3 * ldrDurand;
   imwrite("/tmp/ldr-Durand.jpg", ldrDurand * 255);
   cout << "saved ldr-Durand.jpg"<< endl;
+  */
 
   // Tonemap using Reinhard's method to obtain 24-bit color image
   cout << "Tonemaping using Reinhard's method ... ";
