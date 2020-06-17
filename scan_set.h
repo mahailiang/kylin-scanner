@@ -55,6 +55,9 @@ public:
      */
     void setKylinComboBox();
 
+
+    void setKylinScanSetNotEnable();
+
     /**
      * @brief setKylinComboBoxAttributes 设置组合框属性
      * @param combo 需要属性设置的组合框

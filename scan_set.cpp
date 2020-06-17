@@ -102,6 +102,7 @@ ScanSet::ScanSet(QWidget *parent)
 
     setKylinLable();
     setKylinComboBox();
+    setKylinScanSetNotEnable();
     setKylinHBoxLayout();
 
 
@@ -289,6 +290,35 @@ void ScanSet::setKylinComboBox()
 //    setKylinComboBoxAttributes(textLocation, strListLocation);
 }
 
+void ScanSet::setKylinScanSetNotEnable()
+{
+    KylinSane& instance = KylinSane::getInstance();
+    bool device_status = true;
+
+    device_status = instance.getKylinSaneStatus();
+
+    if(!device_status)
+    {
+        textColor->setEnabled(false);
+        textColor->colorGray();
+
+        textSize->setEnabled(false);
+        textSize->colorGray();
+
+        textResalution->setEnabled(false);
+        textResalution->colorGray();
+
+        textFormat->setEnabled(false);
+        textFormat->colorGray();
+
+        textName->setEnabled(false);
+        textName->setStyleSheet("QLineEdit{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
+
+        btnLocation->setEnabled(false);
+        btnLocation->setStyleSheet("QPushButton{color:gray;}");
+    }
+}
+
 void ScanSet::setKylinLable()
 {
     KylinSane& instance = KylinSane::getInstance();
@@ -324,22 +354,24 @@ void ScanSet::setKylinLable()
     {
         // No find scan device
         textDevice->setText("无可用设备");
+        textDevice->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
     }
     else {
         textDevice->setText(instance.getKylinSaneName());
+        textDevice->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:6px;}");
     }
-    textDevice->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:6px;}");
     textDevice->setFixedSize(180,32);
 
     if(!device_status)
     {
         // No find scan device
-        textType->setText("平板式");
+        textType->setText("");
+        textType->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
     }
     else {
         textType->setText(instance.getKylinSaneType());
+        textType->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:6px;}");
     }
-    textType->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:6px;}");
     textType->setFixedSize(180,32);
 
     textName->setText("扫描文件名");

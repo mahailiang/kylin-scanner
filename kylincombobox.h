@@ -28,6 +28,8 @@ public:
     explicit KylinComboBox(QWidget *parent = nullptr);
     ~KylinComboBox();
 
+    void colorGray();
+
 protected:
     virtual void mousePressEvent(QMouseEvent *e);  //添加鼠标点击事件
     virtual void hidePopup(); //重载隐藏下拉框
