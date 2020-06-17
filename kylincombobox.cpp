@@ -1,3 +1,20 @@
+/*
+* Copyright (C) 2019 Tianjin KYLIN Information Technology Co., Ltd.
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 3, or (at your option)
+* any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, see <http://www.gnu.org/licenses/&gt;.
+*
+*/
 #include "kylincombobox.h"
 
 KylinComboBox::KylinComboBox(QWidget *parent) : QComboBox(parent)
@@ -61,4 +78,20 @@ void KylinComboBox::showPopup()
                 );
 
     QComboBox::showPopup();
+}
+
+void KylinComboBox::colorGray()
+{
+    this->setStyleSheet(
+                "QComboBox{border-radius:4px;background-color:#0D0400;color:gray;}"
+                "QComboBox QLineEdit{border-radios:4px;}"
+                "QComboBox:hover{border-radius:4px;background-color:#0D0400;color:white;}"
+                "QComboBox::drop-down{border-radius:4px;}" //下拉按钮
+                "QComboBox::down-arrow{border-radius:4px;border-image:url(:/icon/icon/down.png);}"//下拉箭头
+                "QComboBox QAbstractItemView{margin-top:4px solid #0D0400;color:white;border-radius:4px;background-color:#888888;}"
+                "QComboBox QAbstractItemView::item{width:180px;height: 32px;border-radius:4px;}"//下拉列表框样式
+                "QComboBox QAbstractItemView::item:hover:selected{background-color:#6F6F6F;}"
+                );
+    this->setEditable(false);
+    this->setFocusPolicy(Qt::NoFocus);
 }
