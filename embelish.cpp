@@ -639,7 +639,7 @@ void oneClickEmbelish(const char *filename)
 
     psLuminanceContrastCV(dst, dst);
 
-    psSaturationCV(dst, dst);
+    //psSaturationCV(dst, dst);
 
     psSharpenCV(dst, dst);
 

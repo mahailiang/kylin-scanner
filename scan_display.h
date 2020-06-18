@@ -40,6 +40,8 @@
 #include "func_bar.h"
 #include <QWidget>
 #include "rectify.h"
+#include "embelish.h"
+
 class myThread : public QThread
 {
     Q_OBJECT
@@ -48,6 +50,18 @@ public:
 signals:
     void orcFinished();
 };
+
+class beautyThread : public QThread
+{
+    Q_OBJECT
+public:
+    void run() Q_DECL_OVERRIDE;
+
+signals:
+    void beautyFinished();
+
+};
+
 class edit_bar  :   public QWidget
 {
     Q_OBJECT
@@ -72,6 +86,7 @@ public:
     void set_pixmap(QImage img, QLabel *lab);
     int flag = 0;
     int flag1 = 0;
+    int flagBeautyImage = 0;
     int index = 0;
     int n = 0;
 
@@ -132,6 +147,7 @@ public slots:
     void orc();
     void scan();
     void rectify();
+    void beauty();
 };
 
 #endif // SCAN_DISPLAY_H

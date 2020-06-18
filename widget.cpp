@@ -86,6 +86,8 @@ Widget::Widget(QWidget *parent)
     connect(pFuncBar,&FuncBar::send_Scan_End,pScandisplay,&scan_display::scan);
     connect(pFuncBar,&FuncBar::send_Scan_End,this,&Widget::save_scan_file);
     connect(pFuncBar,&FuncBar::send_Rectify_Begin,pScandisplay,&scan_display::rectify);
+    connect(pFuncBar, &FuncBar::send_Beauty_Begin, pScandisplay, &scan_display::beauty);
+    connect(pFuncBar, &FuncBar::send_Beauty_End, pScandisplay, &scan_display::beauty);
 }
 
 Widget::~Widget()

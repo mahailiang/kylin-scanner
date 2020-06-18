@@ -422,7 +422,6 @@ void scan_display::orc()
         flag1 = 0;
         vStackedLayout->setCurrentIndex(widgetindex);
     }
-
 }
 
 void scan_display::scan()
@@ -440,6 +439,19 @@ void scan_display::rectify()
     *img2 = img5->copy();
     img2->save("/tmp/scanner/scan1.png");
     ImageRectify("/tmp/scanner/scan1.png");
+    img2->load("/tmp/scanner/scan1.png");
+    set_pixmap(*img2,labDisplay7);
+    *img5 = img2->copy();
+    set_pixmap(*img5,labDisplay5);
+}
+
+void scan_display::beauty()
+{
+    qDebug() << "beauty()";
+    vStackedLayout->setCurrentWidget(myWidget1);
+    *img2 = img5->copy();
+    img2->save("/tmp/scanner/scan1.png");
+    oneClickEmbelish("/tmp/scanner/scan1.png");
     img2->load("/tmp/scanner/scan1.png");
     set_pixmap(*img2,labDisplay7);
     *img5 = img2->copy();
@@ -576,4 +588,9 @@ void myThread::run()
     api->End();
     pixDestroy(&image);
     quit();
+}
+
+void beautyThread::run()
+{
+    qDebug() << "beautyThread run() begin!";
 }
