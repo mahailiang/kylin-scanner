@@ -235,6 +235,91 @@ void psSharpenCV(Mat src, Mat &dst)
     cout << "sharp() end" << endl;
 }
 
+static void checkHsl(int &hue, int &saturation, int &lumination)
+{
+    if ( hue<-180 )
+        hue = -180;
+
+    if ( saturation<-255)
+        saturation = -255;
+
+    if ( lumination<-255 )
+        lumination = -255;
+
+    if ( hue>180)
+        hue = 180;
+
+    if ( saturation>255)
+        saturation = 255;
+
+    if ( lumination>255)
+        lumination = 255;
+
+}
+
+/**
+ * @brief psHslCV
+ * 图像色调/饱和度调节，就是让用户按照自己的感觉对图像的色调、饱和度二行亮度三个分量进行调整，以满足用户的需求
+ * 实现原理：将输入的RGB空间的图像转换到HSL颜色空间，根据用户输入的H、S、L三个调整参数，
+ * 分别加到对应的色彩分量上，从而改变原来图像的色彩。
+ *
+ * @param src
+ * @param dst
+ */
+void psHslCV(Mat src, Mat &dst)
+{
+    // H:0~180, S:0~255, V:0~255
+    int hue = 0; //色调
+    int saturation = 10; //饱和度
+    int lumination = 0; //亮度
+    if ( dst.empty())
+            dst.create(src.rows, src.cols, src.type());
+
+    Mat temp;
+    temp.create(src.rows, src.cols, src.type());
+
+    cvtColor(src, temp, CV_RGB2HSV);
+
+    int i, j;
+    Size size = src.size();
+    int chns = src.channels();
+
+    if (temp.isContinuous())
+    {
+        size.width *= size.height;
+        size.height = 1;
+    }
+
+    // 验证参数范围
+    checkHsl(hue, saturation, lumination);
+
+    for (  i= 0; i<size.height; ++i)
+    {
+        unsigned char* src = (unsigned char*)temp.data+temp.step*i;
+        for (  j=0; j<size.width; ++j)
+        {
+            float val = src[j*chns]+hue;
+            if ( val < 0) val = 0.0;
+            if ( val > 180 ) val = 180;
+            src[j*chns] = static_cast<unsigned char>(val);
+
+            val = src[j*chns+1]+saturation;
+            if ( val < 0) val = 0;
+            if ( val > 255 ) val = 255;
+            src[j*chns+1] = static_cast<unsigned char>(val);
+
+            val = src[j*chns+2]+lumination;
+            if ( val < 0) val = 0;
+            if ( val > 255 ) val = 255;
+            src[j*chns+2] = static_cast<unsigned char>(val);
+        }
+    }
+
+    cvtColor(temp, dst, CV_HSV2RGB);
+    if (temp.empty())
+        temp.release();
+}
+
 /**
  * @brief luminanceContrast
  * g(i,j) = alpha * f(i,j) + beta
@@ -639,7 +724,7 @@ void oneClickEmbelish(const char *filename)
 
     psLuminanceContrastCV(dst, dst);
 
-    //psSaturationCV(dst, dst);
+    psHslCV(dst, dst);
 
     psSharpenCV(dst, dst);
 

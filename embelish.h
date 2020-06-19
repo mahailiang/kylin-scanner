@@ -62,6 +62,9 @@ void psSaturationCV(Mat src, Mat &dst);
 //基于拉普拉斯算子的锐化美化
 void psSharpenCV(Mat src, Mat & dst);
 
+//转换色彩空间进行饱和度设置
+void psHslCV(Mat src, Mat &dst);
+
 
 ////////////////////////start 图像平滑smoth（滤波filter，模糊blur)
 /// 保留原图细节下，消除图片中噪声
