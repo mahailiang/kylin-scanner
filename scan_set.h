@@ -95,7 +95,7 @@ public:
      * @param combo 水平布局中的组合框
      */
     void setKylinHBoxLayoutAttributes(QHBoxLayout *layout, QLabel *labelFirst, KylinComboBox *combo);
-    QString getTextResalution();
+    QString getTextResolution();
     QString getTextSize();
     QString getTextFormat();
     QString getTextName();
@@ -107,7 +107,7 @@ private:
     QLabel *labDevice;              /**< 设备标签 */
     QLabel *labType;                /**< 类型标签 */
     QLabel *labColor;               /**< 色彩标签 */
-    QLabel *labResalution;          /**< 分辨率标签 */
+    QLabel *labResolution;          /**< 分辨率标签 */
     QLabel *labSize;                /**< 尺寸标签 */
     QLabel *labFormat;              /**< 格式标签 */
     QLabel *labName;                /**< 名称标签 */
@@ -123,7 +123,7 @@ private:
     QLabel *textDevice;             /**< 设备 */
     QLabel *textType;               /**< 类型 */
     KylinComboBox *textColor;       /**< 色彩 */
-    KylinComboBox *textResalution;  /**< 分辨率 */
+    KylinComboBox *textResolution;  /**< 分辨率 */
     KylinComboBox *textSize;        /**< 尺寸 */
     KylinComboBox *textFormat;      /**< 格式 */
     QLineEdit *textName;               /**< 名称 */
@@ -132,7 +132,7 @@ private:
     QHBoxLayout *hBoxDevice;
     QHBoxLayout *hBoxType;
     QHBoxLayout *hBoxColor;
-    QHBoxLayout *hBoxResalution;
+    QHBoxLayout *hBoxResolution;
     QHBoxLayout *hBoxSize;
     QHBoxLayout *hBoxFormat;
     QHBoxLayout *hBoxName;

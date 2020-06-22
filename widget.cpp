@@ -154,7 +154,7 @@ void Widget::save_to_pdf(QImage img, QString pathName)
     pdfFile.open(QIODevice::WriteOnly);
     QPdfWriter *pdfWriter = new QPdfWriter(&pdfFile);
     set_pdf_size(pdfWriter,pScanSet->getTextSize());
-    int resolution = pScanSet->getTextResalution().toInt();
+    int resolution = pScanSet->getTextResolution().toInt();
     pdfWriter->setResolution(resolution);//像素
 
     int pageMargin = 0;
