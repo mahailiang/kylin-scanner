@@ -26,7 +26,7 @@ ScanSet::ScanSet(QWidget *parent)
     labDevice = new QLabel();
     labType = new QLabel();
     labColor = new QLabel();
-    labResalution = new QLabel();
+    labResolution = new QLabel();
     labSize = new QLabel();
     labFormat = new QLabel();
     labName = new QLabel() ;
@@ -42,7 +42,7 @@ ScanSet::ScanSet(QWidget *parent)
     textDevice = new QLabel();
     textType = new QLabel();
     textColor = new KylinComboBox();
-    textResalution = new KylinComboBox();
+    textResolution = new KylinComboBox();
     textSize = new KylinComboBox();
     textFormat = new KylinComboBox();
     textName = new QLineEdit();
@@ -50,7 +50,7 @@ ScanSet::ScanSet(QWidget *parent)
     hBoxDevice = new QHBoxLayout();
     hBoxType = new QHBoxLayout();
     hBoxColor = new QHBoxLayout();
-    hBoxResalution = new QHBoxLayout();
+    hBoxResolution = new QHBoxLayout();
     hBoxSize = new QHBoxLayout();
     hBoxFormat = new QHBoxLayout();
     hBoxName = new QHBoxLayout();
@@ -112,7 +112,7 @@ ScanSet::ScanSet(QWidget *parent)
     vBoxScanSet->addLayout(hBoxDevice);
     vBoxScanSet->addLayout(hBoxType);
     vBoxScanSet->addLayout(hBoxColor);
-    vBoxScanSet->addLayout(hBoxResalution);
+    vBoxScanSet->addLayout(hBoxResolution);
     vBoxScanSet->addLayout(hBoxSize);
     vBoxScanSet->addLayout(hBoxLine3);
     vBoxScanSet->addLayout(hBoxFormat);
@@ -171,11 +171,11 @@ ScanSet::ScanSet(QWidget *parent)
     }
     instance.userInfo.color = curColor;
 
-    curResolution = textResalution->currentText();
+    curResolution = textResolution->currentText();
     instance.userInfo.resolution = curResolution;
 
     connect(textColor, SIGNAL(currentTextChanged(QString)), this, SLOT(on_textColor_current_text_changed(QString)));
-    connect(textResalution, SIGNAL(currentTextChanged(QString)), this, SLOT(on_textResolution_current_text_changed(QString)));
+    connect(textResolution, SIGNAL(currentTextChanged(QString)), this, SLOT(on_textResolution_current_text_changed(QString)));
     connect(textSize, SIGNAL(currentTextChanged(QString)), this, SLOT(on_textSize_current_text_changed(QString)));
 }
 
@@ -199,7 +199,7 @@ void ScanSet::setKylinComboBoxAttributes(KylinComboBox *combo, QStringList strLi
  
 void ScanSet::setKylinComboBox()
 {
-    QStringList strListColor, strListResalution, strListFormat, strListSize,strListLocation;
+    QStringList strListColor, strListResolution, strListFormat, strListSize,strListLocation;
     KylinSane& instance = KylinSane::getInstance();
     bool device_status = true;
     int defaultResolution = 0;
@@ -213,17 +213,17 @@ void ScanSet::setKylinComboBox()
         strListColor<<tr("黑白")<<tr("彩色")<<tr("灰度");
         setKylinComboBoxAttributes(textColor, strListColor);
 
-        strListResalution << tr("4800") << tr("2400") << tr("1200") << tr("600") << tr("300") << tr("自动");
-        for(int i=0; i<strListResalution.size(); i++)
+        strListResolution << tr("4800") << tr("2400") << tr("1200") << tr("600") << tr("300") << tr("自动");
+        for(int i=0; i<strListResolution.size(); i++)
         {
-           if(! QString::compare("300", strListResalution[i], Qt::CaseSensitive))
+           if(! QString::compare("300", strListResolution[i], Qt::CaseSensitive))
            {
                defaultResolution = i;
                break;
            }
         }
-        setKylinComboBoxAttributes(textResalution, strListResalution);
-        textResalution->setCurrentIndex(defaultResolution);
+        setKylinComboBoxAttributes(textResolution, strListResolution);
+        textResolution->setCurrentIndex(defaultResolution);
 
         strListSize<<tr("A4")<<tr("A5");
         setKylinComboBoxAttributes(textSize, strListSize);
@@ -252,19 +252,19 @@ void ScanSet::setKylinComboBox()
     textColor->setCurrentIndex(defaultColor);
 
     // For  default resolution
-    strListResalution = instance.getKylinSaneResolutions();
+    strListResolution = instance.getKylinSaneResolutions();
 
-    for(int i=0; i<strListResalution.size(); i++)
+    for(int i=0; i<strListResolution.size(); i++)
     {
-       if(! QString::compare("300", strListResalution[i], Qt::CaseSensitive))
+       if(! QString::compare("300", strListResolution[i], Qt::CaseSensitive))
        {
            defaultResolution = i;
            break;
        }
     }
 
-    setKylinComboBoxAttributes(textResalution, strListResalution);
-    textResalution->setCurrentIndex(defaultResolution);
+    setKylinComboBoxAttributes(textResolution, strListResolution);
+    textResolution->setCurrentIndex(defaultResolution);
 
     // For  default sizes
     strListSize = instance.getKylinSaneSizes();
@@ -305,8 +305,8 @@ void ScanSet::setKylinScanSetNotEnable()
         textSize->setEnabled(false);
         textSize->colorGray();
 
-        textResalution->setEnabled(false);
-        textResalution->colorGray();
+        textResolution->setEnabled(false);
+        textResolution->colorGray();
 
         textFormat->setEnabled(false);
         textFormat->colorGray();
@@ -335,8 +335,8 @@ void ScanSet::setKylinLable()
     labColor->setText("色彩");
     setKylinLabelAttributes(labColor);
 
-    labResalution->setText("分辨率");
-    setKylinLabelAttributes(labResalution);
+    labResolution->setText("分辨率");
+    setKylinLabelAttributes(labResolution);
 
     labSize->setText("尺寸");
     setKylinLabelAttributes(labSize);
@@ -398,8 +398,8 @@ void ScanSet::setKylinHBoxLayout()
     setKylinHBoxLayoutAttributes(hBoxColor, labColor, textColor);
     hBoxColor->setContentsMargins(0,4,0,4);
 
-    setKylinHBoxLayoutAttributes(hBoxResalution, labResalution, textResalution);
-    hBoxResalution->setContentsMargins(0,4,0,4);
+    setKylinHBoxLayoutAttributes(hBoxResolution, labResolution, textResolution);
+    hBoxResolution->setContentsMargins(0,4,0,4);
 
     setKylinHBoxLayoutAttributes(hBoxSize, labSize, textSize);
     hBoxSize->setContentsMargins(0,4,0,16);
@@ -458,9 +458,9 @@ void ScanSet::setKylinHBoxLayoutAttributes(QHBoxLayout *layout, QLabel *labelFir
     //    layout->addStretch();
 }
 
-QString ScanSet::getTextResalution()
+QString ScanSet::getTextResolution()
 {
-    return textResalution->currentText();
+    return textResolution->currentText();
 }
 
 QString ScanSet::getTextSize()
