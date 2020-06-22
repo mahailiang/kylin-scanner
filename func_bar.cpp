@@ -167,6 +167,7 @@ FuncBar::FuncBar(QWidget *parent)
     connect(btnOrc,SIGNAL(clicked()),this,SLOT(on_btnOrc_clicked()));
     connect(btnScan, SIGNAL(clicked()), this, SLOT(on_btnScan_clicked()));
     connect(btnRectify, SIGNAL(clicked()), this, SLOT(on_btnRectify_clicked()));
+    connect(btnBeautify, SIGNAL(clicked()), this, SLOT(on_btnBeauty_clicked()));
 }
 
 FuncBar::~FuncBar()
@@ -215,4 +216,20 @@ void FuncBar::on_btnRectify_clicked()
 {
     qDebug()<<"send_Rectify_Begin"<<endl;
     emit send_Rectify_Begin();
+}
+
+
+void FuncBar::on_btnBeauty_clicked()
+{
+    qDebug() << "flagBeauty = " << flagBeauty;
+    if(flagBeauty == 0)
+    {
+        flagBeauty = 1;
+        emit send_Beauty_Begin();
+    }
+    else
+    {
+        flagBeauty = 0;
+        emit send_Beauty_End();
+    }
 }

@@ -41,6 +41,7 @@ public:
     ~FuncBar();
     void keyPressEvent(QKeyEvent *e);
     int n = 0;
+    int flagBeauty = 0; //一键美化标志
 
 
 private:
@@ -68,12 +69,15 @@ private slots:
     void on_btnOrc_clicked();
     void on_btnScan_clicked();
     void on_btnRectify_clicked();
+    void on_btnBeauty_clicked();
 
 Q_SIGNALS:
     void send_Orc_Begin();
     void send_Orc_End();
     void send_Scan_End();
     void send_Rectify_Begin();
+    void send_Beauty_Begin();
+    void send_Beauty_End();
 
 };
 #endif // FUNC_BAR_H
