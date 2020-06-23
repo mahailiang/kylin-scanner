@@ -75,3 +75,19 @@ unix:!macx: LIBS += -L$$PWD/../../../usr/lib/x86_64-linux-gnu/ -lsane
 
 INCLUDEPATH += $$PWD/../../../usr/lib/x86_64-linux-gnu
 DEPENDPATH += $$PWD/../../../usr/lib/x86_64-linux-gnu
+
+
+# target
+target.files += kylin-scanner
+target.path = /usr/bin/
+
+# icons
+icons.files += data/kylin-scanner.png
+icons.path = /usr/share/pixmaps/
+
+# desktop
+desktop.files += data/kylin-scanner.desktop
+desktop.path = /usr/share/applications/
+
+INSTALLS += target icons desktop
+
