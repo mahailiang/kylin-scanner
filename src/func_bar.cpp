@@ -84,7 +84,7 @@ FuncBar::FuncBar(QWidget *parent)
     line1->setMaximumHeight(48);
     line1->setMinimumHeight(48);
     line1->setFrameShape(QFrame::VLine);
-    line1->setStyleSheet("QLabel{color:rgb(32,30,29)}");
+    line1->setStyleSheet("QFrame{color:rgb(32,30,29)}");
 
     line2 = new QFrame();
     line2->setObjectName(QString::fromUtf8("line2"));
@@ -92,7 +92,7 @@ FuncBar::FuncBar(QWidget *parent)
     line2->setMaximumHeight(48);
     line2->setMinimumHeight(48);
     line2->setFrameStyle(QFrame::VLine);
-    line2->setStyleSheet("QLabel{color:rgb(32,30,29)}");
+    line2->setStyleSheet("QFrame{color:rgb(32,30,29)}");
 
     vBoxLay1 = new QVBoxLayout();
     vBoxLay2 = new QVBoxLayout();
