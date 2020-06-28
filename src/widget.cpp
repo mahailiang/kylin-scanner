@@ -50,7 +50,7 @@ Widget::Widget(QWidget *parent)
     line->setObjectName(QString::fromUtf8("line"));
     line->setGeometry(QRect(0, 32, 860, 1));
     line->setFrameShape(QFrame::HLine);
-    line->setStyleSheet("QLabel{color:rgb(32,30,29)}");
+    line->setStyleSheet("QFrame{color:rgb(32,30,29)}");
 
 
     pFuncBar = new  FuncBar();
