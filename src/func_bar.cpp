@@ -189,11 +189,20 @@ void FuncBar::keyPressEvent(QKeyEvent *e)
         {
             QString flagName = stack.pop();
             if(flagName == "flagOrc")
+            {
+                flagOrc = 0;
                 emit send_Orc_End();
+            }
             if(flagName == "flagBeautify")
+            {
+                flagBeautify = 0;
                 emit send_Beautify_End();
+            }
             if(flagName == "flagRectify")
+            {
+                flagRectify = 0;
                 send_Rectify_End();
+            }
         }
     }
 }
