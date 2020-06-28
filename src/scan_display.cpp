@@ -48,6 +48,8 @@ scan_display::scan_display(QWidget *parent)
     img2 = new QImage();
     img4 = new QImage();
     img5 = new QImage();
+    imgBeautify = new QImage();
+    imgRectify = new QImage();
     vBoxScanSet = new QVBoxLayout();
     vBoxScanSet1 = new QVBoxLayout(this);
     vBoxScanSet2 = new QVBoxLayout();
@@ -205,7 +207,7 @@ void scan_display::keyPressEvent(QKeyEvent *e)
 
 QImage *scan_display::imageSave(QString fileName)
 {
-    if(flag1 == 0)
+    if(flagOrc == 0)
     {
         *img2 = img5->copy();
         if(fileName.endsWith(".pdf"))
@@ -321,9 +323,9 @@ void scan_display::orcText()
 
 void scan_display::orc()
 {
-    if(flag1 == 0)
+    if(flagOrc == 0)
     {
-        flag1 = 1;
+        flagOrc = 1;
         widgetindex = vStackedLayout->currentIndex();
         labDisplay9 = new QLabel();
         labDisplay10 = new QLabel();
@@ -332,11 +334,12 @@ void scan_display::orc()
         hBoxScanSet3 = new QHBoxLayout();
         myWidget4 = new QWidget();
         scrollArea = new QScrollArea();
-        thread.start();
+
         labDisplay9->setFixedWidth(120);
         *img2 = img5->copy();
         img2->save("/tmp/scanner/scan1.png");
         *img6 = img2->copy();
+        thread.start();
         *img6 = img6->scaled(120,166);
         QPalette palette;
         palette.setColor(QPalette::Background, QColor(192,253,123,100));
@@ -419,7 +422,7 @@ void scan_display::orc()
     }
     else
     {
-        flag1 = 0;
+        flagOrc = 0;
         vStackedLayout->setCurrentIndex(widgetindex);
     }
 }
@@ -436,26 +439,95 @@ void scan_display::scan()
 void scan_display::rectify()
 {
     qDebug()<<"rectify\n";
-    *img2 = img5->copy();
-    img2->save("/tmp/scanner/scan1.png");
-    ImageRectify("/tmp/scanner/scan1.png");
-    img2->load("/tmp/scanner/scan1.png");
-    set_pixmap(*img2,labDisplay7);
-    *img5 = img2->copy();
-    set_pixmap(*img5,labDisplay5);
+    if(flagRectify == 0)
+    {
+        flagRectify = 1;
+        if(vStackedLayout->currentWidget() == myWidget1)
+        {
+            img5->save("/tmp/scanner/scan1.png");
+            *imgRectify = img5->copy();
+            ImageRectify("/tmp/scanner/scan1.png");
+            img5->load("/tmp/scanner/scan1.png");
+            set_pixmap(*img5,labDisplay5);
+            *img2 = img5->copy();
+            set_pixmap(*img2,labDisplay7);
+        }
+        else
+        {
+            img2->save("/tmp/scanner/scan1.png");
+            *imgRectify = img2->copy();
+            ImageRectify("/tmp/scanner/scan1.png");
+            img2->load("/tmp/scanner/scan1.png");
+            set_pixmap(*img2,labDisplay7);
+            *img5 = img2->copy();
+            set_pixmap(*img5,labDisplay5);
+        }
+    }
+    else
+    {
+        flagRectify = 0;
+        if(vStackedLayout->currentWidget() == myWidget1)
+        {
+            *img5 = imgRectify->copy();
+            set_pixmap(*img5,labDisplay5);
+            *img2 = img5->copy();
+            set_pixmap(*img2,labDisplay7);
+        }
+        else
+        {
+            *img2 = imgRectify->copy();
+            set_pixmap(*img2,labDisplay7);
+            *img5 = img2->copy();
+            set_pixmap(*img5,labDisplay5);
+        }
+    }
 }
 
-void scan_display::beauty()
+void scan_display::beautify()
 {
     qDebug() << "beauty()";
-    vStackedLayout->setCurrentWidget(myWidget1);
-    *img2 = img5->copy();
-    img2->save("/tmp/scanner/scan1.png");
-    oneClickEmbelish("/tmp/scanner/scan1.png");
-    img2->load("/tmp/scanner/scan1.png");
-    set_pixmap(*img2,labDisplay7);
-    *img5 = img2->copy();
-    set_pixmap(*img5,labDisplay5);
+    if(flagBeautify == 0)
+    {
+        flagBeautify = 1;
+        if(vStackedLayout->currentWidget() == myWidget1)
+        {
+            img5->save("/tmp/scanner/scan1.png");
+            *imgBeautify = img5->copy();
+            oneClickEmbelish("/tmp/scanner/scan1.png");
+            img5->load("/tmp/scanner/scan1.png");
+            set_pixmap(*img5,labDisplay5);
+            *img2 = img5->copy();
+            set_pixmap(*img2,labDisplay7);
+        }
+        else
+        {
+            img2->save("/tmp/scanner/scan1.png");
+            *imgBeautify = img2->copy();
+            ImageRectify("/tmp/scanner/scan1.png");
+            img2->load("/tmp/scanner/scan1.png");
+            set_pixmap(*img2,labDisplay7);
+            *img5 = img2->copy();
+            set_pixmap(*img5,labDisplay5);
+        }
+    }
+    else
+    {
+        flagBeautify = 0;
+        if(vStackedLayout->currentWidget() == myWidget1)
+        {
+            *img5 = imgBeautify->copy();
+            set_pixmap(*img5,labDisplay5);
+            *img2 = img5->copy();
+            set_pixmap(*img2,labDisplay7);
+        }
+        else
+        {
+            *img2 = imgBeautify->copy();
+            set_pixmap(*img2,labDisplay7);
+            *img5 = img2->copy();
+            set_pixmap(*img5,labDisplay5);
+        }
+    }
 }
 
 void scan_display::switchPage()
@@ -562,6 +634,7 @@ edit_bar::edit_bar(QWidget *parent)
 void myThread::run()
 {
     tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
+    qDebug()<<"orc run!\n";
     //使用中文初始化tesseract-ocr，而不指定tessdata路径。正在识别中
     if (api->Init(NULL, "chi_sim")) {
         qDebug()<<"Could not initialize tesseract.\n";

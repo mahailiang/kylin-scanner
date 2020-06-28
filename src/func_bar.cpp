@@ -38,11 +38,14 @@ FuncBar::FuncBar(QWidget *parent)
     labRectify = new QLabel();
     labOrc = new QLabel();
 
-
+    setFontSize(labNorScan,10);
+    setFontSize(labBeautify,10);
+    setFontSize(labRectify,10);
+    setFontSize(labOrc,10);
     labNorScan->setText("普通扫描");
     labNorScan->setAlignment(Qt::AlignCenter);
     labNorScan->setStyleSheet("color:rgb(232,232,232)");
-    labNorScan->setFixedSize(56,16);
+    labNorScan->setFixedSize(60,16);
 
     labBeautify->setText("一键美化");
     labBeautify->setAlignment(Qt::AlignCenter);
@@ -77,7 +80,8 @@ FuncBar::FuncBar(QWidget *parent)
 //                                "QPushButton:checked{image: url(:/icon/icon/scanner.gif);border:none;background-color:rgb(39,208,127);border-radius:28px;}");
 
     btnScan->setStyleSheet("QPushButton{background-color: rgb(232,160,73);border-radius:28px;color:rgb(232,232,232);}"
-                           "QPushButton:hover{image: url(:/icon/icon/scanner.gif);border-radius:28px;}");
+                           "QPushButton:hover{image: url(:/icon/icon/scanner.gif);border-radius:28px;}"
+                           "QPushButton:checked{image: url(:/icon/icon/scanner.gif);border-radius:28px;}");
     line1 = new QFrame();
     line1->setObjectName(QString::fromUtf8("line1"));
     line1->setMaximumWidth(1);
@@ -93,6 +97,8 @@ FuncBar::FuncBar(QWidget *parent)
     line2->setMinimumHeight(48);
     line2->setFrameStyle(QFrame::VLine);
     line2->setStyleSheet("QFrame{color:rgb(32,30,29)}");
+
+    setKylinScanSetNotEnable();
 
     vBoxLay1 = new QVBoxLayout();
     vBoxLay2 = new QVBoxLayout();
@@ -179,24 +185,81 @@ void FuncBar::keyPressEvent(QKeyEvent *e)
 {
     if(e->key() == Qt::Key_Z && e->modifiers() ==  Qt::ControlModifier)
     {
-        if(n == 1)
+        if(!stack.isEmpty())
         {
-            n = 0;
-            emit send_Orc_End();
+            QString flagName = stack.pop();
+            if(flagName == "flagOrc")
+                emit send_Orc_End();
+            if(flagName == "flagBeautify")
+                emit send_Beautify_End();
+            if(flagName == "flagRectify")
+                send_Rectify_End();
         }
     }
 }
+
+void FuncBar::setKylinScanSetNotEnable()
+{
+    KylinSane& instance = KylinSane::getInstance();
+    bool device_status = true;
+
+    device_status = instance.getKylinSaneStatus();
+
+    if(!device_status)
+    {
+        btnNorScan->setEnabled(false);
+        btnBeautify->setEnabled(false);
+        btnRectify->setEnabled(false);
+        btnOrc->setEnabled(false);
+        btnScan->setEnabled(false);
+    }
+    else
+    {
+        btnNorScan->setEnabled(true);
+        btnBeautify->setEnabled(true);
+        btnRectify->setEnabled(true);
+        btnOrc->setEnabled(true);
+        btnScan->setEnabled(true);
+    }
+}
+
+void FuncBar::setKylinScanSetEnable()
+{
+    KylinSane& instance = KylinSane::getInstance();
+    bool device_status = true;
+
+    device_status = instance.getKylinSaneStatus();
+
+    if(device_status)
+    {
+        btnNorScan->setEnabled(true);
+        btnBeautify->setEnabled(true);
+        btnRectify->setEnabled(true);
+        btnOrc->setEnabled(true);
+        btnScan->setEnabled(true);
+    }
+}
+
+void FuncBar::setFontSize(QLabel *label, int n)
+{
+    QFont ft;
+    ft.setPointSize(n);
+    label->setFont(ft);
+}
+
 //QString orc_text;
 void FuncBar::on_btnOrc_clicked()
 {
-    if(n == 0)
+    if(flagOrc == 0)
     {
-        n = 1;
+        flagOrc = 1;
+        stack.push("flagOrc");
         emit send_Orc_Begin();
     }
     else
     {
-        n = 0;
+        flagOrc = 0;
+        stack.pop();
         emit send_Orc_End();
     }
 
@@ -204,6 +267,7 @@ void FuncBar::on_btnOrc_clicked()
 
 void FuncBar::on_btnScan_clicked()
 {
+
     KylinSane& instance = KylinSane::getInstance();
     if(instance.getKylinSaneStatus() == true)
     {
@@ -215,21 +279,34 @@ void FuncBar::on_btnScan_clicked()
 void FuncBar::on_btnRectify_clicked()
 {
     qDebug()<<"send_Rectify_Begin"<<endl;
-    emit send_Rectify_Begin();
+    if(flagRectify == 0)
+    {
+        flagRectify = 1;
+        stack.push("flagRectify");
+        emit send_Rectify_Begin();
+    }
+    else
+    {
+        flagRectify = 0;
+        stack.pop();
+        emit send_Rectify_End();
+    }
 }
 
 
 void FuncBar::on_btnBeauty_clicked()
 {
-    qDebug() << "flagBeauty = " << flagBeauty;
-    if(flagBeauty == 0)
+    qDebug() << "flagBeauty = " << flagBeautify;
+    if(flagBeautify == 0)
     {
-        flagBeauty = 1;
-        emit send_Beauty_Begin();
+        flagBeautify = 1;
+        stack.push("flagBeautify");
+        emit send_Beautify_Begin();
     }
     else
     {
-        flagBeauty = 0;
-        emit send_Beauty_End();
+        flagBeautify = 0;
+        stack.pop();
+        emit send_Beautify_End();
     }
 }

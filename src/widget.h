@@ -27,6 +27,16 @@
 #include <scan_set.h>
 #include "title_bar.h"
 #include "func_bar.h"
+
+class scanThread : public QThread
+{
+    Q_OBJECT
+public:
+    void run() Q_DECL_OVERRIDE;
+Q_SIGNALS:
+    void scan_finished(bool);
+};
+
 class Widget : public QWidget
 {
     Q_OBJECT
@@ -46,9 +56,11 @@ private:
     scan_display *pScandisplay;
     QHBoxLayout *pHboxLayout;
     QVBoxLayout *pLayout;
+    scanThread thread;
 private slots:
     void save_image(QString fileName);
     void save_scan_file();
+    void scan_result(bool ret);
 
 
 

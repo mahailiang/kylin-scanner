@@ -84,9 +84,10 @@ public:
     QImage *imageSave(QString fileName);
     void set_no_device();
     void set_pixmap(QImage img, QLabel *lab);
-    int flag = 0;
-    int flag1 = 0;
-    int flagBeautyImage = 0;
+
+    int flagBeautify = 0; //一键美化标志
+    int flagRectify = 0; //智能纠偏标志
+    int flagOrc = 0; //文字识别标志
     int index = 0;
     int n = 0;
 
@@ -113,6 +114,8 @@ private:
     QImage *img5;
     QImage *img6;
     QImage *img7;
+    QImage *imgBeautify;
+    QImage *imgRectify;
     QStack<QImage> stack;
     QVBoxLayout *vBoxScanSet;
     QVBoxLayout *vBoxScanSet1;
@@ -147,7 +150,7 @@ public slots:
     void orc();
     void scan();
     void rectify();
-    void beauty();
+    void beautify();
 };
 
 #endif // SCAN_DISPLAY_H

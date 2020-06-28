@@ -29,6 +29,7 @@ public:
     ~KylinComboBox();
 
     void colorGray();
+    void colorNormal();
 
 protected:
     virtual void mousePressEvent(QMouseEvent *e);  //添加鼠标点击事件
