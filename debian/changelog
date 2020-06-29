@@ -1,7 +1,5 @@
-kylin-scanner (1.0.0) UNRELEASED; urgency=low
+kylin-scanner (1.0.0) unstable; urgency=low
 
-  [ kylin-scanner ]
-  * Initial release. Closes: #nnnn
-    <nnnn is the bug number of your ITP>
+  * Initial release. Closes: #000001
 
  -- kylin-scanner <yushuoqi@kylinos.cn>  Sun, 28 Jun 2020 11:01:49 +0800
