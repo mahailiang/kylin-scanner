@@ -102,7 +102,7 @@ ScanSet::ScanSet(QWidget *parent)
 
     setKylinLable();
     setKylinComboBox();
-    setKylinScanSetNotEnable();
+ //   setKylinScanSetNotEnable();
     setKylinHBoxLayout();
 
 
@@ -315,7 +315,49 @@ void ScanSet::setKylinScanSetNotEnable()
         textName->setStyleSheet("QLineEdit{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
 
         btnLocation->setEnabled(false);
-        btnLocation->setStyleSheet("QPushButton{color:gray;}");
+        btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/max.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:gray;border-radius:6px;text-align:left;}");
+
+        btnMail->setEnabled(false);
+        btnSave->setEnabled(false);
+
+        textDevice->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
+        textType->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
+    }
+}
+
+void ScanSet::setKylinScanSetEnable()
+{
+    KylinSane& instance = KylinSane::getInstance();
+    bool device_status = true;
+
+    device_status = instance.getKylinSaneStatus();
+
+    if(device_status)
+    {
+        textColor->setEnabled(true);
+        textColor->colorNormal();
+
+        textSize->setEnabled(true);
+        textSize->colorNormal();
+
+        textResolution->setEnabled(true);
+        textResolution->colorNormal();
+
+        textFormat->setEnabled(true);
+        textFormat->colorNormal();
+
+        textName->setEnabled(true);
+   //     textName->setStyleSheet("QLineEdit{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
+
+        btnLocation->setEnabled(true);
+//        btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/max.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:gray;border-radius:6px;text-align:left;}");
+        btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/max.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:rgb(232,232,232);border-radius:6px;text-align:left;}");
+
+        btnMail->setEnabled(true);
+        btnSave->setEnabled(true);
+
+//        textDevice->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
+//        textType->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
     }
 }
 
@@ -327,34 +369,43 @@ void ScanSet::setKylinLable()
     device_status = instance.getKylinSaneStatus();
 
     labDevice->setText("设备");
+    setFontSize(labDevice,10);
     setKylinLabelAttributes(labDevice);
 
     labType->setText("类型");
+    setFontSize(labType,10);
     setKylinLabelAttributes(labType);
 
     labColor->setText("色彩");
+    setFontSize(labColor,10);
     setKylinLabelAttributes(labColor);
 
     labResolution->setText("分辨率");
+    setFontSize(labResolution,10);
     setKylinLabelAttributes(labResolution);
 
     labSize->setText("尺寸");
+    setFontSize(labSize,10);
     setKylinLabelAttributes(labSize);
 
     labFormat->setText("格式");
+    setFontSize(labFormat,10);
     setKylinLabelAttributes(labFormat);
 
     labName->setText("名称");
+    setFontSize(labName,10);
     setKylinLabelAttributes(labName);
 
     labLocation->setText("扫描至");
+    setFontSize(labLocation,10);
     setKylinLabelAttributes(labLocation);
 
     if(!device_status)
     {
         // No find scan device
         textDevice->setText("无可用设备");
-        textDevice->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
+        textDevice->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:6px;}");
+    //    textDevice->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
     }
     else {
         textDevice->setText(instance.getKylinSaneName());
@@ -365,8 +416,9 @@ void ScanSet::setKylinLable()
     if(!device_status)
     {
         // No find scan device
-        textType->setText("");
-        textType->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
+        textType->setText("设备类型");
+        textType->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:6px;}");
+     //   textType->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
     }
     else {
         textType->setText(instance.getKylinSaneType());
@@ -481,6 +533,13 @@ QString ScanSet::getTextName()
 QString ScanSet::getTextLocation()
 {
     return curPath;
+}
+
+void ScanSet::setFontSize(QLabel *label, int n)
+{
+    QFont ft;
+    ft.setPointSize(n);
+    label->setFont(ft);
 }
 
 void ScanSet::on_btnLocation_clicked()

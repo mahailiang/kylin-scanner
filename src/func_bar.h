@@ -28,9 +28,7 @@
 #include <QString>
 #include <QDebug>
 #include <QInputEvent>
-#include <QThread>
-#include <QStyleOption>
-
+#include <QStack>
 #include "kylin_sane.h"
 #include "embelish.h"
 
@@ -44,11 +42,12 @@ public:
     explicit FuncBar(QWidget *parent = nullptr);
     ~FuncBar();
     void keyPressEvent(QKeyEvent *e);
-    int n = 0;
-    int flagBeauty = 0; //一键美化标志
-    int flagScan = 0; //扫描标志，0开始扫描，1结束扫描
-
-    void paintEvent(QPaintEvent *);
+    void setKylinScanSetNotEnable();
+    void setKylinScanSetEnable();
+    void setFontSize(QLabel *label, int n);
+    int flagBeautify = 0; //一键美化标志
+    int flagRectify = 0; //智能纠偏标志
+    int flagOrc = 0; //文字识别标志
 
 
 private:
@@ -71,6 +70,7 @@ private:
     QHBoxLayout *hBoxLay2;
     QHBoxLayout *hBoxLay3;
     QHBoxLayout *hBoxLay4;
+    QStack<QString> stack;
 
 private slots:
     void on_btnOrc_clicked();
@@ -90,8 +90,9 @@ Q_SIGNALS:
     void send_Scan_Begin_again();
     void send_Scan_End();
     void send_Rectify_Begin();
-    void send_Beauty_Begin();
-    void send_Beauty_End();
+    void send_Rectify_End();
+    void send_Beautify_Begin();
+    void send_Beautify_End();
 
 };
 #endif // FUNC_BAR_H

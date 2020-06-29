@@ -25,16 +25,18 @@
 #include <QDebug>
 #include <QBitmap>
 #include "kylin_sane.h"
-
+bool device = true;
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
 {
     setWindowFlags(Qt::FramelessWindowHint | windowFlags());
 
-    KylinSane &instance = KylinSane::getInstance();
-    instance.open_device();
+    thread.start();
 
-    qDebug() << instance.getKylinSaneResolutions();
+//    KylinSane &instance = KylinSane::getInstance();
+//    instance.open_device();
+
+//    qDebug() << instance.getKylinSaneResolutions();
 
     pTitleBar = new TitleBar(this);
     installEventFilter(pTitleBar);
@@ -61,8 +63,8 @@ Widget::Widget(QWidget *parent)
 
     pScandisplay = new scan_display();
     installEventFilter(pScandisplay);
-    if(instance.getKylinSaneStatus() == false)
-        pScandisplay->set_no_device();
+//    if(instance.getKylinSaneStatus() == false)
+//        pScandisplay->set_no_device();
     pHboxLayout = new QHBoxLayout();
     pHboxLayout->setSpacing(0);
     pHboxLayout->addWidget(pScanSet);
@@ -89,8 +91,10 @@ Widget::Widget(QWidget *parent)
     connect(pFuncBar,&FuncBar::send_Scan_End,pScandisplay,&scan_display::scan);
     connect(pFuncBar,&FuncBar::send_Scan_End,this,&Widget::save_scan_file);
     connect(pFuncBar,&FuncBar::send_Rectify_Begin,pScandisplay,&scan_display::rectify);
-    connect(pFuncBar, &FuncBar::send_Beauty_Begin, pScandisplay, &scan_display::beauty);
-    connect(pFuncBar, &FuncBar::send_Beauty_End, pScandisplay, &scan_display::beauty);
+    connect(pFuncBar,&FuncBar::send_Rectify_End,pScandisplay,&scan_display::rectify);
+    connect(pFuncBar, &FuncBar::send_Beautify_Begin, pScandisplay, &scan_display::beautify);
+    connect(pFuncBar, &FuncBar::send_Beautify_End, pScandisplay, &scan_display::beautify);
+    connect(&thread,SIGNAL(scan_finished(bool)),this,SLOT(scan_result(bool)));
 }
 
 Widget::~Widget()
@@ -225,5 +229,48 @@ void Widget::save_scan_file()
     }
 }
 
+void Widget::scan_result(bool ret)
+{
+    qDebug()<<"scan_result"<<endl;
+    if(ret)
+    {
+        device = true;
+        pScanSet->setKylinComboBox();
+        pScanSet->setKylinLable();
+        pFuncBar->setKylinScanSetEnable();
+        pScanSet->setKylinScanSetEnable();
+     //   thread.terminate();
+    }
+    else
+    {
+        device = false;
+        pScandisplay->set_no_device();
+        pFuncBar->setKylinScanSetNotEnable();
+        pScanSet->setKylinScanSetNotEnable();
+    }
+}
 
 
+
+
+void scanThread::run()
+{
+    KylinSane &instance = KylinSane::getInstance();
+again:
+    do{
+        instance.open_device();
+        qDebug() << instance.getKylinSaneResolutions();
+        if(instance.getKylinSaneStatus() == false)
+        {
+            emit scan_finished(false);
+            qDebug() << "scan finished!";
+
+        }
+        else
+        {
+            emit scan_finished(true);
+        }
+    }while(!instance.getKylinSaneStatus());
+
+    quit();
+}

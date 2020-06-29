@@ -57,6 +57,7 @@ public:
 
 
     void setKylinScanSetNotEnable();
+    void setKylinScanSetEnable();
 
     /**
      * @brief setKylinComboBoxAttributes 设置组合框属性
@@ -100,6 +101,7 @@ public:
     QString getTextFormat();
     QString getTextName();
     QString getTextLocation();
+    void setFontSize(QLabel *label, int n);
 Q_SIGNALS:
 //signals:
     void save_image_signal(QString);
