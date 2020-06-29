@@ -46,6 +46,8 @@ private:
     scan_display *pScandisplay;
     QHBoxLayout *pHboxLayout;
     QVBoxLayout *pLayout;
+    KylinSane& instance = KylinSane::getInstance();
+
 private slots:
     void save_image(QString fileName);
     void save_scan_file();

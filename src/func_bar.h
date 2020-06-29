@@ -28,9 +28,13 @@
 #include <QString>
 #include <QDebug>
 #include <QInputEvent>
+#include <QThread>
+#include <QStyleOption>
 
 #include "kylin_sane.h"
 #include "embelish.h"
+
+
 
 class FuncBar : public QWidget
 {
@@ -42,6 +46,9 @@ public:
     void keyPressEvent(QKeyEvent *e);
     int n = 0;
     int flagBeauty = 0; //一键美化标志
+    int flagScan = 0; //扫描标志，0开始扫描，1结束扫描
+
+    void paintEvent(QPaintEvent *);
 
 
 private:
@@ -71,9 +78,16 @@ private slots:
     void on_btnRectify_clicked();
     void on_btnBeauty_clicked();
 
+public slots:
+    void on_btnScan_clicked_start();
+    void on_btnScan_clicked_end();
+    void on_btnScan_scan();
+
 Q_SIGNALS:
     void send_Orc_Begin();
     void send_Orc_End();
+    void send_Scan_Begin();
+    void send_Scan_Begin_again();
     void send_Scan_End();
     void send_Rectify_Begin();
     void send_Beauty_Begin();
