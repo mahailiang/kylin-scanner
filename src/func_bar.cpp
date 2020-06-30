@@ -75,13 +75,9 @@ FuncBar::FuncBar(QWidget *parent)
     btnOrc->setStyleSheet("QPushButton{image: url(:/icon/icon/orc.png);border:none;background-color:rgb(15,08,01);border-radius:6px;}"
                               "QPushButton:hover{image: url(:/icon/icon/orc.png);border:none;background-color:rgb(39,208,127);border-radius:6px;}"
                                 "QPushButton:checked{image: url(:/icon/icon/orc.png);border:none;background-color:rgb(39,208,127);border-radius:6px;}");
-//    btnScan->setStyleSheet("QPushButton{background-color:rgb(232,,160,73);border-radius:28px;}"
-//                              "QPushButton:hover{image: url(:/icon/icon/scanner.gif);border:none;background-color:rgb(39,208,127);border-radius:28px;}"
-//                                "QPushButton:checked{image: url(:/icon/icon/scanner.gif);border:none;background-color:rgb(39,208,127);border-radius:28px;}");
 
     btnScan->setStyleSheet("QPushButton{background-color: rgb(232,160,73);border-radius:28px;color:rgb(232,232,232);}"
-                           "QPushButton:hover{image: url(:/icon/icon/scanner.gif);border-radius:28px;}"
-                           "QPushButton:checked{image: url(:/icon/icon/scanner.gif);border-radius:28px;}");
+                           );
     line1 = new QFrame();
     line1->setObjectName(QString::fromUtf8("line1"));
     line1->setMaximumWidth(1);
@@ -172,6 +168,7 @@ FuncBar::FuncBar(QWidget *parent)
 
     connect(btnOrc,SIGNAL(clicked()),this,SLOT(on_btnOrc_clicked()));
     connect(btnScan, SIGNAL(clicked()), this, SLOT(on_btnScan_clicked()));
+    //connect(this, this->send_Scan_Begin(), this, SLOT(send_Scan_End()));
     connect(btnRectify, SIGNAL(clicked()), this, SLOT(on_btnRectify_clicked()));
     connect(btnBeautify, SIGNAL(clicked()), this, SLOT(on_btnBeauty_clicked()));
 }
@@ -276,7 +273,6 @@ void FuncBar::on_btnOrc_clicked()
 
 void FuncBar::on_btnScan_clicked()
 {
-
     KylinSane& instance = KylinSane::getInstance();
     if(instance.getKylinSaneStatus() == true)
     {
@@ -285,6 +281,7 @@ void FuncBar::on_btnScan_clicked()
         emit send_Scan_End();
     }
 }
+
 void FuncBar::on_btnRectify_clicked()
 {
     qDebug()<<"send_Rectify_Begin"<<endl;
@@ -317,5 +314,39 @@ void FuncBar::on_btnBeauty_clicked()
         flagBeautify = 0;
         stack.pop();
         emit send_Beautify_End();
+    }
+}
+
+void FuncBar::on_btnScan_clicked_start()
+{
+    cout << "start()" <<endl;
+    btnScan->setText("");
+    btnScan->setStyleSheet("QPushButton{image: url(:/icon/icon/scanner.gif);background-color: rgb(232,160,73);border-radius:28px;color:rgb(232,232,232);}"
+                           "QPushButton:pressed{image: url(:/icon/icon/scanner.gif);}"
+                           );
+    qDebug() << btnScan->styleSheet();
+    emit send_Scan_Begin_again();
+}
+
+void FuncBar::on_btnScan_clicked_end()
+{
+    btnScan->setText("扫描");
+    btnScan->setStyleSheet("QPushButton{background-color: rgb(232,160,73);border-radius:28px;color:rgb(232,232,232);}"
+                           );
+}
+
+void FuncBar::on_btnScan_scan()
+{
+    cout << "scan()" <<endl;
+    btnScan->setText("");
+    qDebug() << btnScan->text();
+    btnScan->setStyleSheet("QPushButton{image: url(:/icon/icon/scanner.gif);background-color: rgb(232,160,73);border-radius:28px;color:rgb(232,232,232);}");
+    qDebug() << btnScan->styleSheet();
+    KylinSane& instance = KylinSane::getInstance();
+    if(instance.getKylinSaneStatus() == true)
+    {
+        instance.start_scanning(instance.userInfo);
+        qDebug()<<"start_scanning end!!!";
+        emit send_Scan_End();
     }
 }

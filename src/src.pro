@@ -82,7 +82,7 @@ target.files += kylin-scanner
 target.path = /usr/bin/
 
 # icons
-icons.files += data/kylin-scanner.png
+icons.files += data/scanner.png
 icons.path = /usr/share/pixmaps/
 
 # desktop

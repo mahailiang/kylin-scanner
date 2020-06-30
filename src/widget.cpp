@@ -85,6 +85,9 @@ Widget::Widget(QWidget *parent)
     connect(pFuncBar,&FuncBar::send_Orc_End,pScandisplay,&scan_display::orc);
     connect(pFuncBar,&FuncBar::send_Orc_Begin,pScanSet,&ScanSet::modify_save_button);
     connect(pFuncBar,&FuncBar::send_Orc_End,pScanSet,&ScanSet::modify_save_button);
+    connect(pFuncBar, &FuncBar::send_Scan_Begin, pFuncBar, &FuncBar::on_btnScan_clicked_start);
+    connect(pFuncBar, &FuncBar::send_Scan_Begin_again, pFuncBar, &FuncBar::on_btnScan_scan);
+    connect(pFuncBar, &FuncBar::send_Scan_End, pFuncBar, &FuncBar::on_btnScan_clicked_end);
     connect(pFuncBar,&FuncBar::send_Scan_End,pScandisplay,&scan_display::scan);
     connect(pFuncBar,&FuncBar::send_Scan_End,this,&Widget::save_scan_file);
     connect(pFuncBar,&FuncBar::send_Rectify_Begin,pScandisplay,&scan_display::rectify);

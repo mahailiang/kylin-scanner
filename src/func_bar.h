@@ -32,6 +32,8 @@
 #include "kylin_sane.h"
 #include "embelish.h"
 
+
+
 class FuncBar : public QWidget
 {
     Q_OBJECT
@@ -76,9 +78,16 @@ private slots:
     void on_btnRectify_clicked();
     void on_btnBeauty_clicked();
 
+public slots:
+    void on_btnScan_clicked_start();
+    void on_btnScan_clicked_end();
+    void on_btnScan_scan();
+
 Q_SIGNALS:
     void send_Orc_Begin();
     void send_Orc_End();
+    void send_Scan_Begin();
+    void send_Scan_Begin_again();
     void send_Scan_End();
     void send_Rectify_Begin();
     void send_Rectify_End();

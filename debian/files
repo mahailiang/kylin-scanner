@@ -1,0 +1,3 @@
+kylin-scanner-dbgsym_1.0.0_amd64.ddeb debug optional automatic=yes
+kylin-scanner_1.0.0_amd64.buildinfo devel optional
+kylin-scanner_1.0.0_amd64.deb devel optional

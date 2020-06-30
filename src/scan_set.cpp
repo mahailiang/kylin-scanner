@@ -68,7 +68,7 @@ ScanSet::ScanSet(QWidget *parent)
     line3->setMaximumWidth(230);
     line3->setMinimumWidth(230);
     line3->setFrameShape(QFrame::HLine);
-    line3->setStyleSheet("QLabel{color:rgb(32,30,29)}");
+    line3->setStyleSheet("QFrame{color:rgb(32,30,29)}");
 
     line4 = new QFrame();
     line4->setObjectName(QString::fromUtf8("line4"));
@@ -76,7 +76,7 @@ ScanSet::ScanSet(QWidget *parent)
     line4->setMaximumWidth(230);
     line4->setMinimumWidth(230);
     line4->setFrameStyle(QFrame::HLine);
-    line4->setStyleSheet("QLabel{color:rgb(32,30,29)}");
+    line4->setStyleSheet("QFrame{color:rgb(32,30,29)}");
 
     btnMail->setText("发送至邮件");
     btnMail->setFixedSize(120,32);

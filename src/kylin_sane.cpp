@@ -397,7 +397,7 @@ SANE_Status do_scan(const char *fileName)
 	{
         //int dwProcessID = getpid();
         //sprintf (path, "%s%d.pnm", fileName, dwProcessID);
-        sprintf (path, "%s/%s.pnm", dir.c_str(), fileName);
+        sprintf (path, "%s%s.pnm", dir.c_str(), fileName);
         strcpy (part_path, path);
         strcat (part_path, ".part");
 
