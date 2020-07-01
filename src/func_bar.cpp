@@ -32,7 +32,7 @@ FuncBar::FuncBar(QWidget *parent)
     btnRectify->setFixedSize(60,32);
     btnOrc->setFixedSize(60,32);
     btnScan->setFixedSize(56,56);
-    btnScan->setText("扫描");
+    btnScan->setText(tr("Scan"));
     labNorScan = new QLabel();
     labBeautify = new QLabel();
     labRectify = new QLabel();
@@ -42,22 +42,22 @@ FuncBar::FuncBar(QWidget *parent)
     setFontSize(labBeautify,10);
     setFontSize(labRectify,10);
     setFontSize(labOrc,10);
-    labNorScan->setText("普通扫描");
+    labNorScan->setText(tr("Normal scanning"));
     labNorScan->setAlignment(Qt::AlignCenter);
     labNorScan->setStyleSheet("color:rgb(232,232,232)");
     labNorScan->setFixedSize(60,16);
 
-    labBeautify->setText("一键美化");
+    labBeautify->setText(tr("Beauty"));
     labBeautify->setAlignment(Qt::AlignCenter);
     labBeautify->setStyleSheet("color:rgb(232,232,232)");
     labBeautify->setFixedSize(56,16);
 
-    labRectify->setText("智能纠偏");
+    labRectify->setText(tr("Rectify"));
     labRectify->setAlignment(Qt::AlignCenter);
     labRectify->setStyleSheet("color:rgb(232,232,232)");
     labRectify->setFixedSize(56,16);
 
-    labOrc->setText("文字识别");
+    labOrc->setText(tr("Text OCR"));
     labOrc->setAlignment(Qt::AlignCenter);
     labOrc->setStyleSheet("color:rgb(232,232,232)");
     labOrc->setFixedSize(56,16);
@@ -330,7 +330,7 @@ void FuncBar::on_btnScan_clicked_start()
 
 void FuncBar::on_btnScan_clicked_end()
 {
-    btnScan->setText("扫描");
+    btnScan->setText(tr("scanning"));
     btnScan->setStyleSheet("QPushButton{background-color: rgb(232,160,73);border-radius:28px;color:rgb(232,232,232);}"
                            );
 }

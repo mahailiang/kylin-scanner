@@ -1,6 +1,7 @@
-82892ba8651e5e73914c5d9881dec665  usr/bin/kylin-scanner
+60601720611acc379d2f5dc75592716c  usr/bin/kylin-scanner
 b42e5cb5f43f98e90f70e30a363c862a  usr/share/applications/kylin-scanner.desktop
 279a45b5a7982ceba30d223871cd11bc  usr/share/doc/kylin-scanner/README.Debian
-c3b14dca0f25fa9608e3efa528163c13  usr/share/doc/kylin-scanner/changelog.gz
+60c62d0e7c1564de79747dbf0fca8fe0  usr/share/doc/kylin-scanner/changelog.gz
 dea1521859271cd92be8d325915277b2  usr/share/doc/kylin-scanner/copyright
+f765e4c3bd32051f9ec31ae45f2772ce  usr/share/kylin-scanner/translations/kylin-scanner.zh_CN.qm
 5279a7101fdc834412068225dd687cbd  usr/share/pixmaps/scanner.png

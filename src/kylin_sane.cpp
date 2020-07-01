@@ -44,11 +44,6 @@ static size_t buffer_size;
 #define SET_R_BIT(n,i) ((n)^(1<<(i)))
 #define GET_i_BIT(n,i) (((n)>>(i))&1)
 
-static void
-auth_callback (SANE_String_Const resource,
-	       SANE_Char * username, SANE_Char * password)
-{
-}
 
 static void write_pnm_header (SANE_Frame format, int width, int height, int depth, FILE *ofp)
 {
@@ -62,41 +57,51 @@ static void write_pnm_header (SANE_Frame format, int width, int height, int dept
             break;
         default:
             if (depth == 1)
+            {
                 fprintf (ofp, "P4\n# SANE data follows\n%d %d\n", width, height);
+            }
             else
+            {
                 fprintf (ofp, "P5\n# SANE data follows\n%d %d\n%d\n", width, height,(depth <= 8) ? 255 : 65535);
+            }
             break;
     }
 }
 
-static void *
-advance (Image * image)
+static void * advance (Image * image)
 {
-  if (++image->x >= image->width)
+    if (++image->x >= image->width)
     {
       image->x = 0;
       if (++image->y >= image->height || !image->data)
-	{
-	  size_t old_size = 0, new_size;
+      {
+          size_t old_size = 0, new_size;
 
-	  if (image->data)
-        old_size = static_cast<size_t>(image->height * image->width);
+          if (image->data)
+            old_size = static_cast<size_t>(image->height * image->width);
 
-	  image->height += STRIP_HEIGHT;
-      new_size = static_cast<size_t>(image->height * image->width);
+          image->height += STRIP_HEIGHT;
+          new_size = static_cast<size_t>(image->height * image->width);
 
-	  if (image->data)
-        image->data = (uint8_t *) realloc (image->data, new_size);
-	  else
-        image->data = (uint8_t *) malloc (new_size);
-	  if (image->data)
-	    memset (image->data + old_size, 0, new_size - old_size);
-	}
+          if (image->data)
+          {
+            image->data = (uint8_t *) realloc (image->data, new_size);
+          }
+          else
+          {
+            image->data = (uint8_t *) malloc (new_size);
+          }
+
+          if (image->data)
+            memset (image->data + old_size, 0, new_size - old_size);
+      }
     }
-  if (!image->data)
-    fprintf (stderr, "can't allocate image buffer (%dx%d)\n",
-         image->width, image->height);
-  return image->data;
+
+    if (image->data == NULL)
+    {
+        fprintf (stderr, "can't allocate image buffer (%dx%d)\n", image->width, image->height);
+    }
+    return image->data;
 }
 
 static SANE_Status scan_it (FILE *ofp)
@@ -140,13 +145,14 @@ static SANE_Status scan_it (FILE *ofp)
                       parm.pixels_per_line, parm.lines,
                       parm.depth * (SANE_FRAME_RGB == parm.format ? 3 : 1));
             }
-           else
-           {
+            else
+            {
                  qDebug("scanning image %d pixels wide and "
                       "variable height at %d bits/pixel\n",
                       parm.pixels_per_line,
                       parm.depth * (SANE_FRAME_RGB == parm.format ? 3 : 1));
-           }
+            }
+
             switch (parm.format)
             {
                 case SANE_FRAME_RED:
@@ -156,6 +162,7 @@ static SANE_Status scan_it (FILE *ofp)
                   must_buffer = 1;
                   offset = parm.format - SANE_FRAME_RED;
                   break;
+
                 case SANE_FRAME_RGB:
                   qDebug("SANE_FRAME_RGB\n");
                   assert ((parm.depth == 8) || (parm.depth == 16));
@@ -382,13 +389,16 @@ SANE_Status do_scan(const char *fileName)
     buffer = static_cast<SANE_Byte *>(malloc(buffer_size));
 
     string dir = "/tmp/scanner/";
-    if(access(dir.c_str(), 0) == -1)
+    if (access(dir.c_str(), 0) == -1)
     {
         cout << dir << "is not existing, now create it." << endl;
         int flag=mkdir(dir.c_str(), 0777);
-        if(flag == 0)
+        if (flag == 0)
+        {
             cout << "create successfully!" << endl;
-        else {
+        }
+        else
+        {
             cout << "create failed!" << endl;
         }
     }
@@ -462,8 +472,14 @@ SANE_Status do_scan(const char *fileName)
     return status;
 }
 
-// Initialize SANE
-//SANE初始化
+static void auth_callback (SANE_String_Const resource, SANE_Char * username, SANE_Char * password)
+{
+    qDebug() << "auth_callback";
+}
+
+/**
+ * @brief init 扫描设备初始化
+ */
 void init()
 {
     SANE_Int version_code = 0;
@@ -473,8 +489,13 @@ void init()
     qDebug("SANE version code: %d\n", version_code);
 }
 
-// Get all devices
-//查询所有连接设备。这里会比较耗时
+/**
+ * @brief get_devices 查询所有连接设备
+ * 注意： 这里会很耗时
+ *
+ * @param device_list 设备链表
+ * @return 查询可连接设备结果
+ */
 SANE_Status get_devices(const SANE_Device ***device_list)
 {
     SANE_Status sane_status = SANE_STATUS_GOOD;
@@ -490,8 +511,12 @@ SANE_Status get_devices(const SANE_Device ***device_list)
     return sane_status;
 }
 
-// Open a device
-//使用设备名字打开设备
+/**
+ * @brief open_sane_device 使用设备名字打开设备
+ * @param device 设备结构体字段
+ * @param sane_handle 扫描句柄
+ * @return 返回打开设备结果
+ */
 SANE_Status open_sane_device(SANE_Device *device, SANE_Handle *sane_handle)
 {
     SANE_Status sane_status = SANE_STATUS_GOOD;
@@ -509,9 +534,13 @@ SANE_Status open_sane_device(SANE_Device *device, SANE_Handle *sane_handle)
 }
 
 /**
- * Option 2
- * get all colors
- * print all colors: Color Gray Lineart (etc.)
+ * @brief get_option_colors 获取色彩选项
+ * 可以输出扫描设备支持的所有色彩值：
+ * Color => 彩色  Gray => 灰度  Lineart => 黑白
+ *
+ * @param sane_handle 扫描句柄
+ * @param optnum 扫描选项值
+ * @return 获取色彩选项返回值
  */
 int get_option_colors(SANE_Handle sane_handle, int optnum)
 {
@@ -528,58 +557,35 @@ int get_option_colors(SANE_Handle sane_handle, int optnum)
     opt = sane_get_option_descriptor(sane_handle, optnum);
 
     qDebug("begin print all colors:\n");
-    for(i=0; opt->constraint.string_list[i] != nullptr; i++)
+    for (i=0; opt->constraint.string_list[i] != nullptr; i++)
 	{
         tmp = *(opt->constraint.string_list+i);
         qDebug("optnum[%d] colors string: %s \n", optnum, *(opt->constraint.string_list+i));
-        if(!strcmp("Color", tmp))
+        if (!strcmp("Color", tmp))
         {
             colors << QObject::tr("Color");
         }
-        if(!strcmp("Gray", tmp))
+        if (!strcmp("Gray", tmp))
         {
             colors << QObject::tr("Gray");
         }
-        if(!strcmp("Lineart", tmp))
+        if (!strcmp("Lineart", tmp))
         {
             colors << QObject::tr("Lineart");
         }
     }
-
-    /*
-    // Handle StringList colors default display, just place it to 0 position.
-    QString tmpColor;
-
-    qDebug() << colors[0];
-
-    // 0 position of colors isn't Gray
-    if(QString::compare("Gray", colors[0], Qt::CaseSensitive)
-            || !QString::compare("灰度", colors[0], Qt::CaseSensitive))
-    {
-        for(int k=0; k<colors.size(); k++)
-        {
-            qDebug() << colors[k];
-
-            if(! QString::compare("Gray", colors[k], Qt::CaseSensitive)
-                    || !QString::compare("灰度", colors[k], Qt::CaseSensitive)) // "灰度"
-            {
-
-                tmpColor = colors[0];
-                colors[0] = colors[k];
-                colors[k] = tmpColor;
-                break;
-            }
-        }
-    }
-    */
 
     instance.setKylinSaneColors(colors);
     return ret;
 }
 
 /**
- * Option 2
- * set selected color
+ * @brief set_option_colors 设置扫描设备颜色
+ * 通过传入参数val_color进行设置扫描设备的颜色
+ *
+ * @param sane_handle 扫描句柄
+ * @param val_color 需要设置的颜色字段，Lineart, Gray, Color等
+ * @return 返回设置颜色的情况
  */
 SANE_Status set_option_colors(SANE_Handle sane_handle, SANE_String val_color)
 {
@@ -598,11 +604,13 @@ SANE_Status set_option_colors(SANE_Handle sane_handle, SANE_String val_color)
     return status;
 }
 
-
 /**
- * Option 3
- * get all sources
- * print all sources: source Gray Lineart (etc.)
+ * @brief get_option_sources 获取扫描设备的资源情况
+ * 可以获取扫描设备的设备分类， 平板式(Flatbed)，其他为馈纸式
+ *
+ * @param sane_handle 扫描句柄
+ * @param optnum 扫描选项参数，资源种类为3
+ * @return 返回资源获取情况
  */
 int get_option_sources(SANE_Handle sane_handle, int optnum)
 { 
@@ -620,26 +628,33 @@ int get_option_sources(SANE_Handle sane_handle, int optnum)
     opt = sane_get_option_descriptor(sane_handle, optnum);
 
     qDebug("begin print all sources:\n");
-    for(i=0; opt->constraint.string_list[i] != nullptr; i++)
+    for (i=0; opt->constraint.string_list[i] != nullptr; i++)
 	{
         tmp = *(opt->constraint.string_list+i);
         qDebug("optnum[%d] sources string: %s \n", optnum, tmp);
-        if(!strcmp("Flatbed", tmp))
+        if (!strcmp("Flatbed", tmp))
         {
             type = QObject::tr("Flatbed"); //平板式
             flag = 1;
         }
     }
-    if(flag == 0)
+    if (flag == 0)
+    {
         type = QObject::tr("Transparency Adapter"); //馈纸式
+    }
 
     instance.setKylinSaneType(type);
     return ret;
 }
 
 /**
- * Option 2
- * set selected source
+ * @brief set_option_sources 设置扫描资源类型
+ * 通过页面传的val_source可以设置扫描设备的种类
+ *
+ * @param sane_handle 扫描句柄
+ * @param optnum 扫描选项，此处为3
+ * @param val_source 需要设置的扫描设备种类
+ * @return 扫描设备设置返回情况
  */
 SANE_Status set_option_sources(SANE_Handle sane_handle, int optnum, SANE_String val_source)
 {
@@ -658,12 +673,15 @@ SANE_Status set_option_sources(SANE_Handle sane_handle, int optnum, SANE_String 
     return status;
 }
 
-
 /**
- * Option 6
- * get all resolutions[6] option
- * print all resolution: 4800 2400 1200 600 300 150 100 75 (etc.)
- */
+  * @brief get_option_resolutions 获取扫描软件的分辨率
+  * 可以获取扫描设备支持的所有分辨率，如下：
+  * 2400, 1200, 600, 300, 150, 100, 75
+  *
+  * @param sane_handle 扫描句柄
+  * @param optnum 分辨率扫描选项，此处为6
+  * @return 返回扫描软件分辨率获取情况
+  */
  int get_option_resolutions(SANE_Handle sane_handle, int optnum)
 {
     KylinSane& instance = KylinSane::getInstance();
@@ -678,70 +696,54 @@ SANE_Status set_option_sources(SANE_Handle sane_handle, int optnum, SANE_String 
     opt = sane_get_option_descriptor(sane_handle, optnum);
 
     qDebug("begin print all resolutions:\n");
-    for(i=0; opt->constraint.word_list[i]; i++)
+    for (i=0; opt->constraint.word_list[i]; i++)
     {
         res = *(opt->constraint.word_list+i);
         qDebug("optnum[%d] resolutions int: %d \n", optnum, res);
-        switch (res) {
-        case 4800:
-            resolutions << "4800";
-            break;
-        case 2400:
-            resolutions << "2400";
-            break;
-        case 1200:
-            resolutions << "1200";
-            break;
-        case 600:
-            resolutions << "600";
-            break;
-        case 300:
-            resolutions << "300";
-            break;
-        case 150:
-            resolutions << "150";
-            break;
-        case 100:
-            resolutions << "100";
-            break;
-        case 75:
-            resolutions << "75";
-            break;
-        default:
-            break;
+        switch (res)
+        {
+            case 4800:
+                resolutions << "4800";
+                break;
+            case 2400:
+                resolutions << "2400";
+                break;
+            case 1200:
+                resolutions << "1200";
+                break;
+            case 600:
+                resolutions << "600";
+                break;
+            case 300:
+                resolutions << "300";
+                break;
+            case 150:
+                resolutions << "150";
+                break;
+            case 100:
+                resolutions << "100";
+                break;
+            case 75:
+                resolutions << "75";
+                break;
+            default:
+                break;
         }
     }
     resolutions << QObject::tr("auto");
-
-    /*
-    // 0 position of resolutions isn't 300
-    QString tmpResolution;
-
-    if(QString::compare("300", resolutions[0], Qt::CaseSensitive))
-    {
-        for(int k=0; k<resolutions.size(); k++)
-        {
-            qDebug() << resolutions[k];
-
-            if(! QString::compare("300", resolutions[k], Qt::CaseSensitive))
-            {
-                tmpResolution = resolutions[0];
-                resolutions[0] = resolutions[k];
-                resolutions[k] = tmpResolution;
-                break;
-            }
-        }
-    }
-    */
 
     instance.setKylinSaneResolutions(resolutions);
 
     return 0;
 }
 
-/**
- * Option 6
- * set selected resolutions
+ /**
+ * @brief set_option_resolutions 设置扫描设备的分辨率
+ * 根据传入参数val_resolution进行设置扫描软件的分辨率
+ *
+ * @param sane_handle 扫描句柄
+ * @param val_resolution 需要设置的扫描设备分辨率
+ * @return 返回扫描设备设置分辨率情况
  */
 SANE_Status set_option_resolutions(SANE_Handle sane_handle, SANE_Int val_resolution)
 {
@@ -762,12 +764,21 @@ SANE_Status set_option_resolutions(SANE_Handle sane_handle, SANE_Int val_resolut
 
 
 /**
+ * @brief get_option_sizes 获取扫描设备尺寸
+ * 获取扫描尺寸根据不同的扫描选项值进行获取左上和右下坐标，从而确定扫描尺寸
  * Option 8(Top-left x),9(Top-left y),10(Bottom-right x),11(Bottom-right y)
  * get all sizes[8,9,10,11] option
  * print all size: tl-x tl-y br-x br-y (etc.)
  * A3: 0 0 297 420
  * A4: 0 0 210 297 (canon 210=> 0 0 216 297)
  * Because sizes just can read normal, so we could directly to set general sizes
+ *
+ * @param sane_handle 扫描句柄
+ * @param optnum 尺寸扫描选项参数
+ * 8 => 扫描设备左上角中的x坐标tl-x
+ * 9 => 扫描设备左上角中的y坐标tl-y
+ * 10 => 扫描设备右下角中的x坐标br-x
+ * 11 => 扫描设备右下角中的y坐标br-y
  */
 void get_option_sizes(SANE_Handle sane_handle, int optnum)
 {
@@ -780,7 +791,7 @@ void get_option_sizes(SANE_Handle sane_handle, int optnum)
     opt = sane_get_option_descriptor(sane_handle, optnum);
 
     qDebug("begin print all sizes:\n");
-	for(i=0; opt->constraint.word_list[i]; i++)
+    for (i=0; opt->constraint.word_list[i]; i++)
 	{
         res = *(opt->constraint.word_list+i);
         qDebug("optnum[%d] sizes int: %d \n", optnum, res);
@@ -789,8 +800,15 @@ void get_option_sizes(SANE_Handle sane_handle, int optnum)
 }
 
 /**
- * Option 6
- * set selected sizes
+ * @brief set_option_sizes 设置扫描设备的尺寸，也就是坐标
+ * 根据扫描选项参数optnum进行判断设置的坐标值是x或者y，val_size为设置的坐标值
+ *
+ * @param sane_handle 扫描句柄
+ * @param optnum 扫描选项参数
+ * 10 => 右下角坐标的x  11 => 右下角坐标的y
+ *
+ * @param val_size 将要设置的扫描尺寸坐标值
+ * @return 设置扫描尺寸的返回情况
  */
 SANE_Status set_option_sizes(SANE_Handle sane_handle, int optnum, SANE_Int val_size)
 {
@@ -810,11 +828,13 @@ SANE_Status set_option_sizes(SANE_Handle sane_handle, int optnum, SANE_Int val_s
 }
 
 /**
- * @brief set_option_sizes_real
- * @param sane_handle sane_handle
- * @param val_size_br_x bottom_right x coordition
- * @param val_size_br_y botton_right y coordition
- * @return SANE_STATUS
+ * @brief set_option_sizes_real 统一设置扫描设备尺寸
+ * 这里可以根据传入参数val_size_br_x和val_size_br_y直接进行设置扫描设备的尺寸
+ *
+ * @param sane_handle 扫描句柄
+ * @param val_size_br_x 扫描设备右下角的x坐标
+ * @param val_size_br_y 扫描设备右下角的y坐标
+ * @return 返回扫描设备设置尺寸的情况
  */
 SANE_Status set_option_sizes_real(SANE_Handle sane_handle, SANE_Int val_size_br_x, SANE_Int val_size_br_y)
 {
@@ -828,28 +848,37 @@ SANE_Status set_option_sizes_real(SANE_Handle sane_handle, SANE_Int val_size_br_
     return status;
 }
 
+/**
+ * @brief set_option_sizes_all 根据不同的页面尺寸进行设置扫描设备尺寸
+ * 根据选择的不同的页面尺寸进行对应设置扫描设备尺寸
+ *
+ * @param sane_handle 扫描句柄
+ * @param type 不同的页面尺寸
+ * @return 设置扫描尺寸返回情况
+ */
 SANE_Status set_option_sizes_all(SANE_Handle sane_handle, int type)
 {
     SANE_Status status = SANE_STATUS_GOOD;
 
-    switch (type) {
-    case A2:
-        status = set_option_sizes_real(sane_handle, 420, 594);
-        break;
-    case A3:
-        status = set_option_sizes_real(sane_handle, 297, 420);
-        break;
-    case A4:
-        status = set_option_sizes_real(sane_handle, 210, 297);
-        break;
-    case A5:
-        status = set_option_sizes_real(sane_handle, 148, 210);
-        break;
-    case A6:
-        status = set_option_sizes_real(sane_handle, 105, 144);
-        break;
-    default:
-        status = SANE_STATUS_UNSUPPORTED;
+    switch (type)
+    {
+        case A2:
+            status = set_option_sizes_real(sane_handle, 420, 594);
+            break;
+        case A3:
+            status = set_option_sizes_real(sane_handle, 297, 420);
+            break;
+        case A4:
+            status = set_option_sizes_real(sane_handle, 210, 297);
+            break;
+        case A5:
+            status = set_option_sizes_real(sane_handle, 148, 210);
+            break;
+        case A6:
+            status = set_option_sizes_real(sane_handle, 105, 144);
+            break;
+        default:
+            status = SANE_STATUS_UNSUPPORTED;
     }
 
     return status;
@@ -934,20 +963,21 @@ static char *get_option_value(SANE_Handle device, const char *option_name)
     QStringList sizes;
 
     const SANE_Option_Descriptor *opt;
-    void *optval;				/* value for the option */
+    void *optval; //扫描选项值
     int optnum;
     static char str[100];
     int status = 0;
 
-    SANE_String val_string_source; //来源
-    SANE_String val_string_color; //颜色
-    SANE_Word val_size; //尺寸
-    SANE_Word val_resolution; //分辨率
+    SANE_String val_string_source; // 来源
+    SANE_String val_string_color; // 颜色
+    SANE_Word val_size; // 尺寸
+    SANE_Word val_resolution; // 分辨率
 
     opt = get_optdesc_by_name(device, option_name, &optnum);
     qDebug("optnum = %d\n", optnum);
 
-    if (opt) {
+    if (opt)
+    {
         optval = guards_malloc(opt->size);
         /* Get default optval(different format) */
         status = sane_control_option (device, optnum, SANE_ACTION_GET_VALUE, optval, nullptr);
@@ -956,7 +986,7 @@ static char *get_option_value(SANE_Handle device, const char *option_name)
         switch(optnum)
         {
             case 2:
-                if(opt->type == SANE_TYPE_STRING)
+                if (opt->type == SANE_TYPE_STRING)
                 {
                     val_string_color = static_cast<SANE_String>(optval);
                     qDebug("Default color= %s constraint_type=%d\n", val_string_color, opt->constraint_type);
@@ -966,7 +996,7 @@ static char *get_option_value(SANE_Handle device, const char *option_name)
                 break;
 
             case 3:
-                if(opt->type == SANE_TYPE_STRING)
+                if (opt->type == SANE_TYPE_STRING)
                 {
                     val_string_source = static_cast<SANE_String>(optval);
                     qDebug("Default source= %s constraint_type=%d\n", val_string_source, opt->constraint_type);
@@ -975,77 +1005,77 @@ static char *get_option_value(SANE_Handle device, const char *option_name)
                 break;
 
             case 6:
-                if(opt->type == SANE_TYPE_INT)
+                if (opt->type == SANE_TYPE_INT)
                 {
                     val_resolution = *(SANE_Word*)optval;
                     qDebug("resolution = %d constraint_type=%d\n", val_resolution, opt->constraint_type);
 
                 }
 
-                if(opt->constraint_type == SANE_CONSTRAINT_WORD_LIST)
+                if (opt->constraint_type == SANE_CONSTRAINT_WORD_LIST)
                 {
                     status = get_option_resolutions(device, optnum);
                 }
                 break;
 
             case 8:
-                if(opt->type == SANE_TYPE_FIXED)
+                if (opt->type == SANE_TYPE_FIXED)
                 {
                     val_size = SANE_UNFIX(*(SANE_Word*) optval);
                     qDebug("size Top-left x= %d constraint_type=%d\n", val_size, opt->constraint_type);
                 }
 
-                if(opt->constraint_type == SANE_CONSTRAINT_RANGE)
+                if (opt->constraint_type == SANE_CONSTRAINT_RANGE)
                 {
                     get_option_sizes(device, optnum);
                 }
                 break;
             case 9:
-                if(opt->type == SANE_TYPE_FIXED)
+                if (opt->type == SANE_TYPE_FIXED)
                 {
                     val_size = SANE_UNFIX(*(SANE_Word*) optval);
                     qDebug("size Top-left y= %d constraint_type=%d\n", val_size, opt->constraint_type);
                 }
 
-                if(opt->constraint_type == SANE_CONSTRAINT_RANGE)
+                if (opt->constraint_type == SANE_CONSTRAINT_RANGE)
                 {
                     get_option_sizes(device, optnum);
                 }
                 break;
             case 10:
-                if(opt->type == SANE_TYPE_FIXED)
+                if (opt->type == SANE_TYPE_FIXED)
                 {
                     val_size = SANE_UNFIX(*(SANE_Word*) optval);
                     qDebug("size Botton-right x= %d constraint_type=%d\n", val_size, opt->constraint_type);
                     // Via br_x to decide scan sizes
                     {
-                        if(val_size >= 420)
+                        if (val_size >= 420)
                             sizes << "A2";
-                        if(val_size >= 297)
+                        if (val_size >= 297)
                             sizes << "A3";
-                        if(val_size >= 210)
+                        if (val_size >= 210)
                             sizes << "A4";
-                        if(val_size >= 148)
+                        if (val_size >= 148)
                             sizes << "A5";
-                        if(val_size >= 105)
+                        if (val_size >= 105)
                             sizes << "A6";
                     }
                     instance.setKylinSaneSizes(sizes);
                 }
 
-                if(opt->constraint_type == SANE_CONSTRAINT_RANGE)
+                if (opt->constraint_type == SANE_CONSTRAINT_RANGE)
                 {
                     get_option_sizes(device, optnum);
                 }
                 break;
             case 11:
-                if(opt->type == SANE_TYPE_FIXED)
+                if (opt->type == SANE_TYPE_FIXED)
                 {
                     val_size = SANE_UNFIX(*(SANE_Word*) optval);
                     qDebug("size Botton-right y= %d constraint_type=%d\n", val_size, opt->constraint_type);
                 }
 
-                if(opt->constraint_type == SANE_CONSTRAINT_RANGE)
+                if (opt->constraint_type == SANE_CONSTRAINT_RANGE)
                 {
                     get_option_sizes(device, optnum);
                 }
@@ -1058,11 +1088,15 @@ static char *get_option_value(SANE_Handle device, const char *option_name)
         //display_option_value(device, optnum);
 
         //if (status == SANE_STATUS_GOOD) {
-            switch(opt->type) {
+        switch (opt->type)
+        {
             case SANE_TYPE_BOOL:
-                if (*(SANE_Word*) optval == SANE_FALSE) {
+                if (*(SANE_Word*) optval == SANE_FALSE)
+                {
                     strcpy(str, "FALSE");
-                } else {
+                }
+                else
+                {
                     strcpy(str, "TRUE");
                 }
                 break;
@@ -1071,12 +1105,11 @@ static char *get_option_value(SANE_Handle device, const char *option_name)
                 sprintf(str, "%d", *(SANE_Word*) optval);
                 break;
 
-            case SANE_TYPE_FIXED: {
+            case SANE_TYPE_FIXED:
                 int i;
                 i = SANE_UNFIX(*(SANE_Word*) optval);
                 sprintf(str, "%d", i);
-            }
-            break;
+                break;
 
             case SANE_TYPE_STRING:
                 strcpy(str, (char *)optval);
@@ -1084,11 +1117,7 @@ static char *get_option_value(SANE_Handle device, const char *option_name)
 
             default:
                 str[0] = 0;
-            }
-        /* } else { */
-        /*     [> Shouldn't happen. <] */
-        /*     strcpy(str, "backend default"); */
-        /* } */
+        }
 
         guards_free(optval);
 
@@ -1115,20 +1144,22 @@ char *kylin_display_scan_parameters(SANE_Handle device)
     p += sprintf(p, "tl_x=[%s] ", get_option_value(device, SANE_NAME_SCAN_TL_X));
     p += sprintf(p, "tl_y=[%s] ", get_option_value(device, SANE_NAME_SCAN_TL_Y));
 
-    //backend/sharp.c
-    //A4
-    //s->val[OPT_BR_X].w = SANE_FIX(210);
-    //s->val[OPT_BR_Y].w = SANE_FIX(297);
+    /* Refer to backend/sharp.c, for A4 size:
+     * s->val[OPT_BR_X].w = SANE_FIX(210);
+     * s->val[OPT_BR_Y].w = SANE_FIX(297);
+     */
     p += sprintf(p, "br_x=[%s] ", get_option_value(device, SANE_NAME_SCAN_BR_X));
     p += sprintf(p, "br_y=[%s] ", get_option_value(device, SANE_NAME_SCAN_BR_Y));
 
     return(str);
 }
 
-
-
-// Start scanning
-//扫描文档
+/**
+ * @brief start_scan 开始扫描
+ * @param sane_handle 扫描句柄
+ * @param fileName 扫描文件名
+ * @return 扫描结果
+ */
 SANE_Status start_scan(SANE_Handle sane_handle, SANE_String_Const fileName)
 {
     device = sane_handle; //全局静态变量初始化
@@ -1136,28 +1167,36 @@ SANE_Status start_scan(SANE_Handle sane_handle, SANE_String_Const fileName)
     return do_scan(fileName);
 }
 
-// Cancel scanning
-//扫描结束
+/**
+ * @brief cancle_scan  结束扫描
+ * @param sane_handle 扫描句柄
+ */
 void cancle_scan(SANE_Handle sane_handle)
 {
     sane_cancel(sane_handle);
 }
 
-// Close SANE device
-//关闭设备
+/**
+ * @brief close_device 关闭扫描设备
+ * @param sane_handle 扫描句柄
+ */
 void close_device(SANE_Handle sane_handle)
 {
     sane_close(sane_handle);
 }
 
-// Release SANE resources
-//释放所有资源
+/**
+ * @brief my_sane_exit 释放所有扫描资源
+ */
 void my_sane_exit()
 {
     sane_exit();
 }
 
-// 可以借此整理出未识别设备的情况
+/**
+ * @brief check_search_scan_devices 可以借此整理出未识别设备的情况
+ * @return 检查情况返回值
+ */
 int check_search_scan_devices()
 {
     // 1. initialize SANE
@@ -1178,6 +1217,10 @@ int check_search_scan_devices()
     return 0;
 }
 
+/**
+ * @brief kylinNorScanOpen 扫描设备打开统一接口
+ * 提供给页面调用
+ */
 void kylinNorScanOpen()
 {
     SANE_Status sane_status;
@@ -1272,29 +1315,18 @@ void kylinNorScanOpen()
 
         cancle_scan(sane_handle);
 
-        /*
-        // 5. close device
-        printf("Close the device\n");
-        close_device(sane_handle);
-        */
         sane_status = SANE_STATUS_GOOD;
     }while(0);
 
-    if(sane_status)
+    if (sane_status)
     {
         instance.setKylinSaneStatus(false);
         qDebug() << "set status false";
     }
-    else {
+    else
+    {
         instance.setKylinSaneStatus(true);
     }
-
-    /*
-    // 6. release resources
-    qDebug("Exit\n");
-    my_sane_exit();
-    */
-
 }
 
 #ifdef __cplusplus
@@ -1315,22 +1347,27 @@ bool KylinSane::getKylinSaneStatus()
 {
     return devicesInfo.status;
 }
+
 QString KylinSane::getKylinSaneName()
 {
     return devicesInfo.name;
 }
+
 QString KylinSane::getKylinSaneType()
 {
     return devicesInfo.type;
 }
+
 QStringList KylinSane::getKylinSaneResolutions()
 {
     return  devicesInfo.resolution;
 }
+
 QStringList KylinSane::getKylinSaneSizes()
 {
     return devicesInfo.size;
 }
+
 QStringList KylinSane::getKylinSaneColors()
 {
     return devicesInfo.color;
@@ -1340,27 +1377,36 @@ void KylinSane::setKylinSaneStatus(bool status)
 {
     devicesInfo.status = status;
 }
+
 void KylinSane::setKylinSaneType(QString type)
 {
     devicesInfo.type = type;
 }
+
 void KylinSane::setKylinSaneName(QString name)
 {
     devicesInfo.name = name;
 }
+
 void KylinSane::setKylinSaneResolutions(QStringList resolution)
 {
     devicesInfo.resolution = resolution;
 }
+
 void KylinSane::setKylinSaneSizes(QStringList size)
 {
     devicesInfo.size = size;
 }
+
 void KylinSane::setKylinSaneColors(QStringList color)
 {
     devicesInfo.color = color;
 }
 
+/**
+ * @brief KylinSane::open_device 统一接口供页面调用，打开扫描设备
+ * @return 返回打开扫描设备的扫描参数情况
+ */
 device_info KylinSane::open_device()
 {
     KylinSane& instance = KylinSane::getInstance();
@@ -1368,6 +1414,14 @@ device_info KylinSane::open_device()
 
     return instance.devicesInfo;
 }
+
+/**
+ * @brief KylinSane::start_scanning 统一接口供页面调用，开始扫描
+ * 根据扫描设置页面情况info字段进行设置扫描设备参数，并进行扫描
+ *
+ * @param info 扫描设置页面传递的需要设置的扫描设备参数
+ * @return 返回扫描情况
+ */
 int KylinSane::start_scanning(user_selected_info info)
 {
     KylinSane& instance = KylinSane::getInstance();
@@ -1383,7 +1437,7 @@ int KylinSane::start_scanning(user_selected_info info)
     // For colors
     s_color = const_cast<SANE_String>(strColor.c_str());
     status = set_option_colors(instance.handle, s_color);
-    if(status != SANE_STATUS_GOOD)
+    if (status != SANE_STATUS_GOOD)
     {
       qDebug("cannot set option 2 to %s (%s)\n",s_color, sane_strstatus(status));
     }
@@ -1391,7 +1445,7 @@ int KylinSane::start_scanning(user_selected_info info)
     // For resolutions
     s_resolution = const_cast<SANE_String>(strResolution.c_str());
     SANE_Int i_resolution;
-    if(!strcmp("auto", s_resolution) || !strcmp("自动", s_resolution))
+    if (!strcmp("auto", s_resolution) || !strcmp("自动", s_resolution))
     {
         i_resolution = 300; //自动时设置为300
     }
@@ -1400,7 +1454,7 @@ int KylinSane::start_scanning(user_selected_info info)
     }
 
     status = set_option_resolutions(instance.handle, i_resolution);
-    if(status != SANE_STATUS_GOOD)
+    if (status != SANE_STATUS_GOOD)
     {
       qDebug("cannot set option 2 to %s (%s)\n",s_resolution, sane_strstatus(status));
     }
@@ -1408,24 +1462,28 @@ int KylinSane::start_scanning(user_selected_info info)
     // For sizes
     int type = 0;
     s_size = const_cast<SANE_String>(strSize.c_str());
-    if(!strcmp("A2", s_size))
+    if (!strcmp("A2", s_size))
     {
         type = A2;
     }
-    else if (!strcmp("A3", s_size)) {
+    else if (!strcmp("A3", s_size))
+    {
         type = A3;
     }
-    else if (!strcmp("A4", s_size)) {
+    else if (!strcmp("A4", s_size))
+    {
         type = A4;
     }
-    else if (!strcmp("A5", s_size)) {
+    else if (!strcmp("A5", s_size))
+    {
         type = A5;
     }
-    else if (!strcmp("A6", s_size)) {
+    else if (!strcmp("A6", s_size))
+    {
         type = A6;
     }
     status = set_option_sizes_all(instance.handle, type);
-    if(status != SANE_STATUS_GOOD)
+    if (status != SANE_STATUS_GOOD)
     {
       qDebug("cannot set option 2 to %s (%s)\n",s_size, sane_strstatus(status));
     }

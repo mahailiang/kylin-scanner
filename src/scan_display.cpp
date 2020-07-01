@@ -86,10 +86,8 @@ scan_display::scan_display(QWidget *parent)
     QPalette pa;
     pa.setColor(QPalette::WindowText,QColor(232,232,232));
     labDisplay3->setPalette(pa);
-    labDisplay3->setText("请先连接扫描仪！");
+    labDisplay3->setText(tr("Please connect to a scan device firstly !"));
     labDisplay3->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
-
-
 
     vBoxScanSet->setSpacing(0);
     vBoxScanSet->addStretch();
@@ -347,7 +345,7 @@ void scan_display::orc()
         labDisplay9->setPixmap(QPixmap::fromImage(*img6));
         labDisplay9->setAlignment(Qt::AlignTop);
 
-        outText = "正在识别中...";
+        outText = tr("Try to ocr ...");
         QFont ft1;
         ft1.setPointSize(14);
         labDisplay10->setFont(ft1);

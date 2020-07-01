@@ -33,11 +33,6 @@ Widget::Widget(QWidget *parent)
 
     thread.start();
 
-//    KylinSane &instance = KylinSane::getInstance();
-//    instance.open_device();
-
-//    qDebug() << instance.getKylinSaneResolutions();
-
     pTitleBar = new TitleBar(this);
     installEventFilter(pTitleBar);
     resize(860, 680);
@@ -250,14 +245,11 @@ void Widget::scan_result(bool ret)
     }
 }
 
-
-
-
 void scanThread::run()
 {
     KylinSane &instance = KylinSane::getInstance();
 again:
-    do{
+    do {
         instance.open_device();
         qDebug() << instance.getKylinSaneResolutions();
         if(instance.getKylinSaneStatus() == false)
@@ -270,7 +262,7 @@ again:
         {
             emit scan_finished(true);
         }
-    }while(!instance.getKylinSaneStatus());
+    } while (!instance.getKylinSaneStatus());
 
     quit();
 }

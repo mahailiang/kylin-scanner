@@ -76,9 +76,13 @@ unix:!macx: LIBS += -L$$PWD/../../../usr/lib/x86_64-linux-gnu/ -lsane
 INCLUDEPATH += $$PWD/../../../usr/lib/x86_64-linux-gnu
 DEPENDPATH += $$PWD/../../../usr/lib/x86_64-linux-gnu
 
+TRANSLATIONS = translations/kylin-scanner.zh_CN.ts
+# !system($$PWD/translations/generate_translations_pm.sh): error("Failed to generate pm")
+qm_files.files = translations/*.qm
+qm_files.path = /usr/share/kylin-scanner/translations/
 
 # target
-target.files += kylin-scanner
+target.files += $$TARGET
 target.path = /usr/bin/
 
 # icons
@@ -89,5 +93,9 @@ icons.path = /usr/share/pixmaps/
 desktop.files += data/kylin-scanner.desktop
 desktop.path = /usr/share/applications/
 
-INSTALLS += target icons desktop
+INSTALLS += target icons desktop qm_files
+
+DISTFILES += \
+    translations/generate_translations_pm.sh \
+    translations/local.zh_CN.qm
 

@@ -125,7 +125,6 @@ int ImageRectify(char * pInFileName)
 {
     double degree;
     Mat src = imread(pInFileName);
-    //        imshow("原始图", src);
     Mat dst;
     //倾斜角度矫正
     degree = CalcDegree(src,dst);
