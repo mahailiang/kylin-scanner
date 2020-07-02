@@ -166,10 +166,16 @@ FuncBar::FuncBar(QWidget *parent)
     hBoxLay4->addLayout(hBoxLay3);
     setLayout(hBoxLay4);
 
+    // For orc
     connect(btnOrc,SIGNAL(clicked()),this,SLOT(on_btnOrc_clicked()));
+
+    // For scan
     connect(btnScan, SIGNAL(clicked()), this, SLOT(on_btnScan_clicked()));
-    //connect(this, this->send_Scan_Begin(), this, SLOT(send_Scan_End()));
+
+    // For rectify
     connect(btnRectify, SIGNAL(clicked()), this, SLOT(on_btnRectify_clicked()));
+
+    // For beauty
     connect(btnBeautify, SIGNAL(clicked()), this, SLOT(on_btnBeauty_clicked()));
 }
 
@@ -268,7 +274,6 @@ void FuncBar::on_btnOrc_clicked()
         stack.pop();
         emit send_Orc_End();
     }
-
 }
 
 void FuncBar::on_btnScan_clicked()
@@ -314,39 +319,5 @@ void FuncBar::on_btnBeauty_clicked()
         flagBeautify = 0;
         stack.pop();
         emit send_Beautify_End();
-    }
-}
-
-void FuncBar::on_btnScan_clicked_start()
-{
-    cout << "start()" <<endl;
-    btnScan->setText("");
-    btnScan->setStyleSheet("QPushButton{image: url(:/icon/icon/scanner.gif);background-color: rgb(232,160,73);border-radius:28px;color:rgb(232,232,232);}"
-                           "QPushButton:pressed{image: url(:/icon/icon/scanner.gif);}"
-                           );
-    qDebug() << btnScan->styleSheet();
-    emit send_Scan_Begin_again();
-}
-
-void FuncBar::on_btnScan_clicked_end()
-{
-    btnScan->setText(tr("scanning"));
-    btnScan->setStyleSheet("QPushButton{background-color: rgb(232,160,73);border-radius:28px;color:rgb(232,232,232);}"
-                           );
-}
-
-void FuncBar::on_btnScan_scan()
-{
-    cout << "scan()" <<endl;
-    btnScan->setText("");
-    qDebug() << btnScan->text();
-    btnScan->setStyleSheet("QPushButton{image: url(:/icon/icon/scanner.gif);background-color: rgb(232,160,73);border-radius:28px;color:rgb(232,232,232);}");
-    qDebug() << btnScan->styleSheet();
-    KylinSane& instance = KylinSane::getInstance();
-    if(instance.getKylinSaneStatus() == true)
-    {
-        instance.start_scanning(instance.userInfo);
-        qDebug()<<"start_scanning end!!!";
-        emit send_Scan_End();
     }
 }

@@ -1,7 +1,7 @@
 <map id="kylin_display_scan_parameters" name="kylin_display_scan_parameters">
-<area shape="rect" id="node1" title=" " alt="" coords="5,201,137,242"/>
-<area shape="rect" id="node2" href="$kylin__sane_8cpp.html#af892e52d691cd52602c4d2b5c72f6e02" title=" " alt="" coords="185,208,305,235"/>
-<area shape="rect" id="node3" href="$kylin__sane_8cpp.html#a795e1d5597a19ad20130c11e3ba8a6c7" title=" " alt="" coords="376,5,529,32"/>
+<area shape="rect" id="node1" title="kylin_display_scan_parameters 连接设备后，显示扫描参数" alt="" coords="5,201,137,242"/>
+<area shape="rect" id="node2" href="$kylin__sane_8cpp.html#af892e52d691cd52602c4d2b5c72f6e02" title="get_option_value 统一获取扫描参数" alt="" coords="185,208,305,235"/>
+<area shape="rect" id="node3" href="$kylin__sane_8cpp.html#a795e1d5597a19ad20130c11e3ba8a6c7" title="get_optdesc_by_name 根据扫描参数名称获取选项描述参数句柄" alt="" coords="376,5,529,32"/>
 <area shape="rect" id="node4" href="$kylin__sane_8cpp.html#a9ac28b4470ab91b0df9b5e64bcf50eb4" title="get_option_colors 获取色彩选项 可以输出扫描设备支持的所有色彩值： Color =&gt; 彩色 Gray =&gt; 灰度 Lineart =&gt; 黑白" alt="" coords="391,157,515,184"/>
 <area shape="rect" id="node5" href="$classKylinSane.html#a6e4754e2e68e6f4ed9d8ad037a052be4" title=" " alt="" coords="639,107,796,133"/>
 <area shape="rect" id="node7" href="$kylin__sane_8cpp.html#ae379875b7301f3c94cf82fa45b0e205d" title="get_option_resolutions 获取扫描软件的分辨率 可以获取扫描设备支持的所有分辨率，如下： 2400, 1200, 600, 300, 150, 100,..." alt="" coords="377,56,529,83"/>

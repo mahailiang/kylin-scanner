@@ -1,8 +1,7 @@
 \hypertarget{kylin__sane_8cpp}{}\doxysection{src/kylin\+\_\+sane.cpp 文件参考}
 \label{kylin__sane_8cpp}\index{src/kylin\_sane.cpp@{src/kylin\_sane.cpp}}
 {\ttfamily \#include \char`\"{}kylin\+\_\+sane.\+h\char`\"{}}\newline
-kylin\+\_\+sane.\+cpp 的引用(Include)关系图\+:
-\nopagebreak
+kylin\+\_\+sane.\+cpp 的引用(Include)关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -79,13 +78,13 @@ static void $\ast$ \mbox{\hyperlink{kylin__sane_8cpp_a2309fa8ac99d7f1938a8863fc3
 static void \mbox{\hyperlink{kylin__sane_8cpp_abb0019b6c2b93cbf5de1bc5362919fca}{guards\+\_\+free}} (void $\ast$ptr)
 \item 
 static const S\+A\+N\+E\+\_\+\+Option\+\_\+\+Descriptor $\ast$ \mbox{\hyperlink{kylin__sane_8cpp_a795e1d5597a19ad20130c11e3ba8a6c7}{get\+\_\+optdesc\+\_\+by\+\_\+name}} (S\+A\+N\+E\+\_\+\+Handle \mbox{\hyperlink{widget_8cpp_a8ffc7c6efbe25ea34aa0aefa819a558d}{device}}, const char $\ast$name, int $\ast$option\+\_\+num)
-\item 
+\begin{DoxyCompactList}\small\item\em get\+\_\+optdesc\+\_\+by\+\_\+name 根据扫描参数名称获取选项描述参数句柄 \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{kylin__sane_8cpp_aad5cfc4d97cf910a5b97bcbc2070c4df}{display\+\_\+option\+\_\+value}} (S\+A\+N\+E\+\_\+\+Handle \mbox{\hyperlink{widget_8cpp_a8ffc7c6efbe25ea34aa0aefa819a558d}{device}}, int optnum)
 \item 
 static char $\ast$ \mbox{\hyperlink{kylin__sane_8cpp_af892e52d691cd52602c4d2b5c72f6e02}{get\+\_\+option\+\_\+value}} (S\+A\+N\+E\+\_\+\+Handle \mbox{\hyperlink{widget_8cpp_a8ffc7c6efbe25ea34aa0aefa819a558d}{device}}, const char $\ast$option\+\_\+name)
-\item 
+\begin{DoxyCompactList}\small\item\em get\+\_\+option\+\_\+value 统一获取扫描参数 \end{DoxyCompactList}\item 
 char $\ast$ \mbox{\hyperlink{kylin__sane_8cpp_a19951099c109584e16272de674b88778}{kylin\+\_\+display\+\_\+scan\+\_\+parameters}} (S\+A\+N\+E\+\_\+\+Handle \mbox{\hyperlink{widget_8cpp_a8ffc7c6efbe25ea34aa0aefa819a558d}{device}})
-\item 
+\begin{DoxyCompactList}\small\item\em kylin\+\_\+display\+\_\+scan\+\_\+parameters 连接设备后，显示扫描参数 \end{DoxyCompactList}\item 
 S\+A\+N\+E\+\_\+\+Status \mbox{\hyperlink{kylin__sane_8cpp_a2b640f15a12501131e316d17025fb5ac}{start\+\_\+scan}} (S\+A\+N\+E\+\_\+\+Handle sane\+\_\+handle, S\+A\+N\+E\+\_\+\+String\+\_\+\+Const file\+Name)
 \begin{DoxyCompactList}\small\item\em start\+\_\+scan 开始扫描 \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{kylin__sane_8cpp_ad9f4ca655267f3a703c60fd3e876cc63}{cancle\+\_\+scan}} (S\+A\+N\+E\+\_\+\+Handle sane\+\_\+handle)
@@ -169,8 +168,7 @@ static size\+\_\+t \mbox{\hyperlink{kylin__sane_8cpp_a799a743b3abd553a37fc01ad30
 \doxysubsubsection{\texorpdfstring{advance()}{advance()}}
 {\footnotesize\ttfamily static void$\ast$ advance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structImage}{Image}} $\ast$}]{image }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -183,8 +181,7 @@ static size\+\_\+t \mbox{\hyperlink{kylin__sane_8cpp_a799a743b3abd553a37fc01ad30
 \doxysubsubsection{\texorpdfstring{auth\_callback()}{auth\_callback()}}
 {\footnotesize\ttfamily static void auth\+\_\+callback (\begin{DoxyParamCaption}\item[{S\+A\+N\+E\+\_\+\+String\+\_\+\+Const}]{resource,  }\item[{S\+A\+N\+E\+\_\+\+Char $\ast$}]{username,  }\item[{S\+A\+N\+E\+\_\+\+Char $\ast$}]{password }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -206,8 +203,7 @@ cancle\+\_\+scan 结束扫描
 {\em sane\+\_\+handle} & 扫描句柄 \\
 \hline
 \end{DoxyParams}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -227,8 +223,7 @@ check\+\_\+search\+\_\+scan\+\_\+devices 可以借此整理出未识别设备的
 \begin{DoxyReturn}{返回}
 检查情况返回值 
 \end{DoxyReturn}
-函数调用图\+:
-\nopagebreak
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -262,16 +257,14 @@ close\+\_\+device 关闭扫描设备
 \doxysubsubsection{\texorpdfstring{do\_scan()}{do\_scan()}}
 {\footnotesize\ttfamily S\+A\+N\+E\+\_\+\+Status do\+\_\+scan (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file\+Name }\end{DoxyParamCaption})}
 
-函数调用图\+:
-\nopagebreak
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=349pt]{kylin__sane_8cpp_a1ed7aa2ebad2fbd9de26ce1c5de31e37_cgraph}
 \end{center}
 \end{figure}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -296,8 +289,7 @@ get\+\_\+devices 查询所有连接设备 注意： 这里会很耗时
 \begin{DoxyReturn}{返回}
 查询可连接设备结果 
 \end{DoxyReturn}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -310,8 +302,23 @@ get\+\_\+devices 查询所有连接设备 注意： 这里会很耗时
 \doxysubsubsection{\texorpdfstring{get\_optdesc\_by\_name()}{get\_optdesc\_by\_name()}}
 {\footnotesize\ttfamily static const S\+A\+N\+E\+\_\+\+Option\+\_\+\+Descriptor$\ast$ get\+\_\+optdesc\+\_\+by\+\_\+name (\begin{DoxyParamCaption}\item[{S\+A\+N\+E\+\_\+\+Handle}]{device,  }\item[{const char $\ast$}]{name,  }\item[{int $\ast$}]{option\+\_\+num }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
-这是这个函数的调用关系图\+:
-\nopagebreak
+
+
+get\+\_\+optdesc\+\_\+by\+\_\+name 根据扫描参数名称获取选项描述参数句柄 
+
+
+\begin{DoxyParams}{参数}
+{\em device} & 扫描句柄 \\
+\hline
+{\em name} & 扫描名称 \\
+\hline
+{\em option\+\_\+num} & 扫描参数句柄值 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+扫描选项描述句柄 
+\end{DoxyReturn}
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -338,16 +345,14 @@ get\+\_\+option\+\_\+colors 获取色彩选项 可以输出扫描设备支持的
 \begin{DoxyReturn}{返回}
 获取色彩选项返回值 
 \end{DoxyReturn}
-函数调用图\+:
-\nopagebreak
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{kylin__sane_8cpp_a9ac28b4470ab91b0df9b5e64bcf50eb4_cgraph}
 \end{center}
 \end{figure}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -374,16 +379,14 @@ get\+\_\+option\+\_\+resolutions 获取扫描软件的分辨率 可以获取扫�
 \begin{DoxyReturn}{返回}
 返回扫描软件分辨率获取情况 
 \end{DoxyReturn}
-函数调用图\+:
-\nopagebreak
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{kylin__sane_8cpp_ae379875b7301f3c94cf82fa45b0e205d_cgraph}
 \end{center}
 \end{figure}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -407,8 +410,7 @@ get\+\_\+option\+\_\+sizes 获取扫描设备尺寸 获取扫描尺寸根据不�
 {\em optnum} & 尺寸扫描选项参数 8 =$>$ 扫描设备左上角中的x坐标tl-\/x 9 =$>$ 扫描设备左上角中的y坐标tl-\/y 10 =$>$ 扫描设备右下角中的x坐标br-\/x 11 =$>$ 扫描设备右下角中的y坐标br-\/y \\
 \hline
 \end{DoxyParams}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -435,16 +437,14 @@ get\+\_\+option\+\_\+sources 获取扫描设备的资源情况 可以获取扫�
 \begin{DoxyReturn}{返回}
 返回资源获取情况 
 \end{DoxyReturn}
-函数调用图\+:
-\nopagebreak
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{kylin__sane_8cpp_af28757ac800a7acc9c99e45075b9bc75_cgraph}
 \end{center}
 \end{figure}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -457,16 +457,28 @@ get\+\_\+option\+\_\+sources 获取扫描设备的资源情况 可以获取扫�
 \doxysubsubsection{\texorpdfstring{get\_option\_value()}{get\_option\_value()}}
 {\footnotesize\ttfamily static char$\ast$ get\+\_\+option\+\_\+value (\begin{DoxyParamCaption}\item[{S\+A\+N\+E\+\_\+\+Handle}]{device,  }\item[{const char $\ast$}]{option\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
-函数调用图\+:
-\nopagebreak
+
+
+get\+\_\+option\+\_\+value 统一获取扫描参数 
+
+
+\begin{DoxyParams}{参数}
+{\em device} & 设备句柄 \\
+\hline
+{\em option\+\_\+name} & 获取的扫描参数选项 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+返回获取的扫描参数 
+\end{DoxyReturn}
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{kylin__sane_8cpp_af892e52d691cd52602c4d2b5c72f6e02_cgraph}
 \end{center}
 \end{figure}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -479,8 +491,7 @@ get\+\_\+option\+\_\+sources 获取扫描设备的资源情况 可以获取扫�
 \doxysubsubsection{\texorpdfstring{guards\_free()}{guards\_free()}}
 {\footnotesize\ttfamily static void guards\+\_\+free (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -493,8 +504,7 @@ get\+\_\+option\+\_\+sources 获取扫描设备的资源情况 可以获取扫�
 \doxysubsubsection{\texorpdfstring{guards\_malloc()}{guards\_malloc()}}
 {\footnotesize\ttfamily static void$\ast$ guards\+\_\+malloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -511,16 +521,14 @@ get\+\_\+option\+\_\+sources 获取扫描设备的资源情况 可以获取扫�
 
 init 扫描设备初始化 
 
-函数调用图\+:
-\nopagebreak
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=222pt]{kylin__sane_8cpp_a02fd73d861ef2e4aabb38c0c9ff82947_cgraph}
 \end{center}
 \end{figure}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -533,16 +541,26 @@ init 扫描设备初始化
 \doxysubsubsection{\texorpdfstring{kylin\_display\_scan\_parameters()}{kylin\_display\_scan\_parameters()}}
 {\footnotesize\ttfamily char$\ast$ kylin\+\_\+display\+\_\+scan\+\_\+parameters (\begin{DoxyParamCaption}\item[{S\+A\+N\+E\+\_\+\+Handle}]{device }\end{DoxyParamCaption})}
 
-函数调用图\+:
-\nopagebreak
+
+
+kylin\+\_\+display\+\_\+scan\+\_\+parameters 连接设备后，显示扫描参数 
+
+
+\begin{DoxyParams}{参数}
+{\em device} & 扫描句柄 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+从扫描设备上获取的扫描设置默认信息 
+\end{DoxyReturn}
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{kylin__sane_8cpp_a19951099c109584e16272de674b88778_cgraph}
 \end{center}
 \end{figure}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -565,16 +583,14 @@ init 扫描设备初始化
 
 kylin\+Nor\+Scan\+Open 扫描设备打开统一接口 提供给页面调用 
 
-函数调用图\+:
-\nopagebreak
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{kylin__sane_8cpp_a6a9d84ad48c6968cdae6ad5d8fcf90d5_cgraph}
 \end{center}
 \end{figure}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -591,8 +607,7 @@ kylin\+Nor\+Scan\+Open 扫描设备打开统一接口 提供给页面调用
 
 my\+\_\+sane\+\_\+exit 释放所有扫描资源 
 
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -619,8 +634,7 @@ open\+\_\+sane\+\_\+device 使用设备名字打开设备
 \begin{DoxyReturn}{返回}
 返回打开设备结果 
 \end{DoxyReturn}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -633,16 +647,14 @@ open\+\_\+sane\+\_\+device 使用设备名字打开设备
 \doxysubsubsection{\texorpdfstring{scan\_it()}{scan\_it()}}
 {\footnotesize\ttfamily static S\+A\+N\+E\+\_\+\+Status scan\+\_\+it (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{ofp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
-We\textquotesingle{}re either scanning a multi-\/frame image or the scanner doesn\textquotesingle{}t know what the eventual image height will be (common for hand-\/held scanners). In either case, we need to buffer all data before we can write the image.函数调用图\+:
-\nopagebreak
+We\textquotesingle{}re either scanning a multi-\/frame image or the scanner doesn\textquotesingle{}t know what the eventual image height will be (common for hand-\/held scanners). In either case, we need to buffer all data before we can write the image.函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=260pt]{kylin__sane_8cpp_ad5b41ac303afbd6a47a7e13ce11c5204_cgraph}
 \end{center}
 \end{figure}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -669,8 +681,7 @@ set\+\_\+option\+\_\+colors 设置扫描设备颜色 通过传入参数val\+\_\+
 \begin{DoxyReturn}{返回}
 返回设置颜色的情况 
 \end{DoxyReturn}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -697,8 +708,7 @@ set\+\_\+option\+\_\+resolutions 设置扫描设备的分辨率 根据传入参�
 \begin{DoxyReturn}{返回}
 返回扫描设备设置分辨率情况 
 \end{DoxyReturn}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -727,8 +737,7 @@ set\+\_\+option\+\_\+sizes 设置扫描设备的尺寸，也就是坐标 根据�
 \begin{DoxyReturn}{返回}
 设置扫描尺寸的返回情况 
 \end{DoxyReturn}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -755,16 +764,14 @@ set\+\_\+option\+\_\+sizes\+\_\+all 根据不同的页面尺寸进行设置扫�
 \begin{DoxyReturn}{返回}
 设置扫描尺寸返回情况 
 \end{DoxyReturn}
-函数调用图\+:
-\nopagebreak
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{kylin__sane_8cpp_a28cd234791327dab155b96ab1b57212a_cgraph}
 \end{center}
 \end{figure}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -793,16 +800,14 @@ set\+\_\+option\+\_\+sizes\+\_\+real 统一设置扫描设备尺寸 这里可以
 \begin{DoxyReturn}{返回}
 返回扫描设备设置尺寸的情况 
 \end{DoxyReturn}
-函数调用图\+:
-\nopagebreak
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=317pt]{kylin__sane_8cpp_aa822b31dccd750bf5673c6f446d339c8_cgraph}
 \end{center}
 \end{figure}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -851,16 +856,14 @@ start\+\_\+scan 开始扫描
 \begin{DoxyReturn}{返回}
 扫描结果 
 \end{DoxyReturn}
-函数调用图\+:
-\nopagebreak
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{kylin__sane_8cpp_a2b640f15a12501131e316d17025fb5ac_cgraph}
 \end{center}
 \end{figure}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -873,8 +876,7 @@ start\+\_\+scan 开始扫描
 \doxysubsubsection{\texorpdfstring{write\_pnm\_header()}{write\_pnm\_header()}}
 {\footnotesize\ttfamily static void write\+\_\+pnm\+\_\+header (\begin{DoxyParamCaption}\item[{S\+A\+N\+E\+\_\+\+Frame}]{format,  }\item[{int}]{width,  }\item[{int}]{height,  }\item[{int}]{depth,  }\item[{F\+I\+LE $\ast$}]{ofp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

@@ -147,6 +147,9 @@ private:
     QHBoxLayout *hBoxScanSet;
     int flag = 0;
 
+public slots:
+    void modify_save_button();
+
 private slots:
     void on_btnLocation_clicked();
     void on_btnMail_clicked();
@@ -155,9 +158,6 @@ private slots:
     void on_textColor_current_text_changed(QString color);
     void on_textResolution_current_text_changed(QString resolution);
     void on_textSize_current_text_changed(QString size);
-
-public slots:
-    void modify_save_button();
 };
 
 #endif // SCAN_SET_H

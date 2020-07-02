@@ -16,16 +16,14 @@
 {\ttfamily \#include \char`\"{}sane/sane.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}sane/saneopts.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$iostream$>$}\newline
-kylin\+\_\+sane.\+h 的引用(Include)关系图\+:
-\nopagebreak
+kylin\+\_\+sane.\+h 的引用(Include)关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{kylin__sane_8h__incl}
 \end{center}
 \end{figure}
-此图展示该文件直接或间接的被哪些文件引用了\+:
-\nopagebreak
+此图展示该文件直接或间接的被哪些文件引用了\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -76,7 +74,7 @@ void \mbox{\hyperlink{kylin__sane_8h_a8550d3bcc382a085ca06334733742949}{close\+\
 void \mbox{\hyperlink{kylin__sane_8h_a82ecc8db19b2f6268059b949233deaeb}{my\+\_\+sane\+\_\+exit}} ()
 \begin{DoxyCompactList}\small\item\em my\+\_\+sane\+\_\+exit 释放所有扫描资源 \end{DoxyCompactList}\item 
 char $\ast$ \mbox{\hyperlink{kylin__sane_8h_a19951099c109584e16272de674b88778}{kylin\+\_\+display\+\_\+scan\+\_\+parameters}} (S\+A\+N\+E\+\_\+\+Handle \mbox{\hyperlink{widget_8cpp_a8ffc7c6efbe25ea34aa0aefa819a558d}{device}})
-\item 
+\begin{DoxyCompactList}\small\item\em kylin\+\_\+display\+\_\+scan\+\_\+parameters 连接设备后，显示扫描参数 \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{kylin__sane_8h_a6a9d84ad48c6968cdae6ad5d8fcf90d5}{kylin\+Nor\+Scan\+Open}} ()
 \begin{DoxyCompactList}\small\item\em kylin\+Nor\+Scan\+Open 扫描设备打开统一接口 提供给页面调用 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -137,8 +135,7 @@ cancle\+\_\+scan 结束扫描
 {\em sane\+\_\+handle} & 扫描句柄 \\
 \hline
 \end{DoxyParams}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -178,8 +175,7 @@ get\+\_\+devices 查询所有连接设备 注意： 这里会很耗时
 \begin{DoxyReturn}{返回}
 查询可连接设备结果 
 \end{DoxyReturn}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -196,16 +192,14 @@ get\+\_\+devices 查询所有连接设备 注意： 这里会很耗时
 
 init 扫描设备初始化 
 
-函数调用图\+:
-\nopagebreak
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=222pt]{kylin__sane_8h_a02fd73d861ef2e4aabb38c0c9ff82947_cgraph}
 \end{center}
 \end{figure}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -218,16 +212,26 @@ init 扫描设备初始化
 \doxysubsubsection{\texorpdfstring{kylin\_display\_scan\_parameters()}{kylin\_display\_scan\_parameters()}}
 {\footnotesize\ttfamily char$\ast$ kylin\+\_\+display\+\_\+scan\+\_\+parameters (\begin{DoxyParamCaption}\item[{S\+A\+N\+E\+\_\+\+Handle}]{device }\end{DoxyParamCaption})}
 
-函数调用图\+:
-\nopagebreak
+
+
+kylin\+\_\+display\+\_\+scan\+\_\+parameters 连接设备后，显示扫描参数 
+
+
+\begin{DoxyParams}{参数}
+{\em device} & 扫描句柄 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+从扫描设备上获取的扫描设置默认信息 
+\end{DoxyReturn}
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{kylin__sane_8h_a19951099c109584e16272de674b88778_cgraph}
 \end{center}
 \end{figure}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -244,16 +248,14 @@ init 扫描设备初始化
 
 kylin\+Nor\+Scan\+Open 扫描设备打开统一接口 提供给页面调用 
 
-函数调用图\+:
-\nopagebreak
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{kylin__sane_8h_a6a9d84ad48c6968cdae6ad5d8fcf90d5_cgraph}
 \end{center}
 \end{figure}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -270,8 +272,7 @@ kylin\+Nor\+Scan\+Open 扫描设备打开统一接口 提供给页面调用
 
 my\+\_\+sane\+\_\+exit 释放所有扫描资源 
 
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -298,8 +299,7 @@ open\+\_\+sane\+\_\+device 使用设备名字打开设备
 \begin{DoxyReturn}{返回}
 返回打开设备结果 
 \end{DoxyReturn}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -326,16 +326,14 @@ start\+\_\+scan 开始扫描
 \begin{DoxyReturn}{返回}
 扫描结果 
 \end{DoxyReturn}
-函数调用图\+:
-\nopagebreak
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{kylin__sane_8h_a2b640f15a12501131e316d17025fb5ac_cgraph}
 \end{center}
 \end{figure}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

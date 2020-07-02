@@ -37,7 +37,6 @@ Widget::Widget(QWidget *parent)
     installEventFilter(pTitleBar);
     resize(860, 680);
 
-
     QPalette pal(palette());
     pal.setColor(QPalette::Background, QColor(47, 44, 43));
     setAutoFillBackground(true);
@@ -73,23 +72,29 @@ Widget::Widget(QWidget *parent)
     pLayout->addLayout(pHboxLayout);
     pLayout->setContentsMargins(0, 0, 0, 0);
 
-
     setLayout(pLayout);
+
+    // For save
     connect(pScanSet,&ScanSet::save_image_signal,this,&Widget::save_image);
+
+    // For ORC
     connect(pFuncBar,&FuncBar::send_Orc_Begin,pScandisplay,&scan_display::orc);
     connect(pFuncBar,&FuncBar::send_Orc_End,pScandisplay,&scan_display::orc);
     connect(pFuncBar,&FuncBar::send_Orc_Begin,pScanSet,&ScanSet::modify_save_button);
     connect(pFuncBar,&FuncBar::send_Orc_End,pScanSet,&ScanSet::modify_save_button);
-    connect(pFuncBar, &FuncBar::send_Scan_Begin, pFuncBar, &FuncBar::on_btnScan_clicked_start);
-    connect(pFuncBar, &FuncBar::send_Scan_Begin_again, pFuncBar, &FuncBar::on_btnScan_scan);
-    connect(pFuncBar, &FuncBar::send_Scan_End, pFuncBar, &FuncBar::on_btnScan_clicked_end);
+
+    // For scan
+    connect(&thread,SIGNAL(scan_finished(bool)),this,SLOT(scan_result(bool)));
     connect(pFuncBar,&FuncBar::send_Scan_End,pScandisplay,&scan_display::scan);
     connect(pFuncBar,&FuncBar::send_Scan_End,this,&Widget::save_scan_file);
+
+    // For rectify
     connect(pFuncBar,&FuncBar::send_Rectify_Begin,pScandisplay,&scan_display::rectify);
     connect(pFuncBar,&FuncBar::send_Rectify_End,pScandisplay,&scan_display::rectify);
+
+    // For beauty
     connect(pFuncBar, &FuncBar::send_Beautify_Begin, pScandisplay, &scan_display::beautify);
     connect(pFuncBar, &FuncBar::send_Beautify_End, pScandisplay, &scan_display::beautify);
-    connect(&thread,SIGNAL(scan_finished(bool)),this,SLOT(scan_result(bool)));
 }
 
 Widget::~Widget()
@@ -189,6 +194,9 @@ void Widget::save_image(QString fileName)
         save_to_pdf(*img,fileName);
 }
 
+/**
+ * @brief Widget::save_scan_file存储为不同的格式
+ */
 void Widget::save_scan_file()
 {
     QImage img;
@@ -196,11 +204,11 @@ void Widget::save_scan_file()
     QString pathName = pScanSet->getTextLocation() + "/" + pScanSet->getTextName();
     qDebug()<<"pathName:"<<pathName;
     QString format = pScanSet->getTextFormat();
-    if((format == "jpg") || (format == "png") || (format == "bmp"))
+    if ((format == "jpg") || (format == "png") || (format == "bmp"))
     {
         QString newformat = "." + format;
         qDebug()<<"newformat:"<<newformat;
-        if(pathName.endsWith(newformat,Qt::CaseSensitive))
+        if (pathName.endsWith(newformat,Qt::CaseSensitive))
         {
             img.save(pathName);
         }
@@ -211,11 +219,11 @@ void Widget::save_scan_file()
             img.save(pathName);
         }
     }
-    else if(format == "pdf")
+    else if (format == "pdf")
     {
         QString newformat = "." + format;
         qDebug()<<"newformat:"<<newformat;
-        if(!pathName.endsWith(newformat,Qt::CaseSensitive))
+        if (!pathName.endsWith(newformat,Qt::CaseSensitive))
         {
             pathName += newformat;
             qDebug()<<"pathName:"<<pathName;
@@ -224,6 +232,13 @@ void Widget::save_scan_file()
     }
 }
 
+/**
+ * @brief Widget::scan_result 处理初始化设备的控件可用情况
+ * 当ret为true时，表示在处理线程中连接上了设备，此时扫描设置等按钮可用，
+ * 否则，按钮不可用。
+ *
+ * @param ret 线程的处理结果
+ */
 void Widget::scan_result(bool ret)
 {
     qDebug()<<"scan_result"<<endl;
@@ -256,7 +271,6 @@ again:
         {
             emit scan_finished(false);
             qDebug() << "scan finished!";
-
         }
         else
         {

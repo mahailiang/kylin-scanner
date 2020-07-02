@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['widget_421',['Widget',['../classWidget.html',1,'']]]
+  ['user_5fselected_5finfo_887',['user_selected_info',['../structuser__selected__info.html',1,'']]]
 ];

@@ -38,7 +38,6 @@ scan_display::scan_display(QWidget *parent)
     btnTool = new QPushButton();
     btnTool1 = new QPushButton();
 
-
     myWidget = new QWidget();
     myWidget1 = new QWidget();
     myWidget2 = new QWidget();
@@ -157,18 +156,29 @@ scan_display::scan_display(QWidget *parent)
     setPalette(pal);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-
     vBoxScanSet1->setSpacing(0);
     vBoxScanSet1->addLayout(vStackedLayout);
     vBoxScanSet1->setContentsMargins(0,0,0,0);
     setLayout(vBoxScanSet1);
     vStackedLayout->setCurrentWidget(labDisplay1);
+
+    // For switch page
     connect(btnTool,SIGNAL(clicked()),this,SLOT(switchPage()));
     connect(btnTool1,SIGNAL(clicked()),this,SLOT(switchPage()));
+
+    //For rotate
     connect(editlayout->btnRotate,SIGNAL(clicked()),this,SLOT(rotating()));
+
+    // For tailor
     connect(editlayout->btnTailor,SIGNAL(clicked()),this,SLOT(switchPage1()));
+
+    // For symmetry
     connect(editlayout->btnSymmetry,SIGNAL(clicked()),this,SLOT(symmetry()));
+
+    // For watermark
     connect(editlayout->btnWatermark,SIGNAL(clicked()),this,SLOT(addmark()));
+
+    // For ORC
     connect(&thread,SIGNAL(orcFinished()),this,SLOT(orcText()));
 }
 

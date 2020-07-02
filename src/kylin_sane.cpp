@@ -405,8 +405,6 @@ SANE_Status do_scan(const char *fileName)
 
 	do
 	{
-        //int dwProcessID = getpid();
-        //sprintf (path, "%s%d.pnm", fileName, dwProcessID);
         sprintf (path, "%s%s.pnm", dir.c_str(), fileName);
         strcpy (part_path, path);
         strcat (part_path, ".part");
@@ -914,7 +912,13 @@ static void guards_free(void *ptr)
 	free(p);
 }
 
-/* Get an option descriptor by the name of the option. */
+/**
+ * @brief get_optdesc_by_name 根据扫描参数名称获取选项描述参数句柄
+ * @param device 扫描句柄
+ * @param name 扫描名称
+ * @param option_num 扫描参数句柄值
+ * @return 扫描选项描述句柄
+ */
 static const SANE_Option_Descriptor *get_optdesc_by_name(SANE_Handle device, const char *name, int *option_num)
 {
 	const SANE_Option_Descriptor *opt;
@@ -956,7 +960,12 @@ void display_option_value(SANE_Handle device, int optnum)
 }
 
 
-/* Returns a string with the value of an option. */
+/**
+ * @brief get_option_value 统一获取扫描参数
+ * @param device 设备句柄
+ * @param option_name 获取的扫描参数选项
+ * @return 返回获取的扫描参数
+ */
 static char *get_option_value(SANE_Handle device, const char *option_name)
 {
     KylinSane& instance = KylinSane::getInstance();
@@ -1129,7 +1138,11 @@ static char *get_option_value(SANE_Handle device, const char *option_name)
     return(str);
 }
 
-/* Display the parameters that used for a scan. */
+/**
+ * @brief kylin_display_scan_parameters 连接设备后，显示扫描参数
+ * @param device 扫描句柄
+ * @return 从扫描设备上获取的扫描设置默认信息
+ */
 char *kylin_display_scan_parameters(SANE_Handle device)
 {
     static char str[150];
@@ -1137,14 +1150,22 @@ char *kylin_display_scan_parameters(SANE_Handle device)
 
     *p = 0;
 
+    // Default source
     p += sprintf(p, "scan source=[%s] ", get_option_value(device, SANE_NAME_SCAN_SOURCE));
+
+    // Default color mode
     p += sprintf(p, "scan mode=[%s] ", get_option_value(device, SANE_NAME_SCAN_MODE));
+
+    // Default resolution
     p += sprintf(p, "resolution=[%s] ", get_option_value(device, SANE_NAME_SCAN_RESOLUTION));
 
+    // Default size coordination, top_left(x, y)
     p += sprintf(p, "tl_x=[%s] ", get_option_value(device, SANE_NAME_SCAN_TL_X));
     p += sprintf(p, "tl_y=[%s] ", get_option_value(device, SANE_NAME_SCAN_TL_Y));
 
-    /* Refer to backend/sharp.c, for A4 size:
+    /* Default size coordination, botton_right(x, y)
+     *
+     * Refer to backend/sharp.c, for A4 size:
      * s->val[OPT_BR_X].w = SANE_FIX(210);
      * s->val[OPT_BR_Y].w = SANE_FIX(297);
      */
@@ -1310,7 +1331,8 @@ void kylinNorScanOpen()
 
         // 4. start scanning
         qDebug("Scanning...\n");
-        //start_scan(sane_handle, "helloworld");
+
+        // 此处可以获取页面设置所需的扫描信息
         qDebug("start_scan: %s\n", kylin_display_scan_parameters(sane_handle));
 
         cancle_scan(sane_handle);
@@ -1449,7 +1471,8 @@ int KylinSane::start_scanning(user_selected_info info)
     {
         i_resolution = 300; //自动时设置为300
     }
-    else {
+    else
+    {
         i_resolution = static_cast<SANE_Int>(atoi(s_resolution));
     }
 
@@ -1489,9 +1512,8 @@ int KylinSane::start_scanning(user_selected_info info)
     }
 
     ret = start_scan(instance.handle, "scan");
+
     cancle_scan(instance.handle);
-    //kylinNorScan();
+
     return ret;
 }
-
-

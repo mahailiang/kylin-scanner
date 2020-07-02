@@ -2,7 +2,7 @@
 <area shape="rect" id="node1" title=" " alt="" coords="592,31,827,57"/>
 <area shape="rect" id="node2" href="$classscanThread.html#af054be6deb010e3aa247a27e0924d579" title=" " alt="" coords="390,5,506,32"/>
 <area shape="rect" id="node3" href="$classScanSet.html#a2d59445c8a1f1e58b3bfc0f3dcd76f4c" title="setKylinComboBox 统一设置麒麟扫描组合框ComboBox" alt="" coords="352,56,544,83"/>
-<area shape="rect" id="node4" href="$classWidget.html#aea825217028d9e17635ed10be11bd88f" title=" " alt="" coords="165,31,304,57"/>
+<area shape="rect" id="node4" href="$classWidget.html#aea825217028d9e17635ed10be11bd88f" title="Widget::scan_result 处理初始化设备的控件可用情况 当ret为true时，表示在处理线程中连接上了设备，此时扫描设置等按钮可用， 否则，按钮不可用。" alt="" coords="165,31,304,57"/>
 <area shape="rect" id="node6" href="$classScanSet.html#a78861e41777ec17c0967d65730d9804f" title=" " alt="" coords="169,81,300,108"/>
 <area shape="rect" id="node5" href="$classWidget.html#a29531c7f141e461322981b3b579d4590" title=" " alt="" coords="5,31,117,57"/>
 </map>

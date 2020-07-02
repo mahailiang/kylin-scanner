@@ -32,8 +32,11 @@ class scanThread : public QThread
 {
     Q_OBJECT
 public:
+    // 将连接设备，获取设备信息放在线程中，因为这个过程耗费资源
     void run() Q_DECL_OVERRIDE;
+
 Q_SIGNALS:
+    // 此结束信号，用来处理是否获取到设备信息的界面操作
     void scan_finished(bool);
 };
 
@@ -42,9 +45,9 @@ class Widget : public QWidget
     Q_OBJECT
 
 public:
-
     Widget(QWidget *parent = 0);
     ~Widget();
+
     void set_pdf_size(QPdfWriter *pdfWriter,QString size);
     void save_to_pdf(QImage img, QString pathName);
 
@@ -57,13 +60,11 @@ private:
     QHBoxLayout *pHboxLayout;
     QVBoxLayout *pLayout;
     scanThread thread;
+
 private slots:
     void save_image(QString fileName);
     void save_scan_file();
     void scan_result(bool ret);
-
-
-
 };
 
 #endif // WIDGET_H

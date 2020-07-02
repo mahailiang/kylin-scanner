@@ -1,9 +1,12 @@
 <map id="src/kylincombobox.h" name="src/kylincombobox.h">
-<area shape="rect" id="node1" title=" " alt="" coords="89,5,232,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="208,5,351,32"/>
 <area shape="rect" id="node2" href="$kylincombobox_8cpp.html" title=" " alt="" coords="5,80,161,107"/>
-<area shape="rect" id="node3" href="$scan__set_8h.html" title=" " alt="" coords="185,80,293,107"/>
-<area shape="rect" id="node4" href="$widget_8h.html" title=" " alt="" coords="126,155,219,181"/>
-<area shape="rect" id="node7" href="$scan__set_8cpp.html" title=" " alt="" coords="243,155,366,181"/>
-<area shape="rect" id="node5" href="$main_8cpp.html" title=" " alt="" coords="61,229,159,256"/>
-<area shape="rect" id="node6" href="$widget_8cpp.html" title=" " alt="" coords="183,229,290,256"/>
+<area shape="rect" id="node3" href="$moc__kylincombobox_8cpp.html" title=" " alt="" coords="185,80,373,107"/>
+<area shape="rect" id="node4" href="$scan__set_8h.html" title=" " alt="" coords="397,80,505,107"/>
+<area shape="rect" id="node5" href="$widget_8h.html" title=" " alt="" coords="257,155,350,181"/>
+<area shape="rect" id="node9" href="$moc__scan__set_8cpp.html" title=" " alt="" coords="374,155,529,181"/>
+<area shape="rect" id="node10" href="$scan__set_8cpp.html" title=" " alt="" coords="553,155,675,181"/>
+<area shape="rect" id="node6" href="$main_8cpp.html" title=" " alt="" coords="112,229,209,256"/>
+<area shape="rect" id="node7" href="$moc__widget_8cpp.html" title=" " alt="" coords="234,229,373,256"/>
+<area shape="rect" id="node8" href="$widget_8cpp.html" title=" " alt="" coords="397,229,503,256"/>
 </map>

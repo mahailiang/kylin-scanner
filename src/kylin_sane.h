@@ -78,6 +78,7 @@ public:
     KylinSane(const KylinSane &) = delete ;
     KylinSane &operator = (const KylinSane &) = delete ;
 
+    // 线程安全,不用生成对象，防止内存泄漏，是一种很好的懒汉单例模式
     static KylinSane& getInstance()
     {
         static KylinSane instance; //局部静态变量

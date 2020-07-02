@@ -6,8 +6,7 @@
 
 
 
-类 Widget 继承关系图\+:
-\nopagebreak
+类 Widget 继承关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -16,8 +15,7 @@
 \end{figure}
 
 
-Widget 的协作图\+:
-\nopagebreak
+Widget 的协作图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -41,9 +39,9 @@ void \mbox{\hyperlink{classWidget_a43231e3912151ec1a05da74d8c43e20e}{save\+\_\+t
 void \mbox{\hyperlink{classWidget_a80b0446b997b5f4dbbfb22481a1f85bc}{save\+\_\+image}} (Q\+String file\+Name)
 \item 
 void \mbox{\hyperlink{classWidget_aa4f8296ae52f49eeed6a7dfef735b3a7}{save\+\_\+scan\+\_\+file}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Widget\+::save\+\_\+scan\+\_\+file存储为不同的格式 \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classWidget_aea825217028d9e17635ed10be11bd88f}{scan\+\_\+result}} (bool ret)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classWidget_aea825217028d9e17635ed10be11bd88f}{Widget\+::scan\+\_\+result}} 处理初始化设备的控件可用情况 当ret为true时，表示在处理线程中连接上了设备，此时扫描设置等按钮可用， 否则，按钮不可用。 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private 属性}
 \begin{DoxyCompactItemize}
 \item 
@@ -95,16 +93,14 @@ Q\+V\+Box\+Layout $\ast$ \mbox{\hyperlink{classWidget_a8b8e369d3c1cc5cbb883a60a4
 \doxysubsubsection{\texorpdfstring{save\_image}{save\_image}}
 {\footnotesize\ttfamily void Widget\+::save\+\_\+image (\begin{DoxyParamCaption}\item[{Q\+String}]{file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
 
-函数调用图\+:
-\nopagebreak
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{classWidget_a80b0446b997b5f4dbbfb22481a1f85bc_cgraph}
 \end{center}
 \end{figure}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -116,6 +112,10 @@ Q\+V\+Box\+Layout $\ast$ \mbox{\hyperlink{classWidget_a8b8e369d3c1cc5cbb883a60a4
 \index{save\_scan\_file@{save\_scan\_file}!Widget@{Widget}}
 \doxysubsubsection{\texorpdfstring{save\_scan\_file}{save\_scan\_file}}
 {\footnotesize\ttfamily void Widget\+::save\+\_\+scan\+\_\+file (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Widget\+::save\+\_\+scan\+\_\+file存储为不同的格式 
 
 函数调用图\+:
 \nopagebreak
@@ -139,8 +139,7 @@ Q\+V\+Box\+Layout $\ast$ \mbox{\hyperlink{classWidget_a8b8e369d3c1cc5cbb883a60a4
 \doxysubsubsection{\texorpdfstring{save\_to\_pdf()}{save\_to\_pdf()}}
 {\footnotesize\ttfamily void Widget\+::save\+\_\+to\+\_\+pdf (\begin{DoxyParamCaption}\item[{Q\+Image}]{img,  }\item[{Q\+String}]{path\+Name }\end{DoxyParamCaption})}
 
-函数调用图\+:
-\nopagebreak
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -161,16 +160,23 @@ Q\+V\+Box\+Layout $\ast$ \mbox{\hyperlink{classWidget_a8b8e369d3c1cc5cbb883a60a4
 \doxysubsubsection{\texorpdfstring{scan\_result}{scan\_result}}
 {\footnotesize\ttfamily void Widget\+::scan\+\_\+result (\begin{DoxyParamCaption}\item[{bool}]{ret }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
 
-函数调用图\+:
-\nopagebreak
+
+
+\mbox{\hyperlink{classWidget_aea825217028d9e17635ed10be11bd88f}{Widget\+::scan\+\_\+result}} 处理初始化设备的控件可用情况 当ret为true时，表示在处理线程中连接上了设备，此时扫描设置等按钮可用， 否则，按钮不可用。 
+
+
+\begin{DoxyParams}{参数}
+{\em ret} & 线程的处理结果 \\
+\hline
+\end{DoxyParams}
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{classWidget_aea825217028d9e17635ed10be11bd88f_cgraph}
 \end{center}
 \end{figure}
-这是这个函数的调用关系图\+:
-\nopagebreak
+这是这个函数的调用关系图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -183,8 +189,7 @@ Q\+V\+Box\+Layout $\ast$ \mbox{\hyperlink{classWidget_a8b8e369d3c1cc5cbb883a60a4
 \doxysubsubsection{\texorpdfstring{set\_pdf\_size()}{set\_pdf\_size()}}
 {\footnotesize\ttfamily void Widget\+::set\+\_\+pdf\+\_\+size (\begin{DoxyParamCaption}\item[{Q\+Pdf\+Writer $\ast$}]{pdf\+Writer,  }\item[{Q\+String}]{size }\end{DoxyParamCaption})}
 
-函数调用图\+:
-\nopagebreak
+函数调用图\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

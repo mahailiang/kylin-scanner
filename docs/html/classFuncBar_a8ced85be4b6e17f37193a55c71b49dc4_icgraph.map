@@ -1,7 +1,6 @@
 <map id="FuncBar::send_Scan_End" name="FuncBar::send_Scan_End">
-<area shape="rect" id="node1" title=" " alt="" coords="412,71,587,98"/>
-<area shape="rect" id="node2" href="$classFuncBar.html#a3f8d9918c550d04f5260c1ad088d610d" title=" " alt="" coords="199,5,347,47"/>
-<area shape="rect" id="node4" href="$classFuncBar.html#a6092d11b13aed97a2967e05652dfd509" title=" " alt="" coords="181,71,364,98"/>
-<area shape="rect" id="node5" href="$classWidget.html#a29531c7f141e461322981b3b579d4590" title=" " alt="" coords="13,97,125,123"/>
+<area shape="rect" id="node1" title=" " alt="" coords="377,42,552,69"/>
+<area shape="rect" id="node2" href="$classFuncBar.html#a3f8d9918c550d04f5260c1ad088d610d" title=" " alt="" coords="181,5,329,47"/>
+<area shape="rect" id="node4" href="$classWidget.html#a29531c7f141e461322981b3b579d4590" title=" " alt="" coords="199,71,311,98"/>
 <area shape="rect" id="node3" href="$classFuncBar.html#a2741015b1797df5058ad22ce8b825818" title=" " alt="" coords="5,13,133,39"/>
 </map>

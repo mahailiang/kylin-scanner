@@ -99,14 +99,9 @@ ScanSet::ScanSet(QWidget *parent)
                                 "QPushButton:checked{border:none;background-color:rgb(39,208,127);color:rgb(232,232,232)border-radius:16px;}");
     btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/max.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:rgb(232,232,232);border-radius:6px;text-align:left;}");
 
-
     setKylinLable();
     setKylinComboBox();
- //   setKylinScanSetNotEnable();
     setKylinHBoxLayout();
-
-
-
 
     vBoxScanSet->setSpacing(0);
     vBoxScanSet->addLayout(hBoxDevice);
@@ -118,14 +113,10 @@ ScanSet::ScanSet(QWidget *parent)
     vBoxScanSet->addLayout(hBoxFormat);
     vBoxScanSet->addLayout(hBoxName);
     vBoxScanSet->addLayout(hBoxLocation);
-//    vBoxScanSet->addStretch();
-//    vBoxScanSet->addSpacing(205);
     vBoxScanSet->addStretch();
     vBoxScanSet->addLayout(hBoxLine4);
     vBoxScanSet->addLayout(hBoxMailText);
     vBoxScanSet->setContentsMargins(0,0,0,0);
-  //  vBoxScanSet->addStretch(5);
-
 
     QPalette pal(palette());
     pal.setColor(QPalette::Background, QColor(32, 30, 29));
@@ -133,17 +124,7 @@ ScanSet::ScanSet(QWidget *parent)
     setPalette(pal);
 
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-//    hBoxScanSet->setSpacing(0);
-//    hBoxScanSet->addLayout(vBoxScanSet);
-//    hBoxScanSet->addStretch();
-//    hBoxScanSet->addSpacing(0);
-//    hBoxScanSet->addStretch();
     setLayout(vBoxScanSet);
-    connect(btnLocation,SIGNAL(clicked()),this,SLOT(on_btnLocation_clicked()));
-    connect(btnMail,SIGNAL(clicked()),this,SLOT(on_btnMail_clicked()));
-    connect(btnSave,SIGNAL(clicked()),this,SLOT(on_btnSave_clicked()));
-
-
 
     // For current combobox text, while not change current text
     KylinSane & instance = KylinSane::getInstance();
@@ -174,8 +155,22 @@ ScanSet::ScanSet(QWidget *parent)
     curResolution = textResolution->currentText();
     instance.userInfo.resolution = curResolution;
 
+    // For save location
+    connect(btnLocation,SIGNAL(clicked()),this,SLOT(on_btnLocation_clicked()));
+
+    // For send email
+    connect(btnMail,SIGNAL(clicked()),this,SLOT(on_btnMail_clicked()));
+
+    // For save file
+    connect(btnSave,SIGNAL(clicked()),this,SLOT(on_btnSave_clicked()));
+
+    // For color mode changed
     connect(textColor, SIGNAL(currentTextChanged(QString)), this, SLOT(on_textColor_current_text_changed(QString)));
+
+    // For resolution changed
     connect(textResolution, SIGNAL(currentTextChanged(QString)), this, SLOT(on_textResolution_current_text_changed(QString)));
+
+    // For size changed
     connect(textSize, SIGNAL(currentTextChanged(QString)), this, SLOT(on_textSize_current_text_changed(QString)));
 }
 

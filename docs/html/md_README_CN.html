@@ -67,10 +67,10 @@ $(function() {
 <div class="contents">
 <div class="textblock"><p>麒麟扫描软件是一款用Qt开发的界面友好的扫描软件。该软件可以根据扫描设备本身的分辨率、尺寸和色彩模式进行扫描， 同时增加了对扫描图片的后期处理（包括一键美化、智能纠偏和文字识别三大功能）。其他的一些图像处理小技巧也可以在此软件 上体现，如裁切、旋转等。</p>
 <p><img src="docs/scan.jpg" alt="Main Picture" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md7"></a>
 作者博客页面</h1>
 <p>:point_right: <a href="https://yusq77.github.io/">yusq77</a></p>
-<h1><a class="anchor" id="autotoc_md7"></a>
+<h1><a class="anchor" id="autotoc_md8"></a>
 功能列表</h1>
 <ul>
 <li>[x] 正常扫描（根据不同的设备类型，分辨率，尺寸，色彩模式，保存格式）</li>
@@ -81,7 +81,7 @@ $(function() {
 <li>[x] 发送邮件</li>
 <li>[x] 另存为不同格式的内容</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md8"></a>
+<h1><a class="anchor" id="autotoc_md9"></a>
 Ubunty 环境配置</h1>
 <div class="fragment"><div class="line"># opencv essential</div>
 <div class="line">sudo apt install libopencv-dev</div>
@@ -94,7 +94,13 @@ Ubunty 环境配置</h1>
 <div class="line"> </div>
 <div class="line"># For gio-unix-2.0</div>
 <div class="line">sudo apt install libglib2.0-dev</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md9"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md10"></a>
+生成帮助文档</h1>
+<div class="fragment"><div class="line">$ doxygen -g</div>
+<div class="line">$ ./autodoxygen.sh</div>
+<div class="line">$ doxygen Doxygen</div>
+<div class="line">$ firefox docs/html/index.html</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md11"></a>
 反馈问题</h1>
 <p>问题可以通过kylin-scanner 问题热点进行反馈：https://github.com/yusq77/kylin-scanner </p>
 </div></div><!-- contents -->

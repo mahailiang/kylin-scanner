@@ -1,9 +1,12 @@
 <map id="src/send_mail.h" name="src/send_mail.h">
-<area shape="rect" id="node1" title=" " alt="" coords="195,5,310,32"/>
-<area shape="rect" id="node2" href="$scan__set_8h.html" title=" " alt="" coords="128,80,236,107"/>
-<area shape="rect" id="node7" href="$send__mail_8cpp.html" title=" " alt="" coords="261,80,389,107"/>
-<area shape="rect" id="node3" href="$widget_8h.html" title=" " alt="" coords="70,155,163,181"/>
-<area shape="rect" id="node6" href="$scan__set_8cpp.html" title=" " alt="" coords="187,155,310,181"/>
+<area shape="rect" id="node1" title=" " alt="" coords="446,5,561,32"/>
+<area shape="rect" id="node2" href="$scan__set_8h.html" title=" " alt="" coords="291,80,399,107"/>
+<area shape="rect" id="node9" href="$moc__send__mail_8cpp.html" title=" " alt="" coords="423,80,583,107"/>
+<area shape="rect" id="node10" href="$send__mail_8cpp.html" title=" " alt="" coords="607,80,735,107"/>
+<area shape="rect" id="node3" href="$widget_8h.html" title=" " alt="" coords="150,155,243,181"/>
+<area shape="rect" id="node7" href="$moc__scan__set_8cpp.html" title=" " alt="" coords="267,155,422,181"/>
+<area shape="rect" id="node8" href="$scan__set_8cpp.html" title=" " alt="" coords="446,155,569,181"/>
 <area shape="rect" id="node4" href="$main_8cpp.html" title=" " alt="" coords="5,229,103,256"/>
-<area shape="rect" id="node5" href="$widget_8cpp.html" title=" " alt="" coords="127,229,234,256"/>
+<area shape="rect" id="node5" href="$moc__widget_8cpp.html" title=" " alt="" coords="127,229,266,256"/>
+<area shape="rect" id="node6" href="$widget_8cpp.html" title=" " alt="" coords="290,229,397,256"/>
 </map>

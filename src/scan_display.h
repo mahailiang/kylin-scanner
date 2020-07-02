@@ -137,8 +137,13 @@ private:
     myThread thread;
     QScrollArea *scrollArea;
     int widgetindex;
-//signals:
-//    void indexChanged(int value);
+
+public slots:
+    void orc();
+    void scan();
+    void rectify();
+    void beautify();
+
 private slots:
     void switchPage();
     void switchPage1();
@@ -146,11 +151,6 @@ private slots:
     void symmetry();
     void addmark();
     void orcText();
-public slots:
-    void orc();
-    void scan();
-    void rectify();
-    void beautify();
 };
 
 #endif // SCAN_DISPLAY_H

@@ -1,7 +1,7 @@
 <map id="KylinSane::setKylinSaneSizes" name="KylinSane::setKylinSaneSizes">
 <area shape="rect" id="node1" title=" " alt="" coords="907,13,1105,39"/>
-<area shape="rect" id="node2" href="$kylin__sane_8cpp.html#af892e52d691cd52602c4d2b5c72f6e02" title=" " alt="" coords="739,13,859,39"/>
-<area shape="rect" id="node3" href="$kylin__sane_8h.html#a19951099c109584e16272de674b88778" title=" " alt="" coords="559,5,691,47"/>
+<area shape="rect" id="node2" href="$kylin__sane_8cpp.html#af892e52d691cd52602c4d2b5c72f6e02" title="get_option_value 统一获取扫描参数" alt="" coords="739,13,859,39"/>
+<area shape="rect" id="node3" href="$kylin__sane_8h.html#a19951099c109584e16272de674b88778" title="kylin_display_scan_parameters 连接设备后，显示扫描参数" alt="" coords="559,5,691,47"/>
 <area shape="rect" id="node4" href="$kylin__sane_8h.html#a6a9d84ad48c6968cdae6ad5d8fcf90d5" title="kylinNorScanOpen 扫描设备打开统一接口 提供给页面调用" alt="" coords="380,13,511,39"/>
 <area shape="rect" id="node5" href="$classKylinSane.html#aa23bba91b7d6e561b462fa1ebf2eb319" title="KylinSane::open_device 统一接口供页面调用，打开扫描设备" alt="" coords="169,13,332,39"/>
 <area shape="rect" id="node6" href="$classscanThread.html#af054be6deb010e3aa247a27e0924d579" title=" " alt="" coords="5,13,121,39"/>

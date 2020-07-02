@@ -1,5 +1,5 @@
 <map id="Widget::scan_result" name="Widget::scan_result">
-<area shape="rect" id="node1" title=" " alt="" coords="5,241,144,268"/>
+<area shape="rect" id="node1" title="Widget::scan_result 处理初始化设备的控件可用情况 当ret为true时，表示在处理线程中连接上了设备，此时扫描设置等按钮可用， 否则，按钮不可用。" alt="" coords="5,241,144,268"/>
 <area shape="rect" id="node2" href="$classscan__display.html#a849460915bb81a7999a7e57838b99018" title=" " alt="" coords="215,51,361,93"/>
 <area shape="rect" id="node3" href="$classScanSet.html#a2d59445c8a1f1e58b3bfc0f3dcd76f4c" title="setKylinComboBox 统一设置麒麟扫描组合框ComboBox" alt="" coords="192,117,384,144"/>
 <area shape="rect" id="node10" href="$classScanSet.html#af2d8053b2b2dbaa3b10442fac427e7a1" title="setKylinLable 统一设置麒麟扫描标签Label" alt="" coords="209,431,367,457"/>
