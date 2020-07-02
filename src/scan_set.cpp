@@ -60,7 +60,7 @@ ScanSet::ScanSet(QWidget *parent)
     hBoxMailText = new QHBoxLayout();
 
     vBoxScanSet = new QVBoxLayout(this);
-    hBoxScanSet = new QHBoxLayout(this);
+
 
     line3 = new QFrame();
     line3->setObjectName(QString::fromUtf8("line3"));
@@ -85,7 +85,7 @@ ScanSet::ScanSet(QWidget *parent)
 
     QFontMetrics elideFont(btnLocation->font());
     if(curPath.isEmpty())
-        curPath=QCoreApplication::applicationDirPath(); //获取应用程序的路径
+        curPath=QDir::homePath() ; //获取家目录的路径
     btnLocation->setText(elideFont.elidedText(curPath,Qt::ElideRight,150));
     btnLocation->setFixedSize(180,32);
 
@@ -97,12 +97,11 @@ ScanSet::ScanSet(QWidget *parent)
     btnSave->setStyleSheet("QPushButton{background-color:rgb(32,30,29);border:1px solid #939393;color:rgb(232,232,232);border-radius:16px;}"
                               "QPushButton:hover{border:none;background-color:rgb(39,208,127);color:rgb(232,232,232);border-radius:16px;}"
                                 "QPushButton:checked{border:none;background-color:rgb(39,208,127);color:rgb(232,232,232)border-radius:16px;}");
-    btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/max.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:rgb(232,232,232);border-radius:6px;text-align:left;}");
+    btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/down.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:rgb(232,232,232);border-radius:6px;text-align:left;}");
 
 
     setKylinLable();
     setKylinComboBox();
- //   setKylinScanSetNotEnable();
     setKylinHBoxLayout();
 
 
@@ -118,13 +117,12 @@ ScanSet::ScanSet(QWidget *parent)
     vBoxScanSet->addLayout(hBoxFormat);
     vBoxScanSet->addLayout(hBoxName);
     vBoxScanSet->addLayout(hBoxLocation);
-//    vBoxScanSet->addStretch();
-//    vBoxScanSet->addSpacing(205);
+
     vBoxScanSet->addStretch();
     vBoxScanSet->addLayout(hBoxLine4);
     vBoxScanSet->addLayout(hBoxMailText);
     vBoxScanSet->setContentsMargins(0,0,0,0);
-  //  vBoxScanSet->addStretch(5);
+
 
 
     QPalette pal(palette());
@@ -133,11 +131,7 @@ ScanSet::ScanSet(QWidget *parent)
     setPalette(pal);
 
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-//    hBoxScanSet->setSpacing(0);
-//    hBoxScanSet->addLayout(vBoxScanSet);
-//    hBoxScanSet->addStretch();
-//    hBoxScanSet->addSpacing(0);
-//    hBoxScanSet->addStretch();
+
     setLayout(vBoxScanSet);
     connect(btnLocation,SIGNAL(clicked()),this,SLOT(on_btnLocation_clicked()));
     connect(btnMail,SIGNAL(clicked()),this,SLOT(on_btnMail_clicked()));
@@ -228,7 +222,7 @@ void ScanSet::setKylinComboBox()
         strListSize<<tr("A4")<<tr("A5");
         setKylinComboBoxAttributes(textSize, strListSize);
 
-        strListFormat<<tr("jpg")<<tr("png")<<tr("pdf")<<tr("bmp")<<tr("rtf");
+        strListFormat<<tr("jpg")<<tr("png")<<tr("pdf")<<tr("bmp");
         setKylinComboBoxAttributes(textFormat, strListFormat);
 
         return;
@@ -283,7 +277,7 @@ void ScanSet::setKylinComboBox()
     textSize->setCurrentIndex(defaultSize);
 
 
-    strListFormat<<tr("jpg")<<tr("png")<<tr("pdf")<<tr("bmp")<<tr("rtf");
+    strListFormat<<tr("jpg")<<tr("png")<<tr("pdf")<<tr("bmp");
     setKylinComboBoxAttributes(textFormat, strListFormat);
 
 //    strListLocation<<"本地磁盘"<<"外接设备";
@@ -315,7 +309,7 @@ void ScanSet::setKylinScanSetNotEnable()
         textName->setStyleSheet("QLineEdit{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
 
         btnLocation->setEnabled(false);
-        btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/max.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:gray;border-radius:6px;text-align:left;}");
+        btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/down.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:gray;border-radius:6px;text-align:left;}");
 
         btnMail->setEnabled(false);
         btnSave->setEnabled(false);
@@ -350,8 +344,8 @@ void ScanSet::setKylinScanSetEnable()
    //     textName->setStyleSheet("QLineEdit{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
 
         btnLocation->setEnabled(true);
-//        btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/max.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:gray;border-radius:6px;text-align:left;}");
-        btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/max.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:rgb(232,232,232);border-radius:6px;text-align:left;}");
+//        btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/down.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:gray;border-radius:6px;text-align:left;}");
+        btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/down.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:rgb(232,232,232);border-radius:6px;text-align:left;}");
 
         btnMail->setEnabled(true);
         btnSave->setEnabled(true);
@@ -545,7 +539,7 @@ void ScanSet::setFontSize(QLabel *label, int n)
 void ScanSet::on_btnLocation_clicked()
 {
     if(curPath.isEmpty())
-        curPath=QCoreApplication::applicationDirPath(); //获取应用程序的路径
+        curPath=QDir::homePath() ; //获取家目录的路径
 
     QString dlgTitle="选择一个目录"; //对话框标题
     QString selectedDir=QFileDialog::getExistingDirectory(this,dlgTitle,curPath,QFileDialog::ShowDirsOnly);
@@ -578,7 +572,7 @@ void ScanSet::on_btnMail_clicked()
         dialog->exec();
     }
 }
-QString filter="*.jpg;;*.png;;*.pdf;;*.bmp;;*.rtf"; //文件过滤器
+QString filter="*.jpg;;*.png;;*.pdf;;*.bmp"; //文件过滤器
 void ScanSet::on_btnSave_clicked()
 {//保存文件
     QString dlgTitle="另存为..."; //对话框标题
@@ -601,7 +595,7 @@ void ScanSet::modify_save_button()
     else {
         flag = 0;
         btnSave->setText("另存为");
-        filter="*.jpg;;*.png;;*.pdf;;*.bmp;;*.rtf"; //文件过滤器
+        filter="*.jpg;;*.png;;*.pdf;;*.bmp;;"; //文件过滤器
     }
 }
 

@@ -179,15 +179,34 @@ void scan_display::keyPressEvent(QKeyEvent *e)
     if (((e->key() == Qt::Key_Return) || (e->key() == 0x20)) && (vStackedLayout->currentWidget() == myWidget3))
     {
         QImage newimage;
-        int x = 0, y = 0;
-        x = labDisplay8->getX1() - ((labDisplay8->width() - img2->width()) / 2);
-        y = labDisplay8->getY1() - ((labDisplay8->height() - img2->height()) / 2);
+        int x1,y1,x2,y2;
+        if(labDisplay8->getX1() <= labDisplay8->getX2())
+        {
+             x1 = labDisplay8->getX1() - ((labDisplay8->width() - img2->width()*scaledNum) / 2);
+             x2 = labDisplay8->getX2() - ((labDisplay8->width() - img2->width()*scaledNum) / 2);
+        }
+        else
+        {
+            x1 = labDisplay8->getX2() - ((labDisplay8->width() - img2->width()*scaledNum) / 2);
+            x2 = labDisplay8->getX1() - ((labDisplay8->width() - img2->width()*scaledNum) / 2);
+        }
 
-        newimage = img2->copy(x,y,labDisplay8->getX2()-labDisplay8->getX1(),labDisplay8->getY2()-labDisplay8->getY1());
+        if(labDisplay8->getY1() <= labDisplay8->getY2())
+        {
+            y1 = labDisplay8->getY1() - ((labDisplay8->height() - img2->height()*scaledNum) / 2);
+            y2 = labDisplay8->getY2() - ((labDisplay8->height() - img2->height()*scaledNum) / 2);
+        }
+        else
+        {
+            y1 = labDisplay8->getY2() - ((labDisplay8->height() - img2->height()*scaledNum) / 2);
+            y2 = labDisplay8->getY1() - ((labDisplay8->height() - img2->height()*scaledNum) / 2);
+        }
+
+        newimage = img2->copy(x1/scaledNum,y1/scaledNum,(x2-x1)/scaledNum,(y2-y1)/scaledNum);
         *img2 = newimage;
-        set_pixmap(*img2,labDisplay7);
+        pixmap_scaled(*img2,labDisplay7);
         *img5 = img2->copy();
-        set_pixmap(*img5,labDisplay5);
+        pixmap_scaled(*img5,labDisplay5);
         vStackedLayout->setCurrentIndex(index);
         vStackedLayout->removeWidget(myWidget3);
 
@@ -197,9 +216,9 @@ void scan_display::keyPressEvent(QKeyEvent *e)
         if(!stack.isEmpty())
         {
             *img2 = stack.pop();
-            set_pixmap(*img2,labDisplay7);
+            pixmap_scaled(*img2,labDisplay7);
             *img5 = img2->copy();
-            set_pixmap(*img5,labDisplay5);
+            pixmap_scaled(*img5,labDisplay5);
             vStackedLayout->setCurrentIndex(index);
         }
     }
@@ -236,13 +255,31 @@ void scan_display::set_pixmap(QImage img, QLabel *lab)
 {
     int width = lab->width();
     int height = lab->height();
-    qDebug()<<"width:"<<width;
-    qDebug()<<"height:"<<height;
     QPixmap pixmap = QPixmap::fromImage(img);
     QPixmap fitpixmap = pixmap.scaled(width, height, Qt::KeepAspectRatioByExpanding, Qt::FastTransformation);  // 按比例缩放
     lab->setPixmap(fitpixmap);
-    //lab->setScaledContents(false);
     lab->setAlignment(Qt::AlignCenter);
+}
+
+float scan_display::pixmap_scaled(QImage img, QLabel *lab)
+{
+    float labWidth = lab->width();
+    float labHeight = lab->height();
+    float imgWidth = img.width();
+    float imgHeight = img.height();
+    float num = 1;
+    if((labWidth/imgWidth) <= (labHeight/imgHeight))
+        num = labWidth/imgWidth;
+    else
+        num = labHeight/imgHeight;
+    int width,height;
+    width = imgWidth * num;
+    height = imgHeight * num;
+    QPixmap pixmap = QPixmap::fromImage(img);
+    QPixmap fitpixmap = pixmap.scaled(width, height, Qt::KeepAspectRatioByExpanding, Qt::FastTransformation);  // 按比例缩放
+    lab->setPixmap(fitpixmap);
+    lab->setAlignment(Qt::AlignCenter);
+    return num;
 }
 
 void scan_display::rotating()
@@ -253,9 +290,9 @@ void scan_display::rotating()
     stack.push(*img4);
     matrix.rotate(270);
     *img2 = img2->transformed(matrix);
-    set_pixmap(*img2,labDisplay7);
+    pixmap_scaled(*img2,labDisplay7);
     *img5 = img2->copy();
-    set_pixmap(*img5,labDisplay5);
+    pixmap_scaled(*img5,labDisplay5);
 
 }
 
@@ -264,9 +301,9 @@ void scan_display::symmetry()
     *img4 = img2->copy();
     stack.push(*img4);
     *img2=img2->mirrored(true,false);
-    set_pixmap(*img2,labDisplay7);
+    pixmap_scaled(*img2,labDisplay7);
     *img5 = img2->copy();
-    set_pixmap(*img5,labDisplay5);
+    pixmap_scaled(*img5,labDisplay5);
 }
 
 void scan_display::addmark()
@@ -288,12 +325,12 @@ void scan_display::addmark()
         stack.push(*img4);
         *img2 = img6->copy();
         QPainter painter(img2);
-        int fontSize = 25, spacing = 10;
-        QFont font("微软雅黑", fontSize, QFont::Thin);
+        int fontSize = 70, spacing = 20;
+        QFont font("华文黑体", fontSize, QFont::Thin);
         font.setLetterSpacing(QFont::AbsoluteSpacing, spacing);
         painter.setFont(font);
-        painter.setPen(QColor(150, 150, 150));
-        painter.translate(img2->width() / 2, -img2->width() / 2);//调整位置
+        painter.setPen(QColor(1, 1, 1));
+        //painter.translate(img2->width() / 2, -img2->width() / 2);//调整位置
         painter.rotate(15);
 
         int squareEdgeSize = img2->width() * sin(45) + img2->height() * sin(45);//对角线长度
@@ -308,8 +345,9 @@ void scan_display::addmark()
                painter.drawText(x * i, y * j,text);
             }
         }
-        set_pixmap(*img2,labDisplay7);
-      //  labDisplay7->setPixmap(QPixmap::fromImage(*img2));
+        pixmap_scaled(*img2,labDisplay7);
+        *img5 = img2->copy();
+        pixmap_scaled(*img5,labDisplay5);
     }
     delete dialog; //删除对话框
 
@@ -429,11 +467,15 @@ void scan_display::orc()
 
 void scan_display::scan()
 {
+    vStackedLayout->setCurrentIndex(0);
+    vStackedLayout->setCurrentIndex(1);
+    vStackedLayout->setCurrentIndex(2);
+    vStackedLayout->setCurrentIndex(3);
     img5->load("/tmp/scanner/scan.pnm");
-    set_pixmap(*img5,labDisplay5);
+    pixmap_scaled(*img5,labDisplay5);
     vStackedLayout->setCurrentWidget(myWidget1);
     *img2 = img5->copy();
-    set_pixmap(*img2,labDisplay7);
+    pixmap_scaled(*img2,labDisplay7);
 }
 
 void scan_display::rectify()
@@ -448,9 +490,9 @@ void scan_display::rectify()
             *imgRectify = img5->copy();
             ImageRectify("/tmp/scanner/scan1.png");
             img5->load("/tmp/scanner/scan1.png");
-            set_pixmap(*img5,labDisplay5);
+            pixmap_scaled(*img5,labDisplay5);
             *img2 = img5->copy();
-            set_pixmap(*img2,labDisplay7);
+            pixmap_scaled(*img2,labDisplay7);
         }
         else
         {
@@ -458,9 +500,9 @@ void scan_display::rectify()
             *imgRectify = img2->copy();
             ImageRectify("/tmp/scanner/scan1.png");
             img2->load("/tmp/scanner/scan1.png");
-            set_pixmap(*img2,labDisplay7);
+            pixmap_scaled(*img2,labDisplay7);
             *img5 = img2->copy();
-            set_pixmap(*img5,labDisplay5);
+            pixmap_scaled(*img5,labDisplay5);
         }
     }
     else
@@ -469,16 +511,16 @@ void scan_display::rectify()
         if(vStackedLayout->currentWidget() == myWidget1)
         {
             *img5 = imgRectify->copy();
-            set_pixmap(*img5,labDisplay5);
+            pixmap_scaled(*img5,labDisplay5);
             *img2 = img5->copy();
-            set_pixmap(*img2,labDisplay7);
+            pixmap_scaled(*img2,labDisplay7);
         }
         else
         {
             *img2 = imgRectify->copy();
-            set_pixmap(*img2,labDisplay7);
+            pixmap_scaled(*img2,labDisplay7);
             *img5 = img2->copy();
-            set_pixmap(*img5,labDisplay5);
+            pixmap_scaled(*img5,labDisplay5);
         }
     }
 }
@@ -495,9 +537,9 @@ void scan_display::beautify()
             *imgBeautify = img5->copy();
             oneClickEmbelish("/tmp/scanner/scan1.png");
             img5->load("/tmp/scanner/scan1.png");
-            set_pixmap(*img5,labDisplay5);
+            pixmap_scaled(*img5,labDisplay5);
             *img2 = img5->copy();
-            set_pixmap(*img2,labDisplay7);
+            pixmap_scaled(*img2,labDisplay7);
         }
         else
         {
@@ -505,9 +547,9 @@ void scan_display::beautify()
             *imgBeautify = img2->copy();
             ImageRectify("/tmp/scanner/scan1.png");
             img2->load("/tmp/scanner/scan1.png");
-            set_pixmap(*img2,labDisplay7);
+            pixmap_scaled(*img2,labDisplay7);
             *img5 = img2->copy();
-            set_pixmap(*img5,labDisplay5);
+            pixmap_scaled(*img5,labDisplay5);
         }
     }
     else
@@ -516,16 +558,16 @@ void scan_display::beautify()
         if(vStackedLayout->currentWidget() == myWidget1)
         {
             *img5 = imgBeautify->copy();
-            set_pixmap(*img5,labDisplay5);
+            pixmap_scaled(*img5,labDisplay5);
             *img2 = img5->copy();
-            set_pixmap(*img2,labDisplay7);
+            pixmap_scaled(*img2,labDisplay7);
         }
         else
         {
             *img2 = imgBeautify->copy();
-            set_pixmap(*img2,labDisplay7);
+            pixmap_scaled(*img2,labDisplay7);
             *img5 = img2->copy();
-            set_pixmap(*img5,labDisplay5);
+            pixmap_scaled(*img5,labDisplay5);
         }
     }
 }
@@ -537,12 +579,12 @@ void scan_display::switchPage()
     {
         index = 0;
         *img5 = img2->copy();
-        set_pixmap(*img5,labDisplay5);
+        pixmap_scaled(*img5,labDisplay5);
     }
     else
     {
         *img2 = img5->copy();
-        set_pixmap(*img2,labDisplay7);
+        pixmap_scaled(*img2,labDisplay7);
     }
     vStackedLayout->setCurrentIndex(index);
 }
@@ -559,11 +601,6 @@ void scan_display::switchPage1()
     labDisplay8->setParent(myWidget3);
     btnTool2->setParent(myWidget3);
     editlayout1->setParent(myWidget3);
-    *img3 = img2->copy();
-    *img4 = img2->copy();
-    stack.push(*img4);
-    set_pixmap(*img3,labDisplay8);
-  //  labDisplay8->setPixmap(QPixmap::fromImage(*img3));
     labDisplay8->setAlignment(Qt::AlignCenter);
 
     btnTool2->setFixedSize(12,30);
@@ -582,6 +619,10 @@ void scan_display::switchPage1()
     myWidget3->setLayout(hBoxScanSet2);
     vStackedLayout->addWidget(myWidget3);
     vStackedLayout->setCurrentWidget(myWidget3);
+    *img3 = img2->copy();
+    *img4 = img2->copy();
+    stack.push(*img4);
+    scaledNum = pixmap_scaled(*img3,labDisplay8);
 }
 
 edit_bar::edit_bar(QWidget *parent)
@@ -663,7 +704,3 @@ void myThread::run()
     quit();
 }
 
-void beautyThread::run()
-{
-    qDebug() << "beautyThread run() begin!";
-}

@@ -29,9 +29,18 @@
 #include <QDebug>
 #include <QInputEvent>
 #include <QStack>
+#include <QThread>
 #include "kylin_sane.h"
 #include "embelish.h"
 
+class threadScan : public QThread
+{
+    Q_OBJECT
+public:
+    void run() Q_DECL_OVERRIDE;
+signals:
+    void scanFinished(int);
+};
 
 
 class FuncBar : public QWidget
@@ -71,23 +80,20 @@ private:
     QHBoxLayout *hBoxLay3;
     QHBoxLayout *hBoxLay4;
     QStack<QString> stack;
+    threadScan thread;
+
 
 private slots:
     void on_btnOrc_clicked();
     void on_btnScan_clicked();
     void on_btnRectify_clicked();
     void on_btnBeauty_clicked();
+    void scan_result(int ret);
 
-public slots:
-    void on_btnScan_clicked_start();
-    void on_btnScan_clicked_end();
-    void on_btnScan_scan();
 
 Q_SIGNALS:
     void send_Orc_Begin();
     void send_Orc_End();
-    void send_Scan_Begin();
-    void send_Scan_Begin_again();
     void send_Scan_End();
     void send_Rectify_Begin();
     void send_Rectify_End();

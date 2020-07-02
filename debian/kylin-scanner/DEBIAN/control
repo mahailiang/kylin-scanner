@@ -2,7 +2,7 @@ Package: kylin-scanner
 Version: 1.0.0
 Architecture: amd64
 Maintainer: yushuoqi <shuoqi.yu@kylinos.cn>, mahailiang <hailiang.ma@kylinos.cn>
-Installed-Size: 446
+Installed-Size: 462
 Depends: libc6 (>= 2.29), libgcc-s1 (>= 3.0), libglib2.0-0 (>= 2.20.0), liblept5, libopencv-core4.2 (>= 4.2.0+dfsg), libopencv-imgcodecs4.2 (>= 4.2.0+dfsg), libopencv-imgproc4.2 (>= 4.2.0+dfsg), libopencv-photo4.2 (>= 4.2.0+dfsg), libqt5core5a (>= 5.12.2), libqt5gui5 (>= 5.7.0) | libqt5gui5-gles (>= 5.7.0), libqt5widgets5 (>= 5.0.2), libsane (>= 1.0.24), libstdc++6 (>= 5.2), libtesseract4
 Section: devel
 Priority: optional

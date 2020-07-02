@@ -5,9 +5,9 @@ Version: 1.0.0
 Auto-Built-Package: debug-symbols
 Architecture: amd64
 Maintainer: yushuoqi <shuoqi.yu@kylinos.cn>, mahailiang <hailiang.ma@kylinos.cn>
-Installed-Size: 2964
+Installed-Size: 3058
 Depends: kylin-scanner (= 1.0.0)
 Section: debug
 Priority: optional
 Description: debug symbols for kylin-scanner
-Build-Ids: cc3a267964e60f2fce251161d5a3a3f5afda8b28
+Build-Ids: d97d0f807286af754e3f9afef4cc6cbb7cbe23a5
