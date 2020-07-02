@@ -172,7 +172,6 @@ void psBilateralFilterCV(Mat src, Mat &dst)
     bilateralFilter(src, dst, 5, 100, 3);
 }
 
-
 QImage * psSharpen(QImage * origin)
 {
     QImage * novelImage = new QImage(* origin);
@@ -271,9 +270,9 @@ static void checkHsl(int &hue, int &saturation, int &lumination)
 void psHslCV(Mat src, Mat &dst)
 {
     // H:0~180, S:0~255, V:0~255
-    int hue = 0; //色调
-    int saturation = 10; //饱和度
-    int lumination = 0; //亮度
+    int hue = 5; // 色调
+    int saturation = 10; // 饱和度
+    int lumination = 0; // 亮度
     if ( dst.empty())
             dst.create(src.rows, src.cols, src.type());
 
@@ -286,6 +285,7 @@ void psHslCV(Mat src, Mat &dst)
     Size size = src.size();
     int chns = src.channels();
 
+    // creat()创建的矩阵都是连续的，但是也不绝对，依然需要判断才可以进行连续性操作
     if (temp.isContinuous())
     {
         size.width *= size.height;
@@ -295,10 +295,10 @@ void psHslCV(Mat src, Mat &dst)
     // 验证参数范围
     checkHsl(hue, saturation, lumination);
 
-    for (  i= 0; i<size.height; ++i)
+    for ( i= 0; i<size.height; ++i)
     {
         unsigned char* src = (unsigned char*)temp.data+temp.step*i;
-        for (  j=0; j<size.width; ++j)
+        for ( j=0; j<size.width; ++j)
         {
             float val = src[j*chns]+hue;
             if ( val < 0) val = 0.0;
@@ -336,8 +336,8 @@ void psLuminanceContrastCV(Mat src, Mat &dst)
 {
     qDebug() << "psLuminanceContrastCV()";
     Mat new_image = Mat::zeros(src.size(), src.type());
-    double alpha = 1.0; /*< Simple contrast control */
-    int beta = 0;       /*< Simple brightness control */
+    double alpha = 1.0; // contrast
+    int beta = 5;       // brightness
     int i=0, j=0;
     int c=0;
 
@@ -727,12 +727,16 @@ void oneClickEmbelish(const char *filename)
         qDebug() << "图像加载成功!";
     }
 
+    // 双边滤波
     psBilateralFilterCV(src, dst);
 
+    // 线性变换，进行亮度和对比度调整
     psLuminanceContrastCV(dst, dst);
 
+    // 转换色彩空间进行饱和度设置
     psHslCV(dst, dst);
 
+    // 锐化
     psSharpenCV(dst, dst);
 
     imwrite(filename, dst);

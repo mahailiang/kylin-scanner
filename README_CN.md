@@ -32,6 +32,14 @@ sudo apt install tesseract-ocr tesseract-ocr-eng tesseract-ocr-chi-sim liblepton
 sudo apt install libglib2.0-dev
 ```
 
+## 生成帮助文档
+```
+$ doxygen -g
+$ ./autodoxygen.sh
+$ doxygen Doxygen
+$ firefox docs/html/index.html
+```
+
 ## 反馈问题
 问题可以通过kylin-scanner 问题热点进行反馈：https://github.com/yusq77/kylin-scanner
 
