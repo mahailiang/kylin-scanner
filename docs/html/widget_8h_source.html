@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kylin-scanner API: src/widget.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Kylin-scanner API
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">widget.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="widget_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">* Copyright (C) 2019 Tianjin KYLIN Information Technology Co., Ltd.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">* This program is free software; you can redistribute it and/or modify</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">* it under the terms of the GNU General Public License as published by</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">* the Free Software Foundation; either version 3, or (at your option)</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">* any later version.</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">* This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">* but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">* GNU General Public License for more details.</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">* You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">* along with this program; if not, see &lt;http://www.gnu.org/licenses/&amp;gt;.</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#ifndef WIDGET_H</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#define WIDGET_H</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;QWidget&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;QLabel&gt;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;QString&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;QPdfWriter&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;QPainter&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="scan__display_8h.html">scan_display.h</a>&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="scan__set_8h.html">scan_set.h</a>&gt;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="title__bar_8h.html">title_bar.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="func__bar_8h.html">func_bar.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classscanThread.html">   31</a></span>&#160;<span class="keyword">class </span><a class="code" href="classscanThread.html">scanThread</a> : <span class="keyword">public</span> QThread</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classscanThread.html#af054be6deb010e3aa247a27e0924d579">run</a>() Q_DECL_OVERRIDE;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;Q_SIGNALS:</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classscanThread.html#aee340e0e87411e42c9520e0c9a2b834b">scan_finished</a>(<span class="keywordtype">bool</span>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;};</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classWidget.html">   40</a></span>&#160;<span class="keyword">class </span><a class="code" href="classWidget.html">Widget</a> : <span class="keyword">public</span> QWidget</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classWidget.html#a29531c7f141e461322981b3b579d4590">Widget</a>(QWidget *parent = 0);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="classWidget.html#aa24f66bcbaaec6d458b0980e8c8eae65">~Widget</a>();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classWidget.html#acad4f1dc1f22581de0d3a55dc2ec49b5">set_pdf_size</a>(QPdfWriter *pdfWriter,QString size);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classWidget.html#a43231e3912151ec1a05da74d8c43e20e">save_to_pdf</a>(QImage img, QString pathName);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classWidget.html#afc02b9bd3793797c214f59701a19be8a">   52</a></span>&#160;    <a class="code" href="classTitleBar.html">TitleBar</a> *<a class="code" href="classWidget.html#afc02b9bd3793797c214f59701a19be8a">pTitleBar</a>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classWidget.html#a9e140f2d15e137e089ac8f5ff01fb6a0">   53</a></span>&#160;    QFrame *<a class="code" href="classWidget.html#a9e140f2d15e137e089ac8f5ff01fb6a0">line</a>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classWidget.html#aa6136ddf789a2f025f86b6e6dec47702">   54</a></span>&#160;    <a class="code" href="classFuncBar.html">FuncBar</a> *<a class="code" href="classWidget.html#aa6136ddf789a2f025f86b6e6dec47702">pFuncBar</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classWidget.html#a4c072c0c6cfa70e72bc2965647a06f87">   55</a></span>&#160;    <a class="code" href="classScanSet.html">ScanSet</a> *<a class="code" href="classWidget.html#a4c072c0c6cfa70e72bc2965647a06f87">pScanSet</a>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classWidget.html#a78ac2916a67d1c0695ced75ec564fbe5">   56</a></span>&#160;    <a class="code" href="classscan__display.html">scan_display</a> *<a class="code" href="classWidget.html#a78ac2916a67d1c0695ced75ec564fbe5">pScandisplay</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classWidget.html#a1ce9796ef014f953406624ef304718ed">   57</a></span>&#160;    QHBoxLayout *<a class="code" href="classWidget.html#a1ce9796ef014f953406624ef304718ed">pHboxLayout</a>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classWidget.html#a8b8e369d3c1cc5cbb883a60a4adf3ef7">   58</a></span>&#160;    QVBoxLayout *<a class="code" href="classWidget.html#a8b8e369d3c1cc5cbb883a60a4adf3ef7">pLayout</a>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classWidget.html#adc5b24d13c9f50550219ab139df69912">   59</a></span>&#160;    <a class="code" href="classscanThread.html">scanThread</a> <a class="code" href="classWidget.html#adc5b24d13c9f50550219ab139df69912">thread</a>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">private</span> slots:</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classWidget.html#a80b0446b997b5f4dbbfb22481a1f85bc">save_image</a>(QString fileName);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classWidget.html#aa4f8296ae52f49eeed6a7dfef735b3a7">save_scan_file</a>();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classWidget.html#aea825217028d9e17635ed10be11bd88f">scan_result</a>(<span class="keywordtype">bool</span> ret);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;};</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif // WIDGET_H</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclassFuncBar_html_ab0afdda91d6995f9815d0b55d9a3c26a"><div class="ttname"><a href="classFuncBar.html#ab0afdda91d6995f9815d0b55d9a3c26a">FuncBar::send_Scan_Begin_again</a></div><div class="ttdeci">void send_Scan_Begin_again()</div></div>
+<div class="ttc" id="akylin__sane_8h_html_a6074762471f04f38b7fa42359ae4fe27a47dbfcefc8fabadcd82806b21de14bfc"><div class="ttname"><a href="kylin__sane_8h.html#a6074762471f04f38b7fa42359ae4fe27a47dbfcefc8fabadcd82806b21de14bfc">A3</a></div><div class="ttdeci">@ A3</div><div class="ttdef"><b>Definition:</b> kylin_sane.h:66</div></div>
+<div class="ttc" id="akylin__sane_8h_html_a6074762471f04f38b7fa42359ae4fe27a260faf43232fc57a22e280e8912d6689"><div class="ttname"><a href="kylin__sane_8h.html#a6074762471f04f38b7fa42359ae4fe27a260faf43232fc57a22e280e8912d6689">A6</a></div><div class="ttdeci">@ A6</div><div class="ttdef"><b>Definition:</b> kylin_sane.h:69</div></div>
+<div class="ttc" id="aclassScanSet_html_aa2665dcba16bf56bdcad8f62b19dd835"><div class="ttname"><a href="classScanSet.html#aa2665dcba16bf56bdcad8f62b19dd835">ScanSet::getTextFormat</a></div><div class="ttdeci">QString getTextFormat()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:509</div></div>
+<div class="ttc" id="aclassFuncBar_html_a6729094e82f0f4c45ee9a5bfeb767cf6"><div class="ttname"><a href="classFuncBar.html#a6729094e82f0f4c45ee9a5bfeb767cf6">FuncBar::send_Beautify_Begin</a></div><div class="ttdeci">void send_Beautify_Begin()</div></div>
+<div class="ttc" id="awidget_8cpp_html_a836f1f3728ee37a70e09089a2d833b5d"><div class="ttname"><a href="widget_8cpp.html#a836f1f3728ee37a70e09089a2d833b5d">U</a></div><div class="ttdeci">constexpr int U(const char *str)</div><div class="ttdef"><b>Definition:</b> widget.cpp:107</div></div>
+<div class="ttc" id="aclassKylinSane_html_a6e4754e2e68e6f4ed9d8ad037a052be4"><div class="ttname"><a href="classKylinSane.html#a6e4754e2e68e6f4ed9d8ad037a052be4">KylinSane::getInstance</a></div><div class="ttdeci">static KylinSane &amp; getInstance()</div><div class="ttdef"><b>Definition:</b> kylin_sane.h:81</div></div>
+<div class="ttc" id="aclassWidget_html_a29531c7f141e461322981b3b579d4590"><div class="ttname"><a href="classWidget.html#a29531c7f141e461322981b3b579d4590">Widget::Widget</a></div><div class="ttdeci">Widget(QWidget *parent=0)</div><div class="ttdef"><b>Definition:</b> widget.cpp:29</div></div>
+<div class="ttc" id="aclassScanSet_html_af2d8053b2b2dbaa3b10442fac427e7a1"><div class="ttname"><a href="classScanSet.html#af2d8053b2b2dbaa3b10442fac427e7a1">ScanSet::setKylinLable</a></div><div class="ttdeci">void setKylinLable()</div><div class="ttdoc">setKylinLable 统一设置麒麟扫描标签Label</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:354</div></div>
+<div class="ttc" id="aclassTitleBar_html"><div class="ttname"><a href="classTitleBar.html">TitleBar</a></div><div class="ttdef"><b>Definition:</b> title_bar.h:26</div></div>
+<div class="ttc" id="atitle__bar_8h_html"><div class="ttname"><a href="title__bar_8h.html">title_bar.h</a></div></div>
+<div class="ttc" id="aclassScanSet_html_a2e9b4611168836dfb86627492a651510"><div class="ttname"><a href="classScanSet.html#a2e9b4611168836dfb86627492a651510">ScanSet::modify_save_button</a></div><div class="ttdeci">void modify_save_button()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:581</div></div>
+<div class="ttc" id="awidget_8cpp_html_af913553cbf6dbccbdf25630f3dff2e3a"><div class="ttname"><a href="widget_8cpp.html#af913553cbf6dbccbdf25630f3dff2e3a">toUnicode</a></div><div class="ttdeci">int toUnicode(QString str)</div><div class="ttdef"><b>Definition:</b> widget.cpp:99</div></div>
+<div class="ttc" id="aclassKylinSane_html_a64336bb525a02e052016997f2c7ea274"><div class="ttname"><a href="classKylinSane.html#a64336bb525a02e052016997f2c7ea274">KylinSane::getKylinSaneStatus</a></div><div class="ttdeci">bool getKylinSaneStatus()</div><div class="ttdef"><b>Definition:</b> kylin_sane.cpp:1346</div></div>
+<div class="ttc" id="aclassWidget_html_a8b8e369d3c1cc5cbb883a60a4adf3ef7"><div class="ttname"><a href="classWidget.html#a8b8e369d3c1cc5cbb883a60a4adf3ef7">Widget::pLayout</a></div><div class="ttdeci">QVBoxLayout * pLayout</div><div class="ttdef"><b>Definition:</b> widget.h:58</div></div>
+<div class="ttc" id="aclassFuncBar_html_a71143b853227783c457d9ee69b7cc6ee"><div class="ttname"><a href="classFuncBar.html#a71143b853227783c457d9ee69b7cc6ee">FuncBar::send_Beautify_End</a></div><div class="ttdeci">void send_Beautify_End()</div></div>
+<div class="ttc" id="aclassscan__display_html_a4a3e443939690e4df2a329c2c911349a"><div class="ttname"><a href="classscan__display.html#a4a3e443939690e4df2a329c2c911349a">scan_display::imageSave</a></div><div class="ttdeci">QImage * imageSave(QString fileName)</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:206</div></div>
+<div class="ttc" id="ascan__set_8h_html"><div class="ttname"><a href="scan__set_8h.html">scan_set.h</a></div></div>
+<div class="ttc" id="aclassWidget_html_aa6136ddf789a2f025f86b6e6dec47702"><div class="ttname"><a href="classWidget.html#aa6136ddf789a2f025f86b6e6dec47702">Widget::pFuncBar</a></div><div class="ttdeci">FuncBar * pFuncBar</div><div class="ttdef"><b>Definition:</b> widget.h:54</div></div>
+<div class="ttc" id="aclassscan__display_html_a0ddd06f46687802a1a9b01e650537d8b"><div class="ttname"><a href="classscan__display.html#a0ddd06f46687802a1a9b01e650537d8b">scan_display::rectify</a></div><div class="ttdeci">void rectify()</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:437</div></div>
+<div class="ttc" id="aclassKylinSane_html"><div class="ttname"><a href="classKylinSane.html">KylinSane</a></div><div class="ttdef"><b>Definition:</b> kylin_sane.h:72</div></div>
+<div class="ttc" id="aclassscanThread_html_aee340e0e87411e42c9520e0c9a2b834b"><div class="ttname"><a href="classscanThread.html#aee340e0e87411e42c9520e0c9a2b834b">scanThread::scan_finished</a></div><div class="ttdeci">void scan_finished(bool)</div></div>
+<div class="ttc" id="aclassScanSet_html"><div class="ttname"><a href="classScanSet.html">ScanSet</a></div><div class="ttdef"><b>Definition:</b> scan_set.h:45</div></div>
+<div class="ttc" id="aclassWidget_html_aea825217028d9e17635ed10be11bd88f"><div class="ttname"><a href="classWidget.html#aea825217028d9e17635ed10be11bd88f">Widget::scan_result</a></div><div class="ttdeci">void scan_result(bool ret)</div><div class="ttdef"><b>Definition:</b> widget.cpp:227</div></div>
+<div class="ttc" id="aclassscanThread_html_af054be6deb010e3aa247a27e0924d579"><div class="ttname"><a href="classscanThread.html#af054be6deb010e3aa247a27e0924d579">scanThread::run</a></div><div class="ttdeci">void run() Q_DECL_OVERRIDE</div><div class="ttdef"><b>Definition:</b> widget.cpp:248</div></div>
+<div class="ttc" id="aclassWidget_html_adc5b24d13c9f50550219ab139df69912"><div class="ttname"><a href="classWidget.html#adc5b24d13c9f50550219ab139df69912">Widget::thread</a></div><div class="ttdeci">scanThread thread</div><div class="ttdef"><b>Definition:</b> widget.h:59</div></div>
+<div class="ttc" id="aclassFuncBar_html_a4143eb7767254b230788a3eb39f493f1"><div class="ttname"><a href="classFuncBar.html#a4143eb7767254b230788a3eb39f493f1">FuncBar::send_Rectify_End</a></div><div class="ttdeci">void send_Rectify_End()</div></div>
+<div class="ttc" id="aclassFuncBar_html_a0975e4d8dca82a9c7082b93a64725cbe"><div class="ttname"><a href="classFuncBar.html#a0975e4d8dca82a9c7082b93a64725cbe">FuncBar::on_btnScan_clicked_end</a></div><div class="ttdeci">void on_btnScan_clicked_end()</div><div class="ttdef"><b>Definition:</b> func_bar.cpp:331</div></div>
+<div class="ttc" id="aclassscan__display_html_a322bc7a2d1107271fdad70b9d01c87ae"><div class="ttname"><a href="classscan__display.html#a322bc7a2d1107271fdad70b9d01c87ae">scan_display::orc</a></div><div class="ttdeci">void orc()</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:322</div></div>
+<div class="ttc" id="aclassWidget_html_aa4f8296ae52f49eeed6a7dfef735b3a7"><div class="ttname"><a href="classWidget.html#aa4f8296ae52f49eeed6a7dfef735b3a7">Widget::save_scan_file</a></div><div class="ttdeci">void save_scan_file()</div><div class="ttdef"><b>Definition:</b> widget.cpp:192</div></div>
+<div class="ttc" id="aclassFuncBar_html_ad012de161cf511dbb664c4ad63662fa2"><div class="ttname"><a href="classFuncBar.html#ad012de161cf511dbb664c4ad63662fa2">FuncBar::setKylinScanSetEnable</a></div><div class="ttdeci">void setKylinScanSetEnable()</div><div class="ttdef"><b>Definition:</b> func_bar.cpp:232</div></div>
+<div class="ttc" id="awidget_8h_html"><div class="ttname"><a href="widget_8h.html">widget.h</a></div></div>
+<div class="ttc" id="aclassWidget_html_a4c072c0c6cfa70e72bc2965647a06f87"><div class="ttname"><a href="classWidget.html#a4c072c0c6cfa70e72bc2965647a06f87">Widget::pScanSet</a></div><div class="ttdeci">ScanSet * pScanSet</div><div class="ttdef"><b>Definition:</b> widget.h:55</div></div>
+<div class="ttc" id="aclassKylinSane_html_aa23bba91b7d6e561b462fa1ebf2eb319"><div class="ttname"><a href="classKylinSane.html#aa23bba91b7d6e561b462fa1ebf2eb319">KylinSane::open_device</a></div><div class="ttdeci">device_info open_device()</div><div class="ttdoc">KylinSane::open_device 统一接口供页面调用，打开扫描设备</div><div class="ttdef"><b>Definition:</b> kylin_sane.cpp:1410</div></div>
+<div class="ttc" id="aclassscan__display_html_a351e1bfbc821c6d2e8d0289379e0b5ed"><div class="ttname"><a href="classscan__display.html#a351e1bfbc821c6d2e8d0289379e0b5ed">scan_display::beautify</a></div><div class="ttdeci">void beautify()</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:484</div></div>
+<div class="ttc" id="aclassWidget_html_a1ce9796ef014f953406624ef304718ed"><div class="ttname"><a href="classWidget.html#a1ce9796ef014f953406624ef304718ed">Widget::pHboxLayout</a></div><div class="ttdeci">QHBoxLayout * pHboxLayout</div><div class="ttdef"><b>Definition:</b> widget.h:57</div></div>
+<div class="ttc" id="aclassscan__display_html"><div class="ttname"><a href="classscan__display.html">scan_display</a></div><div class="ttdef"><b>Definition:</b> scan_display.h:78</div></div>
+<div class="ttc" id="aclassFuncBar_html_adc78834117088fefd616095a487d5c2b"><div class="ttname"><a href="classFuncBar.html#adc78834117088fefd616095a487d5c2b">FuncBar::send_Orc_End</a></div><div class="ttdeci">void send_Orc_End()</div></div>
+<div class="ttc" id="aclassScanSet_html_aafa146f4fa41b1a40be1ab41ff48ae2f"><div class="ttname"><a href="classScanSet.html#aafa146f4fa41b1a40be1ab41ff48ae2f">ScanSet::save_image_signal</a></div><div class="ttdeci">void save_image_signal(QString)</div></div>
+<div class="ttc" id="afunc__bar_8h_html"><div class="ttname"><a href="func__bar_8h.html">func_bar.h</a></div></div>
+<div class="ttc" id="aclassScanSet_html_a5887bbd45d1fea75b94881b5c14016f7"><div class="ttname"><a href="classScanSet.html#a5887bbd45d1fea75b94881b5c14016f7">ScanSet::getTextLocation</a></div><div class="ttdeci">QString getTextLocation()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:519</div></div>
+<div class="ttc" id="aclassFuncBar_html_aa9fcf39315b8ba1eaa6c401d791589dd"><div class="ttname"><a href="classFuncBar.html#aa9fcf39315b8ba1eaa6c401d791589dd">FuncBar::send_Rectify_Begin</a></div><div class="ttdeci">void send_Rectify_Begin()</div></div>
+<div class="ttc" id="akylin__sane_8h_html_a6074762471f04f38b7fa42359ae4fe27a47329f455692c2a8284d7594405f16d4"><div class="ttname"><a href="kylin__sane_8h.html#a6074762471f04f38b7fa42359ae4fe27a47329f455692c2a8284d7594405f16d4">A2</a></div><div class="ttdeci">@ A2</div><div class="ttdef"><b>Definition:</b> kylin_sane.h:65</div></div>
+<div class="ttc" id="aclassFuncBar_html"><div class="ttname"><a href="classFuncBar.html">FuncBar</a></div><div class="ttdef"><b>Definition:</b> func_bar.h:37</div></div>
+<div class="ttc" id="aclassFuncBar_html_a62cd1876bfb29a558120e22a5fdf5358"><div class="ttname"><a href="classFuncBar.html#a62cd1876bfb29a558120e22a5fdf5358">FuncBar::setKylinScanSetNotEnable</a></div><div class="ttdeci">void setKylinScanSetNotEnable()</div><div class="ttdef"><b>Definition:</b> func_bar.cpp:207</div></div>
+<div class="ttc" id="aclassKylinSane_html_acca11046f65ad7d805137de05798c636"><div class="ttname"><a href="classKylinSane.html#acca11046f65ad7d805137de05798c636">KylinSane::getKylinSaneResolutions</a></div><div class="ttdeci">QStringList getKylinSaneResolutions()</div><div class="ttdef"><b>Definition:</b> kylin_sane.cpp:1361</div></div>
+<div class="ttc" id="aclassWidget_html_acad4f1dc1f22581de0d3a55dc2ec49b5"><div class="ttname"><a href="classWidget.html#acad4f1dc1f22581de0d3a55dc2ec49b5">Widget::set_pdf_size</a></div><div class="ttdeci">void set_pdf_size(QPdfWriter *pdfWriter, QString size)</div><div class="ttdef"><b>Definition:</b> widget.cpp:112</div></div>
+<div class="ttc" id="akylin__sane_8h_html"><div class="ttname"><a href="kylin__sane_8h.html">kylin_sane.h</a></div></div>
+<div class="ttc" id="aclassWidget_html_a9e140f2d15e137e089ac8f5ff01fb6a0"><div class="ttname"><a href="classWidget.html#a9e140f2d15e137e089ac8f5ff01fb6a0">Widget::line</a></div><div class="ttdeci">QFrame * line</div><div class="ttdef"><b>Definition:</b> widget.h:53</div></div>
+<div class="ttc" id="ascan__display_8h_html"><div class="ttname"><a href="scan__display_8h.html">scan_display.h</a></div></div>
+<div class="ttc" id="aclassScanSet_html_a2658b932f2ef9c6ebdcb034b1135a9aa"><div class="ttname"><a href="classScanSet.html#a2658b932f2ef9c6ebdcb034b1135a9aa">ScanSet::getTextName</a></div><div class="ttdeci">QString getTextName()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:514</div></div>
+<div class="ttc" id="aclassScanSet_html_a2d562a71e153cf1d2275be35a765e10a"><div class="ttname"><a href="classScanSet.html#a2d562a71e153cf1d2275be35a765e10a">ScanSet::getTextSize</a></div><div class="ttdeci">QString getTextSize()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:504</div></div>
+<div class="ttc" id="aclassscan__display_html_aa63d3523ef02797d69ae3afa5366f272"><div class="ttname"><a href="classscan__display.html#aa63d3523ef02797d69ae3afa5366f272">scan_display::scan</a></div><div class="ttdeci">void scan()</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:428</div></div>
+<div class="ttc" id="aclassScanSet_html_a49614a00751f1abe42414399dd4f2540"><div class="ttname"><a href="classScanSet.html#a49614a00751f1abe42414399dd4f2540">ScanSet::setKylinScanSetEnable</a></div><div class="ttdeci">void setKylinScanSetEnable()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:323</div></div>
+<div class="ttc" id="aclassScanSet_html_a2d59445c8a1f1e58b3bfc0f3dcd76f4c"><div class="ttname"><a href="classScanSet.html#a2d59445c8a1f1e58b3bfc0f3dcd76f4c">ScanSet::setKylinComboBox</a></div><div class="ttdeci">void setKylinComboBox()</div><div class="ttdoc">setKylinComboBox 统一设置麒麟扫描组合框ComboBox</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:200</div></div>
+<div class="ttc" id="aclassScanSet_html_a727fcf925858861a0f5fdead468c46e2"><div class="ttname"><a href="classScanSet.html#a727fcf925858861a0f5fdead468c46e2">ScanSet::setKylinScanSetNotEnable</a></div><div class="ttdeci">void setKylinScanSetNotEnable()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:288</div></div>
+<div class="ttc" id="aclassWidget_html_a43231e3912151ec1a05da74d8c43e20e"><div class="ttname"><a href="classWidget.html#a43231e3912151ec1a05da74d8c43e20e">Widget::save_to_pdf</a></div><div class="ttdeci">void save_to_pdf(QImage img, QString pathName)</div><div class="ttdef"><b>Definition:</b> widget.cpp:152</div></div>
+<div class="ttc" id="aclassscan__display_html_a849460915bb81a7999a7e57838b99018"><div class="ttname"><a href="classscan__display.html#a849460915bb81a7999a7e57838b99018">scan_display::set_no_device</a></div><div class="ttdeci">void set_no_device()</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:228</div></div>
+<div class="ttc" id="aclassWidget_html_afc02b9bd3793797c214f59701a19be8a"><div class="ttname"><a href="classWidget.html#afc02b9bd3793797c214f59701a19be8a">Widget::pTitleBar</a></div><div class="ttdeci">TitleBar * pTitleBar</div><div class="ttdef"><b>Definition:</b> widget.h:52</div></div>
+<div class="ttc" id="aclassFuncBar_html_ace029ca10c08452801998d2562d78413"><div class="ttname"><a href="classFuncBar.html#ace029ca10c08452801998d2562d78413">FuncBar::send_Orc_Begin</a></div><div class="ttdeci">void send_Orc_Begin()</div></div>
+<div class="ttc" id="akylin__sane_8h_html_a6074762471f04f38b7fa42359ae4fe27ada06582608e19a3f2438f54eeb0bcad5"><div class="ttname"><a href="kylin__sane_8h.html#a6074762471f04f38b7fa42359ae4fe27ada06582608e19a3f2438f54eeb0bcad5">A4</a></div><div class="ttdeci">@ A4</div><div class="ttdef"><b>Definition:</b> kylin_sane.h:67</div></div>
+<div class="ttc" id="aclassWidget_html_a78ac2916a67d1c0695ced75ec564fbe5"><div class="ttname"><a href="classWidget.html#a78ac2916a67d1c0695ced75ec564fbe5">Widget::pScandisplay</a></div><div class="ttdeci">scan_display * pScandisplay</div><div class="ttdef"><b>Definition:</b> widget.h:56</div></div>
+<div class="ttc" id="aclassWidget_html_a80b0446b997b5f4dbbfb22481a1f85bc"><div class="ttname"><a href="classWidget.html#a80b0446b997b5f4dbbfb22481a1f85bc">Widget::save_image</a></div><div class="ttdeci">void save_image(QString fileName)</div><div class="ttdef"><b>Definition:</b> widget.cpp:184</div></div>
+<div class="ttc" id="aclassscanThread_html"><div class="ttname"><a href="classscanThread.html">scanThread</a></div><div class="ttdef"><b>Definition:</b> widget.h:31</div></div>
+<div class="ttc" id="aclassFuncBar_html_af6abd10f29f9a3e69b12e618bd1a119c"><div class="ttname"><a href="classFuncBar.html#af6abd10f29f9a3e69b12e618bd1a119c">FuncBar::on_btnScan_clicked_start</a></div><div class="ttdeci">void on_btnScan_clicked_start()</div><div class="ttdef"><b>Definition:</b> func_bar.cpp:320</div></div>
+<div class="ttc" id="akylin__sane_8h_html_a6074762471f04f38b7fa42359ae4fe27aacdd5acf9dd0376a4073a1f27d8df74e"><div class="ttname"><a href="kylin__sane_8h.html#a6074762471f04f38b7fa42359ae4fe27aacdd5acf9dd0376a4073a1f27d8df74e">A5</a></div><div class="ttdeci">@ A5</div><div class="ttdef"><b>Definition:</b> kylin_sane.h:68</div></div>
+<div class="ttc" id="aclassFuncBar_html_a6092d11b13aed97a2967e05652dfd509"><div class="ttname"><a href="classFuncBar.html#a6092d11b13aed97a2967e05652dfd509">FuncBar::on_btnScan_scan</a></div><div class="ttdeci">void on_btnScan_scan()</div><div class="ttdef"><b>Definition:</b> func_bar.cpp:338</div></div>
+<div class="ttc" id="aclassFuncBar_html_ad73a98cf798c45a06080e695fea0234d"><div class="ttname"><a href="classFuncBar.html#ad73a98cf798c45a06080e695fea0234d">FuncBar::send_Scan_Begin</a></div><div class="ttdeci">void send_Scan_Begin()</div></div>
+<div class="ttc" id="aclassFuncBar_html_a8ced85be4b6e17f37193a55c71b49dc4"><div class="ttname"><a href="classFuncBar.html#a8ced85be4b6e17f37193a55c71b49dc4">FuncBar::send_Scan_End</a></div><div class="ttdeci">void send_Scan_End()</div></div>
+<div class="ttc" id="aclassWidget_html_aa24f66bcbaaec6d458b0980e8c8eae65"><div class="ttname"><a href="classWidget.html#aa24f66bcbaaec6d458b0980e8c8eae65">Widget::~Widget</a></div><div class="ttdeci">~Widget()</div><div class="ttdef"><b>Definition:</b> widget.cpp:95</div></div>
+<div class="ttc" id="aclassWidget_html"><div class="ttname"><a href="classWidget.html">Widget</a></div><div class="ttdef"><b>Definition:</b> widget.h:40</div></div>
+<div class="ttc" id="aclassScanSet_html_ac5f7303c5e0b6940b05af2af3343faa6"><div class="ttname"><a href="classScanSet.html#ac5f7303c5e0b6940b05af2af3343faa6">ScanSet::getTextResolution</a></div><div class="ttdeci">QString getTextResolution()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:499</div></div>
+<div class="ttc" id="awidget_8cpp_html_a8ffc7c6efbe25ea34aa0aefa819a558d"><div class="ttname"><a href="widget_8cpp.html#a8ffc7c6efbe25ea34aa0aefa819a558d">device</a></div><div class="ttdeci">bool device</div><div class="ttdef"><b>Definition:</b> widget.cpp:28</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者 &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

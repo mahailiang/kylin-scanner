@@ -1,0 +1,10 @@
+<map id="set_option_sizes" name="set_option_sizes">
+<area shape="rect" id="node1" title="set_option_sizes 设置扫描设备的尺寸，也就是坐标 根据扫描选项参数optnum进行判断设置的坐标值是x或者y，val_size为设置的坐标值" alt="" coords="1019,42,1139,69"/>
+<area shape="rect" id="node2" href="$kylin__sane_8cpp.html#aa822b31dccd750bf5673c6f446d339c8" title="set_option_sizes_real 统一设置扫描设备尺寸 这里可以根据传入参数val_size_br_x和val_size_br_y直接进行设置扫描设备的尺寸" alt="" coords="823,42,971,69"/>
+<area shape="rect" id="node3" href="$kylin__sane_8cpp.html#a28cd234791327dab155b96ab1b57212a" title="set_option_sizes_all 根据不同的页面尺寸进行设置扫描设备尺寸 根据选择的不同的页面尺寸进行对应设置扫描设备尺寸" alt="" coords="635,42,775,69"/>
+<area shape="rect" id="node4" href="$classKylinSane.html#a29d2f79464933411a02b433993cd85e2" title="KylinSane::start_scanning 统一接口供页面调用，开始扫描 根据扫描设置页面情况info字段进行设置扫描设备参数，并进行扫描" alt="" coords="412,42,587,69"/>
+<area shape="rect" id="node5" href="$classFuncBar.html#a3f8d9918c550d04f5260c1ad088d610d" title=" " alt="" coords="199,5,347,47"/>
+<area shape="rect" id="node7" href="$classFuncBar.html#a6092d11b13aed97a2967e05652dfd509" title=" " alt="" coords="181,71,364,98"/>
+<area shape="rect" id="node6" href="$classFuncBar.html#a2741015b1797df5058ad22ce8b825818" title=" " alt="" coords="5,13,133,39"/>
+<area shape="rect" id="node8" href="$classWidget.html#a29531c7f141e461322981b3b579d4590" title=" " alt="" coords="13,71,125,98"/>
+</map>

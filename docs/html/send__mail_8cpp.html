@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kylin-scanner API: src/send_mail.cpp 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Kylin-scanner API
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle">
+<div class="title">send_mail.cpp 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="send__mail_8h_source.html">send_mail.h</a>&quot;</code><br />
+<code>#include &lt;QPainter&gt;</code><br />
+<code>#include &lt;QDebug&gt;</code><br />
+<code>#include &lt;QBitmap&gt;</code><br />
+<code>#include &lt;QFileInfo&gt;</code><br />
+<code>#include &lt;QFileIconProvider&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+send_mail.cpp 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="send__mail_8cpp__incl.png" border="0" usemap="#src_2send__mail_8cpp" alt=""/></div>
+<map name="src_2send__mail_8cpp" id="src_2send__mail_8cpp">
+<area shape="rect" title=" " alt="" coords="839,5,967,32"/>
+<area shape="rect" href="send__mail_8h.html" title=" " alt="" coords="606,80,698,107"/>
+<area shape="rect" title=" " alt="" coords="722,80,795,107"/>
+<area shape="rect" title=" " alt="" coords="819,80,890,107"/>
+<area shape="rect" title=" " alt="" coords="914,80,987,107"/>
+<area shape="rect" title=" " alt="" coords="1012,80,1087,107"/>
+<area shape="rect" title=" " alt="" coords="1111,80,1238,107"/>
+<area shape="rect" title=" " alt="" coords="5,155,75,181"/>
+<area shape="rect" title=" " alt="" coords="99,155,162,181"/>
+<area shape="rect" title=" " alt="" coords="187,155,267,181"/>
+<area shape="rect" title=" " alt="" coords="291,155,391,181"/>
+<area shape="rect" title=" " alt="" coords="416,155,485,181"/>
+<area shape="rect" title=" " alt="" coords="509,155,576,181"/>
+<area shape="rect" title=" " alt="" coords="600,155,704,181"/>
+<area shape="rect" title=" " alt="" coords="729,155,831,181"/>
+<area shape="rect" title=" " alt="" coords="855,155,947,181"/>
+<area shape="rect" title=" " alt="" coords="972,155,1052,181"/>
+<area shape="rect" title=" " alt="" coords="1076,155,1129,181"/>
+<area shape="rect" title=" " alt="" coords="1154,155,1225,181"/>
+<area shape="rect" title=" " alt="" coords="1249,155,1399,181"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ac90d0c6377f1565b6cb9363e3e6fa5f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="send__mail_8h.html#a2468f1db6a796c63fa3b63a19cd82525">Appinfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="send__mail_8cpp.html#ac90d0c6377f1565b6cb9363e3e6fa5f5">_getAppList</a> (const char *contentType)</td></tr>
+<tr class="separator:ac90d0c6377f1565b6cb9363e3e6fa5f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02ad49a6af3aec51054ed7c79f21bfe7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="send__mail_8h.html#a9261aea2891e2a5ac6213305fa13c9e6">AppList</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="send__mail_8cpp.html#a02ad49a6af3aec51054ed7c79f21bfe7">getAppIdList</a> (const char *contentType)</td></tr>
+<tr class="separator:a02ad49a6af3aec51054ed7c79f21bfe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="ac90d0c6377f1565b6cb9363e3e6fa5f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac90d0c6377f1565b6cb9363e3e6fa5f5">&#9670;&nbsp;</a></span>_getAppList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="send__mail_8h.html#a2468f1db6a796c63fa3b63a19cd82525">Appinfo</a>* _getAppList </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>contentType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="send__mail_8cpp_ac90d0c6377f1565b6cb9363e3e6fa5f5_icgraph.png" border="0" usemap="#send__mail_8cpp_ac90d0c6377f1565b6cb9363e3e6fa5f5_icgraph" alt=""/></div>
+<map name="send__mail_8cpp_ac90d0c6377f1565b6cb9363e3e6fa5f5_icgraph" id="send__mail_8cpp_ac90d0c6377f1565b6cb9363e3e6fa5f5_icgraph">
+<area shape="rect" title=" " alt="" coords="719,13,809,39"/>
+<area shape="rect" href="send__mail_8h.html#a02ad49a6af3aec51054ed7c79f21bfe7" title=" " alt="" coords="576,13,671,39"/>
+<area shape="rect" href="classScanSet.html#a873d5ee17ef5abc2eac0b4406415b0cb" title=" " alt="" coords="184,5,327,47"/>
+<area shape="rect" href="classsend__mail.html#aebd630e899b75998cdd090e2be82cac9" title=" " alt="" coords="375,38,528,65"/>
+<area shape="rect" href="classScanSet.html#a78861e41777ec17c0967d65730d9804f" title=" " alt="" coords="5,13,136,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a02ad49a6af3aec51054ed7c79f21bfe7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02ad49a6af3aec51054ed7c79f21bfe7">&#9670;&nbsp;</a></span>getAppIdList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="send__mail_8h.html#a9261aea2891e2a5ac6213305fa13c9e6">AppList</a>* getAppIdList </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>contentType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="send__mail_8cpp_a02ad49a6af3aec51054ed7c79f21bfe7_cgraph.png" border="0" usemap="#send__mail_8cpp_a02ad49a6af3aec51054ed7c79f21bfe7_cgraph" alt=""/></div>
+<map name="send__mail_8cpp_a02ad49a6af3aec51054ed7c79f21bfe7_cgraph" id="send__mail_8cpp_a02ad49a6af3aec51054ed7c79f21bfe7_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,100,32"/>
+<area shape="rect" href="send__mail_8cpp.html#ac90d0c6377f1565b6cb9363e3e6fa5f5" title=" " alt="" coords="148,5,239,32"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="send__mail_8cpp_a02ad49a6af3aec51054ed7c79f21bfe7_icgraph.png" border="0" usemap="#send__mail_8cpp_a02ad49a6af3aec51054ed7c79f21bfe7_icgraph" alt=""/></div>
+<map name="send__mail_8cpp_a02ad49a6af3aec51054ed7c79f21bfe7_icgraph" id="send__mail_8cpp_a02ad49a6af3aec51054ed7c79f21bfe7_icgraph">
+<area shape="rect" title=" " alt="" coords="576,13,671,39"/>
+<area shape="rect" href="classScanSet.html#a873d5ee17ef5abc2eac0b4406415b0cb" title=" " alt="" coords="184,5,327,47"/>
+<area shape="rect" href="classsend__mail.html#aebd630e899b75998cdd090e2be82cac9" title=" " alt="" coords="375,38,528,65"/>
+<area shape="rect" href="classScanSet.html#a78861e41777ec17c0967d65730d9804f" title=" " alt="" coords="5,13,136,39"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者 &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

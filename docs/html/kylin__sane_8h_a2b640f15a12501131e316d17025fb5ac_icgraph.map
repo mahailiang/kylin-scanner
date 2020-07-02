@@ -1,0 +1,8 @@
+<map id="start_scan" name="start_scan">
+<area shape="rect" id="node1" title="start_scan 开始扫描" alt="" coords="635,42,717,69"/>
+<area shape="rect" id="node2" href="$classKylinSane.html#a29d2f79464933411a02b433993cd85e2" title="KylinSane::start_scanning 统一接口供页面调用，开始扫描 根据扫描设置页面情况info字段进行设置扫描设备参数，并进行扫描" alt="" coords="412,42,587,69"/>
+<area shape="rect" id="node3" href="$classFuncBar.html#a3f8d9918c550d04f5260c1ad088d610d" title=" " alt="" coords="199,5,347,47"/>
+<area shape="rect" id="node5" href="$classFuncBar.html#a6092d11b13aed97a2967e05652dfd509" title=" " alt="" coords="181,71,364,98"/>
+<area shape="rect" id="node4" href="$classFuncBar.html#a2741015b1797df5058ad22ce8b825818" title=" " alt="" coords="5,13,133,39"/>
+<area shape="rect" id="node6" href="$classWidget.html#a29531c7f141e461322981b3b579d4590" title=" " alt="" coords="13,71,125,98"/>
+</map>

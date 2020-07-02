@@ -1,0 +1,391 @@
+\hypertarget{embelish_8cpp}{}\doxysection{src/embelish.cpp 文件参考}
+\label{embelish_8cpp}\index{src/embelish.cpp@{src/embelish.cpp}}
+{\ttfamily \#include \char`\"{}embelish.\+h\char`\"{}}\newline
+embelish.\+cpp 的引用(Include)关系图\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{embelish_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{embelish_8cpp_aeeeeae7afacd8dd676aa25b89938c0d7}{read\+Images\+And\+Times\+One}} (Mat src, vector$<$ Mat $>$ \&images, vector$<$ float $>$ \&times)
+\item 
+int \mbox{\hyperlink{embelish_8cpp_a280dbe52f2446f6a32b00d77719680fc}{read\+Images\+And\+Times}} (vector$<$ Mat $>$ \&images, vector$<$ float $>$ \&times)
+\item 
+void \mbox{\hyperlink{embelish_8cpp_a61e1670f3c462367d20ea732fbce76ed}{psload\+Exposure\+Seq}} (String path, vector$<$ Mat $>$ \&images, vector$<$ float $>$ \&times)
+\item 
+void \mbox{\hyperlink{embelish_8cpp_aca5911fc8959bba65fc7ea8df350504c}{ps\+Hdr\+CV}} (Mat src)
+\item 
+void \mbox{\hyperlink{embelish_8cpp_a1a315dd5026508cfe18c286418a1bed8}{ps\+Average\+Filter\+CV}} (Mat src, Mat \&dst)
+\item 
+void \mbox{\hyperlink{embelish_8cpp_a3ad5adb55ceddce43311395a8ea9bceb}{ps\+Gaussian\+Filter\+CV}} (Mat src, Mat \&dst)
+\item 
+void \mbox{\hyperlink{embelish_8cpp_aeab94060a6ddfe5e60c180ee41d12535}{ps\+Median\+Filter\+CV}} (Mat src, Mat \&dst)
+\item 
+void \mbox{\hyperlink{embelish_8cpp_a46f99bc6f630760f49e5f8640244127c}{ps\+Bilateral\+Filter\+CV}} (Mat src, Mat \&dst)
+\item 
+Q\+Image $\ast$ \mbox{\hyperlink{embelish_8cpp_aa7c1a8352fd3df14a8dbc85f3aa8d0e0}{ps\+Sharpen}} (Q\+Image $\ast$origin)
+\item 
+void \mbox{\hyperlink{embelish_8cpp_a4dea5a80998266fb1680b113272af121}{ps\+Sharpen\+CV}} (Mat src, Mat \&dst)
+\begin{DoxyCompactList}\small\item\em ps\+Sharpen\+CV sharp fileter \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{embelish_8cpp_a91bebcdbefe3830f0c5186b2dc025419}{check\+Hsl}} (int \&hue, int \&saturation, int \&lumination)
+\item 
+void \mbox{\hyperlink{embelish_8cpp_a5ccfe0e30fb439b2a76caa8c4846cdd7}{ps\+Hsl\+CV}} (Mat src, Mat \&dst)
+\begin{DoxyCompactList}\small\item\em ps\+Hsl\+CV 图像色调/饱和度调节，就是让用户按照自己的感觉对图像的色调、饱和度二行亮度三个分量进行调整，以满足用户的需求 实现原理：将输入的\+R\+G\+B空间的图像转换到\+H\+S\+L颜色空间，根据用户输入的\+H、\+S、\+L三个调整参数， 分别加到对应的色彩分量上，从而改变原来图像的色彩。 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{embelish_8cpp_adba3e0696fa30175a43147e70daeaf96}{ps\+Luminance\+Contrast\+CV}} (Mat src, Mat \&dst)
+\begin{DoxyCompactList}\small\item\em luminance\+Contrast g(i,j) = alpha $\ast$ f(i,j) + beta enhance brightness(alpha) and contrast(belta) of images 亮度和对比度调整 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{embelish_8cpp_a355325fb4b871e69f8ca8a85f155a872}{ps\+Saturation\+CV}} (Mat src, Mat \&dst)
+\begin{DoxyCompactList}\small\item\em ps\+Saturation\+CV 饱和度使色彩更鲜艳 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{embelish_8cpp_a9f27827197260f0d9a24f26ee66530fd}{ps\+Histogram\+Equalization\+CV}} (Mat src, Mat \&dst)
+\begin{DoxyCompactList}\small\item\em ps\+Histogram\+Equalization\+CV 直方图均衡化是通过调整图像的灰阶分布，使得在0$\sim$255灰阶上的分布更加均衡，提高了图像的对比度， 达到改善图像主观视觉效果的目的。 对比度较低的图像适合使用直方图均衡化方法来增强图像细节。 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{embelish_8cpp_ade7208a138353a00eb16e6004b41c6cb}{ps\+Contrast\+CV}} (Mat src, Mat \&dst)
+\begin{DoxyCompactList}\small\item\em ps\+Contrast\+CV 使用中心为5的8邻域拉普拉斯算子与图像卷积可以达到锐化增强图像的目的。 拉普拉斯算子可以增强局部的图像对比度。 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{embelish_8cpp_a102bd625d75edf3a9f3ced30dd0e4c9f}{ps\+Logarithm\+CV}} (Mat src, Mat \&dst)
+\begin{DoxyCompactList}\small\item\em ps\+Logarithm\+CV 对数变换可以将图像的低灰度值部分扩展，显示出低灰度部分更多的细节， 将其高灰度值部分压缩，减少高灰度值部分的细节，从而达到强调图像低灰度部分的目的。 对数变换对于整体对比度偏低并且灰度值偏低的图像增强效果较好。 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{embelish_8cpp_a4936af963beaa0181fa913bc648bb48f}{ps\+Gamma\+CV}} (Mat src, Mat \&dst)
+\begin{DoxyCompactList}\small\item\em ps\+Gamma\+CV 伽马变换主要用于图像的校正，将灰度过高或者灰度过低的图片进行修正，增强对比度。 伽马变换对于图像对比度偏低，并且整体亮度值偏高（对于于相机过曝）情况下的图像增强效果明显。 \end{DoxyCompactList}\item 
+Q\+Image $\ast$ \mbox{\hyperlink{embelish_8cpp_aa6bdd6f2871263d10826ba07cd0a9acb}{ps\+Grey\+Scale}} (Q\+Image $\ast$origin)
+\item 
+Q\+Image $\ast$ \mbox{\hyperlink{embelish_8cpp_a809499810d553a5073eb63c2c701aefb}{ps\+Lumimance}} (int delta, Q\+Image $\ast$origin)
+\item 
+Q\+Image $\ast$ \mbox{\hyperlink{embelish_8cpp_a0565f3cdcb3dd0a78d2a4dcea3599f81}{ps\+Saturation}} (int delta, Q\+Image $\ast$origin)
+\item 
+Q\+Image $\ast$ \mbox{\hyperlink{embelish_8cpp_ac13f3c3fffcbe1692cd8e7d9024eca2f}{ps\+Warm\+Toned}} (int delta, Q\+Image $\ast$origin)
+\item 
+Q\+Image $\ast$ \mbox{\hyperlink{embelish_8cpp_a72ba1b5380ff8871cc637944c203b5ba}{ps\+Cool\+Toned}} (int delta, Q\+Image $\ast$origin)
+\item 
+Q\+Image $\ast$ \mbox{\hyperlink{embelish_8cpp_a1344b1d0a8a817b51c8baa68f61a026d}{ps\+Draw\+Frame}} (Q\+Image $\ast$origin, const char $\ast$filename)
+\item 
+void \mbox{\hyperlink{embelish_8cpp_a6a1560602f5c54b2893140f07d513a00}{one\+Click\+Embelish}} (const char $\ast$filename)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\mbox{\Hypertarget{embelish_8cpp_a91bebcdbefe3830f0c5186b2dc025419}\label{embelish_8cpp_a91bebcdbefe3830f0c5186b2dc025419}} 
+\index{embelish.cpp@{embelish.cpp}!checkHsl@{checkHsl}}
+\index{checkHsl@{checkHsl}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{checkHsl()}{checkHsl()}}
+{\footnotesize\ttfamily static void check\+Hsl (\begin{DoxyParamCaption}\item[{int \&}]{hue,  }\item[{int \&}]{saturation,  }\item[{int \&}]{lumination }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+这是这个函数的调用关系图\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{embelish_8cpp_a91bebcdbefe3830f0c5186b2dc025419_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{embelish_8cpp_a6a1560602f5c54b2893140f07d513a00}\label{embelish_8cpp_a6a1560602f5c54b2893140f07d513a00}} 
+\index{embelish.cpp@{embelish.cpp}!oneClickEmbelish@{oneClickEmbelish}}
+\index{oneClickEmbelish@{oneClickEmbelish}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{oneClickEmbelish()}{oneClickEmbelish()}}
+{\footnotesize\ttfamily void one\+Click\+Embelish (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+函数调用图\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{embelish_8cpp_a6a1560602f5c54b2893140f07d513a00_cgraph}
+\end{center}
+\end{figure}
+这是这个函数的调用关系图\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{embelish_8cpp_a6a1560602f5c54b2893140f07d513a00_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{embelish_8cpp_a1a315dd5026508cfe18c286418a1bed8}\label{embelish_8cpp_a1a315dd5026508cfe18c286418a1bed8}} 
+\index{embelish.cpp@{embelish.cpp}!psAverageFilterCV@{psAverageFilterCV}}
+\index{psAverageFilterCV@{psAverageFilterCV}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psAverageFilterCV()}{psAverageFilterCV()}}
+{\footnotesize\ttfamily void ps\+Average\+Filter\+CV (\begin{DoxyParamCaption}\item[{Mat}]{src,  }\item[{Mat \&}]{dst }\end{DoxyParamCaption})}
+
+start 图像平滑smoth（滤波filter，模糊blur) 保留原图细节下，消除图片中噪声 \mbox{\Hypertarget{embelish_8cpp_a46f99bc6f630760f49e5f8640244127c}\label{embelish_8cpp_a46f99bc6f630760f49e5f8640244127c}} 
+\index{embelish.cpp@{embelish.cpp}!psBilateralFilterCV@{psBilateralFilterCV}}
+\index{psBilateralFilterCV@{psBilateralFilterCV}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psBilateralFilterCV()}{psBilateralFilterCV()}}
+{\footnotesize\ttfamily void ps\+Bilateral\+Filter\+CV (\begin{DoxyParamCaption}\item[{Mat}]{src,  }\item[{Mat \&}]{dst }\end{DoxyParamCaption})}
+
+这是这个函数的调用关系图\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{embelish_8cpp_a46f99bc6f630760f49e5f8640244127c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{embelish_8cpp_ade7208a138353a00eb16e6004b41c6cb}\label{embelish_8cpp_ade7208a138353a00eb16e6004b41c6cb}} 
+\index{embelish.cpp@{embelish.cpp}!psContrastCV@{psContrastCV}}
+\index{psContrastCV@{psContrastCV}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psContrastCV()}{psContrastCV()}}
+{\footnotesize\ttfamily void ps\+Contrast\+CV (\begin{DoxyParamCaption}\item[{Mat}]{src,  }\item[{Mat \&}]{dst }\end{DoxyParamCaption})}
+
+
+
+ps\+Contrast\+CV 使用中心为5的8邻域拉普拉斯算子与图像卷积可以达到锐化增强图像的目的。 拉普拉斯算子可以增强局部的图像对比度。 
+
+
+\begin{DoxyParams}{参数}
+{\em src} & src\+\_\+image \\
+\hline
+{\em dst} & dst\+\_\+image \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{embelish_8cpp_a72ba1b5380ff8871cc637944c203b5ba}\label{embelish_8cpp_a72ba1b5380ff8871cc637944c203b5ba}} 
+\index{embelish.cpp@{embelish.cpp}!psCoolToned@{psCoolToned}}
+\index{psCoolToned@{psCoolToned}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psCoolToned()}{psCoolToned()}}
+{\footnotesize\ttfamily Q\+Image$\ast$ ps\+Cool\+Toned (\begin{DoxyParamCaption}\item[{int}]{delta,  }\item[{Q\+Image $\ast$}]{origin }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{embelish_8cpp_a1344b1d0a8a817b51c8baa68f61a026d}\label{embelish_8cpp_a1344b1d0a8a817b51c8baa68f61a026d}} 
+\index{embelish.cpp@{embelish.cpp}!psDrawFrame@{psDrawFrame}}
+\index{psDrawFrame@{psDrawFrame}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psDrawFrame()}{psDrawFrame()}}
+{\footnotesize\ttfamily Q\+Image$\ast$ ps\+Draw\+Frame (\begin{DoxyParamCaption}\item[{Q\+Image $\ast$}]{origin,  }\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{embelish_8cpp_a4936af963beaa0181fa913bc648bb48f}\label{embelish_8cpp_a4936af963beaa0181fa913bc648bb48f}} 
+\index{embelish.cpp@{embelish.cpp}!psGammaCV@{psGammaCV}}
+\index{psGammaCV@{psGammaCV}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psGammaCV()}{psGammaCV()}}
+{\footnotesize\ttfamily void ps\+Gamma\+CV (\begin{DoxyParamCaption}\item[{Mat}]{src,  }\item[{Mat \&}]{dst }\end{DoxyParamCaption})}
+
+
+
+ps\+Gamma\+CV 伽马变换主要用于图像的校正，将灰度过高或者灰度过低的图片进行修正，增强对比度。 伽马变换对于图像对比度偏低，并且整体亮度值偏高（对于于相机过曝）情况下的图像增强效果明显。 
+
+
+\begin{DoxyParams}{参数}
+{\em src} & \\
+\hline
+{\em dst} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{embelish_8cpp_a3ad5adb55ceddce43311395a8ea9bceb}\label{embelish_8cpp_a3ad5adb55ceddce43311395a8ea9bceb}} 
+\index{embelish.cpp@{embelish.cpp}!psGaussianFilterCV@{psGaussianFilterCV}}
+\index{psGaussianFilterCV@{psGaussianFilterCV}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psGaussianFilterCV()}{psGaussianFilterCV()}}
+{\footnotesize\ttfamily void ps\+Gaussian\+Filter\+CV (\begin{DoxyParamCaption}\item[{Mat}]{src,  }\item[{Mat \&}]{dst }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{embelish_8cpp_aa6bdd6f2871263d10826ba07cd0a9acb}\label{embelish_8cpp_aa6bdd6f2871263d10826ba07cd0a9acb}} 
+\index{embelish.cpp@{embelish.cpp}!psGreyScale@{psGreyScale}}
+\index{psGreyScale@{psGreyScale}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psGreyScale()}{psGreyScale()}}
+{\footnotesize\ttfamily Q\+Image$\ast$ ps\+Grey\+Scale (\begin{DoxyParamCaption}\item[{Q\+Image $\ast$}]{origin }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{embelish_8cpp_aca5911fc8959bba65fc7ea8df350504c}\label{embelish_8cpp_aca5911fc8959bba65fc7ea8df350504c}} 
+\index{embelish.cpp@{embelish.cpp}!psHdrCV@{psHdrCV}}
+\index{psHdrCV@{psHdrCV}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psHdrCV()}{psHdrCV()}}
+{\footnotesize\ttfamily void ps\+Hdr\+CV (\begin{DoxyParamCaption}\item[{Mat}]{src }\end{DoxyParamCaption})}
+
+函数调用图\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=303pt]{embelish_8cpp_aca5911fc8959bba65fc7ea8df350504c_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{embelish_8cpp_a9f27827197260f0d9a24f26ee66530fd}\label{embelish_8cpp_a9f27827197260f0d9a24f26ee66530fd}} 
+\index{embelish.cpp@{embelish.cpp}!psHistogramEqualizationCV@{psHistogramEqualizationCV}}
+\index{psHistogramEqualizationCV@{psHistogramEqualizationCV}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psHistogramEqualizationCV()}{psHistogramEqualizationCV()}}
+{\footnotesize\ttfamily void ps\+Histogram\+Equalization\+CV (\begin{DoxyParamCaption}\item[{Mat}]{src,  }\item[{Mat \&}]{dst }\end{DoxyParamCaption})}
+
+
+
+ps\+Histogram\+Equalization\+CV 直方图均衡化是通过调整图像的灰阶分布，使得在0$\sim$255灰阶上的分布更加均衡，提高了图像的对比度， 达到改善图像主观视觉效果的目的。 对比度较低的图像适合使用直方图均衡化方法来增强图像细节。 
+
+
+\begin{DoxyParams}{参数}
+{\em src} & \\
+\hline
+{\em dst} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{embelish_8cpp_a5ccfe0e30fb439b2a76caa8c4846cdd7}\label{embelish_8cpp_a5ccfe0e30fb439b2a76caa8c4846cdd7}} 
+\index{embelish.cpp@{embelish.cpp}!psHslCV@{psHslCV}}
+\index{psHslCV@{psHslCV}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psHslCV()}{psHslCV()}}
+{\footnotesize\ttfamily void ps\+Hsl\+CV (\begin{DoxyParamCaption}\item[{Mat}]{src,  }\item[{Mat \&}]{dst }\end{DoxyParamCaption})}
+
+
+
+ps\+Hsl\+CV 图像色调/饱和度调节，就是让用户按照自己的感觉对图像的色调、饱和度二行亮度三个分量进行调整，以满足用户的需求 实现原理：将输入的\+R\+G\+B空间的图像转换到\+H\+S\+L颜色空间，根据用户输入的\+H、\+S、\+L三个调整参数， 分别加到对应的色彩分量上，从而改变原来图像的色彩。 
+
+
+\begin{DoxyParams}{参数}
+{\em src} & \\
+\hline
+{\em dst} & \\
+\hline
+\end{DoxyParams}
+函数调用图\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{embelish_8cpp_a5ccfe0e30fb439b2a76caa8c4846cdd7_cgraph}
+\end{center}
+\end{figure}
+这是这个函数的调用关系图\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{embelish_8cpp_a5ccfe0e30fb439b2a76caa8c4846cdd7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{embelish_8cpp_a61e1670f3c462367d20ea732fbce76ed}\label{embelish_8cpp_a61e1670f3c462367d20ea732fbce76ed}} 
+\index{embelish.cpp@{embelish.cpp}!psloadExposureSeq@{psloadExposureSeq}}
+\index{psloadExposureSeq@{psloadExposureSeq}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psloadExposureSeq()}{psloadExposureSeq()}}
+{\footnotesize\ttfamily void psload\+Exposure\+Seq (\begin{DoxyParamCaption}\item[{String}]{path,  }\item[{vector$<$ Mat $>$ \&}]{images,  }\item[{vector$<$ float $>$ \&}]{times }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{embelish_8cpp_a102bd625d75edf3a9f3ced30dd0e4c9f}\label{embelish_8cpp_a102bd625d75edf3a9f3ced30dd0e4c9f}} 
+\index{embelish.cpp@{embelish.cpp}!psLogarithmCV@{psLogarithmCV}}
+\index{psLogarithmCV@{psLogarithmCV}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psLogarithmCV()}{psLogarithmCV()}}
+{\footnotesize\ttfamily void ps\+Logarithm\+CV (\begin{DoxyParamCaption}\item[{Mat}]{src,  }\item[{Mat \&}]{dst }\end{DoxyParamCaption})}
+
+
+
+ps\+Logarithm\+CV 对数变换可以将图像的低灰度值部分扩展，显示出低灰度部分更多的细节， 将其高灰度值部分压缩，减少高灰度值部分的细节，从而达到强调图像低灰度部分的目的。 对数变换对于整体对比度偏低并且灰度值偏低的图像增强效果较好。 
+
+
+\begin{DoxyParams}{参数}
+{\em src} & src\+\_\+image \\
+\hline
+{\em dst} & dst\+\_\+image \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{embelish_8cpp_a809499810d553a5073eb63c2c701aefb}\label{embelish_8cpp_a809499810d553a5073eb63c2c701aefb}} 
+\index{embelish.cpp@{embelish.cpp}!psLumimance@{psLumimance}}
+\index{psLumimance@{psLumimance}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psLumimance()}{psLumimance()}}
+{\footnotesize\ttfamily Q\+Image$\ast$ ps\+Lumimance (\begin{DoxyParamCaption}\item[{int}]{delta,  }\item[{Q\+Image $\ast$}]{origin }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{embelish_8cpp_adba3e0696fa30175a43147e70daeaf96}\label{embelish_8cpp_adba3e0696fa30175a43147e70daeaf96}} 
+\index{embelish.cpp@{embelish.cpp}!psLuminanceContrastCV@{psLuminanceContrastCV}}
+\index{psLuminanceContrastCV@{psLuminanceContrastCV}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psLuminanceContrastCV()}{psLuminanceContrastCV()}}
+{\footnotesize\ttfamily void ps\+Luminance\+Contrast\+CV (\begin{DoxyParamCaption}\item[{Mat}]{src,  }\item[{Mat \&}]{dst }\end{DoxyParamCaption})}
+
+
+
+luminance\+Contrast g(i,j) = alpha $\ast$ f(i,j) + beta enhance brightness(alpha) and contrast(belta) of images 亮度和对比度调整 
+
+
+\begin{DoxyParams}{参数}
+{\em src} & src\+\_\+image \\
+\hline
+{\em dst} & dst\+\_\+image \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+
+\end{DoxyReturn}
+这是这个函数的调用关系图\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{embelish_8cpp_adba3e0696fa30175a43147e70daeaf96_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{embelish_8cpp_aeab94060a6ddfe5e60c180ee41d12535}\label{embelish_8cpp_aeab94060a6ddfe5e60c180ee41d12535}} 
+\index{embelish.cpp@{embelish.cpp}!psMedianFilterCV@{psMedianFilterCV}}
+\index{psMedianFilterCV@{psMedianFilterCV}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psMedianFilterCV()}{psMedianFilterCV()}}
+{\footnotesize\ttfamily void ps\+Median\+Filter\+CV (\begin{DoxyParamCaption}\item[{Mat}]{src,  }\item[{Mat \&}]{dst }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{embelish_8cpp_a0565f3cdcb3dd0a78d2a4dcea3599f81}\label{embelish_8cpp_a0565f3cdcb3dd0a78d2a4dcea3599f81}} 
+\index{embelish.cpp@{embelish.cpp}!psSaturation@{psSaturation}}
+\index{psSaturation@{psSaturation}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psSaturation()}{psSaturation()}}
+{\footnotesize\ttfamily Q\+Image$\ast$ ps\+Saturation (\begin{DoxyParamCaption}\item[{int}]{delta,  }\item[{Q\+Image $\ast$}]{origin }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{embelish_8cpp_a355325fb4b871e69f8ca8a85f155a872}\label{embelish_8cpp_a355325fb4b871e69f8ca8a85f155a872}} 
+\index{embelish.cpp@{embelish.cpp}!psSaturationCV@{psSaturationCV}}
+\index{psSaturationCV@{psSaturationCV}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psSaturationCV()}{psSaturationCV()}}
+{\footnotesize\ttfamily void ps\+Saturation\+CV (\begin{DoxyParamCaption}\item[{Mat}]{src,  }\item[{Mat \&}]{dst }\end{DoxyParamCaption})}
+
+
+
+ps\+Saturation\+CV 饱和度使色彩更鲜艳 
+
+
+\begin{DoxyParams}{参数}
+{\em src} & src\+\_\+image \\
+\hline
+{\em dst} & dst\+\_\+image \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{embelish_8cpp_aa7c1a8352fd3df14a8dbc85f3aa8d0e0}\label{embelish_8cpp_aa7c1a8352fd3df14a8dbc85f3aa8d0e0}} 
+\index{embelish.cpp@{embelish.cpp}!psSharpen@{psSharpen}}
+\index{psSharpen@{psSharpen}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psSharpen()}{psSharpen()}}
+{\footnotesize\ttfamily Q\+Image$\ast$ ps\+Sharpen (\begin{DoxyParamCaption}\item[{Q\+Image $\ast$}]{origin }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{embelish_8cpp_a4dea5a80998266fb1680b113272af121}\label{embelish_8cpp_a4dea5a80998266fb1680b113272af121}} 
+\index{embelish.cpp@{embelish.cpp}!psSharpenCV@{psSharpenCV}}
+\index{psSharpenCV@{psSharpenCV}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psSharpenCV()}{psSharpenCV()}}
+{\footnotesize\ttfamily void ps\+Sharpen\+CV (\begin{DoxyParamCaption}\item[{Mat}]{src,  }\item[{Mat \&}]{dst }\end{DoxyParamCaption})}
+
+
+
+ps\+Sharpen\+CV sharp fileter 
+
+
+\begin{DoxyParams}{参数}
+{\em src} & src\+\_\+image \\
+\hline
+{\em dst} & dst\+\_\+image \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+
+\end{DoxyReturn}
+这是这个函数的调用关系图\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{embelish_8cpp_a4dea5a80998266fb1680b113272af121_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{embelish_8cpp_ac13f3c3fffcbe1692cd8e7d9024eca2f}\label{embelish_8cpp_ac13f3c3fffcbe1692cd8e7d9024eca2f}} 
+\index{embelish.cpp@{embelish.cpp}!psWarmToned@{psWarmToned}}
+\index{psWarmToned@{psWarmToned}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{psWarmToned()}{psWarmToned()}}
+{\footnotesize\ttfamily Q\+Image$\ast$ ps\+Warm\+Toned (\begin{DoxyParamCaption}\item[{int}]{delta,  }\item[{Q\+Image $\ast$}]{origin }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{embelish_8cpp_a280dbe52f2446f6a32b00d77719680fc}\label{embelish_8cpp_a280dbe52f2446f6a32b00d77719680fc}} 
+\index{embelish.cpp@{embelish.cpp}!readImagesAndTimes@{readImagesAndTimes}}
+\index{readImagesAndTimes@{readImagesAndTimes}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{readImagesAndTimes()}{readImagesAndTimes()}}
+{\footnotesize\ttfamily int read\+Images\+And\+Times (\begin{DoxyParamCaption}\item[{vector$<$ Mat $>$ \&}]{images,  }\item[{vector$<$ float $>$ \&}]{times }\end{DoxyParamCaption})}
+
+start 高动态范围成像\+H\+DR 基于多张不同曝光的图片才行,单张图片直接hdr效果不好, 因此扫描图像的处理可参照ps，进行图片的对比度、亮度、饱和度、滤波、冷暖色调、锐化等操作。 \mbox{\Hypertarget{embelish_8cpp_aeeeeae7afacd8dd676aa25b89938c0d7}\label{embelish_8cpp_aeeeeae7afacd8dd676aa25b89938c0d7}} 
+\index{embelish.cpp@{embelish.cpp}!readImagesAndTimesOne@{readImagesAndTimesOne}}
+\index{readImagesAndTimesOne@{readImagesAndTimesOne}!embelish.cpp@{embelish.cpp}}
+\doxysubsubsection{\texorpdfstring{readImagesAndTimesOne()}{readImagesAndTimesOne()}}
+{\footnotesize\ttfamily int read\+Images\+And\+Times\+One (\begin{DoxyParamCaption}\item[{Mat}]{src,  }\item[{vector$<$ Mat $>$ \&}]{images,  }\item[{vector$<$ float $>$ \&}]{times }\end{DoxyParamCaption})}
+
+这是这个函数的调用关系图\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=303pt]{embelish_8cpp_aeeeeae7afacd8dd676aa25b89938c0d7_icgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,5 @@
+<map id="get_option_resolutions" name="get_option_resolutions">
+<area shape="rect" id="node1" title="get_option_resolutions 获取扫描软件的分辨率 可以获取扫描设备支持的所有分辨率，如下： 2400, 1200, 600, 300, 150, 100,..." alt="" coords="5,31,157,57"/>
+<area shape="rect" id="node2" href="$classKylinSane.html#a6e4754e2e68e6f4ed9d8ad037a052be4" title=" " alt="" coords="244,5,401,32"/>
+<area shape="rect" id="node3" href="$classKylinSane.html#a0c56656745ef490f3579293c630e4b1a" title=" " alt="" coords="205,56,440,83"/>
+</map>

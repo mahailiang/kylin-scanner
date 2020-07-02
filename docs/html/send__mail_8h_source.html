@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kylin-scanner API: src/send_mail.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Kylin-scanner API
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">send_mail.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="send__mail_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">* Copyright (C) 2019 Tianjin KYLIN Information Technology Co., Ltd.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">* This program is free software; you can redistribute it and/or modify</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">* it under the terms of the GNU General Public License as published by</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">* the Free Software Foundation; either version 3, or (at your option)</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">* any later version.</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">* This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">* but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">* GNU General Public License for more details.</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">* You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">* along with this program; if not, see &lt;http://www.gnu.org/licenses/&amp;gt;.</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#ifndef SEND_MAIL_H</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#define SEND_MAIL_H</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;QDialog&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;QLabel&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;QTextEdit&gt;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;QPushButton&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;QFrame&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;QString&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;QHBoxLayout&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;QVBoxLayout&gt;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;QScrollArea&gt;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;QProcess&gt;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#ifdef signals</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#undef signals</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;glib.h&gt;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;gio/gio.h&gt;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &lt;gio/gdesktopappinfo.h&gt;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="send__mail_8h.html#a11e600f2191e6bfef13a441bcd2c8193">   39</a></span>&#160;<span class="preprocessor">#define MAILTYPE &quot;x-scheme-handler/mailto&quot;</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="send__mail_8h.html#acd6e6568e855a208840781112440e9b4">   40</a></span>&#160;<span class="preprocessor">#define DESKTOPPATH &quot;/usr/share/applications/&quot;</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="struct__Applist.html">   41</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct__Applist.html">_Applist</a></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="struct__Applist.html#aaeaaa310a6df458d64feb9384c9913b3">   43</a></span>&#160;    <span class="keywordtype">char</span> *<a class="code" href="struct__Applist.html#aaeaaa310a6df458d64feb9384c9913b3">appid</a>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}<a class="code" href="send__mail_8h.html#a9261aea2891e2a5ac6213305fa13c9e6">AppList</a>;<span class="comment">//用于存放应用列表</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="struct__AppInfo.html">   46</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct__AppInfo.html">_AppInfo</a></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="struct__AppInfo.html#ae28f6d9664bfb488fe6b5cb06d87ef5e">   48</a></span>&#160;    GAppInfo *<a class="code" href="struct__AppInfo.html#ae28f6d9664bfb488fe6b5cb06d87ef5e">item</a>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}<a class="code" href="send__mail_8h.html#a2468f1db6a796c63fa3b63a19cd82525">Appinfo</a>;<span class="comment">//用于存放应用列表信息</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classno__mail.html">   50</a></span>&#160;<span class="keyword">class </span><a class="code" href="classno__mail.html">no_mail</a> : <span class="keyword">public</span> QDialog</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classno__mail.html#a4e84f60faadcf00f62f1c1606fec2cfa">no_mail</a>(QWidget *parent = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="classno__mail.html#a8ddc0ab105c84a908ddea0cd228881ce">~no_mail</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classno__mail.html#a520df420b91533e587ce53945ea78efe">   57</a></span>&#160;    QLabel *<a class="code" href="classno__mail.html#a520df420b91533e587ce53945ea78efe">labTitle</a>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classno__mail.html#a0f474a0bddd71219c8526fa99fe564a8">   58</a></span>&#160;    QTextEdit *<a class="code" href="classno__mail.html#a0f474a0bddd71219c8526fa99fe564a8">textEdit</a>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classno__mail.html#aca90bcc117f595bb490d1e3919c1d25b">   59</a></span>&#160;    QFrame *<a class="code" href="classno__mail.html#aca90bcc117f595bb490d1e3919c1d25b">line</a>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classno__mail.html#a74474bf848e91cf45c6042b25c5bb966">   60</a></span>&#160;    QPushButton *<a class="code" href="classno__mail.html#a74474bf848e91cf45c6042b25c5bb966">btnOk</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classno__mail.html#a368e72f829e15e8ef2d2ac2122c8fc37">   61</a></span>&#160;    QPushButton *<a class="code" href="classno__mail.html#a368e72f829e15e8ef2d2ac2122c8fc37">btnCancel</a>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classno__mail.html#af77230c5fe6eb96a43a6e1bf3aed5c2e">   62</a></span>&#160;    QHBoxLayout *<a class="code" href="classno__mail.html#af77230c5fe6eb96a43a6e1bf3aed5c2e">hBoxLayout</a>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classno__mail.html#af8194d852a928e0d9f2e7bb90dfd55ff">   63</a></span>&#160;    QVBoxLayout *<a class="code" href="classno__mail.html#af8194d852a928e0d9f2e7bb90dfd55ff">vBoxLayout</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;};</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classsend__mail.html">   68</a></span>&#160;<span class="keyword">class </span><a class="code" href="classsend__mail.html">send_mail</a> : <span class="keyword">public</span> QDialog</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;{</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classsend__mail.html#a53f0a792c729488bde7f0dca3049bdca">send_mail</a>(QWidget *parent = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classsend__mail.html#aebd630e899b75998cdd090e2be82cac9">set_btnList</a>();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classsend__mail.html#ad36df3792c2d0a5faacb0b657c9d1be4">open_email</a>(QString name);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classsend__mail.html#a0367ffef1ef6c7bd54bf5a30c96aeb02">   77</a></span>&#160;    QLabel *<a class="code" href="classsend__mail.html#a0367ffef1ef6c7bd54bf5a30c96aeb02">labTitle</a>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classsend__mail.html#a4760ff79c421342070849af754031961">   78</a></span>&#160;    QPushButton *<a class="code" href="classsend__mail.html#a4760ff79c421342070849af754031961">btnCancel</a>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="classsend__mail.html#a74e80c24a31753304cf0920749a83d1c">   79</a></span>&#160;    QHBoxLayout *<a class="code" href="classsend__mail.html#a74e80c24a31753304cf0920749a83d1c">hBoxLayout</a>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="classsend__mail.html#a0dec8118601ef26aab480b4aa7eec8d3">   80</a></span>&#160;    QHBoxLayout *<a class="code" href="classsend__mail.html#a0dec8118601ef26aab480b4aa7eec8d3">hBoxLayout1</a>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="classsend__mail.html#aa8e5e06f2886b4864d01229c25c0a742">   81</a></span>&#160;    QVBoxLayout *<a class="code" href="classsend__mail.html#aa8e5e06f2886b4864d01229c25c0a742">vBoxLayout</a>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="classsend__mail.html#adc3189fabf4939e67fbf7a0daf2493b6">   82</a></span>&#160;    QVBoxLayout *<a class="code" href="classsend__mail.html#adc3189fabf4939e67fbf7a0daf2493b6">vBoxLayout1</a>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="classsend__mail.html#a295243cca2a855a834a10540553e2214">   83</a></span>&#160;    QScrollArea *<a class="code" href="classsend__mail.html#a295243cca2a855a834a10540553e2214">scrollArea</a>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classsend__mail.html#a830cf3e7276b1d9c0cd83b90dffecc5e">   84</a></span>&#160;    QWidget *<a class="code" href="classsend__mail.html#a830cf3e7276b1d9c0cd83b90dffecc5e">widget</a>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="classsend__mail.html#aa6555219ffa49077cae113c42f101b09">   85</a></span>&#160;    QList&lt;QPushButton *&gt; <a class="code" href="classsend__mail.html#aa6555219ffa49077cae113c42f101b09">btnList</a>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="classsend__mail.html#af2429c5ee4156130aa7d2b64e0077cf8">   86</a></span>&#160;    QList&lt;QString&gt; <a class="code" href="classsend__mail.html#af2429c5ee4156130aa7d2b64e0077cf8">desktopName</a>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keyword">private</span> slots:</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classsend__mail.html#a7a2559cf6489bcdb7d251c966eb46d24">on_btn_clicked</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;};</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<a class="code" href="struct__AppInfo.html">Appinfo</a> * <a class="code" href="send__mail_8h.html#ac90d0c6377f1565b6cb9363e3e6fa5f5">_getAppList</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *contentType);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<a class="code" href="struct__Applist.html">AppList</a> * <a class="code" href="send__mail_8h.html#a02ad49a6af3aec51054ed7c79f21bfe7">getAppIdList</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *contentType);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#endif // MARK_DIALOG_H</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclasssend__mail_html_a74e80c24a31753304cf0920749a83d1c"><div class="ttname"><a href="classsend__mail.html#a74e80c24a31753304cf0920749a83d1c">send_mail::hBoxLayout</a></div><div class="ttdeci">QHBoxLayout * hBoxLayout</div><div class="ttdef"><b>Definition:</b> send_mail.h:79</div></div>
+<div class="ttc" id="aclassno__mail_html_af77230c5fe6eb96a43a6e1bf3aed5c2e"><div class="ttname"><a href="classno__mail.html#af77230c5fe6eb96a43a6e1bf3aed5c2e">no_mail::hBoxLayout</a></div><div class="ttdeci">QHBoxLayout * hBoxLayout</div><div class="ttdef"><b>Definition:</b> send_mail.h:62</div></div>
+<div class="ttc" id="asend__mail_8h_html_a02ad49a6af3aec51054ed7c79f21bfe7"><div class="ttname"><a href="send__mail_8h.html#a02ad49a6af3aec51054ed7c79f21bfe7">getAppIdList</a></div><div class="ttdeci">AppList * getAppIdList(const char *contentType)</div><div class="ttdef"><b>Definition:</b> send_mail.cpp:207</div></div>
+<div class="ttc" id="astruct__Applist_html"><div class="ttname"><a href="struct__Applist.html">_Applist</a></div><div class="ttdef"><b>Definition:</b> send_mail.h:41</div></div>
+<div class="ttc" id="asend__mail_8h_html_a2468f1db6a796c63fa3b63a19cd82525"><div class="ttname"><a href="send__mail_8h.html#a2468f1db6a796c63fa3b63a19cd82525">Appinfo</a></div><div class="ttdeci">struct _AppInfo Appinfo</div></div>
+<div class="ttc" id="aclassno__mail_html_af8194d852a928e0d9f2e7bb90dfd55ff"><div class="ttname"><a href="classno__mail.html#af8194d852a928e0d9f2e7bb90dfd55ff">no_mail::vBoxLayout</a></div><div class="ttdeci">QVBoxLayout * vBoxLayout</div><div class="ttdef"><b>Definition:</b> send_mail.h:63</div></div>
+<div class="ttc" id="aclasssend__mail_html_aa8e5e06f2886b4864d01229c25c0a742"><div class="ttname"><a href="classsend__mail.html#aa8e5e06f2886b4864d01229c25c0a742">send_mail::vBoxLayout</a></div><div class="ttdeci">QVBoxLayout * vBoxLayout</div><div class="ttdef"><b>Definition:</b> send_mail.h:81</div></div>
+<div class="ttc" id="aclasssend__mail_html_a830cf3e7276b1d9c0cd83b90dffecc5e"><div class="ttname"><a href="classsend__mail.html#a830cf3e7276b1d9c0cd83b90dffecc5e">send_mail::widget</a></div><div class="ttdeci">QWidget * widget</div><div class="ttdef"><b>Definition:</b> send_mail.h:84</div></div>
+<div class="ttc" id="aclasssend__mail_html_ad36df3792c2d0a5faacb0b657c9d1be4"><div class="ttname"><a href="classsend__mail.html#ad36df3792c2d0a5faacb0b657c9d1be4">send_mail::open_email</a></div><div class="ttdeci">void open_email(QString name)</div><div class="ttdef"><b>Definition:</b> send_mail.cpp:285</div></div>
+<div class="ttc" id="aclassno__mail_html_a8ddc0ab105c84a908ddea0cd228881ce"><div class="ttname"><a href="classno__mail.html#a8ddc0ab105c84a908ddea0cd228881ce">no_mail::~no_mail</a></div><div class="ttdeci">~no_mail()</div><div class="ttdef"><b>Definition:</b> send_mail.cpp:114</div></div>
+<div class="ttc" id="aclasssend__mail_html_a0367ffef1ef6c7bd54bf5a30c96aeb02"><div class="ttname"><a href="classsend__mail.html#a0367ffef1ef6c7bd54bf5a30c96aeb02">send_mail::labTitle</a></div><div class="ttdeci">QLabel * labTitle</div><div class="ttdef"><b>Definition:</b> send_mail.h:77</div></div>
+<div class="ttc" id="asend__mail_8h_html_a9261aea2891e2a5ac6213305fa13c9e6"><div class="ttname"><a href="send__mail_8h.html#a9261aea2891e2a5ac6213305fa13c9e6">AppList</a></div><div class="ttdeci">struct _Applist AppList</div></div>
+<div class="ttc" id="astruct__AppInfo_html_ae28f6d9664bfb488fe6b5cb06d87ef5e"><div class="ttname"><a href="struct__AppInfo.html#ae28f6d9664bfb488fe6b5cb06d87ef5e">_AppInfo::item</a></div><div class="ttdeci">GAppInfo * item</div><div class="ttdef"><b>Definition:</b> send_mail.h:48</div></div>
+<div class="ttc" id="aclasssend__mail_html_a295243cca2a855a834a10540553e2214"><div class="ttname"><a href="classsend__mail.html#a295243cca2a855a834a10540553e2214">send_mail::scrollArea</a></div><div class="ttdeci">QScrollArea * scrollArea</div><div class="ttdef"><b>Definition:</b> send_mail.h:83</div></div>
+<div class="ttc" id="aclassno__mail_html_a74474bf848e91cf45c6042b25c5bb966"><div class="ttname"><a href="classno__mail.html#a74474bf848e91cf45c6042b25c5bb966">no_mail::btnOk</a></div><div class="ttdeci">QPushButton * btnOk</div><div class="ttdef"><b>Definition:</b> send_mail.h:60</div></div>
+<div class="ttc" id="aclasssend__mail_html"><div class="ttname"><a href="classsend__mail.html">send_mail</a></div><div class="ttdef"><b>Definition:</b> send_mail.h:68</div></div>
+<div class="ttc" id="asend__mail_8h_html"><div class="ttname"><a href="send__mail_8h.html">send_mail.h</a></div></div>
+<div class="ttc" id="astruct__AppInfo_html"><div class="ttname"><a href="struct__AppInfo.html">_AppInfo</a></div><div class="ttdef"><b>Definition:</b> send_mail.h:46</div></div>
+<div class="ttc" id="asend__mail_8cpp_html_ac90d0c6377f1565b6cb9363e3e6fa5f5"><div class="ttname"><a href="send__mail_8cpp.html#ac90d0c6377f1565b6cb9363e3e6fa5f5">_getAppList</a></div><div class="ttdeci">Appinfo * _getAppList(const char *contentType)</div><div class="ttdef"><b>Definition:</b> send_mail.cpp:185</div></div>
+<div class="ttc" id="aclasssend__mail_html_a0dec8118601ef26aab480b4aa7eec8d3"><div class="ttname"><a href="classsend__mail.html#a0dec8118601ef26aab480b4aa7eec8d3">send_mail::hBoxLayout1</a></div><div class="ttdeci">QHBoxLayout * hBoxLayout1</div><div class="ttdef"><b>Definition:</b> send_mail.h:80</div></div>
+<div class="ttc" id="asend__mail_8h_html_a11e600f2191e6bfef13a441bcd2c8193"><div class="ttname"><a href="send__mail_8h.html#a11e600f2191e6bfef13a441bcd2c8193">MAILTYPE</a></div><div class="ttdeci">#define MAILTYPE</div><div class="ttdef"><b>Definition:</b> send_mail.h:39</div></div>
+<div class="ttc" id="aclassno__mail_html_a368e72f829e15e8ef2d2ac2122c8fc37"><div class="ttname"><a href="classno__mail.html#a368e72f829e15e8ef2d2ac2122c8fc37">no_mail::btnCancel</a></div><div class="ttdeci">QPushButton * btnCancel</div><div class="ttdef"><b>Definition:</b> send_mail.h:61</div></div>
+<div class="ttc" id="aclasssend__mail_html_adc3189fabf4939e67fbf7a0daf2493b6"><div class="ttname"><a href="classsend__mail.html#adc3189fabf4939e67fbf7a0daf2493b6">send_mail::vBoxLayout1</a></div><div class="ttdeci">QVBoxLayout * vBoxLayout1</div><div class="ttdef"><b>Definition:</b> send_mail.h:82</div></div>
+<div class="ttc" id="astruct__Applist_html_aaeaaa310a6df458d64feb9384c9913b3"><div class="ttname"><a href="struct__Applist.html#aaeaaa310a6df458d64feb9384c9913b3">_Applist::appid</a></div><div class="ttdeci">char * appid</div><div class="ttdef"><b>Definition:</b> send_mail.h:43</div></div>
+<div class="ttc" id="aclassno__mail_html_a520df420b91533e587ce53945ea78efe"><div class="ttname"><a href="classno__mail.html#a520df420b91533e587ce53945ea78efe">no_mail::labTitle</a></div><div class="ttdeci">QLabel * labTitle</div><div class="ttdef"><b>Definition:</b> send_mail.h:57</div></div>
+<div class="ttc" id="aclasssend__mail_html_aa6555219ffa49077cae113c42f101b09"><div class="ttname"><a href="classsend__mail.html#aa6555219ffa49077cae113c42f101b09">send_mail::btnList</a></div><div class="ttdeci">QList&lt; QPushButton * &gt; btnList</div><div class="ttdef"><b>Definition:</b> send_mail.h:85</div></div>
+<div class="ttc" id="asend__mail_8h_html_acd6e6568e855a208840781112440e9b4"><div class="ttname"><a href="send__mail_8h.html#acd6e6568e855a208840781112440e9b4">DESKTOPPATH</a></div><div class="ttdeci">#define DESKTOPPATH</div><div class="ttdef"><b>Definition:</b> send_mail.h:40</div></div>
+<div class="ttc" id="asend__mail_8h_html_ac90d0c6377f1565b6cb9363e3e6fa5f5"><div class="ttname"><a href="send__mail_8h.html#ac90d0c6377f1565b6cb9363e3e6fa5f5">_getAppList</a></div><div class="ttdeci">Appinfo * _getAppList(const char *contentType)</div><div class="ttdef"><b>Definition:</b> send_mail.cpp:185</div></div>
+<div class="ttc" id="aclassno__mail_html_a4e84f60faadcf00f62f1c1606fec2cfa"><div class="ttname"><a href="classno__mail.html#a4e84f60faadcf00f62f1c1606fec2cfa">no_mail::no_mail</a></div><div class="ttdeci">no_mail(QWidget *parent=nullptr)</div><div class="ttdef"><b>Definition:</b> send_mail.cpp:25</div></div>
+<div class="ttc" id="aclassno__mail_html_aca90bcc117f595bb490d1e3919c1d25b"><div class="ttname"><a href="classno__mail.html#aca90bcc117f595bb490d1e3919c1d25b">no_mail::line</a></div><div class="ttdeci">QFrame * line</div><div class="ttdef"><b>Definition:</b> send_mail.h:59</div></div>
+<div class="ttc" id="aclassno__mail_html_a0f474a0bddd71219c8526fa99fe564a8"><div class="ttname"><a href="classno__mail.html#a0f474a0bddd71219c8526fa99fe564a8">no_mail::textEdit</a></div><div class="ttdeci">QTextEdit * textEdit</div><div class="ttdef"><b>Definition:</b> send_mail.h:58</div></div>
+<div class="ttc" id="aclasssend__mail_html_a7a2559cf6489bcdb7d251c966eb46d24"><div class="ttname"><a href="classsend__mail.html#a7a2559cf6489bcdb7d251c966eb46d24">send_mail::on_btn_clicked</a></div><div class="ttdeci">void on_btn_clicked(void)</div><div class="ttdef"><b>Definition:</b> send_mail.cpp:308</div></div>
+<div class="ttc" id="aclasssend__mail_html_aebd630e899b75998cdd090e2be82cac9"><div class="ttname"><a href="classsend__mail.html#aebd630e899b75998cdd090e2be82cac9">send_mail::set_btnList</a></div><div class="ttdeci">void set_btnList()</div><div class="ttdef"><b>Definition:</b> send_mail.cpp:235</div></div>
+<div class="ttc" id="aclasssend__mail_html_a4760ff79c421342070849af754031961"><div class="ttname"><a href="classsend__mail.html#a4760ff79c421342070849af754031961">send_mail::btnCancel</a></div><div class="ttdeci">QPushButton * btnCancel</div><div class="ttdef"><b>Definition:</b> send_mail.h:78</div></div>
+<div class="ttc" id="aclasssend__mail_html_af2429c5ee4156130aa7d2b64e0077cf8"><div class="ttname"><a href="classsend__mail.html#af2429c5ee4156130aa7d2b64e0077cf8">send_mail::desktopName</a></div><div class="ttdeci">QList&lt; QString &gt; desktopName</div><div class="ttdef"><b>Definition:</b> send_mail.h:86</div></div>
+<div class="ttc" id="aclasssend__mail_html_a53f0a792c729488bde7f0dca3049bdca"><div class="ttname"><a href="classsend__mail.html#a53f0a792c729488bde7f0dca3049bdca">send_mail::send_mail</a></div><div class="ttdeci">send_mail(QWidget *parent=nullptr)</div><div class="ttdef"><b>Definition:</b> send_mail.cpp:120</div></div>
+<div class="ttc" id="asend__mail_8cpp_html_a02ad49a6af3aec51054ed7c79f21bfe7"><div class="ttname"><a href="send__mail_8cpp.html#a02ad49a6af3aec51054ed7c79f21bfe7">getAppIdList</a></div><div class="ttdeci">AppList * getAppIdList(const char *contentType)</div><div class="ttdef"><b>Definition:</b> send_mail.cpp:207</div></div>
+<div class="ttc" id="aclassno__mail_html"><div class="ttname"><a href="classno__mail.html">no_mail</a></div><div class="ttdef"><b>Definition:</b> send_mail.h:50</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者 &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>
