@@ -1,8 +1,0 @@
-<map id="oneClickEmbelish" name="oneClickEmbelish">
-<area shape="rect" id="node1" title=" " alt="" coords="5,81,132,108"/>
-<area shape="rect" id="node2" href="$embelish_8cpp.html#a46f99bc6f630760f49e5f8640244127c" title=" " alt="" coords="199,5,329,32"/>
-<area shape="rect" id="node3" href="$embelish_8cpp.html#a5ccfe0e30fb439b2a76caa8c4846cdd7" title="psHslCV 图像色调/饱和度调节，就是让用户按照自己的感觉对图像的色调、饱和度二行亮度三个分量进行调整，以满足用户的需求 实现原理：将输入的RGB空间的图像转换到HSL颜色空间，根据用户输入的H、S..." alt="" coords="227,56,301,83"/>
-<area shape="rect" id="node5" href="$embelish_8cpp.html#adba3e0696fa30175a43147e70daeaf96" title="luminanceContrast g(i,j) = alpha * f(i,j) + beta enhance brightness(alpha) and contrast(belta) of ima..." alt="" coords="180,107,348,133"/>
-<area shape="rect" id="node6" href="$embelish_8cpp.html#a4dea5a80998266fb1680b113272af121" title="psSharpenCV sharp fileter" alt="" coords="213,157,315,184"/>
-<area shape="rect" id="node4" href="$embelish_8cpp.html#a91bebcdbefe3830f0c5186b2dc025419" title=" " alt="" coords="396,56,473,83"/>
-</map>

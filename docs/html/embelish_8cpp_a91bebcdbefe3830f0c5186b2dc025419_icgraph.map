@@ -1,7 +1,0 @@
-<map id="checkHsl" name="checkHsl">
-<area shape="rect" id="node1" title=" " alt="" coords="663,5,740,32"/>
-<area shape="rect" id="node2" href="$embelish_8h.html#a5ccfe0e30fb439b2a76caa8c4846cdd7" title="psHslCV 图像色调/饱和度调节，就是让用户按照自己的感觉对图像的色调、饱和度二行亮度三个分量进行调整，以满足用户的需求 实现原理：将输入的RGB空间的图像转换到HSL颜色空间，根据用户输入的H、S..." alt="" coords="540,5,615,32"/>
-<area shape="rect" id="node3" href="$embelish_8h.html#a6a1560602f5c54b2893140f07d513a00" title=" " alt="" coords="365,5,492,32"/>
-<area shape="rect" id="node4" href="$classscan__display.html#a351e1bfbc821c6d2e8d0289379e0b5ed" title=" " alt="" coords="165,5,317,32"/>
-<area shape="rect" id="node5" href="$classWidget.html#a29531c7f141e461322981b3b579d4590" title=" " alt="" coords="5,5,117,32"/>
-</map>

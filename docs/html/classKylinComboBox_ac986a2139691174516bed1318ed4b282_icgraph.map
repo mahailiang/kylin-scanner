@@ -1,6 +1,0 @@
-<map id="KylinComboBox::colorNormal" name="KylinComboBox::colorNormal">
-<area shape="rect" id="node1" title=" " alt="" coords="577,13,772,39"/>
-<area shape="rect" id="node2" href="$classScanSet.html#a49614a00751f1abe42414399dd4f2540" title=" " alt="" coords="352,5,529,47"/>
-<area shape="rect" id="node3" href="$classWidget.html#aea825217028d9e17635ed10be11bd88f" title="Widget::scan_result 处理初始化设备的控件可用情况 当ret为true时，表示在处理线程中连接上了设备，此时扫描设置等按钮可用， 否则，按钮不可用。" alt="" coords="165,13,304,39"/>
-<area shape="rect" id="node4" href="$classWidget.html#a29531c7f141e461322981b3b579d4590" title=" " alt="" coords="5,13,117,39"/>
-</map>

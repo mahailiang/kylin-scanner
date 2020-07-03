@@ -1,7 +1,0 @@
-<map id="check_search_scan_devices" name="check_search_scan_devices">
-<area shape="rect" id="node1" title="check_search_scan_devices 可以借此整理出未识别设备的情况" alt="" coords="5,56,196,83"/>
-<area shape="rect" id="node2" href="$kylin__sane_8cpp.html#a2a7c1f5e91c82fa924d2518001ff2a10" title="get_devices 查询所有连接设备 注意： 这里会很耗时" alt="" coords="249,5,341,32"/>
-<area shape="rect" id="node3" href="$kylin__sane_8cpp.html#a02fd73d861ef2e4aabb38c0c9ff82947" title="init 扫描设备初始化" alt="" coords="276,56,315,83"/>
-<area shape="rect" id="node5" href="$kylin__sane_8cpp.html#a82ecc8db19b2f6268059b949233deaeb" title="my_sane_exit 释放所有扫描资源" alt="" coords="244,107,347,133"/>
-<area shape="rect" id="node4" href="$kylin__sane_8cpp.html#aa4088e6601580a69ba998f046cda5240" title=" " alt="" coords="395,56,497,83"/>
-</map>
