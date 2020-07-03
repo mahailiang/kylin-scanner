@@ -76,8 +76,9 @@ FuncBar::FuncBar(QWidget *parent)
                               "QPushButton:hover{image: url(:/icon/icon/orc.png);border:none;background-color:rgb(39,208,127);border-radius:6px;}"
                                 "QPushButton:checked{image: url(:/icon/icon/orc.png);border:none;background-color:rgb(39,208,127);border-radius:6px;}");
 
-    btnScan->setStyleSheet("QPushButton{background-color: rgb(232,160,73);border-radius:28px;color:rgb(232,232,232);}"
-                           );
+    btnScan->setStyleSheet("QPushButton{background-color: rgb(232,160,73);border-radius:28px;color:rgb(232,232,232);}");
+
+
     line1 = new QFrame();
     line1->setObjectName(QString::fromUtf8("line1"));
     line1->setMaximumWidth(1);
@@ -94,7 +95,7 @@ FuncBar::FuncBar(QWidget *parent)
     line2->setFrameStyle(QFrame::VLine);
     line2->setStyleSheet("QFrame{color:rgb(32,30,29)}");
 
-    setKylinScanSetNotEnable();
+//    setKylinScanSetNotEnable();
 
     vBoxLay1 = new QVBoxLayout();
     vBoxLay2 = new QVBoxLayout();
@@ -177,6 +178,7 @@ FuncBar::FuncBar(QWidget *parent)
 
     // For beauty
     connect(btnBeautify, SIGNAL(clicked()), this, SLOT(on_btnBeauty_clicked()));
+    connect(&thread,SIGNAL(scanFinished(int)),this,SLOT(scan_result(int)));
 }
 
 FuncBar::~FuncBar()
@@ -281,10 +283,12 @@ void FuncBar::on_btnScan_clicked()
     KylinSane& instance = KylinSane::getInstance();
     if(instance.getKylinSaneStatus() == true)
     {
-        instance.start_scanning(instance.userInfo);
-        qDebug()<<"start_scanning end!!!";
-        emit send_Scan_End();
+        thread.start();
+        btnScan->setText(" ");
+        btnScan->setStyleSheet("QPushButton{image: url(:/icon/icon/scanner.gif);border-radius:28px;}");
+        cout << "scan()" <<endl;
     }
+
 }
 
 void FuncBar::on_btnRectify_clicked()
@@ -320,4 +324,24 @@ void FuncBar::on_btnBeauty_clicked()
         stack.pop();
         emit send_Beautify_End();
     }
+}
+
+void FuncBar::scan_result(int ret)
+{
+    btnScan->setText("扫描");
+    btnScan->setStyleSheet("QPushButton{background-color: rgb(232,160,73);border-radius:28px;color:rgb(232,232,232);}");
+    emit send_Scan_End();
+}
+
+void threadScan::run()
+{
+    KylinSane& instance = KylinSane::getInstance();
+    if(instance.getKylinSaneStatus() == true)
+    {
+        int ret = 0;
+        ret = instance.start_scanning(instance.userInfo);
+        qDebug()<<"start_scanning end!!!";
+        emit scanFinished(ret);
+    }
+    quit();
 }

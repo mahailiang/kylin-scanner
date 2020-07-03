@@ -51,14 +51,10 @@ Widget::Widget(QWidget *parent)
 
     pFuncBar = new  FuncBar();
     installEventFilter(pFuncBar);
-
     pScanSet = new ScanSet() ;
     installEventFilter(pScanSet);
-
     pScandisplay = new scan_display();
-    installEventFilter(pScandisplay);
-//    if(instance.getKylinSaneStatus() == false)
-//        pScandisplay->set_no_device();
+
     pHboxLayout = new QHBoxLayout();
     pHboxLayout->setSpacing(0);
     pHboxLayout->addWidget(pScanSet);
@@ -258,6 +254,7 @@ void Widget::scan_result(bool ret)
         pFuncBar->setKylinScanSetNotEnable();
         pScanSet->setKylinScanSetNotEnable();
     }
+
 }
 
 void scanThread::run()

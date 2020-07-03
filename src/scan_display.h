@@ -51,16 +51,6 @@ signals:
     void orcFinished();
 };
 
-class beautyThread : public QThread
-{
-    Q_OBJECT
-public:
-    void run() Q_DECL_OVERRIDE;
-
-signals:
-    void beautyFinished();
-
-};
 
 class edit_bar  :   public QWidget
 {
@@ -84,10 +74,11 @@ public:
     QImage *imageSave(QString fileName);
     void set_no_device();
     void set_pixmap(QImage img, QLabel *lab);
-
+    float pixmap_scaled(QImage img, QLabel *lab);
     int flagBeautify = 0; //一键美化标志
     int flagRectify = 0; //智能纠偏标志
     int flagOrc = 0; //文字识别标志
+    float scaledNum = 1; //缩放倍数
     int index = 0;
     int n = 0;
 

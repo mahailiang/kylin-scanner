@@ -60,7 +60,7 @@ ScanSet::ScanSet(QWidget *parent)
     hBoxMailText = new QHBoxLayout();
 
     vBoxScanSet = new QVBoxLayout(this);
-    hBoxScanSet = new QHBoxLayout(this);
+
 
     line3 = new QFrame();
     line3->setObjectName(QString::fromUtf8("line3"));
@@ -85,7 +85,7 @@ ScanSet::ScanSet(QWidget *parent)
 
     QFontMetrics elideFont(btnLocation->font());
     if(curPath.isEmpty())
-        curPath=QCoreApplication::applicationDirPath(); //获取应用程序的路径
+        curPath=QDir::homePath() ; //获取家目录的路径
     btnLocation->setText(elideFont.elidedText(curPath,Qt::ElideRight,150));
     btnLocation->setFixedSize(180,32);
 
@@ -97,7 +97,7 @@ ScanSet::ScanSet(QWidget *parent)
     btnSave->setStyleSheet("QPushButton{background-color:rgb(32,30,29);border:1px solid #939393;color:rgb(232,232,232);border-radius:16px;}"
                               "QPushButton:hover{border:none;background-color:rgb(39,208,127);color:rgb(232,232,232);border-radius:16px;}"
                                 "QPushButton:checked{border:none;background-color:rgb(39,208,127);color:rgb(232,232,232)border-radius:16px;}");
-    btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/max.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:rgb(232,232,232);border-radius:6px;text-align:left;}");
+    btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/down.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:rgb(232,232,232);border-radius:6px;text-align:left;}");
 
     setKylinLable();
     setKylinComboBox();
@@ -223,7 +223,7 @@ void ScanSet::setKylinComboBox()
         strListSize << "A4" << "A5";
         setKylinComboBoxAttributes(textSize, strListSize);
 
-        strListFormat << "jpg" << "png" << "pdf" << "bmp" << "rtf";
+        strListFormat << "jpg" << "png" << "pdf" << "bmp";
         setKylinComboBoxAttributes(textFormat, strListFormat);
 
         return;
@@ -276,7 +276,7 @@ void ScanSet::setKylinComboBox()
     setKylinComboBoxAttributes(textSize, strListSize);
     textSize->setCurrentIndex(defaultSize);
 
-    strListFormat << "jpg" << "png" << "pdf" << "bmp" << "rtf";
+    strListFormat << "jpg" << "png" << "pdf" << "bmp";
     setKylinComboBoxAttributes(textFormat, strListFormat);
 }
 
@@ -305,7 +305,7 @@ void ScanSet::setKylinScanSetNotEnable()
         textName->setStyleSheet("QLineEdit{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
 
         btnLocation->setEnabled(false);
-        btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/max.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:gray;border-radius:6px;text-align:left;}");
+        btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/down.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:gray;border-radius:6px;text-align:left;}");
 
         btnMail->setEnabled(false);
         btnSave->setEnabled(false);
@@ -339,7 +339,7 @@ void ScanSet::setKylinScanSetEnable()
         textName->setEnabled(true);
 
         btnLocation->setEnabled(true);
-        btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/max.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:rgb(232,232,232);border-radius:6px;text-align:left;}");
+        btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/down.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:rgb(232,232,232);border-radius:6px;text-align:left;}");
 
         btnMail->setEnabled(true);
         btnSave->setEnabled(true);
@@ -526,7 +526,7 @@ void ScanSet::setFontSize(QLabel *label, int n)
 void ScanSet::on_btnLocation_clicked()
 {
     if(curPath.isEmpty())
-        curPath=QCoreApplication::applicationDirPath(); //获取应用程序的路径
+        curPath=QDir::homePath() ; //获取家目录的路径
 
     QString dlgTitle=tr("Select a directory"); //对话框标题
     QString selectedDir=QFileDialog::getExistingDirectory(this,dlgTitle,curPath,QFileDialog::ShowDirsOnly);
@@ -560,7 +560,7 @@ void ScanSet::on_btnMail_clicked()
     }
 }
 
-QString filter="*.jpg;;*.png;;*.pdf;;*.bmp;;*.rtf"; //文件过滤器
+QString filter="*.jpg;;*.png;;*.pdf;;*.bmp"; //文件过滤器
 
 void ScanSet::on_btnSave_clicked()
 {
@@ -584,7 +584,7 @@ void ScanSet::modify_save_button()
     else {
         flag = 0;
         btnSave->setText(tr("Save as"));
-        filter="*.jpg;;*.png;;*.pdf;;*.bmp;;*.rtf"; //文件过滤器
+        filter="*.jpg;;*.png;;*.pdf;;*.bmp;;"; //文件过滤器
     }
 }
 
