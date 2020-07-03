@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['widget_833',['Widget',['../classWidget.html',1,'Widget'],['../classsend__mail.html#a830cf3e7276b1d9c0cd83b90dffecc5e',1,'send_mail::widget()'],['../classWidget.html#a29531c7f141e461322981b3b579d4590',1,'Widget::Widget()']]],
-  ['widget_2ecpp_834',['widget.cpp',['../widget_8cpp.html',1,'']]],
-  ['widget_2eh_835',['widget.h',['../widget_8h.html',1,'']]],
-  ['widgetindex_836',['widgetindex',['../classscan__display.html#a3f33fc71037e44b69a700522c0a6635b',1,'scan_display']]],
-  ['width_837',['width',['../structImage.html#ab8d12f635013c04159cd4d3d972bac88',1,'Image']]],
-  ['write_5fpnm_5fheader_838',['write_pnm_header',['../kylin__sane_8cpp.html#ac16114e3818f3e2420b247bc7d9ef6a6',1,'kylin_sane.cpp']]]
+  ['x_382',['x',['../structImage.html#a7f8f4530212c93856e611030e46c82af',1,'Image']]],
+  ['x1_383',['x1',['../classmy__label.html#acab6c383bfd497a5d7f1330a58f901a9',1,'my_label']]],
+  ['x2_384',['x2',['../classmy__label.html#a950385a00a86ecc22a92be2343280beb',1,'my_label']]]
 ];

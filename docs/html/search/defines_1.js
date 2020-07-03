@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['desktoppath_1701',['DESKTOPPATH',['../send__mail_8h.html#acd6e6568e855a208840781112440e9b4',1,'send_mail.h']]]
+  ['error_793',['ERROR',['../rectify_8h.html#a8fe83ac76edc595f6b98cd4a4127aed5',1,'rectify.h']]]
 ];

@@ -1,12 +1,12 @@
 var searchData=
 [
-  ['data_434',['data',['../structImage.html#ac149fdf39be15025af7c3d8659f80999',1,'Image::data()'],['../structqt__meta__stringdata__embelish__t.html#a3f8f1fe4e0f815ad94b80e9cb583022e',1,'qt_meta_stringdata_embelish_t::data()'],['../structqt__meta__stringdata__FuncBar__t.html#a6227fca947e0769cf9d7a8876fdbfc10',1,'qt_meta_stringdata_FuncBar_t::data()'],['../structqt__meta__stringdata__KylinSane__t.html#a396632fa586447b42a14e87b74d37568',1,'qt_meta_stringdata_KylinSane_t::data()'],['../structqt__meta__stringdata__KylinComboBox__t.html#a1743a11cedbdd18f5d218e35f5b06c2f',1,'qt_meta_stringdata_KylinComboBox_t::data()'],['../structqt__meta__stringdata__mark__dialog__t.html#a1dbf796748d775665c8e67b878f274ce',1,'qt_meta_stringdata_mark_dialog_t::data()'],['../structqt__meta__stringdata__myThread__t.html#a132cfa183b8d4a6f06b3b3820baf6b2f',1,'qt_meta_stringdata_myThread_t::data()'],['../structqt__meta__stringdata__beautyThread__t.html#ad43f89f5bf4d8d67be8808da473bd98b',1,'qt_meta_stringdata_beautyThread_t::data()'],['../structqt__meta__stringdata__edit__bar__t.html#a6bab93e7dea0bf5055be298efb49ca82',1,'qt_meta_stringdata_edit_bar_t::data()'],['../structqt__meta__stringdata__scan__display__t.html#a805fef854dcdebb7250279c65a7bbf89',1,'qt_meta_stringdata_scan_display_t::data()'],['../structqt__meta__stringdata__ScanSet__t.html#a3f2f18daa0f22d87089f99f49384c0d4',1,'qt_meta_stringdata_ScanSet_t::data()'],['../structqt__meta__stringdata__no__mail__t.html#a2d347115774e2550d15c19d0e08150d3',1,'qt_meta_stringdata_no_mail_t::data()'],['../structqt__meta__stringdata__send__mail__t.html#a02f9f97f55902989b1d93434758a92f9',1,'qt_meta_stringdata_send_mail_t::data()'],['../structqt__meta__stringdata__TitleBar__t.html#ad2a73985775afd0df0cb0e51075c46af',1,'qt_meta_stringdata_TitleBar_t::data()'],['../structqt__meta__stringdata__scanThread__t.html#a710ab0a39768ca13b024368e830dc2e7',1,'qt_meta_stringdata_scanThread_t::data()'],['../structqt__meta__stringdata__Widget__t.html#a97c0839fb2d518b34df02a2c1ee09f7c',1,'qt_meta_stringdata_Widget_t::data()']]],
-  ['degreetrans_435',['DegreeTrans',['../rectify_8cpp.html#a61c63b3c0bec23891ff1201abc2f4815',1,'rectify.cpp']]],
-  ['desktopname_436',['desktopName',['../classsend__mail.html#af2429c5ee4156130aa7d2b64e0077cf8',1,'send_mail']]],
-  ['desktoppath_437',['DESKTOPPATH',['../send__mail_8h.html#acd6e6568e855a208840781112440e9b4',1,'send_mail.h']]],
-  ['device_438',['device',['../kylin__sane_8cpp.html#a9d8d7a78e723d1835dcc546917ff1784',1,'device():&#160;kylin_sane.cpp'],['../widget_8cpp.html#a8ffc7c6efbe25ea34aa0aefa819a558d',1,'device():&#160;widget.cpp']]],
-  ['device_5finfo_439',['device_info',['../structdevice__info.html',1,'']]],
-  ['devicesinfo_440',['devicesInfo',['../classKylinSane.html#a8c63504ce5230e9ed9289869212f67de',1,'KylinSane']]],
-  ['display_5foption_5fvalue_441',['display_option_value',['../kylin__sane_8cpp.html#aad5cfc4d97cf910a5b97bcbc2070c4df',1,'kylin_sane.cpp']]],
-  ['do_5fscan_442',['do_scan',['../kylin__sane_8cpp.html#a1ed7aa2ebad2fbd9de26ce1c5de31e37',1,'kylin_sane.cpp']]]
+  ['data_47',['data',['../structImage.html#ac149fdf39be15025af7c3d8659f80999',1,'Image']]],
+  ['degreetrans_48',['DegreeTrans',['../rectify_8cpp.html#a61c63b3c0bec23891ff1201abc2f4815',1,'rectify.cpp']]],
+  ['desktopname_49',['desktopName',['../classsend__mail.html#af2429c5ee4156130aa7d2b64e0077cf8',1,'send_mail']]],
+  ['desktoppath_50',['DESKTOPPATH',['../send__mail_8h.html#acd6e6568e855a208840781112440e9b4',1,'send_mail.h']]],
+  ['device_51',['device',['../kylin__sane_8cpp.html#a9d8d7a78e723d1835dcc546917ff1784',1,'device():&#160;kylin_sane.cpp'],['../widget_8cpp.html#a8ffc7c6efbe25ea34aa0aefa819a558d',1,'device():&#160;widget.cpp']]],
+  ['device_5finfo_52',['device_info',['../structdevice__info.html',1,'']]],
+  ['devicesinfo_53',['devicesInfo',['../classKylinSane.html#a8c63504ce5230e9ed9289869212f67de',1,'KylinSane']]],
+  ['display_5foption_5fvalue_54',['display_option_value',['../kylin__sane_8cpp.html#aad5cfc4d97cf910a5b97bcbc2070c4df',1,'kylin_sane.cpp']]],
+  ['do_5fscan_55',['do_scan',['../kylin__sane_8cpp.html#a1ed7aa2ebad2fbd9de26ce1c5de31e37',1,'kylin_sane.cpp']]]
 ];

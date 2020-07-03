@@ -1,19 +1,8 @@
 var searchData=
 [
-  ['main_2ecpp_897',['main.cpp',['../main_8cpp.html',1,'']]],
-  ['mark_5fdialog_2ecpp_898',['mark_dialog.cpp',['../mark__dialog_8cpp.html',1,'']]],
-  ['mark_5fdialog_2eh_899',['mark_dialog.h',['../mark__dialog_8h.html',1,'']]],
-  ['moc_5fembelish_2ecpp_900',['moc_embelish.cpp',['../moc__embelish_8cpp.html',1,'']]],
-  ['moc_5ffunc_5fbar_2ecpp_901',['moc_func_bar.cpp',['../moc__func__bar_8cpp.html',1,'']]],
-  ['moc_5fkylin_5fsane_2ecpp_902',['moc_kylin_sane.cpp',['../moc__kylin__sane_8cpp.html',1,'']]],
-  ['moc_5fkylincombobox_2ecpp_903',['moc_kylincombobox.cpp',['../moc__kylincombobox_8cpp.html',1,'']]],
-  ['moc_5fmark_5fdialog_2ecpp_904',['moc_mark_dialog.cpp',['../moc__mark__dialog_8cpp.html',1,'']]],
-  ['moc_5fpredefs_2eh_905',['moc_predefs.h',['../moc__predefs_8h.html',1,'']]],
-  ['moc_5fscan_5fdisplay_2ecpp_906',['moc_scan_display.cpp',['../moc__scan__display_8cpp.html',1,'']]],
-  ['moc_5fscan_5fset_2ecpp_907',['moc_scan_set.cpp',['../moc__scan__set_8cpp.html',1,'']]],
-  ['moc_5fsend_5fmail_2ecpp_908',['moc_send_mail.cpp',['../moc__send__mail_8cpp.html',1,'']]],
-  ['moc_5ftitle_5fbar_2ecpp_909',['moc_title_bar.cpp',['../moc__title__bar_8cpp.html',1,'']]],
-  ['moc_5fwidget_2ecpp_910',['moc_widget.cpp',['../moc__widget_8cpp.html',1,'']]],
-  ['my_5flabel_2ecpp_911',['my_label.cpp',['../my__label_8cpp.html',1,'']]],
-  ['my_5flabel_2eh_912',['my_label.h',['../my__label_8h.html',1,'']]]
+  ['main_2ecpp_425',['main.cpp',['../main_8cpp.html',1,'']]],
+  ['mark_5fdialog_2ecpp_426',['mark_dialog.cpp',['../mark__dialog_8cpp.html',1,'']]],
+  ['mark_5fdialog_2eh_427',['mark_dialog.h',['../mark__dialog_8h.html',1,'']]],
+  ['my_5flabel_2ecpp_428',['my_label.cpp',['../my__label_8cpp.html',1,'']]],
+  ['my_5flabel_2eh_429',['my_label.h',['../my__label_8h.html',1,'']]]
 ];

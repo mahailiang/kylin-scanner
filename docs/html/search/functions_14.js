@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['u_1101',['U',['../widget_8cpp.html#a836f1f3728ee37a70e09089a2d833b5d',1,'widget.cpp']]],
-  ['updatemaximize_1102',['updateMaximize',['../classTitleBar.html#a582f80f9f8ce481051abbdfc5a343679',1,'TitleBar']]]
+  ['widget_615',['Widget',['../classWidget.html#a29531c7f141e461322981b3b579d4590',1,'Widget']]],
+  ['write_5fpnm_5fheader_616',['write_pnm_header',['../kylin__sane_8cpp.html#ac16114e3818f3e2420b247bc7d9ef6a6',1,'kylin_sane.cpp']]]
 ];

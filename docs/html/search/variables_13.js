@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['widget_1297',['widget',['../classsend__mail.html#a830cf3e7276b1d9c0cd83b90dffecc5e',1,'send_mail']]],
-  ['widgetindex_1298',['widgetindex',['../classscan__display.html#a3f33fc71037e44b69a700522c0a6635b',1,'scan_display']]],
-  ['width_1299',['width',['../structImage.html#ab8d12f635013c04159cd4d3d972bac88',1,'Image']]]
+  ['x_778',['x',['../structImage.html#a7f8f4530212c93856e611030e46c82af',1,'Image']]],
+  ['x1_779',['x1',['../classmy__label.html#acab6c383bfd497a5d7f1330a58f901a9',1,'my_label']]],
+  ['x2_780',['x2',['../classmy__label.html#a950385a00a86ecc22a92be2343280beb',1,'my_label']]]
 ];
