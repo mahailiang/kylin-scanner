@@ -1,9 +1,0 @@
-<map id="ScanSet::setKylinComboBox" name="ScanSet::setKylinComboBox">
-<area shape="rect" id="node1" title="setKylinComboBox 统一设置麒麟扫描组合框ComboBox" alt="" coords="5,132,197,159"/>
-<area shape="rect" id="node2" href="$classKylinSane.html#a6e4754e2e68e6f4ed9d8ad037a052be4" title=" " alt="" coords="284,5,441,32"/>
-<area shape="rect" id="node3" href="$classKylinSane.html#ab9e3ec5abe09666507fb695f8d62bb66" title=" " alt="" coords="261,56,465,83"/>
-<area shape="rect" id="node4" href="$classKylinSane.html#acca11046f65ad7d805137de05798c636" title=" " alt="" coords="245,107,480,133"/>
-<area shape="rect" id="node5" href="$classKylinSane.html#a64353071fe4bdccc5a627e1ccae89b10" title=" " alt="" coords="263,157,462,184"/>
-<area shape="rect" id="node6" href="$classKylinSane.html#a64336bb525a02e052016997f2c7ea274" title=" " alt="" coords="261,208,465,235"/>
-<area shape="rect" id="node7" href="$classScanSet.html#aeab60c0b5b3e9cbfa3b93c38d49fe10a" title="setKylinComboBoxAttributes 设置组合框属性" alt="" coords="267,259,459,301"/>
-</map>

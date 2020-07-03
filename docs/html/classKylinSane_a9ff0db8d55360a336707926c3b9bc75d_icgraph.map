@@ -1,9 +1,0 @@
-<map id="KylinSane::setKylinSaneType" name="KylinSane::setKylinSaneType">
-<area shape="rect" id="node1" title=" " alt="" coords="1089,46,1284,73"/>
-<area shape="rect" id="node2" href="$kylin__sane_8cpp.html#af28757ac800a7acc9c99e45075b9bc75" title="get_option_sources 获取扫描设备的资源情况 可以获取扫描设备的设备分类， 平板式(Flatbed)，其他为馈纸式" alt="" coords="907,21,1041,47"/>
-<area shape="rect" id="node5" href="$kylin__sane_8h.html#a6a9d84ad48c6968cdae6ad5d8fcf90d5" title="kylinNorScanOpen 扫描设备打开统一接口 提供给页面调用" alt="" coords="380,42,511,69"/>
-<area shape="rect" id="node3" href="$kylin__sane_8cpp.html#af892e52d691cd52602c4d2b5c72f6e02" title="get_option_value 统一获取扫描参数" alt="" coords="739,17,859,43"/>
-<area shape="rect" id="node4" href="$kylin__sane_8h.html#a19951099c109584e16272de674b88778" title="kylin_display_scan_parameters 连接设备后，显示扫描参数" alt="" coords="559,5,691,47"/>
-<area shape="rect" id="node6" href="$classKylinSane.html#aa23bba91b7d6e561b462fa1ebf2eb319" title="KylinSane::open_device 统一接口供页面调用，打开扫描设备" alt="" coords="169,42,332,69"/>
-<area shape="rect" id="node7" href="$classscanThread.html#af054be6deb010e3aa247a27e0924d579" title=" " alt="" coords="5,42,121,69"/>
-</map>

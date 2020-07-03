@@ -1,4 +1,0 @@
-<map id="my_sane_exit" name="my_sane_exit">
-<area shape="rect" id="node1" title="my_sane_exit 释放所有扫描资源" alt="" coords="244,5,347,32"/>
-<area shape="rect" id="node2" href="$kylin__sane_8cpp.html#ab89dca2ce021e2b0bf8eef44382f3faf" title="check_search_scan_devices 可以借此整理出未识别设备的情况" alt="" coords="5,5,196,32"/>
-</map>

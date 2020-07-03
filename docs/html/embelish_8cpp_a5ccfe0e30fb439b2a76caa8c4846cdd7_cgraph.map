@@ -1,4 +1,0 @@
-<map id="psHslCV" name="psHslCV">
-<area shape="rect" id="node1" title="psHslCV 图像色调/饱和度调节，就是让用户按照自己的感觉对图像的色调、饱和度二行亮度三个分量进行调整，以满足用户的需求 实现原理：将输入的RGB空间的图像转换到HSL颜色空间，根据用户输入的H、S..." alt="" coords="5,5,80,32"/>
-<area shape="rect" id="node2" href="$embelish_8cpp.html#a91bebcdbefe3830f0c5186b2dc025419" title=" " alt="" coords="128,5,205,32"/>
-</map>
