@@ -1,0 +1,9 @@
+<map id="advance" name="advance">
+<area shape="rect" id="node1" title=" " alt="" coords="961,13,1032,39"/>
+<area shape="rect" id="node2" href="$kylin__sane_8cpp.html#ad5b41ac303afbd6a47a7e13ce11c5204" title=" " alt="" coords="849,13,913,39"/>
+<area shape="rect" id="node3" href="$kylin__sane_8cpp.html#a1ed7aa2ebad2fbd9de26ce1c5de31e37" title=" " alt="" coords="731,13,801,39"/>
+<area shape="rect" id="node4" href="$kylin__sane_8h.html#a2b640f15a12501131e316d17025fb5ac" title="start_scan 开始扫描" alt="" coords="600,13,683,39"/>
+<area shape="rect" id="node5" href="$classKylinSane.html#a29d2f79464933411a02b433993cd85e2" title="KylinSane::start_scanning 统一接口供页面调用，开始扫描 根据扫描设置页面情况info字段进行设置扫描设备参数，并进行扫描" alt="" coords="377,13,552,39"/>
+<area shape="rect" id="node6" href="$classFuncBar.html#a3f8d9918c550d04f5260c1ad088d610d" title=" " alt="" coords="181,5,329,47"/>
+<area shape="rect" id="node7" href="$classFuncBar.html#a2741015b1797df5058ad22ce8b825818" title=" " alt="" coords="5,13,133,39"/>
+</map>

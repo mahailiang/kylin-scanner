@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kylin-scanner API: src/scan_display.cpp 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Kylin-scanner API
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle">
+<div class="title">scan_display.cpp 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="scan__display_8h_source.html">scan_display.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="func__bar_8h_source.html">func_bar.h</a>&quot;</code><br />
+<code>#include &lt;QDebug&gt;</code><br />
+<code>#include &lt;QToolTip&gt;</code><br />
+<code>#include &lt;QTextEdit&gt;</code><br />
+<code>#include &quot;<a class="el" href="kylin__sane_8h_source.html">kylin_sane.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+scan_display.cpp 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="scan__display_8cpp__incl.png" border="0" usemap="#src_2scan__display_8cpp" alt=""/></div>
+<map name="src_2scan__display_8cpp" id="src_2scan__display_8cpp">
+<area shape="rect" title=" " alt="" coords="2327,5,2470,32"/>
+<area shape="rect" href="scan__display_8h.html" title=" " alt="" coords="1981,80,2088,107"/>
+<area shape="rect" href="func__bar_8h.html" title=" " alt="" coords="1197,155,1280,181"/>
+<area shape="rect" title=" " alt="" coords="2291,304,2362,331"/>
+<area shape="rect" href="kylin__sane_8h.html" title=" " alt="" coords="651,229,746,256"/>
+<area shape="rect" title=" " alt="" coords="2801,80,2876,107"/>
+<area shape="rect" title=" " alt="" coords="2900,80,2980,107"/>
+<area shape="rect" title=" " alt="" coords="1137,304,1207,331"/>
+<area shape="rect" title=" " alt="" coords="1763,304,1837,331"/>
+<area shape="rect" title=" " alt="" coords="2127,229,2190,256"/>
+<area shape="rect" title=" " alt="" coords="1658,229,1761,256"/>
+<area shape="rect" title=" " alt="" coords="1533,155,1651,181"/>
+<area shape="rect" title=" " alt="" coords="2918,304,2986,331"/>
+<area shape="rect" title=" " alt="" coords="1405,229,1505,256"/>
+<area shape="rect" title=" " alt="" coords="3010,304,3086,331"/>
+<area shape="rect" title=" " alt="" coords="2483,304,2557,331"/>
+<area shape="rect" title=" " alt="" coords="1232,304,1299,331"/>
+<area shape="rect" title=" " alt="" coords="1676,155,1775,181"/>
+<area shape="rect" title=" " alt="" coords="1799,155,1868,181"/>
+<area shape="rect" title=" " alt="" coords="872,229,939,256"/>
+<area shape="rect" title=" " alt="" coords="1892,155,1964,181"/>
+<area shape="rect" title=" " alt="" coords="1989,155,2081,181"/>
+<area shape="rect" title=" " alt="" coords="2105,155,2241,181"/>
+<area shape="rect" title=" " alt="" coords="2266,155,2414,181"/>
+<area shape="rect" href="my__label_8h.html" title=" " alt="" coords="2489,155,2575,181"/>
+<area shape="rect" href="mark__dialog_8h.html" title=" " alt="" coords="1406,155,1509,181"/>
+<area shape="rect" href="embelish_8h.html" title=" " alt="" coords="2620,229,2705,256"/>
+<area shape="rect" href="rectify_8h.html" title=" " alt="" coords="2781,229,2848,256"/>
+<area shape="rect" title=" " alt="" coords="2266,229,2371,256"/>
+<area shape="rect" title=" " alt="" coords="2396,229,2495,256"/>
+<area shape="rect" title=" " alt="" coords="2033,229,2103,256"/>
+<area shape="rect" title=" " alt="" coords="1837,229,1915,256"/>
+<area shape="rect" title=" " alt="" coords="1940,229,2009,256"/>
+<area shape="rect" title=" " alt="" coords="1529,229,1633,256"/>
+<area shape="rect" title=" " alt="" coords="1014,229,1109,256"/>
+<area shape="rect" title=" " alt="" coords="1133,229,1227,256"/>
+<area shape="rect" title=" " alt="" coords="5,304,75,331"/>
+<area shape="rect" title=" " alt="" coords="99,304,160,331"/>
+<area shape="rect" title=" " alt="" coords="185,304,250,331"/>
+<area shape="rect" title=" " alt="" coords="275,304,339,331"/>
+<area shape="rect" title=" " alt="" coords="363,304,429,331"/>
+<area shape="rect" title=" " alt="" coords="453,304,521,331"/>
+<area shape="rect" title=" " alt="" coords="545,304,636,331"/>
+<area shape="rect" title=" " alt="" coords="660,304,740,331"/>
+<area shape="rect" title=" " alt="" coords="765,304,851,331"/>
+<area shape="rect" title=" " alt="" coords="876,304,969,331"/>
+<area shape="rect" title=" " alt="" coords="994,304,1113,331"/>
+<area shape="rect" title=" " alt="" coords="2387,304,2459,331"/>
+<area shape="rect" title=" " alt="" coords="2581,304,2728,331"/>
+<area shape="rect" title=" " alt="" coords="2752,304,2893,331"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:a5ad40502dd7718974a9de90dc1940533"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scan__display_8cpp.html#a5ad40502dd7718974a9de90dc1940533">outText</a></td></tr>
+<tr class="separator:a5ad40502dd7718974a9de90dc1940533"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">变量说明</h2>
+<a id="a5ad40502dd7718974a9de90dc1940533"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ad40502dd7718974a9de90dc1940533">&#9670;&nbsp;</a></span>outText</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString outText</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者 &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

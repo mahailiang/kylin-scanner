@@ -1,0 +1,7 @@
+<map id="ScanSet::setFontSize" name="ScanSet::setFontSize">
+<area shape="rect" id="node1" title=" " alt="" coords="559,31,709,57"/>
+<area shape="rect" id="node2" href="$classScanSet.html#af2d8053b2b2dbaa3b10442fac427e7a1" title="setKylinLable 统一设置麒麟扫描标签Label" alt="" coords="352,31,511,57"/>
+<area shape="rect" id="node3" href="$classWidget.html#aea825217028d9e17635ed10be11bd88f" title="Widget::scan_result 处理初始化设备的控件可用情况 当ret为true时，表示在处理线程中连接上了设备，此时扫描设置等按钮可用， 否则，按钮不可用。" alt="" coords="165,5,304,32"/>
+<area shape="rect" id="node5" href="$classScanSet.html#a78861e41777ec17c0967d65730d9804f" title=" " alt="" coords="169,56,300,83"/>
+<area shape="rect" id="node4" href="$classWidget.html#a29531c7f141e461322981b3b579d4590" title=" " alt="" coords="5,5,117,32"/>
+</map>

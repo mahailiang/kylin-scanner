@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kylin-scanner API: src/scan_display.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Kylin-scanner API
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">scan_display.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="scan__display_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">* Copyright (C) 2020 KYLIN SOFTWARE Information Technology Co., Ltd.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">* This program is free software; you can redistribute it and/or modify</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">* it under the terms of the GNU General Public License as published by</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">* the Free Software Foundation; either version 3, or (at your option)</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">* any later version.</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">* This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">* but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">* GNU General Public License for more details.</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">* You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">* along with this program; if not, see &lt;http://www.gnu.org/licenses/&amp;gt;.</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#ifndef SCAN_DISPLAY_H</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#define SCAN_DISPLAY_H</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;QWidget&gt;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;QLabel&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;QVBoxLayout&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;QStackedLayout&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;QImage&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;QPushButton&gt;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;QPixmap&gt;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;QPainter&gt;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;QString&gt;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;QInputDialog&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;qmath.h&gt;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;QStack&gt;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;QThread&gt;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;QScrollArea&gt;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;tesseract/baseapi.h&gt;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &lt;leptonica/allheaders.h&gt;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="my__label_8h.html">my_label.h</a>&quot;</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mark__dialog_8h.html">mark_dialog.h</a>&quot;</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="func__bar_8h.html">func_bar.h</a>&quot;</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#include &lt;QWidget&gt;</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="rectify_8h.html">rectify.h</a>&quot;</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="embelish_8h.html">embelish.h</a>&quot;</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classmyThread.html">   45</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmyThread.html">myThread</a> : <span class="keyword">public</span> QThread</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classmyThread.html#a7a04afa96aeef4539c0ed062b0a067f8">run</a>() Q_DECL_OVERRIDE;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;signals:</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classmyThread.html#aa5b68456d4d1dc2b36838532e9dbfeeb">orcFinished</a>();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;};</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classbeautyThread.html">   54</a></span>&#160;<span class="keyword">class </span><a class="code" href="classbeautyThread.html">beautyThread</a> : <span class="keyword">public</span> QThread</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classbeautyThread.html#a9a23e289fee36b87303513160fb08fab">run</a>() Q_DECL_OVERRIDE;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;signals:</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classbeautyThread.html#a4e761e46dc7c72831a523c5462764612">beautyFinished</a>();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;};</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classedit__bar.html">   65</a></span>&#160;<span class="keyword">class </span><a class="code" href="classedit__bar.html">edit_bar</a>  :   <span class="keyword">public</span> QWidget</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;{</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="classedit__bar.html#a437bc233b0747273bad8205dccc74c23">edit_bar</a>(QWidget *parent = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">//private:</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="classedit__bar.html#a0beac3397aafb434152c4bae5c63268a">   71</a></span>&#160;    QPushButton *<a class="code" href="classedit__bar.html#a0beac3397aafb434152c4bae5c63268a">btnTailor</a>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classedit__bar.html#ab5b70ef09ac942e208ce1a5e3ddc10c1">   72</a></span>&#160;    QPushButton *<a class="code" href="classedit__bar.html#ab5b70ef09ac942e208ce1a5e3ddc10c1">btnRotate</a>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="classedit__bar.html#a235b88885f53db7274f8cbea5d1ac4e1">   73</a></span>&#160;    QPushButton *<a class="code" href="classedit__bar.html#a235b88885f53db7274f8cbea5d1ac4e1">btnSymmetry</a>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classedit__bar.html#ac22d7d0a42332896ecefe9bc0c9fb0b2">   74</a></span>&#160;    QPushButton *<a class="code" href="classedit__bar.html#ac22d7d0a42332896ecefe9bc0c9fb0b2">btnWatermark</a>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classedit__bar.html#ac7605dc65dd0523867d4f49f0f9af15c">   75</a></span>&#160;    QVBoxLayout *<a class="code" href="classedit__bar.html#ac7605dc65dd0523867d4f49f0f9af15c">vBoxEditBar</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classscan__display.html">   78</a></span>&#160;<span class="keyword">class </span><a class="code" href="classscan__display.html">scan_display</a>  : <span class="keyword">public</span> QWidget</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="classscan__display.html#a2edd0339dd4edd809b7a4b289bfd1b84">scan_display</a>(QWidget *parent = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classscan__display.html#af291520162a87803f7080ef1f80a5391">keyPressEvent</a>(QKeyEvent *e);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    QImage *<a class="code" href="classscan__display.html#a4a3e443939690e4df2a329c2c911349a">imageSave</a>(QString fileName);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classscan__display.html#a849460915bb81a7999a7e57838b99018">set_no_device</a>();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classscan__display.html#afb082f85c896e5ec2b14d20e3c1d8614">set_pixmap</a>(QImage <a class="code" href="classscan__display.html#a11838e8424dfbc9b790c1ba38289c8aa">img</a>, QLabel *lab);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classscan__display.html#ae170a56840b2bf95c7aabe424fcd3fb3">   88</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classscan__display.html#ae170a56840b2bf95c7aabe424fcd3fb3">flagBeautify</a> = 0; <span class="comment">//一键美化标志</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="classscan__display.html#a726dc7f42d6ca86b717d85f805d77126">   89</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classscan__display.html#a726dc7f42d6ca86b717d85f805d77126">flagRectify</a> = 0; <span class="comment">//智能纠偏标志</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="classscan__display.html#a736e81c1876c11b6bd647565d8e05819">   90</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classscan__display.html#a736e81c1876c11b6bd647565d8e05819">flagOrc</a> = 0; <span class="comment">//文字识别标志</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="classscan__display.html#a617415d7635ce1be7baa880a5a6e3133">   91</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classscan__display.html#a617415d7635ce1be7baa880a5a6e3133">index</a> = 0;</div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="classscan__display.html#ae6068eba9744efd01e180d73647d11f1">   92</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classscan__display.html#ae6068eba9744efd01e180d73647d11f1">n</a> = 0;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="classscan__display.html#ab17f7ad16efd48135c79e5039ff0845e">   95</a></span>&#160;    QLabel *<a class="code" href="classscan__display.html#ab17f7ad16efd48135c79e5039ff0845e">labDisplay1</a>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classscan__display.html#a7d63ef669a141898809729c755407c57">   96</a></span>&#160;    QLabel *<a class="code" href="classscan__display.html#a7d63ef669a141898809729c755407c57">labDisplay2</a>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="classscan__display.html#a62489a07dfa7e446fb1c956f17b10ceb">   97</a></span>&#160;    QLabel *<a class="code" href="classscan__display.html#a62489a07dfa7e446fb1c956f17b10ceb">labDisplay3</a>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="classscan__display.html#a502381fb1fda8b8a6190f488bb4d701d">   98</a></span>&#160;    QLabel *<a class="code" href="classscan__display.html#a502381fb1fda8b8a6190f488bb4d701d">labDisplay4</a>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="classscan__display.html#a128010e0a992478bd2f35abb0ae52289">   99</a></span>&#160;    QLabel *<a class="code" href="classscan__display.html#a128010e0a992478bd2f35abb0ae52289">labDisplay5</a>;</div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="classscan__display.html#a6edd4d1fdaca0ff1b256c4641affe9ec">  100</a></span>&#160;    QLabel *<a class="code" href="classscan__display.html#a6edd4d1fdaca0ff1b256c4641affe9ec">labDisplay6</a>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="classscan__display.html#ae35c7671bb60083f886de6c5dc03de5a">  101</a></span>&#160;    QLabel *<a class="code" href="classscan__display.html#ae35c7671bb60083f886de6c5dc03de5a">labDisplay7</a>;</div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classscan__display.html#a61abbb2e87e3ace425f37c85f7eac005">  102</a></span>&#160;    <a class="code" href="classmy__label.html">my_label</a> *<a class="code" href="classscan__display.html#a61abbb2e87e3ace425f37c85f7eac005">labDisplay8</a>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="classscan__display.html#a87c98fb51792849e64d25430dd21eb80">  103</a></span>&#160;    QLabel *<a class="code" href="classscan__display.html#a87c98fb51792849e64d25430dd21eb80">labDisplay9</a>;</div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="classscan__display.html#adb7f7b40620daf2126abfb5ce27e385c">  104</a></span>&#160;    QLabel *<a class="code" href="classscan__display.html#adb7f7b40620daf2126abfb5ce27e385c">labDisplay10</a>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="classscan__display.html#ab85200a074cf3bff1c33c27d3b0cd30b">  105</a></span>&#160;    QPushButton *<a class="code" href="classscan__display.html#ab85200a074cf3bff1c33c27d3b0cd30b">btnTool</a>;</div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="classscan__display.html#a0e5a6a40d3ca727f5e41008c7da80851">  106</a></span>&#160;    QPushButton *<a class="code" href="classscan__display.html#a0e5a6a40d3ca727f5e41008c7da80851">btnTool1</a>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="classscan__display.html#a9a2716d798ec0d35d69d0d8a25b419f9">  107</a></span>&#160;    QPushButton *<a class="code" href="classscan__display.html#a9a2716d798ec0d35d69d0d8a25b419f9">btnTool2</a>;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="classscan__display.html#a11838e8424dfbc9b790c1ba38289c8aa">  109</a></span>&#160;    QImage *<a class="code" href="classscan__display.html#a11838e8424dfbc9b790c1ba38289c8aa">img</a>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="classscan__display.html#a661ca1c04f60e2855b6a4943e5a36f76">  110</a></span>&#160;    QImage *<a class="code" href="classscan__display.html#a661ca1c04f60e2855b6a4943e5a36f76">img1</a>;</div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="classscan__display.html#a46547aa562d18e1374b2c77cc33303bc">  111</a></span>&#160;    QImage *<a class="code" href="classscan__display.html#a46547aa562d18e1374b2c77cc33303bc">img2</a>;</div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="classscan__display.html#a9450955190b512f18bb53324cb6e41c2">  112</a></span>&#160;    QImage *<a class="code" href="classscan__display.html#a9450955190b512f18bb53324cb6e41c2">img3</a>;</div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="classscan__display.html#af17a7e3483906d1b489d402ce233eaf9">  113</a></span>&#160;    QImage *<a class="code" href="classscan__display.html#af17a7e3483906d1b489d402ce233eaf9">img4</a>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="classscan__display.html#afcce9634b73bb2cc33e95a3d33b4d4ea">  114</a></span>&#160;    QImage *<a class="code" href="classscan__display.html#afcce9634b73bb2cc33e95a3d33b4d4ea">img5</a>;</div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="classscan__display.html#a3a12f0a2c8558a4e7350ccf7ebdd6f46">  115</a></span>&#160;    QImage *<a class="code" href="classscan__display.html#a3a12f0a2c8558a4e7350ccf7ebdd6f46">img6</a>;</div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="classscan__display.html#afebca92c470e751158b118e3d3837b19">  116</a></span>&#160;    QImage *<a class="code" href="classscan__display.html#afebca92c470e751158b118e3d3837b19">img7</a>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="classscan__display.html#a7b1f720adad158319e6e0465a66f722b">  117</a></span>&#160;    QImage *<a class="code" href="classscan__display.html#a7b1f720adad158319e6e0465a66f722b">imgBeautify</a>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="classscan__display.html#a55800b1a8d9fb53234396c4182e501d3">  118</a></span>&#160;    QImage *<a class="code" href="classscan__display.html#a55800b1a8d9fb53234396c4182e501d3">imgRectify</a>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="classscan__display.html#afb931e4e5ba1b39d8c4264f21ed26eaf">  119</a></span>&#160;    QStack&lt;QImage&gt; <a class="code" href="classscan__display.html#afb931e4e5ba1b39d8c4264f21ed26eaf">stack</a>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="classscan__display.html#a3b3ba594683286dcc4b92de5ce17bd91">  120</a></span>&#160;    QVBoxLayout *<a class="code" href="classscan__display.html#a3b3ba594683286dcc4b92de5ce17bd91">vBoxScanSet</a>;</div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="classscan__display.html#a0b60c15ca6a5b6ffe17afd3f009960eb">  121</a></span>&#160;    QVBoxLayout *<a class="code" href="classscan__display.html#a0b60c15ca6a5b6ffe17afd3f009960eb">vBoxScanSet1</a>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="classscan__display.html#a861fba380db2b50147ab0d6ec279d773">  122</a></span>&#160;    QVBoxLayout *<a class="code" href="classscan__display.html#a861fba380db2b50147ab0d6ec279d773">vBoxScanSet2</a>;</div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="classscan__display.html#a393ae785da687c5e79fce3c1fa16bf2d">  123</a></span>&#160;    QVBoxLayout *<a class="code" href="classscan__display.html#a393ae785da687c5e79fce3c1fa16bf2d">vBoxScanSet3</a>;</div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="classscan__display.html#a3d86f7eb94585ea35b9b876c27a92660">  124</a></span>&#160;    QHBoxLayout *<a class="code" href="classscan__display.html#a3d86f7eb94585ea35b9b876c27a92660">hBoxScanSet</a>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="classscan__display.html#a67cde27c57588c50732583983f32e3f6">  125</a></span>&#160;    QHBoxLayout *<a class="code" href="classscan__display.html#a67cde27c57588c50732583983f32e3f6">hBoxScanSet1</a>;</div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="classscan__display.html#a2456a218f22c38cce93be69cf7ed1d67">  126</a></span>&#160;    QHBoxLayout *<a class="code" href="classscan__display.html#a2456a218f22c38cce93be69cf7ed1d67">hBoxScanSet2</a>;</div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="classscan__display.html#a1b62593ffa6dbffd305e8f47df17a64e">  127</a></span>&#160;    QHBoxLayout *<a class="code" href="classscan__display.html#a1b62593ffa6dbffd305e8f47df17a64e">hBoxScanSet3</a>;</div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="classscan__display.html#a734f729c41644ad7e0e2d10eb16d3c9a">  128</a></span>&#160;    QWidget *<a class="code" href="classscan__display.html#a734f729c41644ad7e0e2d10eb16d3c9a">myWidget</a>;</div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="classscan__display.html#aed8da92beac6283f045a6878c245c9eb">  129</a></span>&#160;    QWidget *<a class="code" href="classscan__display.html#aed8da92beac6283f045a6878c245c9eb">myWidget1</a>;</div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="classscan__display.html#a81259cbf414f57021f429a80b8bd9fea">  130</a></span>&#160;    QWidget *<a class="code" href="classscan__display.html#a81259cbf414f57021f429a80b8bd9fea">myWidget2</a>;</div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="classscan__display.html#a5f9824900789c32b10b53f1e92c76a03">  131</a></span>&#160;    QWidget *<a class="code" href="classscan__display.html#a5f9824900789c32b10b53f1e92c76a03">myWidget3</a>;</div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="classscan__display.html#aa91dd7e03cf5e00cfff6e199678ffb5e">  132</a></span>&#160;    QWidget *<a class="code" href="classscan__display.html#aa91dd7e03cf5e00cfff6e199678ffb5e">myWidget4</a>;</div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="classscan__display.html#a3931a1d178c1e729eab0adf27e783ab8">  133</a></span>&#160;    QStackedLayout *<a class="code" href="classscan__display.html#a3931a1d178c1e729eab0adf27e783ab8">vStackedLayout</a>;</div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="classscan__display.html#acbbef84bb343cd1d11b69b43aa2cc0dd">  134</a></span>&#160;    <a class="code" href="classedit__bar.html">edit_bar</a> *<a class="code" href="classscan__display.html#acbbef84bb343cd1d11b69b43aa2cc0dd">editlayout</a>;</div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="classscan__display.html#a3166eeace84cdfb96ca6a4764899b978">  135</a></span>&#160;    <a class="code" href="classedit__bar.html">edit_bar</a> *<a class="code" href="classscan__display.html#a3166eeace84cdfb96ca6a4764899b978">editlayout1</a>;</div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="classscan__display.html#ac4bec0d0e520e17f4bdda82a284faf6e">  136</a></span>&#160;    <a class="code" href="classedit__bar.html">edit_bar</a> *<a class="code" href="classscan__display.html#ac4bec0d0e520e17f4bdda82a284faf6e">editlayout2</a>;</div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="classscan__display.html#abf9dc43d434dae97ad2c50dfc4da1143">  137</a></span>&#160;    <a class="code" href="classmyThread.html">myThread</a> <a class="code" href="classscan__display.html#abf9dc43d434dae97ad2c50dfc4da1143">thread</a>;</div>
+<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="classscan__display.html#a90d087488cc281e97e2df6bb84548730">  138</a></span>&#160;    QScrollArea *<a class="code" href="classscan__display.html#a90d087488cc281e97e2df6bb84548730">scrollArea</a>;</div>
+<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="classscan__display.html#a3f33fc71037e44b69a700522c0a6635b">  139</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classscan__display.html#a3f33fc71037e44b69a700522c0a6635b">widgetindex</a>;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="keyword">public</span> slots:</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classscan__display.html#a322bc7a2d1107271fdad70b9d01c87ae">orc</a>();</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classscan__display.html#aa63d3523ef02797d69ae3afa5366f272">scan</a>();</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classscan__display.html#a0ddd06f46687802a1a9b01e650537d8b">rectify</a>();</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classscan__display.html#a351e1bfbc821c6d2e8d0289379e0b5ed">beautify</a>();</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="keyword">private</span> slots:</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classscan__display.html#a548d2da6db5bd9b5cdf28a80f7a38c5f">switchPage</a>();</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classscan__display.html#a0c6cfd1addeb55aa43ae1e81224fdc22">switchPage1</a>();</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classscan__display.html#a30d7da15bb7866d7a5add6e1de1554d2">rotating</a>();</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classscan__display.html#afaf8c884d4f261c4b471f5466902a9bc">symmetry</a>();</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classscan__display.html#a1ae046cb17e8ca2e383f4677f226eabd">addmark</a>();</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classscan__display.html#acfccc61945b3e7468cf2ca7a20d590a5">orcText</a>();</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;};</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="preprocessor">#endif // SCAN_DISPLAY_H</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclassscan__display_html_a62489a07dfa7e446fb1c956f17b10ceb"><div class="ttname"><a href="classscan__display.html#a62489a07dfa7e446fb1c956f17b10ceb">scan_display::labDisplay3</a></div><div class="ttdeci">QLabel * labDisplay3</div><div class="ttdef"><b>Definition:</b> scan_display.h:97</div></div>
+<div class="ttc" id="aclassbeautyThread_html"><div class="ttname"><a href="classbeautyThread.html">beautyThread</a></div><div class="ttdef"><b>Definition:</b> scan_display.h:54</div></div>
+<div class="ttc" id="aclassscan__display_html_a548d2da6db5bd9b5cdf28a80f7a38c5f"><div class="ttname"><a href="classscan__display.html#a548d2da6db5bd9b5cdf28a80f7a38c5f">scan_display::switchPage</a></div><div class="ttdeci">void switchPage()</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:541</div></div>
+<div class="ttc" id="aclassmark__dialog_html_a6543726047c228f390b74652ae46eca2"><div class="ttname"><a href="classmark__dialog.html#a6543726047c228f390b74652ae46eca2">mark_dialog::get_lineedit</a></div><div class="ttdeci">QString get_lineedit()</div><div class="ttdef"><b>Definition:</b> mark_dialog.cpp:113</div></div>
+<div class="ttc" id="aclassscan__display_html_adb7f7b40620daf2126abfb5ce27e385c"><div class="ttname"><a href="classscan__display.html#adb7f7b40620daf2126abfb5ce27e385c">scan_display::labDisplay10</a></div><div class="ttdeci">QLabel * labDisplay10</div><div class="ttdef"><b>Definition:</b> scan_display.h:104</div></div>
+<div class="ttc" id="aclassedit__bar_html_ac22d7d0a42332896ecefe9bc0c9fb0b2"><div class="ttname"><a href="classedit__bar.html#ac22d7d0a42332896ecefe9bc0c9fb0b2">edit_bar::btnWatermark</a></div><div class="ttdeci">QPushButton * btnWatermark</div><div class="ttdef"><b>Definition:</b> scan_display.h:74</div></div>
+<div class="ttc" id="aclassscan__display_html_ae6068eba9744efd01e180d73647d11f1"><div class="ttname"><a href="classscan__display.html#ae6068eba9744efd01e180d73647d11f1">scan_display::n</a></div><div class="ttdeci">int n</div><div class="ttdef"><b>Definition:</b> scan_display.h:92</div></div>
+<div class="ttc" id="aclassscan__display_html_a11838e8424dfbc9b790c1ba38289c8aa"><div class="ttname"><a href="classscan__display.html#a11838e8424dfbc9b790c1ba38289c8aa">scan_display::img</a></div><div class="ttdeci">QImage * img</div><div class="ttdef"><b>Definition:</b> scan_display.h:109</div></div>
+<div class="ttc" id="aclassedit__bar_html_ab5b70ef09ac942e208ce1a5e3ddc10c1"><div class="ttname"><a href="classedit__bar.html#ab5b70ef09ac942e208ce1a5e3ddc10c1">edit_bar::btnRotate</a></div><div class="ttdeci">QPushButton * btnRotate</div><div class="ttdef"><b>Definition:</b> scan_display.h:72</div></div>
+<div class="ttc" id="aclassscan__display_html_a2edd0339dd4edd809b7a4b289bfd1b84"><div class="ttname"><a href="classscan__display.html#a2edd0339dd4edd809b7a4b289bfd1b84">scan_display::scan_display</a></div><div class="ttdeci">scan_display(QWidget *parent=nullptr)</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:25</div></div>
+<div class="ttc" id="aclassscan__display_html_a617415d7635ce1be7baa880a5a6e3133"><div class="ttname"><a href="classscan__display.html#a617415d7635ce1be7baa880a5a6e3133">scan_display::index</a></div><div class="ttdeci">int index</div><div class="ttdef"><b>Definition:</b> scan_display.h:91</div></div>
+<div class="ttc" id="aclassmyThread_html_aa5b68456d4d1dc2b36838532e9dbfeeb"><div class="ttname"><a href="classmyThread.html#aa5b68456d4d1dc2b36838532e9dbfeeb">myThread::orcFinished</a></div><div class="ttdeci">void orcFinished()</div></div>
+<div class="ttc" id="aclassscan__display_html_acfccc61945b3e7468cf2ca7a20d590a5"><div class="ttname"><a href="classscan__display.html#acfccc61945b3e7468cf2ca7a20d590a5">scan_display::orcText</a></div><div class="ttdeci">void orcText()</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:326</div></div>
+<div class="ttc" id="aclassscan__display_html_a3f33fc71037e44b69a700522c0a6635b"><div class="ttname"><a href="classscan__display.html#a3f33fc71037e44b69a700522c0a6635b">scan_display::widgetindex</a></div><div class="ttdeci">int widgetindex</div><div class="ttdef"><b>Definition:</b> scan_display.h:139</div></div>
+<div class="ttc" id="ascan__display_8cpp_html_a5ad40502dd7718974a9de90dc1940533"><div class="ttname"><a href="scan__display_8cpp.html#a5ad40502dd7718974a9de90dc1940533">outText</a></div><div class="ttdeci">QString outText</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:24</div></div>
+<div class="ttc" id="aclassscan__display_html_a7b1f720adad158319e6e0465a66f722b"><div class="ttname"><a href="classscan__display.html#a7b1f720adad158319e6e0465a66f722b">scan_display::imgBeautify</a></div><div class="ttdeci">QImage * imgBeautify</div><div class="ttdef"><b>Definition:</b> scan_display.h:117</div></div>
+<div class="ttc" id="aclassscan__display_html_a9450955190b512f18bb53324cb6e41c2"><div class="ttname"><a href="classscan__display.html#a9450955190b512f18bb53324cb6e41c2">scan_display::img3</a></div><div class="ttdeci">QImage * img3</div><div class="ttdef"><b>Definition:</b> scan_display.h:112</div></div>
+<div class="ttc" id="aclassscan__display_html_a0b60c15ca6a5b6ffe17afd3f009960eb"><div class="ttname"><a href="classscan__display.html#a0b60c15ca6a5b6ffe17afd3f009960eb">scan_display::vBoxScanSet1</a></div><div class="ttdeci">QVBoxLayout * vBoxScanSet1</div><div class="ttdef"><b>Definition:</b> scan_display.h:121</div></div>
+<div class="ttc" id="aclassscan__display_html_a55800b1a8d9fb53234396c4182e501d3"><div class="ttname"><a href="classscan__display.html#a55800b1a8d9fb53234396c4182e501d3">scan_display::imgRectify</a></div><div class="ttdeci">QImage * imgRectify</div><div class="ttdef"><b>Definition:</b> scan_display.h:118</div></div>
+<div class="ttc" id="aclassscan__display_html_a61abbb2e87e3ace425f37c85f7eac005"><div class="ttname"><a href="classscan__display.html#a61abbb2e87e3ace425f37c85f7eac005">scan_display::labDisplay8</a></div><div class="ttdeci">my_label * labDisplay8</div><div class="ttdef"><b>Definition:</b> scan_display.h:102</div></div>
+<div class="ttc" id="aclassscan__display_html_ae35c7671bb60083f886de6c5dc03de5a"><div class="ttname"><a href="classscan__display.html#ae35c7671bb60083f886de6c5dc03de5a">scan_display::labDisplay7</a></div><div class="ttdeci">QLabel * labDisplay7</div><div class="ttdef"><b>Definition:</b> scan_display.h:101</div></div>
+<div class="ttc" id="aclassscan__display_html_ac4bec0d0e520e17f4bdda82a284faf6e"><div class="ttname"><a href="classscan__display.html#ac4bec0d0e520e17f4bdda82a284faf6e">scan_display::editlayout2</a></div><div class="ttdeci">edit_bar * editlayout2</div><div class="ttdef"><b>Definition:</b> scan_display.h:136</div></div>
+<div class="ttc" id="aclassscan__display_html_a87c98fb51792849e64d25430dd21eb80"><div class="ttname"><a href="classscan__display.html#a87c98fb51792849e64d25430dd21eb80">scan_display::labDisplay9</a></div><div class="ttdeci">QLabel * labDisplay9</div><div class="ttdef"><b>Definition:</b> scan_display.h:103</div></div>
+<div class="ttc" id="amy__label_8h_html"><div class="ttname"><a href="my__label_8h.html">my_label.h</a></div></div>
+<div class="ttc" id="aclassscan__display_html_a30d7da15bb7866d7a5add6e1de1554d2"><div class="ttname"><a href="classscan__display.html#a30d7da15bb7866d7a5add6e1de1554d2">scan_display::rotating</a></div><div class="ttdeci">void rotating()</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:256</div></div>
+<div class="ttc" id="aclassscan__display_html_a4a3e443939690e4df2a329c2c911349a"><div class="ttname"><a href="classscan__display.html#a4a3e443939690e4df2a329c2c911349a">scan_display::imageSave</a></div><div class="ttdeci">QImage * imageSave(QString fileName)</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:216</div></div>
+<div class="ttc" id="aclassscan__display_html_a726dc7f42d6ca86b717d85f805d77126"><div class="ttname"><a href="classscan__display.html#a726dc7f42d6ca86b717d85f805d77126">scan_display::flagRectify</a></div><div class="ttdeci">int flagRectify</div><div class="ttdef"><b>Definition:</b> scan_display.h:89</div></div>
+<div class="ttc" id="aclassedit__bar_html_ac7605dc65dd0523867d4f49f0f9af15c"><div class="ttname"><a href="classedit__bar.html#ac7605dc65dd0523867d4f49f0f9af15c">edit_bar::vBoxEditBar</a></div><div class="ttdeci">QVBoxLayout * vBoxEditBar</div><div class="ttdef"><b>Definition:</b> scan_display.h:75</div></div>
+<div class="ttc" id="aclassscan__display_html_afb931e4e5ba1b39d8c4264f21ed26eaf"><div class="ttname"><a href="classscan__display.html#afb931e4e5ba1b39d8c4264f21ed26eaf">scan_display::stack</a></div><div class="ttdeci">QStack&lt; QImage &gt; stack</div><div class="ttdef"><b>Definition:</b> scan_display.h:119</div></div>
+<div class="ttc" id="aclassscan__display_html_a0e5a6a40d3ca727f5e41008c7da80851"><div class="ttname"><a href="classscan__display.html#a0e5a6a40d3ca727f5e41008c7da80851">scan_display::btnTool1</a></div><div class="ttdeci">QPushButton * btnTool1</div><div class="ttdef"><b>Definition:</b> scan_display.h:106</div></div>
+<div class="ttc" id="aclassmyThread_html_a7a04afa96aeef4539c0ed062b0a067f8"><div class="ttname"><a href="classmyThread.html#a7a04afa96aeef4539c0ed062b0a067f8">myThread::run</a></div><div class="ttdeci">void run() Q_DECL_OVERRIDE</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:642</div></div>
+<div class="ttc" id="aclassscan__display_html_a0ddd06f46687802a1a9b01e650537d8b"><div class="ttname"><a href="classscan__display.html#a0ddd06f46687802a1a9b01e650537d8b">scan_display::rectify</a></div><div class="ttdeci">void rectify()</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:447</div></div>
+<div class="ttc" id="aclassscan__display_html_a128010e0a992478bd2f35abb0ae52289"><div class="ttname"><a href="classscan__display.html#a128010e0a992478bd2f35abb0ae52289">scan_display::labDisplay5</a></div><div class="ttdeci">QLabel * labDisplay5</div><div class="ttdef"><b>Definition:</b> scan_display.h:99</div></div>
+<div class="ttc" id="aclassedit__bar_html_a0beac3397aafb434152c4bae5c63268a"><div class="ttname"><a href="classedit__bar.html#a0beac3397aafb434152c4bae5c63268a">edit_bar::btnTailor</a></div><div class="ttdeci">QPushButton * btnTailor</div><div class="ttdef"><b>Definition:</b> scan_display.h:71</div></div>
+<div class="ttc" id="aclassscan__display_html_aa91dd7e03cf5e00cfff6e199678ffb5e"><div class="ttname"><a href="classscan__display.html#aa91dd7e03cf5e00cfff6e199678ffb5e">scan_display::myWidget4</a></div><div class="ttdeci">QWidget * myWidget4</div><div class="ttdef"><b>Definition:</b> scan_display.h:132</div></div>
+<div class="ttc" id="aclassscan__display_html_a661ca1c04f60e2855b6a4943e5a36f76"><div class="ttname"><a href="classscan__display.html#a661ca1c04f60e2855b6a4943e5a36f76">scan_display::img1</a></div><div class="ttdeci">QImage * img1</div><div class="ttdef"><b>Definition:</b> scan_display.h:110</div></div>
+<div class="ttc" id="aclassbeautyThread_html_a9a23e289fee36b87303513160fb08fab"><div class="ttname"><a href="classbeautyThread.html#a9a23e289fee36b87303513160fb08fab">beautyThread::run</a></div><div class="ttdeci">void run() Q_DECL_OVERRIDE</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:674</div></div>
+<div class="ttc" id="aclassscan__display_html_afaf8c884d4f261c4b471f5466902a9bc"><div class="ttname"><a href="classscan__display.html#afaf8c884d4f261c4b471f5466902a9bc">scan_display::symmetry</a></div><div class="ttdeci">void symmetry()</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:270</div></div>
+<div class="ttc" id="aclassscan__display_html_a90d087488cc281e97e2df6bb84548730"><div class="ttname"><a href="classscan__display.html#a90d087488cc281e97e2df6bb84548730">scan_display::scrollArea</a></div><div class="ttdeci">QScrollArea * scrollArea</div><div class="ttdef"><b>Definition:</b> scan_display.h:138</div></div>
+<div class="ttc" id="aclassscan__display_html_a3166eeace84cdfb96ca6a4764899b978"><div class="ttname"><a href="classscan__display.html#a3166eeace84cdfb96ca6a4764899b978">scan_display::editlayout1</a></div><div class="ttdeci">edit_bar * editlayout1</div><div class="ttdef"><b>Definition:</b> scan_display.h:135</div></div>
+<div class="ttc" id="aclassscan__display_html_a322bc7a2d1107271fdad70b9d01c87ae"><div class="ttname"><a href="classscan__display.html#a322bc7a2d1107271fdad70b9d01c87ae">scan_display::orc</a></div><div class="ttdeci">void orc()</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:332</div></div>
+<div class="ttc" id="aclassscan__display_html_ab85200a074cf3bff1c33c27d3b0cd30b"><div class="ttname"><a href="classscan__display.html#ab85200a074cf3bff1c33c27d3b0cd30b">scan_display::btnTool</a></div><div class="ttdeci">QPushButton * btnTool</div><div class="ttdef"><b>Definition:</b> scan_display.h:105</div></div>
+<div class="ttc" id="aclassscan__display_html_ab17f7ad16efd48135c79e5039ff0845e"><div class="ttname"><a href="classscan__display.html#ab17f7ad16efd48135c79e5039ff0845e">scan_display::labDisplay1</a></div><div class="ttdeci">QLabel * labDisplay1</div><div class="ttdef"><b>Definition:</b> scan_display.h:95</div></div>
+<div class="ttc" id="aclassscan__display_html_aed8da92beac6283f045a6878c245c9eb"><div class="ttname"><a href="classscan__display.html#aed8da92beac6283f045a6878c245c9eb">scan_display::myWidget1</a></div><div class="ttdeci">QWidget * myWidget1</div><div class="ttdef"><b>Definition:</b> scan_display.h:129</div></div>
+<div class="ttc" id="arectify_8cpp_html_a1b9e973142eea368912cde667ce406af"><div class="ttname"><a href="rectify_8cpp.html#a1b9e973142eea368912cde667ce406af">ImageRectify</a></div><div class="ttdeci">int ImageRectify(char *pInFileName)</div><div class="ttdef"><b>Definition:</b> rectify.cpp:124</div></div>
+<div class="ttc" id="aclassmy__label_html_ab0911062d890c2d050529c13f664fcbf"><div class="ttname"><a href="classmy__label.html#ab0911062d890c2d050529c13f664fcbf">my_label::getX1</a></div><div class="ttdeci">int getX1()</div><div class="ttdef"><b>Definition:</b> my_label.h:39</div></div>
+<div class="ttc" id="aclassscan__display_html_afcce9634b73bb2cc33e95a3d33b4d4ea"><div class="ttname"><a href="classscan__display.html#afcce9634b73bb2cc33e95a3d33b4d4ea">scan_display::img5</a></div><div class="ttdeci">QImage * img5</div><div class="ttdef"><b>Definition:</b> scan_display.h:114</div></div>
+<div class="ttc" id="aembelish_8h_html"><div class="ttname"><a href="embelish_8h.html">embelish.h</a></div></div>
+<div class="ttc" id="aclassscan__display_html_a393ae785da687c5e79fce3c1fa16bf2d"><div class="ttname"><a href="classscan__display.html#a393ae785da687c5e79fce3c1fa16bf2d">scan_display::vBoxScanSet3</a></div><div class="ttdeci">QVBoxLayout * vBoxScanSet3</div><div class="ttdef"><b>Definition:</b> scan_display.h:123</div></div>
+<div class="ttc" id="aclassscan__display_html_a2456a218f22c38cce93be69cf7ed1d67"><div class="ttname"><a href="classscan__display.html#a2456a218f22c38cce93be69cf7ed1d67">scan_display::hBoxScanSet2</a></div><div class="ttdeci">QHBoxLayout * hBoxScanSet2</div><div class="ttdef"><b>Definition:</b> scan_display.h:126</div></div>
+<div class="ttc" id="aclassedit__bar_html"><div class="ttname"><a href="classedit__bar.html">edit_bar</a></div><div class="ttdef"><b>Definition:</b> scan_display.h:65</div></div>
+<div class="ttc" id="arectify_8h_html"><div class="ttname"><a href="rectify_8h.html">rectify.h</a></div></div>
+<div class="ttc" id="aclassscan__display_html_a861fba380db2b50147ab0d6ec279d773"><div class="ttname"><a href="classscan__display.html#a861fba380db2b50147ab0d6ec279d773">scan_display::vBoxScanSet2</a></div><div class="ttdeci">QVBoxLayout * vBoxScanSet2</div><div class="ttdef"><b>Definition:</b> scan_display.h:122</div></div>
+<div class="ttc" id="aclassscan__display_html_a351e1bfbc821c6d2e8d0289379e0b5ed"><div class="ttname"><a href="classscan__display.html#a351e1bfbc821c6d2e8d0289379e0b5ed">scan_display::beautify</a></div><div class="ttdeci">void beautify()</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:494</div></div>
+<div class="ttc" id="aclassscan__display_html_abf9dc43d434dae97ad2c50dfc4da1143"><div class="ttname"><a href="classscan__display.html#abf9dc43d434dae97ad2c50dfc4da1143">scan_display::thread</a></div><div class="ttdeci">myThread thread</div><div class="ttdef"><b>Definition:</b> scan_display.h:137</div></div>
+<div class="ttc" id="aclassscan__display_html_a502381fb1fda8b8a6190f488bb4d701d"><div class="ttname"><a href="classscan__display.html#a502381fb1fda8b8a6190f488bb4d701d">scan_display::labDisplay4</a></div><div class="ttdeci">QLabel * labDisplay4</div><div class="ttdef"><b>Definition:</b> scan_display.h:98</div></div>
+<div class="ttc" id="aclassscan__display_html"><div class="ttname"><a href="classscan__display.html">scan_display</a></div><div class="ttdef"><b>Definition:</b> scan_display.h:78</div></div>
+<div class="ttc" id="afunc__bar_8h_html"><div class="ttname"><a href="func__bar_8h.html">func_bar.h</a></div></div>
+<div class="ttc" id="aclassmy__label_html_a95424da44eb32759eb20820bafb8d3c7"><div class="ttname"><a href="classmy__label.html#a95424da44eb32759eb20820bafb8d3c7">my_label::getX2</a></div><div class="ttdeci">int getX2()</div><div class="ttdef"><b>Definition:</b> my_label.h:41</div></div>
+<div class="ttc" id="aclassmy__label_html"><div class="ttname"><a href="classmy__label.html">my_label</a></div><div class="ttdef"><b>Definition:</b> my_label.h:25</div></div>
+<div class="ttc" id="aclassscan__display_html_a736e81c1876c11b6bd647565d8e05819"><div class="ttname"><a href="classscan__display.html#a736e81c1876c11b6bd647565d8e05819">scan_display::flagOrc</a></div><div class="ttdeci">int flagOrc</div><div class="ttdef"><b>Definition:</b> scan_display.h:90</div></div>
+<div class="ttc" id="aclassscan__display_html_a3b3ba594683286dcc4b92de5ce17bd91"><div class="ttname"><a href="classscan__display.html#a3b3ba594683286dcc4b92de5ce17bd91">scan_display::vBoxScanSet</a></div><div class="ttdeci">QVBoxLayout * vBoxScanSet</div><div class="ttdef"><b>Definition:</b> scan_display.h:120</div></div>
+<div class="ttc" id="aclassscan__display_html_a734f729c41644ad7e0e2d10eb16d3c9a"><div class="ttname"><a href="classscan__display.html#a734f729c41644ad7e0e2d10eb16d3c9a">scan_display::myWidget</a></div><div class="ttdeci">QWidget * myWidget</div><div class="ttdef"><b>Definition:</b> scan_display.h:128</div></div>
+<div class="ttc" id="aclassmy__label_html_aedf7f0a11443f9c8e63554fcfadca8fd"><div class="ttname"><a href="classmy__label.html#aedf7f0a11443f9c8e63554fcfadca8fd">my_label::getY1</a></div><div class="ttdeci">int getY1()</div><div class="ttdef"><b>Definition:</b> my_label.h:40</div></div>
+<div class="ttc" id="aclassscan__display_html_a9a2716d798ec0d35d69d0d8a25b419f9"><div class="ttname"><a href="classscan__display.html#a9a2716d798ec0d35d69d0d8a25b419f9">scan_display::btnTool2</a></div><div class="ttdeci">QPushButton * btnTool2</div><div class="ttdef"><b>Definition:</b> scan_display.h:107</div></div>
+<div class="ttc" id="aclassedit__bar_html_a235b88885f53db7274f8cbea5d1ac4e1"><div class="ttname"><a href="classedit__bar.html#a235b88885f53db7274f8cbea5d1ac4e1">edit_bar::btnSymmetry</a></div><div class="ttdeci">QPushButton * btnSymmetry</div><div class="ttdef"><b>Definition:</b> scan_display.h:73</div></div>
+<div class="ttc" id="aclassmark__dialog_html"><div class="ttname"><a href="classmark__dialog.html">mark_dialog</a></div><div class="ttdef"><b>Definition:</b> mark_dialog.h:30</div></div>
+<div class="ttc" id="akylin__sane_8h_html"><div class="ttname"><a href="kylin__sane_8h.html">kylin_sane.h</a></div></div>
+<div class="ttc" id="ascan__display_8h_html"><div class="ttname"><a href="scan__display_8h.html">scan_display.h</a></div></div>
+<div class="ttc" id="aclassscan__display_html_a6edd4d1fdaca0ff1b256c4641affe9ec"><div class="ttname"><a href="classscan__display.html#a6edd4d1fdaca0ff1b256c4641affe9ec">scan_display::labDisplay6</a></div><div class="ttdeci">QLabel * labDisplay6</div><div class="ttdef"><b>Definition:</b> scan_display.h:100</div></div>
+<div class="ttc" id="aclassscan__display_html_afebca92c470e751158b118e3d3837b19"><div class="ttname"><a href="classscan__display.html#afebca92c470e751158b118e3d3837b19">scan_display::img7</a></div><div class="ttdeci">QImage * img7</div><div class="ttdef"><b>Definition:</b> scan_display.h:116</div></div>
+<div class="ttc" id="aclassscan__display_html_aa63d3523ef02797d69ae3afa5366f272"><div class="ttname"><a href="classscan__display.html#aa63d3523ef02797d69ae3afa5366f272">scan_display::scan</a></div><div class="ttdeci">void scan()</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:438</div></div>
+<div class="ttc" id="aclassscan__display_html_a1b62593ffa6dbffd305e8f47df17a64e"><div class="ttname"><a href="classscan__display.html#a1b62593ffa6dbffd305e8f47df17a64e">scan_display::hBoxScanSet3</a></div><div class="ttdeci">QHBoxLayout * hBoxScanSet3</div><div class="ttdef"><b>Definition:</b> scan_display.h:127</div></div>
+<div class="ttc" id="aclassbeautyThread_html_a4e761e46dc7c72831a523c5462764612"><div class="ttname"><a href="classbeautyThread.html#a4e761e46dc7c72831a523c5462764612">beautyThread::beautyFinished</a></div><div class="ttdeci">void beautyFinished()</div></div>
+<div class="ttc" id="aclassscan__display_html_a5f9824900789c32b10b53f1e92c76a03"><div class="ttname"><a href="classscan__display.html#a5f9824900789c32b10b53f1e92c76a03">scan_display::myWidget3</a></div><div class="ttdeci">QWidget * myWidget3</div><div class="ttdef"><b>Definition:</b> scan_display.h:131</div></div>
+<div class="ttc" id="aclassscan__display_html_a3a12f0a2c8558a4e7350ccf7ebdd6f46"><div class="ttname"><a href="classscan__display.html#a3a12f0a2c8558a4e7350ccf7ebdd6f46">scan_display::img6</a></div><div class="ttdeci">QImage * img6</div><div class="ttdef"><b>Definition:</b> scan_display.h:115</div></div>
+<div class="ttc" id="amark__dialog_8h_html"><div class="ttname"><a href="mark__dialog_8h.html">mark_dialog.h</a></div></div>
+<div class="ttc" id="aclassscan__display_html_a0c6cfd1addeb55aa43ae1e81224fdc22"><div class="ttname"><a href="classscan__display.html#a0c6cfd1addeb55aa43ae1e81224fdc22">scan_display::switchPage1</a></div><div class="ttdeci">void switchPage1()</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:558</div></div>
+<div class="ttc" id="aclassscan__display_html_a3931a1d178c1e729eab0adf27e783ab8"><div class="ttname"><a href="classscan__display.html#a3931a1d178c1e729eab0adf27e783ab8">scan_display::vStackedLayout</a></div><div class="ttdeci">QStackedLayout * vStackedLayout</div><div class="ttdef"><b>Definition:</b> scan_display.h:133</div></div>
+<div class="ttc" id="aclassedit__bar_html_a437bc233b0747273bad8205dccc74c23"><div class="ttname"><a href="classedit__bar.html#a437bc233b0747273bad8205dccc74c23">edit_bar::edit_bar</a></div><div class="ttdeci">edit_bar(QWidget *parent=nullptr)</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:595</div></div>
+<div class="ttc" id="aclassscan__display_html_a7d63ef669a141898809729c755407c57"><div class="ttname"><a href="classscan__display.html#a7d63ef669a141898809729c755407c57">scan_display::labDisplay2</a></div><div class="ttdeci">QLabel * labDisplay2</div><div class="ttdef"><b>Definition:</b> scan_display.h:96</div></div>
+<div class="ttc" id="aclassscan__display_html_a849460915bb81a7999a7e57838b99018"><div class="ttname"><a href="classscan__display.html#a849460915bb81a7999a7e57838b99018">scan_display::set_no_device</a></div><div class="ttdeci">void set_no_device()</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:238</div></div>
+<div class="ttc" id="aclassscan__display_html_afb082f85c896e5ec2b14d20e3c1d8614"><div class="ttname"><a href="classscan__display.html#afb082f85c896e5ec2b14d20e3c1d8614">scan_display::set_pixmap</a></div><div class="ttdeci">void set_pixmap(QImage img, QLabel *lab)</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:243</div></div>
+<div class="ttc" id="aclassmyThread_html"><div class="ttname"><a href="classmyThread.html">myThread</a></div><div class="ttdef"><b>Definition:</b> scan_display.h:45</div></div>
+<div class="ttc" id="aclassscan__display_html_ae170a56840b2bf95c7aabe424fcd3fb3"><div class="ttname"><a href="classscan__display.html#ae170a56840b2bf95c7aabe424fcd3fb3">scan_display::flagBeautify</a></div><div class="ttdeci">int flagBeautify</div><div class="ttdef"><b>Definition:</b> scan_display.h:88</div></div>
+<div class="ttc" id="aclassscan__display_html_af17a7e3483906d1b489d402ce233eaf9"><div class="ttname"><a href="classscan__display.html#af17a7e3483906d1b489d402ce233eaf9">scan_display::img4</a></div><div class="ttdeci">QImage * img4</div><div class="ttdef"><b>Definition:</b> scan_display.h:113</div></div>
+<div class="ttc" id="aclassscan__display_html_acbbef84bb343cd1d11b69b43aa2cc0dd"><div class="ttname"><a href="classscan__display.html#acbbef84bb343cd1d11b69b43aa2cc0dd">scan_display::editlayout</a></div><div class="ttdeci">edit_bar * editlayout</div><div class="ttdef"><b>Definition:</b> scan_display.h:134</div></div>
+<div class="ttc" id="aclassscan__display_html_af291520162a87803f7080ef1f80a5391"><div class="ttname"><a href="classscan__display.html#af291520162a87803f7080ef1f80a5391">scan_display::keyPressEvent</a></div><div class="ttdeci">void keyPressEvent(QKeyEvent *e)</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:185</div></div>
+<div class="ttc" id="aclassmy__label_html_ab3da619203a2d5505fead5a448a6e529"><div class="ttname"><a href="classmy__label.html#ab3da619203a2d5505fead5a448a6e529">my_label::getY2</a></div><div class="ttdeci">int getY2()</div><div class="ttdef"><b>Definition:</b> my_label.h:42</div></div>
+<div class="ttc" id="aclassscan__display_html_a46547aa562d18e1374b2c77cc33303bc"><div class="ttname"><a href="classscan__display.html#a46547aa562d18e1374b2c77cc33303bc">scan_display::img2</a></div><div class="ttdeci">QImage * img2</div><div class="ttdef"><b>Definition:</b> scan_display.h:111</div></div>
+<div class="ttc" id="aclassscan__display_html_a81259cbf414f57021f429a80b8bd9fea"><div class="ttname"><a href="classscan__display.html#a81259cbf414f57021f429a80b8bd9fea">scan_display::myWidget2</a></div><div class="ttdeci">QWidget * myWidget2</div><div class="ttdef"><b>Definition:</b> scan_display.h:130</div></div>
+<div class="ttc" id="aclassscan__display_html_a3d86f7eb94585ea35b9b876c27a92660"><div class="ttname"><a href="classscan__display.html#a3d86f7eb94585ea35b9b876c27a92660">scan_display::hBoxScanSet</a></div><div class="ttdeci">QHBoxLayout * hBoxScanSet</div><div class="ttdef"><b>Definition:</b> scan_display.h:124</div></div>
+<div class="ttc" id="aclassscan__display_html_a67cde27c57588c50732583983f32e3f6"><div class="ttname"><a href="classscan__display.html#a67cde27c57588c50732583983f32e3f6">scan_display::hBoxScanSet1</a></div><div class="ttdeci">QHBoxLayout * hBoxScanSet1</div><div class="ttdef"><b>Definition:</b> scan_display.h:125</div></div>
+<div class="ttc" id="aembelish_8cpp_html_a6a1560602f5c54b2893140f07d513a00"><div class="ttname"><a href="embelish_8cpp.html#a6a1560602f5c54b2893140f07d513a00">oneClickEmbelish</a></div><div class="ttdeci">void oneClickEmbelish(const char *filename)</div><div class="ttdef"><b>Definition:</b> embelish.cpp:713</div></div>
+<div class="ttc" id="aclassscan__display_html_a1ae046cb17e8ca2e383f4677f226eabd"><div class="ttname"><a href="classscan__display.html#a1ae046cb17e8ca2e383f4677f226eabd">scan_display::addmark</a></div><div class="ttdeci">void addmark()</div><div class="ttdef"><b>Definition:</b> scan_display.cpp:280</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者 &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

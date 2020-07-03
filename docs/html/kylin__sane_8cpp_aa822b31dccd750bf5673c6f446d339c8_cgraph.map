@@ -1,0 +1,4 @@
+<map id="set_option_sizes_real" name="set_option_sizes_real">
+<area shape="rect" id="node1" title="set_option_sizes_real 统一设置扫描设备尺寸 这里可以根据传入参数val_size_br_x和val_size_br_y直接进行设置扫描设备的尺寸" alt="" coords="5,5,153,32"/>
+<area shape="rect" id="node2" href="$kylin__sane_8cpp.html#a1345e5860f8df0d660e22a09be693aea" title="set_option_sizes 设置扫描设备的尺寸，也就是坐标 根据扫描选项参数optnum进行判断设置的坐标值是x或者y，val_size为设置的坐标值" alt="" coords="201,5,321,32"/>
+</map>

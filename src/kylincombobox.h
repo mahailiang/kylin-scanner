@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2019 Tianjin KYLIN Information Technology Co., Ltd.
+* Copyright (C) 2020 KYLIN SOFTWARE Information Technology Co., Ltd.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -32,13 +32,13 @@ public:
     void colorNormal();
 
 protected:
-    virtual void mousePressEvent(QMouseEvent *e);  //添加鼠标点击事件
-    virtual void hidePopup(); //重载隐藏下拉框
-    virtual void showPopup(); //重载显示下拉框
+    virtual void mousePressEvent(QMouseEvent *e); // 添加鼠标点击事件
+    virtual void hidePopup(); // 重载隐藏下拉框
+    virtual void showPopup(); // 重载显示下拉框
 
 
 signals:
-    void clicked();  //自定义点击信号，在mousePressEvent事件发生时触发
+    void clicked();  // 自定义点击信号，在mousePressEvent事件发生时触发
 
 public slots:
 };

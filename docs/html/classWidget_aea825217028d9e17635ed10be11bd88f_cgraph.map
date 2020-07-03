@@ -1,0 +1,22 @@
+<map id="Widget::scan_result" name="Widget::scan_result">
+<area shape="rect" id="node1" title="Widget::scan_result 处理初始化设备的控件可用情况 当ret为true时，表示在处理线程中连接上了设备，此时扫描设置等按钮可用， 否则，按钮不可用。" alt="" coords="5,241,144,268"/>
+<area shape="rect" id="node2" href="$classscan__display.html#a849460915bb81a7999a7e57838b99018" title=" " alt="" coords="215,51,361,93"/>
+<area shape="rect" id="node3" href="$classScanSet.html#a2d59445c8a1f1e58b3bfc0f3dcd76f4c" title="setKylinComboBox 统一设置麒麟扫描组合框ComboBox" alt="" coords="192,117,384,144"/>
+<area shape="rect" id="node10" href="$classScanSet.html#af2d8053b2b2dbaa3b10442fac427e7a1" title="setKylinLable 统一设置麒麟扫描标签Label" alt="" coords="209,431,367,457"/>
+<area shape="rect" id="node15" href="$classFuncBar.html#ad012de161cf511dbb664c4ad63662fa2" title=" " alt="" coords="200,234,376,275"/>
+<area shape="rect" id="node16" href="$classScanSet.html#a49614a00751f1abe42414399dd4f2540" title=" " alt="" coords="199,299,377,341"/>
+<area shape="rect" id="node18" href="$classFuncBar.html#a62cd1876bfb29a558120e22a5fdf5358" title=" " alt="" coords="200,169,376,210"/>
+<area shape="rect" id="node19" href="$classScanSet.html#a727fcf925858861a0f5fdead468c46e2" title=" " alt="" coords="199,365,377,406"/>
+<area shape="rect" id="node4" href="$classKylinSane.html#a6e4754e2e68e6f4ed9d8ad037a052be4" title=" " alt="" coords="471,224,628,251"/>
+<area shape="rect" id="node5" href="$classKylinSane.html#ab9e3ec5abe09666507fb695f8d62bb66" title=" " alt="" coords="447,5,651,32"/>
+<area shape="rect" id="node6" href="$classKylinSane.html#acca11046f65ad7d805137de05798c636" title=" " alt="" coords="432,56,667,83"/>
+<area shape="rect" id="node7" href="$classKylinSane.html#a64353071fe4bdccc5a627e1ccae89b10" title=" " alt="" coords="450,107,649,133"/>
+<area shape="rect" id="node8" href="$classKylinSane.html#a64336bb525a02e052016997f2c7ea274" title=" " alt="" coords="447,275,651,301"/>
+<area shape="rect" id="node9" href="$classScanSet.html#aeab60c0b5b3e9cbfa3b93c38d49fe10a" title="setKylinComboBoxAttributes 设置组合框属性" alt="" coords="453,158,645,199"/>
+<area shape="rect" id="node11" href="$classKylinSane.html#adc9f99552b9746d31ded75fa26e7bf39" title=" " alt="" coords="449,427,650,453"/>
+<area shape="rect" id="node12" href="$classKylinSane.html#a05815aadccb427c219dc157c65ae05a6" title=" " alt="" coords="452,477,647,504"/>
+<area shape="rect" id="node13" href="$classScanSet.html#ae5f45de06651a37e6369d3ca46fb5e86" title=" " alt="" coords="474,528,625,555"/>
+<area shape="rect" id="node14" href="$classScanSet.html#adda0fb43ca0309f6ec33432c0cd25119" title="setKylinLabelAttributes 设置标签属性" alt="" coords="442,579,657,605"/>
+<area shape="rect" id="node17" href="$classKylinComboBox.html#ac986a2139691174516bed1318ed4b282" title=" " alt="" coords="452,325,647,352"/>
+<area shape="rect" id="node20" href="$classKylinComboBox.html#a86914c35825b367bada56e969d35e41d" title=" " alt="" coords="459,376,639,403"/>
+</map>

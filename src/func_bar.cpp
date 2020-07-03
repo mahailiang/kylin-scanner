@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2019 Tianjin KYLIN Information Technology Co., Ltd.
+* Copyright (C) 2020 KYLIN SOFTWARE Information Technology Co., Ltd.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ FuncBar::FuncBar(QWidget *parent)
     btnRectify->setFixedSize(60,32);
     btnOrc->setFixedSize(60,32);
     btnScan->setFixedSize(56,56);
-    btnScan->setText("扫描");
+    btnScan->setText(tr("Scan"));
     labNorScan = new QLabel();
     labBeautify = new QLabel();
     labRectify = new QLabel();
@@ -42,22 +42,22 @@ FuncBar::FuncBar(QWidget *parent)
     setFontSize(labBeautify,10);
     setFontSize(labRectify,10);
     setFontSize(labOrc,10);
-    labNorScan->setText("普通扫描");
+    labNorScan->setText(tr("Normal scanning"));
     labNorScan->setAlignment(Qt::AlignCenter);
     labNorScan->setStyleSheet("color:rgb(232,232,232)");
     labNorScan->setFixedSize(60,16);
 
-    labBeautify->setText("一键美化");
+    labBeautify->setText(tr("Beauty"));
     labBeautify->setAlignment(Qt::AlignCenter);
     labBeautify->setStyleSheet("color:rgb(232,232,232)");
     labBeautify->setFixedSize(56,16);
 
-    labRectify->setText("智能纠偏");
+    labRectify->setText(tr("Rectify"));
     labRectify->setAlignment(Qt::AlignCenter);
     labRectify->setStyleSheet("color:rgb(232,232,232)");
     labRectify->setFixedSize(56,16);
 
-    labOrc->setText("文字识别");
+    labOrc->setText(tr("Text OCR"));
     labOrc->setAlignment(Qt::AlignCenter);
     labOrc->setStyleSheet("color:rgb(232,232,232)");
     labOrc->setFixedSize(56,16);
@@ -167,9 +167,16 @@ FuncBar::FuncBar(QWidget *parent)
     hBoxLay4->addLayout(hBoxLay3);
     setLayout(hBoxLay4);
 
+    // For orc
     connect(btnOrc,SIGNAL(clicked()),this,SLOT(on_btnOrc_clicked()));
+
+    // For scan
     connect(btnScan, SIGNAL(clicked()), this, SLOT(on_btnScan_clicked()));
+
+    // For rectify
     connect(btnRectify, SIGNAL(clicked()), this, SLOT(on_btnRectify_clicked()));
+
+    // For beauty
     connect(btnBeautify, SIGNAL(clicked()), this, SLOT(on_btnBeauty_clicked()));
     connect(&thread,SIGNAL(scanFinished(int)),this,SLOT(scan_result(int)));
 }
@@ -269,7 +276,6 @@ void FuncBar::on_btnOrc_clicked()
         stack.pop();
         emit send_Orc_End();
     }
-
 }
 
 void FuncBar::on_btnScan_clicked()
@@ -326,8 +332,6 @@ void FuncBar::scan_result(int ret)
     btnScan->setStyleSheet("QPushButton{background-color: rgb(232,160,73);border-radius:28px;color:rgb(232,232,232);}");
     emit send_Scan_End();
 }
-
-
 
 void threadScan::run()
 {

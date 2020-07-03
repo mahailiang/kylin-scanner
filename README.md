@@ -40,5 +40,13 @@ or
 open and search "kylin scanner" after enter Win key
 ```
 
+## How to make helpful docs
+```
+$ doxygen -g
+$ ./autodoxygen.sh
+$ doxygen Doxygen
+$ firefox docs/html/index.html
+```
+
 ## Report bugs
 Bugs should be report to the kylin-scanner bug tracking system: https://github.com/yusq77/kylin-scanner

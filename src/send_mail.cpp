@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2019 Tianjin KYLIN Information Technology Co., Ltd.
+* Copyright (C) 2020 KYLIN SOFTWARE Information Technology Co., Ltd.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ no_mail::no_mail(QWidget *parent) :
     hBoxLayout = new QHBoxLayout();
     vBoxLayout = new QVBoxLayout(this);
 
-    labTitle->setText("无邮件客户端");
+    labTitle->setText(tr("No email client"));
     labTitle->setAlignment(Qt::AlignLeft|Qt::AlignVCenter);
     labTitle->setStyleSheet("color:rgb(232,232,232)");
     labTitle->setFixedSize(260,32);
@@ -46,7 +46,7 @@ no_mail::no_mail(QWidget *parent) :
     QFont ft1;
     ft1.setPointSize(10);
     textEdit->setFont(ft1);
-    textEdit->setText("检测到当前系统没有安装邮件客户端，请先下载并安装邮件客户端。");
+    textEdit->setText(tr("Not find email client in the system, please download and install email client firstly."));
     textEdit->setStyleSheet("QTextEdit{background-color:rgb(47,44,43);color:rgb(232,232,232);border:0px}");
     textEdit->setFixedSize(260,50);
     textEdit->setReadOnly(true);
@@ -59,9 +59,9 @@ no_mail::no_mail(QWidget *parent) :
     line->setFrameShape(QFrame::HLine);
     line->setStyleSheet("QLabel{color:rgb(32,30,29)}");
 
-    btnOk->setText("去安装");
+    btnOk->setText(tr("Go to install"));
     btnOk->setFixedSize(120,36);
-    btnCancel->setText("取消");
+    btnCancel->setText(tr("Cancel"));
     btnCancel->setFixedSize(100,36);
 
     btnOk->setStyleSheet("QPushButton{background-color:rgb(32,30,29);border:1px solid #939393;color:rgb(232,232,232);border-radius:18px;}"
@@ -134,7 +134,7 @@ send_mail::send_mail(QWidget *parent) :
     widget->setFixedSize(300,270);
     widget->setWindowFlags(Qt::FramelessWindowHint | Qt::Tool | Qt::WindowStaysOnTopHint); // 去掉标题栏,去掉任务栏显示，窗口置顶
 
-    labTitle->setText("选择邮件客户端");
+    labTitle->setText(tr("Select email client"));
     labTitle->setAlignment(Qt::AlignLeft|Qt::AlignVCenter);
     labTitle->setStyleSheet("color:rgb(232,232,232)");
     labTitle->setFixedSize(190,32);

@@ -1,0 +1,9 @@
+<map id="cancle_scan" name="cancle_scan">
+<area shape="rect" id="node1" title="cancle_scan 结束扫描" alt="" coords="615,35,709,61"/>
+<area shape="rect" id="node2" href="$kylin__sane_8h.html#a6a9d84ad48c6968cdae6ad5d8fcf90d5" title="kylinNorScanOpen 扫描设备打开统一接口 提供给页面调用" alt="" coords="414,8,545,35"/>
+<area shape="rect" id="node5" href="$classKylinSane.html#a29d2f79464933411a02b433993cd85e2" title="KylinSane::start_scanning 统一接口供页面调用，开始扫描 根据扫描设置页面情况info字段进行设置扫描设备参数，并进行扫描" alt="" coords="392,60,567,87"/>
+<area shape="rect" id="node3" href="$classKylinSane.html#aa23bba91b7d6e561b462fa1ebf2eb319" title="KylinSane::open_device 统一接口供页面调用，打开扫描设备" alt="" coords="181,5,344,32"/>
+<area shape="rect" id="node4" href="$classscanThread.html#af054be6deb010e3aa247a27e0924d579" title=" " alt="" coords="11,5,127,32"/>
+<area shape="rect" id="node6" href="$classFuncBar.html#a3f8d9918c550d04f5260c1ad088d610d" title=" " alt="" coords="189,57,337,98"/>
+<area shape="rect" id="node7" href="$classFuncBar.html#a2741015b1797df5058ad22ce8b825818" title=" " alt="" coords="5,64,133,91"/>
+</map>

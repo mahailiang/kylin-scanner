@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2019 Tianjin KYLIN Information Technology Co., Ltd.
+* Copyright (C) 2020 KYLIN SOFTWARE Information Technology Co., Ltd.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -45,19 +45,19 @@ using namespace std;
 
 struct device_info
 {
-    bool status;			//是否存在设备，存在status值为true，否则为false
-    QString name;			//设备名
-    QString type;			//设备类型
-    QStringList color;		//设备支持的色彩
-    QStringList resolution;	//设备支持的分辨率
-    QStringList size; 		//设备支持的尺寸
+    bool status;			// 是否存在设备，存在status值为true，否则为false
+    QString name;			// 设备名
+    QString type;			// 设备类型
+    QStringList color;		// 设备支持的色彩
+    QStringList resolution;	// 设备支持的分辨率
+    QStringList size; 		// 设备支持的尺寸
 };
 
 struct user_selected_info
 {
-    QString color;
-    QString resolution;
-    QString size;
+    QString color;			// 用户选择色彩
+    QString resolution;		// 用户选择分辨率
+    QString size;			// 用户选择尺寸
 };
 
 enum sizes_type
@@ -78,6 +78,7 @@ public:
     KylinSane(const KylinSane &) = delete ;
     KylinSane &operator = (const KylinSane &) = delete ;
 
+    // 线程安全,不用生成对象，防止内存泄漏，是一种很好的懒汉单例模式
     static KylinSane& getInstance()
     {
         static KylinSane instance; //局部静态变量
@@ -115,25 +116,23 @@ public slots:
 extern "C" {
 #endif
 
-/**
- * Initialize SANE
- **/
-void init();
-// Get all devices
-SANE_Status get_devices(const SANE_Device ***device_list);
-// Open a device
-SANE_Status open_sane_device(SANE_Device *device, SANE_Handle *sane_handle);
-// Start scanning
-SANE_Status start_scan(SANE_Handle sane_handle, SANE_String_Const fileName);
-// Cancel scanning
-void cancle_scan(SANE_Handle sane_handle);
-// Close SANE device
-void close_device(SANE_Handle sane_handle);
-// Release SANE resources
-void my_sane_exit();
+void init(); // init scan
 
-char *kylin_display_scan_parameters(SANE_Handle device);
-void kylinNorScanOpen();
+SANE_Status get_devices(const SANE_Device ***device_list); // Get all devices
+
+SANE_Status open_sane_device(SANE_Device *device, SANE_Handle *sane_handle); // Open a device
+
+SANE_Status start_scan(SANE_Handle sane_handle, SANE_String_Const fileName); // start scanning
+
+void cancle_scan(SANE_Handle sane_handle); // cancel scanning
+
+void close_device(SANE_Handle sane_handle); // close scan device
+
+void my_sane_exit(); // Release scan resources
+
+char *kylin_display_scan_parameters(SANE_Handle device); // display parameters
+
+void kylinNorScanOpen(); // open scan device
 
 
 #ifdef __cplusplus

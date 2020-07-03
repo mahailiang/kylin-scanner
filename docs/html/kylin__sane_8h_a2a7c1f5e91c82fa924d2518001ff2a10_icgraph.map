@@ -1,0 +1,7 @@
+<map id="get_devices" name="get_devices">
+<area shape="rect" id="node1" title="get_devices 查询所有连接设备 注意： 这里会很耗时" alt="" coords="619,31,711,57"/>
+<area shape="rect" id="node2" href="$kylin__sane_8cpp.html#ab89dca2ce021e2b0bf8eef44382f3faf" title="check_search_scan_devices 可以借此整理出未识别设备的情况" alt="" coords="380,5,571,32"/>
+<area shape="rect" id="node3" href="$kylin__sane_8h.html#a6a9d84ad48c6968cdae6ad5d8fcf90d5" title="kylinNorScanOpen 扫描设备打开统一接口 提供给页面调用" alt="" coords="410,56,541,83"/>
+<area shape="rect" id="node4" href="$classKylinSane.html#aa23bba91b7d6e561b462fa1ebf2eb319" title="KylinSane::open_device 统一接口供页面调用，打开扫描设备" alt="" coords="169,56,332,83"/>
+<area shape="rect" id="node5" href="$classscanThread.html#af054be6deb010e3aa247a27e0924d579" title=" " alt="" coords="5,56,121,83"/>
+</map>

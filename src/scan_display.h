@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2019 Tianjin KYLIN Information Technology Co., Ltd.
+* Copyright (C) 2020 KYLIN SOFTWARE Information Technology Co., Ltd.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -128,8 +128,13 @@ private:
     myThread thread;
     QScrollArea *scrollArea;
     int widgetindex;
-//signals:
-//    void indexChanged(int value);
+
+public slots:
+    void orc();
+    void scan();
+    void rectify();
+    void beautify();
+
 private slots:
     void switchPage();
     void switchPage1();
@@ -137,11 +142,6 @@ private slots:
     void symmetry();
     void addmark();
     void orcText();
-public slots:
-    void orc();
-    void scan();
-    void rectify();
-    void beautify();
 };
 
 #endif // SCAN_DISPLAY_H

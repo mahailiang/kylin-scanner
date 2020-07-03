@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2019 Tianjin KYLIN Information Technology Co., Ltd.
+* Copyright (C) 2020 KYLIN SOFTWARE Information Technology Co., Ltd.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -32,6 +32,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <QDebug>
 using namespace cv;
 using namespace std;
 
@@ -82,7 +83,6 @@ void psMedianFilterCV(Mat src, Mat &dst);
 void psBilateralFilterCV(Mat src, Mat &dst);
 
 ////////////////////////end
-
 
 
 ////////////////////////start 图像增强之增加对比度

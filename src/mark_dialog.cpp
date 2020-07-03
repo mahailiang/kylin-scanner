@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2019 Tianjin KYLIN Information Technology Co., Ltd.
+* Copyright (C) 2020 KYLIN SOFTWARE Information Technology Co., Ltd.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ mark_dialog::mark_dialog(QWidget *parent) :
     hBoxLayout = new QHBoxLayout();
     vBoxLayout = new QVBoxLayout(this);
 
-    label->setText("输入水印内容");
+    label->setText(tr("Input watermark content"));
     label->setAlignment(Qt::AlignLeft|Qt::AlignVCenter);
     label->setStyleSheet("color:rgb(232,232,232)");
     label->setFixedSize(192,32);
@@ -51,9 +51,9 @@ mark_dialog::mark_dialog(QWidget *parent) :
     line->setFrameShape(QFrame::HLine);
     line->setStyleSheet("QLabel{color:rgb(32,30,29)}");
 
-    btnOk->setText("确定");
+    btnOk->setText(tr("Confirm"));
     btnOk->setFixedSize(120,36);
-    btnCancel->setText("取消");
+    btnCancel->setText(tr("Cancel"));
     btnCancel->setFixedSize(100,36);
 
     btnOk->setStyleSheet("QPushButton{background-color:rgb(32,30,29);border:1px solid #939393;color:rgb(232,232,232);border-radius:18px;}"

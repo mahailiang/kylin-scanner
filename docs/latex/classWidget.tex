@@ -1,0 +1,258 @@
+\hypertarget{classWidget}{}\doxysection{Widget类 参考}
+\label{classWidget}\index{Widget@{Widget}}
+
+
+{\ttfamily \#include $<$widget.\+h$>$}
+
+
+
+类 Widget 继承关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=135pt]{classWidget__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Widget 的协作图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classWidget__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classWidget_a29531c7f141e461322981b3b579d4590}{Widget}} (Q\+Widget $\ast$parent=0)
+\item 
+\mbox{\hyperlink{classWidget_aa24f66bcbaaec6d458b0980e8c8eae65}{$\sim$\+Widget}} ()
+\item 
+void \mbox{\hyperlink{classWidget_acad4f1dc1f22581de0d3a55dc2ec49b5}{set\+\_\+pdf\+\_\+size}} (Q\+Pdf\+Writer $\ast$pdf\+Writer, Q\+String size)
+\item 
+void \mbox{\hyperlink{classWidget_a43231e3912151ec1a05da74d8c43e20e}{save\+\_\+to\+\_\+pdf}} (Q\+Image img, Q\+String path\+Name)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private 槽}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classWidget_a80b0446b997b5f4dbbfb22481a1f85bc}{save\+\_\+image}} (Q\+String file\+Name)
+\item 
+void \mbox{\hyperlink{classWidget_aa4f8296ae52f49eeed6a7dfef735b3a7}{save\+\_\+scan\+\_\+file}} ()
+\begin{DoxyCompactList}\small\item\em Widget\+::save\+\_\+scan\+\_\+file存储为不同的格式 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWidget_aea825217028d9e17635ed10be11bd88f}{scan\+\_\+result}} (bool ret)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classWidget_aea825217028d9e17635ed10be11bd88f}{Widget\+::scan\+\_\+result}} 处理初始化设备的控件可用情况 当ret为true时，表示在处理线程中连接上了设备，此时扫描设置等按钮可用， 否则，按钮不可用。 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private 属性}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTitleBar}{Title\+Bar}} $\ast$ \mbox{\hyperlink{classWidget_afc02b9bd3793797c214f59701a19be8a}{p\+Title\+Bar}}
+\item 
+Q\+Frame $\ast$ \mbox{\hyperlink{classWidget_a9e140f2d15e137e089ac8f5ff01fb6a0}{line}}
+\item 
+\mbox{\hyperlink{classFuncBar}{Func\+Bar}} $\ast$ \mbox{\hyperlink{classWidget_aa6136ddf789a2f025f86b6e6dec47702}{p\+Func\+Bar}}
+\item 
+\mbox{\hyperlink{classScanSet}{Scan\+Set}} $\ast$ \mbox{\hyperlink{classWidget_a4c072c0c6cfa70e72bc2965647a06f87}{p\+Scan\+Set}}
+\item 
+\mbox{\hyperlink{classscan__display}{scan\+\_\+display}} $\ast$ \mbox{\hyperlink{classWidget_a78ac2916a67d1c0695ced75ec564fbe5}{p\+Scandisplay}}
+\item 
+Q\+H\+Box\+Layout $\ast$ \mbox{\hyperlink{classWidget_a1ce9796ef014f953406624ef304718ed}{p\+Hbox\+Layout}}
+\item 
+Q\+V\+Box\+Layout $\ast$ \mbox{\hyperlink{classWidget_a8b8e369d3c1cc5cbb883a60a4adf3ef7}{p\+Layout}}
+\item 
+\mbox{\hyperlink{classscanThread}{scan\+Thread}} \mbox{\hyperlink{classWidget_adc5b24d13c9f50550219ab139df69912}{thread}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{构造及析构函数说明}
+\mbox{\Hypertarget{classWidget_a29531c7f141e461322981b3b579d4590}\label{classWidget_a29531c7f141e461322981b3b579d4590}} 
+\index{Widget@{Widget}!Widget@{Widget}}
+\index{Widget@{Widget}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{Widget()}{Widget()}}
+{\footnotesize\ttfamily Widget\+::\+Widget (\begin{DoxyParamCaption}\item[{Q\+Widget $\ast$}]{parent = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classWidget_a29531c7f141e461322981b3b579d4590_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classWidget_aa24f66bcbaaec6d458b0980e8c8eae65}\label{classWidget_aa24f66bcbaaec6d458b0980e8c8eae65}} 
+\index{Widget@{Widget}!````~Widget@{$\sim$Widget}}
+\index{````~Widget@{$\sim$Widget}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{$\sim$Widget()}{~Widget()}}
+{\footnotesize\ttfamily Widget\+::$\sim$\+Widget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{成员函数说明}
+\mbox{\Hypertarget{classWidget_a80b0446b997b5f4dbbfb22481a1f85bc}\label{classWidget_a80b0446b997b5f4dbbfb22481a1f85bc}} 
+\index{Widget@{Widget}!save\_image@{save\_image}}
+\index{save\_image@{save\_image}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{save\_image}{save\_image}}
+{\footnotesize\ttfamily void Widget\+::save\+\_\+image (\begin{DoxyParamCaption}\item[{Q\+String}]{file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classWidget_a80b0446b997b5f4dbbfb22481a1f85bc_cgraph}
+\end{center}
+\end{figure}
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{classWidget_a80b0446b997b5f4dbbfb22481a1f85bc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classWidget_aa4f8296ae52f49eeed6a7dfef735b3a7}\label{classWidget_aa4f8296ae52f49eeed6a7dfef735b3a7}} 
+\index{Widget@{Widget}!save\_scan\_file@{save\_scan\_file}}
+\index{save\_scan\_file@{save\_scan\_file}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{save\_scan\_file}{save\_scan\_file}}
+{\footnotesize\ttfamily void Widget\+::save\+\_\+scan\+\_\+file (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Widget\+::save\+\_\+scan\+\_\+file存储为不同的格式 
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classWidget_aa4f8296ae52f49eeed6a7dfef735b3a7_cgraph}
+\end{center}
+\end{figure}
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=319pt]{classWidget_aa4f8296ae52f49eeed6a7dfef735b3a7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classWidget_a43231e3912151ec1a05da74d8c43e20e}\label{classWidget_a43231e3912151ec1a05da74d8c43e20e}} 
+\index{Widget@{Widget}!save\_to\_pdf@{save\_to\_pdf}}
+\index{save\_to\_pdf@{save\_to\_pdf}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{save\_to\_pdf()}{save\_to\_pdf()}}
+{\footnotesize\ttfamily void Widget\+::save\+\_\+to\+\_\+pdf (\begin{DoxyParamCaption}\item[{Q\+Image}]{img,  }\item[{Q\+String}]{path\+Name }\end{DoxyParamCaption})}
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classWidget_a43231e3912151ec1a05da74d8c43e20e_cgraph}
+\end{center}
+\end{figure}
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classWidget_a43231e3912151ec1a05da74d8c43e20e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classWidget_aea825217028d9e17635ed10be11bd88f}\label{classWidget_aea825217028d9e17635ed10be11bd88f}} 
+\index{Widget@{Widget}!scan\_result@{scan\_result}}
+\index{scan\_result@{scan\_result}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{scan\_result}{scan\_result}}
+{\footnotesize\ttfamily void Widget\+::scan\+\_\+result (\begin{DoxyParamCaption}\item[{bool}]{ret }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+\mbox{\hyperlink{classWidget_aea825217028d9e17635ed10be11bd88f}{Widget\+::scan\+\_\+result}} 处理初始化设备的控件可用情况 当ret为true时，表示在处理线程中连接上了设备，此时扫描设置等按钮可用， 否则，按钮不可用。 
+
+
+\begin{DoxyParams}{参数}
+{\em ret} & 线程的处理结果 \\
+\hline
+\end{DoxyParams}
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classWidget_aea825217028d9e17635ed10be11bd88f_cgraph}
+\end{center}
+\end{figure}
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{classWidget_aea825217028d9e17635ed10be11bd88f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classWidget_acad4f1dc1f22581de0d3a55dc2ec49b5}\label{classWidget_acad4f1dc1f22581de0d3a55dc2ec49b5}} 
+\index{Widget@{Widget}!set\_pdf\_size@{set\_pdf\_size}}
+\index{set\_pdf\_size@{set\_pdf\_size}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{set\_pdf\_size()}{set\_pdf\_size()}}
+{\footnotesize\ttfamily void Widget\+::set\+\_\+pdf\+\_\+size (\begin{DoxyParamCaption}\item[{Q\+Pdf\+Writer $\ast$}]{pdf\+Writer,  }\item[{Q\+String}]{size }\end{DoxyParamCaption})}
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=286pt]{classWidget_acad4f1dc1f22581de0d3a55dc2ec49b5_cgraph}
+\end{center}
+\end{figure}
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classWidget_acad4f1dc1f22581de0d3a55dc2ec49b5_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{结构体成员变量说明}
+\mbox{\Hypertarget{classWidget_a9e140f2d15e137e089ac8f5ff01fb6a0}\label{classWidget_a9e140f2d15e137e089ac8f5ff01fb6a0}} 
+\index{Widget@{Widget}!line@{line}}
+\index{line@{line}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{line}{line}}
+{\footnotesize\ttfamily Q\+Frame$\ast$ Widget\+::line\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classWidget_aa6136ddf789a2f025f86b6e6dec47702}\label{classWidget_aa6136ddf789a2f025f86b6e6dec47702}} 
+\index{Widget@{Widget}!pFuncBar@{pFuncBar}}
+\index{pFuncBar@{pFuncBar}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{pFuncBar}{pFuncBar}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classFuncBar}{Func\+Bar}}$\ast$ Widget\+::p\+Func\+Bar\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classWidget_a1ce9796ef014f953406624ef304718ed}\label{classWidget_a1ce9796ef014f953406624ef304718ed}} 
+\index{Widget@{Widget}!pHboxLayout@{pHboxLayout}}
+\index{pHboxLayout@{pHboxLayout}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{pHboxLayout}{pHboxLayout}}
+{\footnotesize\ttfamily Q\+H\+Box\+Layout$\ast$ Widget\+::p\+Hbox\+Layout\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classWidget_a8b8e369d3c1cc5cbb883a60a4adf3ef7}\label{classWidget_a8b8e369d3c1cc5cbb883a60a4adf3ef7}} 
+\index{Widget@{Widget}!pLayout@{pLayout}}
+\index{pLayout@{pLayout}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{pLayout}{pLayout}}
+{\footnotesize\ttfamily Q\+V\+Box\+Layout$\ast$ Widget\+::p\+Layout\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classWidget_a78ac2916a67d1c0695ced75ec564fbe5}\label{classWidget_a78ac2916a67d1c0695ced75ec564fbe5}} 
+\index{Widget@{Widget}!pScandisplay@{pScandisplay}}
+\index{pScandisplay@{pScandisplay}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{pScandisplay}{pScandisplay}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classscan__display}{scan\+\_\+display}}$\ast$ Widget\+::p\+Scandisplay\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classWidget_a4c072c0c6cfa70e72bc2965647a06f87}\label{classWidget_a4c072c0c6cfa70e72bc2965647a06f87}} 
+\index{Widget@{Widget}!pScanSet@{pScanSet}}
+\index{pScanSet@{pScanSet}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{pScanSet}{pScanSet}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classScanSet}{Scan\+Set}}$\ast$ Widget\+::p\+Scan\+Set\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classWidget_afc02b9bd3793797c214f59701a19be8a}\label{classWidget_afc02b9bd3793797c214f59701a19be8a}} 
+\index{Widget@{Widget}!pTitleBar@{pTitleBar}}
+\index{pTitleBar@{pTitleBar}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{pTitleBar}{pTitleBar}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTitleBar}{Title\+Bar}}$\ast$ Widget\+::p\+Title\+Bar\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classWidget_adc5b24d13c9f50550219ab139df69912}\label{classWidget_adc5b24d13c9f50550219ab139df69912}} 
+\index{Widget@{Widget}!thread@{thread}}
+\index{thread@{thread}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{thread}{thread}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classscanThread}{scan\+Thread}} Widget\+::thread\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+该类的文档由以下文件生成\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{widget_8h}{widget.\+h}}\item 
+src/\mbox{\hyperlink{widget_8cpp}{widget.\+cpp}}\end{DoxyCompactItemize}

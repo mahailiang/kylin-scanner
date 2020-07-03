@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kylin-scanner API: src/scan_set.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Kylin-scanner API
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">scan_set.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="scan__set_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">* Copyright (C) 2020 KYLIN SOFTWARE Information Technology Co., Ltd.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">* This program is free software; you can redistribute it and/or modify</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">* it under the terms of the GNU General Public License as published by</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">* the Free Software Foundation; either version 3, or (at your option)</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">* any later version.</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">* This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">* but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">* GNU General Public License for more details.</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">* You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">* along with this program; if not, see &lt;http://www.gnu.org/licenses/&amp;gt;.</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">*</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#ifndef SCAN_SET_H</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#define SCAN_SET_H</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;QWidget&gt;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;QLabel&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;QComboBox&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;QVBoxLayout&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;QHBoxLayout&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;QString&gt;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;QDebug&gt;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;QPushButton&gt;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;QStyledItemDelegate&gt;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;QListView&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;QDialog&gt;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;QFileDialog&gt;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;QCoreApplication&gt;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;QFont&gt;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;QPixmap&gt;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &lt;QLineEdit&gt;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &lt;QProcess&gt;</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#include &lt;QFile&gt;</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="kylincombobox_8h.html">kylincombobox.h</a>&quot;</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="send__mail_8h.html">send_mail.h</a>&quot;</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="kylin__sane_8h.html">kylin_sane.h</a>&quot;</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classScanSet.html">   45</a></span>&#160;<span class="keyword">class </span><a class="code" href="classScanSet.html">ScanSet</a>  : <span class="keyword">public</span> QWidget</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classScanSet.html#a78861e41777ec17c0967d65730d9804f">ScanSet</a>(QWidget *parent = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="classScanSet.html#ad3a9356559fc1cfb17f5cbb139d45149">~ScanSet</a>();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classScanSet.html#a2d59445c8a1f1e58b3bfc0f3dcd76f4c">setKylinComboBox</a>();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classScanSet.html#a727fcf925858861a0f5fdead468c46e2">setKylinScanSetNotEnable</a>();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classScanSet.html#a49614a00751f1abe42414399dd4f2540">setKylinScanSetEnable</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classScanSet.html#aeab60c0b5b3e9cbfa3b93c38d49fe10a">setKylinComboBoxAttributes</a>(<a class="code" href="classKylinComboBox.html">KylinComboBox</a> *combo, QStringList strList);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classScanSet.html#af2d8053b2b2dbaa3b10442fac427e7a1">setKylinLable</a>();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classScanSet.html#adda0fb43ca0309f6ec33432c0cd25119">setKylinLabelAttributes</a>(QLabel *label);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classScanSet.html#aeaa81c5804f05a93d3039e9453acbfde">setKylinHBoxLayout</a>();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classScanSet.html#ae74305f833b3001d17acef9325715861">setKylinHBoxLayoutAttributes</a>(QHBoxLayout *layout, QLabel *labelFirst, QLabel *labelSecond);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classScanSet.html#ae74305f833b3001d17acef9325715861">setKylinHBoxLayoutAttributes</a>(QHBoxLayout *layout, QLabel *labelFirst, <a class="code" href="classKylinComboBox.html">KylinComboBox</a> *combo);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    QString <a class="code" href="classScanSet.html#ac5f7303c5e0b6940b05af2af3343faa6">getTextResolution</a>();</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    QString <a class="code" href="classScanSet.html#a2d562a71e153cf1d2275be35a765e10a">getTextSize</a>();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    QString <a class="code" href="classScanSet.html#aa2665dcba16bf56bdcad8f62b19dd835">getTextFormat</a>();</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    QString <a class="code" href="classScanSet.html#a2658b932f2ef9c6ebdcb034b1135a9aa">getTextName</a>();</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    QString <a class="code" href="classScanSet.html#a5887bbd45d1fea75b94881b5c14016f7">getTextLocation</a>();</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classScanSet.html#ae5f45de06651a37e6369d3ca46fb5e86">setFontSize</a>(QLabel *label, <span class="keywordtype">int</span> n);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;Q_SIGNALS:</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">//signals:</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classScanSet.html#aafa146f4fa41b1a40be1ab41ff48ae2f">save_image_signal</a>(QString);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="classScanSet.html#a13a6d3170b28bc69b1940a2e30c1b8df">  109</a></span>&#160;    QLabel *<a class="code" href="classScanSet.html#a13a6d3170b28bc69b1940a2e30c1b8df">labDevice</a>;              </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="classScanSet.html#a5342a82aa7399b6a962fca4b160189ec">  110</a></span>&#160;    QLabel *<a class="code" href="classScanSet.html#a5342a82aa7399b6a962fca4b160189ec">labType</a>;                </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="classScanSet.html#a2a840fc7ae1a3849c1d9ca5e47aef862">  111</a></span>&#160;    QLabel *<a class="code" href="classScanSet.html#a2a840fc7ae1a3849c1d9ca5e47aef862">labColor</a>;               </div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="classScanSet.html#a7f82b14b56a9eaa60c81ea93ec33fb5c">  112</a></span>&#160;    QLabel *<a class="code" href="classScanSet.html#a7f82b14b56a9eaa60c81ea93ec33fb5c">labResolution</a>;          </div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="classScanSet.html#ab1fa3198132bcc5f605ab48867556457">  113</a></span>&#160;    QLabel *<a class="code" href="classScanSet.html#ab1fa3198132bcc5f605ab48867556457">labSize</a>;                </div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="classScanSet.html#a812c265b38e7ca816938526766eed375">  114</a></span>&#160;    QLabel *<a class="code" href="classScanSet.html#a812c265b38e7ca816938526766eed375">labFormat</a>;              </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="classScanSet.html#a6ca9a9764724946af4d9d2671fbf0597">  115</a></span>&#160;    QLabel *<a class="code" href="classScanSet.html#a6ca9a9764724946af4d9d2671fbf0597">labName</a>;                </div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="classScanSet.html#a4945e2befaa68e9bd04db3a29dce9dfa">  116</a></span>&#160;    QLabel *<a class="code" href="classScanSet.html#a4945e2befaa68e9bd04db3a29dce9dfa">labLocation</a>;            </div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="classScanSet.html#a92d156caea4737283c7bebccff5821f0">  118</a></span>&#160;    QFrame *<a class="code" href="classScanSet.html#a92d156caea4737283c7bebccff5821f0">line3</a>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="classScanSet.html#a90a849cc678e8348892910e8531f1004">  119</a></span>&#160;    QFrame *<a class="code" href="classScanSet.html#a90a849cc678e8348892910e8531f1004">line4</a>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="classScanSet.html#a4d2dc251992fdede0e8483f67d0bfd83">  121</a></span>&#160;    QPushButton *<a class="code" href="classScanSet.html#a4d2dc251992fdede0e8483f67d0bfd83">btnMail</a>;         </div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="classScanSet.html#ac3450891c39d09c5adec9e501cbae5b8">  122</a></span>&#160;    QPushButton *<a class="code" href="classScanSet.html#ac3450891c39d09c5adec9e501cbae5b8">btnSave</a>;         </div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="classScanSet.html#a048e7069e2197b2b09bd3ad073f9aeea">  123</a></span>&#160;    QPushButton *<a class="code" href="classScanSet.html#a048e7069e2197b2b09bd3ad073f9aeea">btnLocation</a>;    </div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="classScanSet.html#a0e23c4fbbdec5ac76016b5347e0a21fc">  125</a></span>&#160;    QLabel *<a class="code" href="classScanSet.html#a0e23c4fbbdec5ac76016b5347e0a21fc">textDevice</a>;             </div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="classScanSet.html#a0137b21dc0073f061772dee6c72a10de">  126</a></span>&#160;    QLabel *<a class="code" href="classScanSet.html#a0137b21dc0073f061772dee6c72a10de">textType</a>;               </div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="classScanSet.html#a69f57cd4dd176acd352c6827e17b22bb">  127</a></span>&#160;    <a class="code" href="classKylinComboBox.html">KylinComboBox</a> *<a class="code" href="classScanSet.html#a69f57cd4dd176acd352c6827e17b22bb">textColor</a>;       </div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="classScanSet.html#a89e6f1df5fe0a081e5cb11c3b507a07d">  128</a></span>&#160;    <a class="code" href="classKylinComboBox.html">KylinComboBox</a> *<a class="code" href="classScanSet.html#a89e6f1df5fe0a081e5cb11c3b507a07d">textResolution</a>;  </div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="classScanSet.html#a5e13abf2ce2b36169ce24a9aa65290d3">  129</a></span>&#160;    <a class="code" href="classKylinComboBox.html">KylinComboBox</a> *<a class="code" href="classScanSet.html#a5e13abf2ce2b36169ce24a9aa65290d3">textSize</a>;        </div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="classScanSet.html#ae658e75c5dd169fa81dd2f746213b109">  130</a></span>&#160;    <a class="code" href="classKylinComboBox.html">KylinComboBox</a> *<a class="code" href="classScanSet.html#ae658e75c5dd169fa81dd2f746213b109">textFormat</a>;      </div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="classScanSet.html#a7fd3949c189ed751c519c2139c526728">  131</a></span>&#160;    QLineEdit *<a class="code" href="classScanSet.html#a7fd3949c189ed751c519c2139c526728">textName</a>;               </div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="classScanSet.html#ad088bd39767810b16caf1a7857d7ea94">  134</a></span>&#160;    QHBoxLayout *<a class="code" href="classScanSet.html#ad088bd39767810b16caf1a7857d7ea94">hBoxDevice</a>;</div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="classScanSet.html#a550f6fb0bcbcbcfb6d20a353b5f8ecb4">  135</a></span>&#160;    QHBoxLayout *<a class="code" href="classScanSet.html#a550f6fb0bcbcbcfb6d20a353b5f8ecb4">hBoxType</a>;</div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="classScanSet.html#a196b8bc72a4ae3a9b03a63ff325828f7">  136</a></span>&#160;    QHBoxLayout *<a class="code" href="classScanSet.html#a196b8bc72a4ae3a9b03a63ff325828f7">hBoxColor</a>;</div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="classScanSet.html#a4474b55ea007d7c4cca44f9f95935e73">  137</a></span>&#160;    QHBoxLayout *<a class="code" href="classScanSet.html#a4474b55ea007d7c4cca44f9f95935e73">hBoxResolution</a>;</div>
+<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="classScanSet.html#a29a1b3cbe1763364ff14bb17ea3e782f">  138</a></span>&#160;    QHBoxLayout *<a class="code" href="classScanSet.html#a29a1b3cbe1763364ff14bb17ea3e782f">hBoxSize</a>;</div>
+<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="classScanSet.html#abd9b8b4af9a3314a8c244f905e2874fe">  139</a></span>&#160;    QHBoxLayout *<a class="code" href="classScanSet.html#abd9b8b4af9a3314a8c244f905e2874fe">hBoxFormat</a>;</div>
+<div class="line"><a name="l00140"></a><span class="lineno"><a class="line" href="classScanSet.html#a3553f18b835e1f78cdb239c7f784cbe3">  140</a></span>&#160;    QHBoxLayout *<a class="code" href="classScanSet.html#a3553f18b835e1f78cdb239c7f784cbe3">hBoxName</a>;</div>
+<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="classScanSet.html#a505ba5224f2c89c3668fd8731b2b058d">  141</a></span>&#160;    QHBoxLayout *<a class="code" href="classScanSet.html#a505ba5224f2c89c3668fd8731b2b058d">hBoxLocation</a>;</div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="classScanSet.html#a89f99195121f70e4c8cd5d9b8cec888d">  142</a></span>&#160;    QHBoxLayout *<a class="code" href="classScanSet.html#a89f99195121f70e4c8cd5d9b8cec888d">hBoxLine3</a>;</div>
+<div class="line"><a name="l00143"></a><span class="lineno"><a class="line" href="classScanSet.html#a6d9de0a0516bc8d032007e00a9321bf9">  143</a></span>&#160;    QHBoxLayout *<a class="code" href="classScanSet.html#a6d9de0a0516bc8d032007e00a9321bf9">hBoxLine4</a>;</div>
+<div class="line"><a name="l00144"></a><span class="lineno"><a class="line" href="classScanSet.html#a4a2c067aee8db048c22bf465bba15f57">  144</a></span>&#160;    QHBoxLayout *<a class="code" href="classScanSet.html#a4a2c067aee8db048c22bf465bba15f57">hBoxMailText</a>;</div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="classScanSet.html#a55e2fc4fa10d5891a66b741ec598c454">  145</a></span>&#160;    QVBoxLayout *<a class="code" href="classScanSet.html#a55e2fc4fa10d5891a66b741ec598c454">vBoxScanSet</a>;</div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="classScanSet.html#a600fa8922d0447d64c6acd7273982f21">  146</a></span>&#160;    QVBoxLayout *<a class="code" href="classScanSet.html#a600fa8922d0447d64c6acd7273982f21">vBoxScanSet1</a>;</div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="classScanSet.html#ad30c4a3e8aeb67f1f18ac1b784d6c3b1">  147</a></span>&#160;    QHBoxLayout *<a class="code" href="classScanSet.html#ad30c4a3e8aeb67f1f18ac1b784d6c3b1">hBoxScanSet</a>;</div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="classScanSet.html#a185d3acf06fa3bdc24c86f93c678df85">  148</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classScanSet.html#a185d3acf06fa3bdc24c86f93c678df85">flag</a> = 0;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="keyword">public</span> slots:</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classScanSet.html#a2e9b4611168836dfb86627492a651510">modify_save_button</a>();</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="keyword">private</span> slots:</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classScanSet.html#a3d5601607db1f9dde98e6029b665dcc8">on_btnLocation_clicked</a>();</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classScanSet.html#a873d5ee17ef5abc2eac0b4406415b0cb">on_btnMail_clicked</a>();</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classScanSet.html#af95d8d0b43e61c93767197be1c4f1fd2">on_btnSave_clicked</a>();</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classScanSet.html#ad51f844a5e01e88c2a2dd92c0dc03c7c">on_textColor_current_text_changed</a>(QString color);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classScanSet.html#a23940e2bc6d10e27df2d63c65eafd181">on_textResolution_current_text_changed</a>(QString resolution);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classScanSet.html#ac1ed25086fef6e3cc9845c66d7d843b4">on_textSize_current_text_changed</a>(QString size);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;};</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor">#endif // SCAN_SET_H</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclassScanSet_html_a600fa8922d0447d64c6acd7273982f21"><div class="ttname"><a href="classScanSet.html#a600fa8922d0447d64c6acd7273982f21">ScanSet::vBoxScanSet1</a></div><div class="ttdeci">QVBoxLayout * vBoxScanSet1</div><div class="ttdef"><b>Definition:</b> scan_set.h:146</div></div>
+<div class="ttc" id="aclassScanSet_html_a4a2c067aee8db048c22bf465bba15f57"><div class="ttname"><a href="classScanSet.html#a4a2c067aee8db048c22bf465bba15f57">ScanSet::hBoxMailText</a></div><div class="ttdeci">QHBoxLayout * hBoxMailText</div><div class="ttdef"><b>Definition:</b> scan_set.h:144</div></div>
+<div class="ttc" id="aclassScanSet_html_aa2665dcba16bf56bdcad8f62b19dd835"><div class="ttname"><a href="classScanSet.html#aa2665dcba16bf56bdcad8f62b19dd835">ScanSet::getTextFormat</a></div><div class="ttdeci">QString getTextFormat()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:504</div></div>
+<div class="ttc" id="astruct__Applist_html"><div class="ttname"><a href="struct__Applist.html">_Applist</a></div><div class="ttdef"><b>Definition:</b> send_mail.h:41</div></div>
+<div class="ttc" id="aclassScanSet_html_a69f57cd4dd176acd352c6827e17b22bb"><div class="ttname"><a href="classScanSet.html#a69f57cd4dd176acd352c6827e17b22bb">ScanSet::textColor</a></div><div class="ttdeci">KylinComboBox * textColor</div><div class="ttdef"><b>Definition:</b> scan_set.h:127</div></div>
+<div class="ttc" id="aclassKylinSane_html_a6e4754e2e68e6f4ed9d8ad037a052be4"><div class="ttname"><a href="classKylinSane.html#a6e4754e2e68e6f4ed9d8ad037a052be4">KylinSane::getInstance</a></div><div class="ttdeci">static KylinSane &amp; getInstance()</div><div class="ttdef"><b>Definition:</b> kylin_sane.h:82</div></div>
+<div class="ttc" id="aclassScanSet_html_af2d8053b2b2dbaa3b10442fac427e7a1"><div class="ttname"><a href="classScanSet.html#af2d8053b2b2dbaa3b10442fac427e7a1">ScanSet::setKylinLable</a></div><div class="ttdeci">void setKylinLable()</div><div class="ttdoc">setKylinLable 统一设置麒麟扫描标签Label</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:349</div></div>
+<div class="ttc" id="aclassScanSet_html_a7fd3949c189ed751c519c2139c526728"><div class="ttname"><a href="classScanSet.html#a7fd3949c189ed751c519c2139c526728">ScanSet::textName</a></div><div class="ttdeci">QLineEdit * textName</div><div class="ttdef"><b>Definition:</b> scan_set.h:131</div></div>
+<div class="ttc" id="aclassScanSet_html_aeab60c0b5b3e9cbfa3b93c38d49fe10a"><div class="ttname"><a href="classScanSet.html#aeab60c0b5b3e9cbfa3b93c38d49fe10a">ScanSet::setKylinComboBoxAttributes</a></div><div class="ttdeci">void setKylinComboBoxAttributes(KylinComboBox *combo, QStringList strList)</div><div class="ttdoc">setKylinComboBoxAttributes 设置组合框属性</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:182</div></div>
+<div class="ttc" id="aclassScanSet_html_a2e9b4611168836dfb86627492a651510"><div class="ttname"><a href="classScanSet.html#a2e9b4611168836dfb86627492a651510">ScanSet::modify_save_button</a></div><div class="ttdeci">void modify_save_button()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:576</div></div>
+<div class="ttc" id="aclassKylinComboBox_html"><div class="ttname"><a href="classKylinComboBox.html">KylinComboBox</a></div><div class="ttdef"><b>Definition:</b> kylincombobox.h:24</div></div>
+<div class="ttc" id="aclassKylinSane_html_a64336bb525a02e052016997f2c7ea274"><div class="ttname"><a href="classKylinSane.html#a64336bb525a02e052016997f2c7ea274">KylinSane::getKylinSaneStatus</a></div><div class="ttdeci">bool getKylinSaneStatus()</div><div class="ttdef"><b>Definition:</b> kylin_sane.cpp:1368</div></div>
+<div class="ttc" id="aclassScanSet_html_adda0fb43ca0309f6ec33432c0cd25119"><div class="ttname"><a href="classScanSet.html#adda0fb43ca0309f6ec33432c0cd25119">ScanSet::setKylinLabelAttributes</a></div><div class="ttdeci">void setKylinLabelAttributes(QLabel *label)</div><div class="ttdoc">setKylinLabelAttributes 设置标签属性</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:419</div></div>
+<div class="ttc" id="aclassScanSet_html_a196b8bc72a4ae3a9b03a63ff325828f7"><div class="ttname"><a href="classScanSet.html#a196b8bc72a4ae3a9b03a63ff325828f7">ScanSet::hBoxColor</a></div><div class="ttdeci">QHBoxLayout * hBoxColor</div><div class="ttdef"><b>Definition:</b> scan_set.h:136</div></div>
+<div class="ttc" id="aclassKylinSane_html_ab9e3ec5abe09666507fb695f8d62bb66"><div class="ttname"><a href="classKylinSane.html#ab9e3ec5abe09666507fb695f8d62bb66">KylinSane::getKylinSaneColors</a></div><div class="ttdeci">QStringList getKylinSaneColors()</div><div class="ttdef"><b>Definition:</b> kylin_sane.cpp:1393</div></div>
+<div class="ttc" id="astructuser__selected__info_html_a041fa7e96d987e01c6c3b3d22dae4049"><div class="ttname"><a href="structuser__selected__info.html#a041fa7e96d987e01c6c3b3d22dae4049">user_selected_info::color</a></div><div class="ttdeci">QString color</div><div class="ttdef"><b>Definition:</b> kylin_sane.h:58</div></div>
+<div class="ttc" id="aclassScanSet_html_a3d5601607db1f9dde98e6029b665dcc8"><div class="ttname"><a href="classScanSet.html#a3d5601607db1f9dde98e6029b665dcc8">ScanSet::on_btnLocation_clicked</a></div><div class="ttdeci">void on_btnLocation_clicked()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:526</div></div>
+<div class="ttc" id="astructuser__selected__info_html_a0a7dfbd80d4f6535b2ef6309df4cf59b"><div class="ttname"><a href="structuser__selected__info.html#a0a7dfbd80d4f6535b2ef6309df4cf59b">user_selected_info::resolution</a></div><div class="ttdeci">QString resolution</div><div class="ttdef"><b>Definition:</b> kylin_sane.h:59</div></div>
+<div class="ttc" id="ascan__set_8h_html"><div class="ttname"><a href="scan__set_8h.html">scan_set.h</a></div></div>
+<div class="ttc" id="aclassScanSet_html_a23940e2bc6d10e27df2d63c65eafd181"><div class="ttname"><a href="classScanSet.html#a23940e2bc6d10e27df2d63c65eafd181">ScanSet::on_textResolution_current_text_changed</a></div><div class="ttdeci">void on_textResolution_current_text_changed(QString resolution)</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:610</div></div>
+<div class="ttc" id="aclassKylinSane_html"><div class="ttname"><a href="classKylinSane.html">KylinSane</a></div><div class="ttdef"><b>Definition:</b> kylin_sane.h:72</div></div>
+<div class="ttc" id="aclassScanSet_html_ad3a9356559fc1cfb17f5cbb139d45149"><div class="ttname"><a href="classScanSet.html#ad3a9356559fc1cfb17f5cbb139d45149">ScanSet::~ScanSet</a></div><div class="ttdeci">~ScanSet()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:177</div></div>
+<div class="ttc" id="aclasssend__mail_html"><div class="ttname"><a href="classsend__mail.html">send_mail</a></div><div class="ttdef"><b>Definition:</b> send_mail.h:68</div></div>
+<div class="ttc" id="aclassScanSet_html_a873d5ee17ef5abc2eac0b4406415b0cb"><div class="ttname"><a href="classScanSet.html#a873d5ee17ef5abc2eac0b4406415b0cb">ScanSet::on_btnMail_clicked</a></div><div class="ttdeci">void on_btnMail_clicked()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:541</div></div>
+<div class="ttc" id="asend__mail_8h_html"><div class="ttname"><a href="send__mail_8h.html">send_mail.h</a></div></div>
+<div class="ttc" id="astructuser__selected__info_html_a181d98c83387936397d2180f98c8b2eb"><div class="ttname"><a href="structuser__selected__info.html#a181d98c83387936397d2180f98c8b2eb">user_selected_info::size</a></div><div class="ttdeci">QString size</div><div class="ttdef"><b>Definition:</b> kylin_sane.h:60</div></div>
+<div class="ttc" id="aclassScanSet_html_a29a1b3cbe1763364ff14bb17ea3e782f"><div class="ttname"><a href="classScanSet.html#a29a1b3cbe1763364ff14bb17ea3e782f">ScanSet::hBoxSize</a></div><div class="ttdeci">QHBoxLayout * hBoxSize</div><div class="ttdef"><b>Definition:</b> scan_set.h:138</div></div>
+<div class="ttc" id="aclassScanSet_html_abd9b8b4af9a3314a8c244f905e2874fe"><div class="ttname"><a href="classScanSet.html#abd9b8b4af9a3314a8c244f905e2874fe">ScanSet::hBoxFormat</a></div><div class="ttdeci">QHBoxLayout * hBoxFormat</div><div class="ttdef"><b>Definition:</b> scan_set.h:139</div></div>
+<div class="ttc" id="aclassKylinSane_html_adc9f99552b9746d31ded75fa26e7bf39"><div class="ttname"><a href="classKylinSane.html#adc9f99552b9746d31ded75fa26e7bf39">KylinSane::getKylinSaneName</a></div><div class="ttdeci">QString getKylinSaneName()</div><div class="ttdef"><b>Definition:</b> kylin_sane.cpp:1373</div></div>
+<div class="ttc" id="akylincombobox_8h_html"><div class="ttname"><a href="kylincombobox_8h.html">kylincombobox.h</a></div></div>
+<div class="ttc" id="aclassScanSet_html_a7f82b14b56a9eaa60c81ea93ec33fb5c"><div class="ttname"><a href="classScanSet.html#a7f82b14b56a9eaa60c81ea93ec33fb5c">ScanSet::labResolution</a></div><div class="ttdeci">QLabel * labResolution</div><div class="ttdef"><b>Definition:</b> scan_set.h:112</div></div>
+<div class="ttc" id="aclassScanSet_html"><div class="ttname"><a href="classScanSet.html">ScanSet</a></div><div class="ttdef"><b>Definition:</b> scan_set.h:45</div></div>
+<div class="ttc" id="aclassScanSet_html_a55e2fc4fa10d5891a66b741ec598c454"><div class="ttname"><a href="classScanSet.html#a55e2fc4fa10d5891a66b741ec598c454">ScanSet::vBoxScanSet</a></div><div class="ttdeci">QVBoxLayout * vBoxScanSet</div><div class="ttdef"><b>Definition:</b> scan_set.h:145</div></div>
+<div class="ttc" id="aclassScanSet_html_a4945e2befaa68e9bd04db3a29dce9dfa"><div class="ttname"><a href="classScanSet.html#a4945e2befaa68e9bd04db3a29dce9dfa">ScanSet::labLocation</a></div><div class="ttdeci">QLabel * labLocation</div><div class="ttdef"><b>Definition:</b> scan_set.h:116</div></div>
+<div class="ttc" id="aclassScanSet_html_a4d2dc251992fdede0e8483f67d0bfd83"><div class="ttname"><a href="classScanSet.html#a4d2dc251992fdede0e8483f67d0bfd83">ScanSet::btnMail</a></div><div class="ttdeci">QPushButton * btnMail</div><div class="ttdef"><b>Definition:</b> scan_set.h:121</div></div>
+<div class="ttc" id="asend__mail_8h_html_a11e600f2191e6bfef13a441bcd2c8193"><div class="ttname"><a href="send__mail_8h.html#a11e600f2191e6bfef13a441bcd2c8193">MAILTYPE</a></div><div class="ttdeci">#define MAILTYPE</div><div class="ttdef"><b>Definition:</b> send_mail.h:39</div></div>
+<div class="ttc" id="aclassScanSet_html_a78861e41777ec17c0967d65730d9804f"><div class="ttname"><a href="classScanSet.html#a78861e41777ec17c0967d65730d9804f">ScanSet::ScanSet</a></div><div class="ttdeci">ScanSet(QWidget *parent=nullptr)</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:20</div></div>
+<div class="ttc" id="aclassScanSet_html_ae658e75c5dd169fa81dd2f746213b109"><div class="ttname"><a href="classScanSet.html#ae658e75c5dd169fa81dd2f746213b109">ScanSet::textFormat</a></div><div class="ttdeci">KylinComboBox * textFormat</div><div class="ttdef"><b>Definition:</b> scan_set.h:130</div></div>
+<div class="ttc" id="ascan__set_8cpp_html_a0235495d51ee2a67ea9695b5ab3d5a9c"><div class="ttname"><a href="scan__set_8cpp.html#a0235495d51ee2a67ea9695b5ab3d5a9c">curPath</a></div><div class="ttdeci">QString curPath</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:19</div></div>
+<div class="ttc" id="aclassKylinComboBox_html_a86914c35825b367bada56e969d35e41d"><div class="ttname"><a href="classKylinComboBox.html#a86914c35825b367bada56e969d35e41d">KylinComboBox::colorGray</a></div><div class="ttdeci">void colorGray()</div><div class="ttdef"><b>Definition:</b> kylincombobox.cpp:83</div></div>
+<div class="ttc" id="aclassKylinSane_html_a70e6554f024f8d7efd98894375a054dd"><div class="ttname"><a href="classKylinSane.html#a70e6554f024f8d7efd98894375a054dd">KylinSane::userInfo</a></div><div class="ttdeci">struct user_selected_info userInfo</div><div class="ttdef"><b>Definition:</b> kylin_sane.h:106</div></div>
+<div class="ttc" id="aclassScanSet_html_a3553f18b835e1f78cdb239c7f784cbe3"><div class="ttname"><a href="classScanSet.html#a3553f18b835e1f78cdb239c7f784cbe3">ScanSet::hBoxName</a></div><div class="ttdeci">QHBoxLayout * hBoxName</div><div class="ttdef"><b>Definition:</b> scan_set.h:140</div></div>
+<div class="ttc" id="aclassScanSet_html_aafa146f4fa41b1a40be1ab41ff48ae2f"><div class="ttname"><a href="classScanSet.html#aafa146f4fa41b1a40be1ab41ff48ae2f">ScanSet::save_image_signal</a></div><div class="ttdeci">void save_image_signal(QString)</div></div>
+<div class="ttc" id="aclassScanSet_html_a6d9de0a0516bc8d032007e00a9321bf9"><div class="ttname"><a href="classScanSet.html#a6d9de0a0516bc8d032007e00a9321bf9">ScanSet::hBoxLine4</a></div><div class="ttdeci">QHBoxLayout * hBoxLine4</div><div class="ttdef"><b>Definition:</b> scan_set.h:143</div></div>
+<div class="ttc" id="aclassScanSet_html_a4474b55ea007d7c4cca44f9f95935e73"><div class="ttname"><a href="classScanSet.html#a4474b55ea007d7c4cca44f9f95935e73">ScanSet::hBoxResolution</a></div><div class="ttdeci">QHBoxLayout * hBoxResolution</div><div class="ttdef"><b>Definition:</b> scan_set.h:137</div></div>
+<div class="ttc" id="aclassScanSet_html_a5887bbd45d1fea75b94881b5c14016f7"><div class="ttname"><a href="classScanSet.html#a5887bbd45d1fea75b94881b5c14016f7">ScanSet::getTextLocation</a></div><div class="ttdeci">QString getTextLocation()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:514</div></div>
+<div class="ttc" id="aclassScanSet_html_a89f99195121f70e4c8cd5d9b8cec888d"><div class="ttname"><a href="classScanSet.html#a89f99195121f70e4c8cd5d9b8cec888d">ScanSet::hBoxLine3</a></div><div class="ttdeci">QHBoxLayout * hBoxLine3</div><div class="ttdef"><b>Definition:</b> scan_set.h:142</div></div>
+<div class="ttc" id="aclassScanSet_html_a0e23c4fbbdec5ac76016b5347e0a21fc"><div class="ttname"><a href="classScanSet.html#a0e23c4fbbdec5ac76016b5347e0a21fc">ScanSet::textDevice</a></div><div class="ttdeci">QLabel * textDevice</div><div class="ttdef"><b>Definition:</b> scan_set.h:125</div></div>
+<div class="ttc" id="aclassScanSet_html_ae5f45de06651a37e6369d3ca46fb5e86"><div class="ttname"><a href="classScanSet.html#ae5f45de06651a37e6369d3ca46fb5e86">ScanSet::setFontSize</a></div><div class="ttdeci">void setFontSize(QLabel *label, int n)</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:519</div></div>
+<div class="ttc" id="aclassScanSet_html_ae74305f833b3001d17acef9325715861"><div class="ttname"><a href="classScanSet.html#ae74305f833b3001d17acef9325715861">ScanSet::setKylinHBoxLayoutAttributes</a></div><div class="ttdeci">void setKylinHBoxLayoutAttributes(QHBoxLayout *layout, QLabel *labelFirst, QLabel *labelSecond)</div><div class="ttdoc">setKylinHBoxLayoutAttributes 设置水平布局属性： 标签1和标签2</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:478</div></div>
+<div class="ttc" id="aclassKylinSane_html_acca11046f65ad7d805137de05798c636"><div class="ttname"><a href="classKylinSane.html#acca11046f65ad7d805137de05798c636">KylinSane::getKylinSaneResolutions</a></div><div class="ttdeci">QStringList getKylinSaneResolutions()</div><div class="ttdef"><b>Definition:</b> kylin_sane.cpp:1383</div></div>
+<div class="ttc" id="aclassKylinSane_html_a64353071fe4bdccc5a627e1ccae89b10"><div class="ttname"><a href="classKylinSane.html#a64353071fe4bdccc5a627e1ccae89b10">KylinSane::getKylinSaneSizes</a></div><div class="ttdeci">QStringList getKylinSaneSizes()</div><div class="ttdef"><b>Definition:</b> kylin_sane.cpp:1388</div></div>
+<div class="ttc" id="aclassKylinSane_html_a05815aadccb427c219dc157c65ae05a6"><div class="ttname"><a href="classKylinSane.html#a05815aadccb427c219dc157c65ae05a6">KylinSane::getKylinSaneType</a></div><div class="ttdeci">QString getKylinSaneType()</div><div class="ttdef"><b>Definition:</b> kylin_sane.cpp:1378</div></div>
+<div class="ttc" id="aclassScanSet_html_aeaa81c5804f05a93d3039e9453acbfde"><div class="ttname"><a href="classScanSet.html#aeaa81c5804f05a93d3039e9453acbfde">ScanSet::setKylinHBoxLayout</a></div><div class="ttdeci">void setKylinHBoxLayout()</div><div class="ttdoc">setKylinHBoxLayout 统一设置麒麟扫描水平布局HBoxLayout</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:427</div></div>
+<div class="ttc" id="akylin__sane_8h_html"><div class="ttname"><a href="kylin__sane_8h.html">kylin_sane.h</a></div></div>
+<div class="ttc" id="aclassScanSet_html_a92d156caea4737283c7bebccff5821f0"><div class="ttname"><a href="classScanSet.html#a92d156caea4737283c7bebccff5821f0">ScanSet::line3</a></div><div class="ttdeci">QFrame * line3</div><div class="ttdef"><b>Definition:</b> scan_set.h:118</div></div>
+<div class="ttc" id="aclassScanSet_html_a2658b932f2ef9c6ebdcb034b1135a9aa"><div class="ttname"><a href="classScanSet.html#a2658b932f2ef9c6ebdcb034b1135a9aa">ScanSet::getTextName</a></div><div class="ttdeci">QString getTextName()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:509</div></div>
+<div class="ttc" id="aclassScanSet_html_a2d562a71e153cf1d2275be35a765e10a"><div class="ttname"><a href="classScanSet.html#a2d562a71e153cf1d2275be35a765e10a">ScanSet::getTextSize</a></div><div class="ttdeci">QString getTextSize()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:499</div></div>
+<div class="ttc" id="aclassScanSet_html_ac1ed25086fef6e3cc9845c66d7d843b4"><div class="ttname"><a href="classScanSet.html#ac1ed25086fef6e3cc9845c66d7d843b4">ScanSet::on_textSize_current_text_changed</a></div><div class="ttdeci">void on_textSize_current_text_changed(QString size)</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:616</div></div>
+<div class="ttc" id="aclassScanSet_html_a49614a00751f1abe42414399dd4f2540"><div class="ttname"><a href="classScanSet.html#a49614a00751f1abe42414399dd4f2540">ScanSet::setKylinScanSetEnable</a></div><div class="ttdeci">void setKylinScanSetEnable()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:318</div></div>
+<div class="ttc" id="aclassScanSet_html_a5e13abf2ce2b36169ce24a9aa65290d3"><div class="ttname"><a href="classScanSet.html#a5e13abf2ce2b36169ce24a9aa65290d3">ScanSet::textSize</a></div><div class="ttdeci">KylinComboBox * textSize</div><div class="ttdef"><b>Definition:</b> scan_set.h:129</div></div>
+<div class="ttc" id="aclassScanSet_html_a13a6d3170b28bc69b1940a2e30c1b8df"><div class="ttname"><a href="classScanSet.html#a13a6d3170b28bc69b1940a2e30c1b8df">ScanSet::labDevice</a></div><div class="ttdeci">QLabel * labDevice</div><div class="ttdef"><b>Definition:</b> scan_set.h:109</div></div>
+<div class="ttc" id="aclassScanSet_html_a6ca9a9764724946af4d9d2671fbf0597"><div class="ttname"><a href="classScanSet.html#a6ca9a9764724946af4d9d2671fbf0597">ScanSet::labName</a></div><div class="ttdeci">QLabel * labName</div><div class="ttdef"><b>Definition:</b> scan_set.h:115</div></div>
+<div class="ttc" id="aclassScanSet_html_a90a849cc678e8348892910e8531f1004"><div class="ttname"><a href="classScanSet.html#a90a849cc678e8348892910e8531f1004">ScanSet::line4</a></div><div class="ttdeci">QFrame * line4</div><div class="ttdef"><b>Definition:</b> scan_set.h:119</div></div>
+<div class="ttc" id="aclasssend__mail_html_aebd630e899b75998cdd090e2be82cac9"><div class="ttname"><a href="classsend__mail.html#aebd630e899b75998cdd090e2be82cac9">send_mail::set_btnList</a></div><div class="ttdeci">void set_btnList()</div><div class="ttdef"><b>Definition:</b> send_mail.cpp:235</div></div>
+<div class="ttc" id="aclassScanSet_html_a048e7069e2197b2b09bd3ad073f9aeea"><div class="ttname"><a href="classScanSet.html#a048e7069e2197b2b09bd3ad073f9aeea">ScanSet::btnLocation</a></div><div class="ttdeci">QPushButton * btnLocation</div><div class="ttdef"><b>Definition:</b> scan_set.h:123</div></div>
+<div class="ttc" id="aclassScanSet_html_a550f6fb0bcbcbcfb6d20a353b5f8ecb4"><div class="ttname"><a href="classScanSet.html#a550f6fb0bcbcbcfb6d20a353b5f8ecb4">ScanSet::hBoxType</a></div><div class="ttdeci">QHBoxLayout * hBoxType</div><div class="ttdef"><b>Definition:</b> scan_set.h:135</div></div>
+<div class="ttc" id="aclassScanSet_html_a2d59445c8a1f1e58b3bfc0f3dcd76f4c"><div class="ttname"><a href="classScanSet.html#a2d59445c8a1f1e58b3bfc0f3dcd76f4c">ScanSet::setKylinComboBox</a></div><div class="ttdeci">void setKylinComboBox()</div><div class="ttdoc">setKylinComboBox 统一设置麒麟扫描组合框ComboBox</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:195</div></div>
+<div class="ttc" id="aclassScanSet_html_a727fcf925858861a0f5fdead468c46e2"><div class="ttname"><a href="classScanSet.html#a727fcf925858861a0f5fdead468c46e2">ScanSet::setKylinScanSetNotEnable</a></div><div class="ttdeci">void setKylinScanSetNotEnable()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:283</div></div>
+<div class="ttc" id="aclassScanSet_html_a812c265b38e7ca816938526766eed375"><div class="ttname"><a href="classScanSet.html#a812c265b38e7ca816938526766eed375">ScanSet::labFormat</a></div><div class="ttdeci">QLabel * labFormat</div><div class="ttdef"><b>Definition:</b> scan_set.h:114</div></div>
+<div class="ttc" id="aclassScanSet_html_ab1fa3198132bcc5f605ab48867556457"><div class="ttname"><a href="classScanSet.html#ab1fa3198132bcc5f605ab48867556457">ScanSet::labSize</a></div><div class="ttdeci">QLabel * labSize</div><div class="ttdef"><b>Definition:</b> scan_set.h:113</div></div>
+<div class="ttc" id="aclassKylinComboBox_html_ac986a2139691174516bed1318ed4b282"><div class="ttname"><a href="classKylinComboBox.html#ac986a2139691174516bed1318ed4b282">KylinComboBox::colorNormal</a></div><div class="ttdeci">void colorNormal()</div><div class="ttdef"><b>Definition:</b> kylincombobox.cpp:99</div></div>
+<div class="ttc" id="aclassScanSet_html_a5342a82aa7399b6a962fca4b160189ec"><div class="ttname"><a href="classScanSet.html#a5342a82aa7399b6a962fca4b160189ec">ScanSet::labType</a></div><div class="ttdeci">QLabel * labType</div><div class="ttdef"><b>Definition:</b> scan_set.h:110</div></div>
+<div class="ttc" id="ascan__set_8cpp_html_a3bff9f01f8c2290de3e7065bf948dcf1"><div class="ttname"><a href="scan__set_8cpp.html#a3bff9f01f8c2290de3e7065bf948dcf1">filter</a></div><div class="ttdeci">QString filter</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:563</div></div>
+<div class="ttc" id="aclassScanSet_html_a185d3acf06fa3bdc24c86f93c678df85"><div class="ttname"><a href="classScanSet.html#a185d3acf06fa3bdc24c86f93c678df85">ScanSet::flag</a></div><div class="ttdeci">int flag</div><div class="ttdef"><b>Definition:</b> scan_set.h:148</div></div>
+<div class="ttc" id="aclassScanSet_html_af95d8d0b43e61c93767197be1c4f1fd2"><div class="ttname"><a href="classScanSet.html#af95d8d0b43e61c93767197be1c4f1fd2">ScanSet::on_btnSave_clicked</a></div><div class="ttdeci">void on_btnSave_clicked()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:565</div></div>
+<div class="ttc" id="asend__mail_8cpp_html_a02ad49a6af3aec51054ed7c79f21bfe7"><div class="ttname"><a href="send__mail_8cpp.html#a02ad49a6af3aec51054ed7c79f21bfe7">getAppIdList</a></div><div class="ttdeci">AppList * getAppIdList(const char *contentType)</div><div class="ttdef"><b>Definition:</b> send_mail.cpp:207</div></div>
+<div class="ttc" id="aclassScanSet_html_a2a840fc7ae1a3849c1d9ca5e47aef862"><div class="ttname"><a href="classScanSet.html#a2a840fc7ae1a3849c1d9ca5e47aef862">ScanSet::labColor</a></div><div class="ttdeci">QLabel * labColor</div><div class="ttdef"><b>Definition:</b> scan_set.h:111</div></div>
+<div class="ttc" id="aclassScanSet_html_a89e6f1df5fe0a081e5cb11c3b507a07d"><div class="ttname"><a href="classScanSet.html#a89e6f1df5fe0a081e5cb11c3b507a07d">ScanSet::textResolution</a></div><div class="ttdeci">KylinComboBox * textResolution</div><div class="ttdef"><b>Definition:</b> scan_set.h:128</div></div>
+<div class="ttc" id="aclassno__mail_html"><div class="ttname"><a href="classno__mail.html">no_mail</a></div><div class="ttdef"><b>Definition:</b> send_mail.h:50</div></div>
+<div class="ttc" id="aclassScanSet_html_ad088bd39767810b16caf1a7857d7ea94"><div class="ttname"><a href="classScanSet.html#ad088bd39767810b16caf1a7857d7ea94">ScanSet::hBoxDevice</a></div><div class="ttdeci">QHBoxLayout * hBoxDevice</div><div class="ttdef"><b>Definition:</b> scan_set.h:134</div></div>
+<div class="ttc" id="aclassScanSet_html_ad30c4a3e8aeb67f1f18ac1b784d6c3b1"><div class="ttname"><a href="classScanSet.html#ad30c4a3e8aeb67f1f18ac1b784d6c3b1">ScanSet::hBoxScanSet</a></div><div class="ttdeci">QHBoxLayout * hBoxScanSet</div><div class="ttdef"><b>Definition:</b> scan_set.h:147</div></div>
+<div class="ttc" id="aclassScanSet_html_ad51f844a5e01e88c2a2dd92c0dc03c7c"><div class="ttname"><a href="classScanSet.html#ad51f844a5e01e88c2a2dd92c0dc03c7c">ScanSet::on_textColor_current_text_changed</a></div><div class="ttdeci">void on_textColor_current_text_changed(QString color)</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:591</div></div>
+<div class="ttc" id="aclassScanSet_html_ac3450891c39d09c5adec9e501cbae5b8"><div class="ttname"><a href="classScanSet.html#ac3450891c39d09c5adec9e501cbae5b8">ScanSet::btnSave</a></div><div class="ttdeci">QPushButton * btnSave</div><div class="ttdef"><b>Definition:</b> scan_set.h:122</div></div>
+<div class="ttc" id="aclassScanSet_html_ac5f7303c5e0b6940b05af2af3343faa6"><div class="ttname"><a href="classScanSet.html#ac5f7303c5e0b6940b05af2af3343faa6">ScanSet::getTextResolution</a></div><div class="ttdeci">QString getTextResolution()</div><div class="ttdef"><b>Definition:</b> scan_set.cpp:494</div></div>
+<div class="ttc" id="aclassScanSet_html_a0137b21dc0073f061772dee6c72a10de"><div class="ttname"><a href="classScanSet.html#a0137b21dc0073f061772dee6c72a10de">ScanSet::textType</a></div><div class="ttdeci">QLabel * textType</div><div class="ttdef"><b>Definition:</b> scan_set.h:126</div></div>
+<div class="ttc" id="aclassScanSet_html_a505ba5224f2c89c3668fd8731b2b058d"><div class="ttname"><a href="classScanSet.html#a505ba5224f2c89c3668fd8731b2b058d">ScanSet::hBoxLocation</a></div><div class="ttdeci">QHBoxLayout * hBoxLocation</div><div class="ttdef"><b>Definition:</b> scan_set.h:141</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者 &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

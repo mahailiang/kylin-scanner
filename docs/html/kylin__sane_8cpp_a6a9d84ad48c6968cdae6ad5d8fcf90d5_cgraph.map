@@ -1,0 +1,24 @@
+<map id="kylinNorScanOpen" name="kylinNorScanOpen">
+<area shape="rect" id="node1" title="kylinNorScanOpen 扫描设备打开统一接口 提供给页面调用" alt="" coords="5,577,136,604"/>
+<area shape="rect" id="node2" href="$kylin__sane_8cpp.html#ad9f4ca655267f3a703c60fd3e876cc63" title="cancle_scan 结束扫描" alt="" coords="239,5,333,32"/>
+<area shape="rect" id="node3" href="$kylin__sane_8cpp.html#a2a7c1f5e91c82fa924d2518001ff2a10" title="get_devices 查询所有连接设备 注意： 这里会很耗时" alt="" coords="240,56,332,83"/>
+<area shape="rect" id="node4" href="$classKylinSane.html#a6e4754e2e68e6f4ed9d8ad037a052be4" title=" " alt="" coords="889,259,1047,285"/>
+<area shape="rect" id="node5" href="$kylin__sane_8cpp.html#a02fd73d861ef2e4aabb38c0c9ff82947" title="init 扫描设备初始化" alt="" coords="267,628,305,655"/>
+<area shape="rect" id="node7" href="$kylin__sane_8cpp.html#a19951099c109584e16272de674b88778" title="kylin_display_scan_parameters 连接设备后，显示扫描参数" alt="" coords="220,450,352,491"/>
+<area shape="rect" id="node16" href="$classKylinSane.html#a9ff0db8d55360a336707926c3b9bc75d" title=" " alt="" coords="871,588,1065,615"/>
+<area shape="rect" id="node20" href="$kylin__sane_8cpp.html#a50e187f7016b94fc606f0633e5468ca8" title="open_sane_device 使用设备名字打开设备" alt="" coords="221,679,351,705"/>
+<area shape="rect" id="node21" href="$classKylinSane.html#afa8b177431546568e05e7ecf54b7ecc3" title=" " alt="" coords="185,729,387,756"/>
+<area shape="rect" id="node22" href="$classKylinSane.html#a8163e5eacc0f843c24b9332a91cc9838" title=" " alt="" coords="184,780,388,807"/>
+<area shape="rect" id="node6" href="$kylin__sane_8cpp.html#aa4088e6601580a69ba998f046cda5240" title=" " alt="" coords="445,628,547,655"/>
+<area shape="rect" id="node8" href="$kylin__sane_8cpp.html#af892e52d691cd52602c4d2b5c72f6e02" title="get_option_value 统一获取扫描参数" alt="" coords="436,385,556,412"/>
+<area shape="rect" id="node9" href="$kylin__sane_8cpp.html#a795e1d5597a19ad20130c11e3ba8a6c7" title="get_optdesc_by_name 根据扫描参数名称获取选项描述参数句柄" alt="" coords="627,208,780,235"/>
+<area shape="rect" id="node10" href="$kylin__sane_8cpp.html#a9ac28b4470ab91b0df9b5e64bcf50eb4" title="get_option_colors 获取色彩选项 可以输出扫描设备支持的所有色彩值： Color =&gt; 彩色 Gray =&gt; 灰度 Lineart =&gt; 黑白" alt="" coords="641,157,765,184"/>
+<area shape="rect" id="node12" href="$kylin__sane_8cpp.html#ae379875b7301f3c94cf82fa45b0e205d" title="get_option_resolutions 获取扫描软件的分辨率 可以获取扫描设备支持的所有分辨率，如下： 2400, 1200, 600, 300, 150, 100,..." alt="" coords="627,512,779,539"/>
+<area shape="rect" id="node14" href="$kylin__sane_8cpp.html#a453e3eb935354b62e5b251a3ddee7214" title="get_option_sizes 获取扫描设备尺寸 获取扫描尺寸根据不同的扫描选项值进行获取左上和右下坐标，从而确定扫描尺寸 Option 8(Top&#45;left x),..." alt="" coords="643,309,763,336"/>
+<area shape="rect" id="node15" href="$kylin__sane_8cpp.html#af28757ac800a7acc9c99e45075b9bc75" title="get_option_sources 获取扫描设备的资源情况 可以获取扫描设备的设备分类， 平板式(Flatbed)，其他为馈纸式" alt="" coords="636,563,771,589"/>
+<area shape="rect" id="node17" href="$kylin__sane_8cpp.html#abb0019b6c2b93cbf5de1bc5362919fca" title=" " alt="" coords="658,360,749,387"/>
+<area shape="rect" id="node18" href="$kylin__sane_8cpp.html#a2309fa8ac99d7f1938a8863fc318570e" title=" " alt="" coords="650,411,757,437"/>
+<area shape="rect" id="node19" href="$classKylinSane.html#ad90cb3e7c08b67312cbc0fbca9f9daec" title=" " alt="" coords="604,461,803,488"/>
+<area shape="rect" id="node11" href="$classKylinSane.html#ae5c74097887f99bc5a87d62d625bd3a0" title=" " alt="" coords="866,157,1070,184"/>
+<area shape="rect" id="node13" href="$classKylinSane.html#a0c56656745ef490f3579293c630e4b1a" title=" " alt="" coords="851,512,1085,539"/>
+</map>

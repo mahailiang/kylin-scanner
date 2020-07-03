@@ -1,0 +1,816 @@
+\hypertarget{classScanSet}{}\doxysection{Scan\+Set类 参考}
+\label{classScanSet}\index{ScanSet@{ScanSet}}
+
+
+{\ttfamily \#include $<$scan\+\_\+set.\+h$>$}
+
+
+
+类 Scan\+Set 继承关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=135pt]{classScanSet__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Scan\+Set 的协作图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{classScanSet__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public 槽}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classScanSet_a2e9b4611168836dfb86627492a651510}{modify\+\_\+save\+\_\+button}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{信号}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classScanSet_aafa146f4fa41b1a40be1ab41ff48ae2f}{save\+\_\+image\+\_\+signal}} (Q\+String)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classScanSet_a78861e41777ec17c0967d65730d9804f}{Scan\+Set}} (Q\+Widget $\ast$parent=nullptr)
+\item 
+\mbox{\hyperlink{classScanSet_ad3a9356559fc1cfb17f5cbb139d45149}{$\sim$\+Scan\+Set}} ()
+\item 
+void \mbox{\hyperlink{classScanSet_a2d59445c8a1f1e58b3bfc0f3dcd76f4c}{set\+Kylin\+Combo\+Box}} ()
+\begin{DoxyCompactList}\small\item\em set\+Kylin\+Combo\+Box 统一设置麒麟扫描组合框\+Combo\+Box \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classScanSet_a727fcf925858861a0f5fdead468c46e2}{set\+Kylin\+Scan\+Set\+Not\+Enable}} ()
+\item 
+void \mbox{\hyperlink{classScanSet_a49614a00751f1abe42414399dd4f2540}{set\+Kylin\+Scan\+Set\+Enable}} ()
+\item 
+void \mbox{\hyperlink{classScanSet_aeab60c0b5b3e9cbfa3b93c38d49fe10a}{set\+Kylin\+Combo\+Box\+Attributes}} (\mbox{\hyperlink{classKylinComboBox}{Kylin\+Combo\+Box}} $\ast$combo, Q\+String\+List str\+List)
+\begin{DoxyCompactList}\small\item\em set\+Kylin\+Combo\+Box\+Attributes 设置组合框属性 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classScanSet_af2d8053b2b2dbaa3b10442fac427e7a1}{set\+Kylin\+Lable}} ()
+\begin{DoxyCompactList}\small\item\em set\+Kylin\+Lable 统一设置麒麟扫描标签\+Label \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classScanSet_adda0fb43ca0309f6ec33432c0cd25119}{set\+Kylin\+Label\+Attributes}} (Q\+Label $\ast$label)
+\begin{DoxyCompactList}\small\item\em set\+Kylin\+Label\+Attributes 设置标签属性 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classScanSet_aeaa81c5804f05a93d3039e9453acbfde}{set\+Kylin\+H\+Box\+Layout}} ()
+\begin{DoxyCompactList}\small\item\em set\+Kylin\+H\+Box\+Layout 统一设置麒麟扫描水平布局\+H\+Box\+Layout \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classScanSet_ae74305f833b3001d17acef9325715861}{set\+Kylin\+H\+Box\+Layout\+Attributes}} (Q\+H\+Box\+Layout $\ast$layout, Q\+Label $\ast$label\+First, Q\+Label $\ast$label\+Second)
+\begin{DoxyCompactList}\small\item\em set\+Kylin\+H\+Box\+Layout\+Attributes 设置水平布局属性： 标签1和标签2 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classScanSet_a6b2ec2a3ee1ecc7e3f5703e237962aaf}{set\+Kylin\+H\+Box\+Layout\+Attributes}} (Q\+H\+Box\+Layout $\ast$layout, Q\+Label $\ast$label\+First, \mbox{\hyperlink{classKylinComboBox}{Kylin\+Combo\+Box}} $\ast$combo)
+\begin{DoxyCompactList}\small\item\em set\+Kylin\+H\+Box\+Layout\+Attributes 重载设置水平布局属性： 标签和组合框 \end{DoxyCompactList}\item 
+Q\+String \mbox{\hyperlink{classScanSet_ac5f7303c5e0b6940b05af2af3343faa6}{get\+Text\+Resolution}} ()
+\item 
+Q\+String \mbox{\hyperlink{classScanSet_a2d562a71e153cf1d2275be35a765e10a}{get\+Text\+Size}} ()
+\item 
+Q\+String \mbox{\hyperlink{classScanSet_aa2665dcba16bf56bdcad8f62b19dd835}{get\+Text\+Format}} ()
+\item 
+Q\+String \mbox{\hyperlink{classScanSet_a2658b932f2ef9c6ebdcb034b1135a9aa}{get\+Text\+Name}} ()
+\item 
+Q\+String \mbox{\hyperlink{classScanSet_a5887bbd45d1fea75b94881b5c14016f7}{get\+Text\+Location}} ()
+\item 
+void \mbox{\hyperlink{classScanSet_ae5f45de06651a37e6369d3ca46fb5e86}{set\+Font\+Size}} (Q\+Label $\ast$label, int n)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private 槽}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classScanSet_a3d5601607db1f9dde98e6029b665dcc8}{on\+\_\+btn\+Location\+\_\+clicked}} ()
+\item 
+void \mbox{\hyperlink{classScanSet_a873d5ee17ef5abc2eac0b4406415b0cb}{on\+\_\+btn\+Mail\+\_\+clicked}} ()
+\item 
+void \mbox{\hyperlink{classScanSet_af95d8d0b43e61c93767197be1c4f1fd2}{on\+\_\+btn\+Save\+\_\+clicked}} ()
+\item 
+void \mbox{\hyperlink{classScanSet_ad51f844a5e01e88c2a2dd92c0dc03c7c}{on\+\_\+text\+Color\+\_\+current\+\_\+text\+\_\+changed}} (Q\+String color)
+\item 
+void \mbox{\hyperlink{classScanSet_a23940e2bc6d10e27df2d63c65eafd181}{on\+\_\+text\+Resolution\+\_\+current\+\_\+text\+\_\+changed}} (Q\+String resolution)
+\item 
+void \mbox{\hyperlink{classScanSet_ac1ed25086fef6e3cc9845c66d7d843b4}{on\+\_\+text\+Size\+\_\+current\+\_\+text\+\_\+changed}} (Q\+String size)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private 属性}
+\begin{DoxyCompactItemize}
+\item 
+Q\+Label $\ast$ \mbox{\hyperlink{classScanSet_a13a6d3170b28bc69b1940a2e30c1b8df}{lab\+Device}}
+\item 
+Q\+Label $\ast$ \mbox{\hyperlink{classScanSet_a5342a82aa7399b6a962fca4b160189ec}{lab\+Type}}
+\item 
+Q\+Label $\ast$ \mbox{\hyperlink{classScanSet_a2a840fc7ae1a3849c1d9ca5e47aef862}{lab\+Color}}
+\item 
+Q\+Label $\ast$ \mbox{\hyperlink{classScanSet_a7f82b14b56a9eaa60c81ea93ec33fb5c}{lab\+Resolution}}
+\item 
+Q\+Label $\ast$ \mbox{\hyperlink{classScanSet_ab1fa3198132bcc5f605ab48867556457}{lab\+Size}}
+\item 
+Q\+Label $\ast$ \mbox{\hyperlink{classScanSet_a812c265b38e7ca816938526766eed375}{lab\+Format}}
+\item 
+Q\+Label $\ast$ \mbox{\hyperlink{classScanSet_a6ca9a9764724946af4d9d2671fbf0597}{lab\+Name}}
+\item 
+Q\+Label $\ast$ \mbox{\hyperlink{classScanSet_a4945e2befaa68e9bd04db3a29dce9dfa}{lab\+Location}}
+\item 
+Q\+Frame $\ast$ \mbox{\hyperlink{classScanSet_a92d156caea4737283c7bebccff5821f0}{line3}}
+\item 
+Q\+Frame $\ast$ \mbox{\hyperlink{classScanSet_a90a849cc678e8348892910e8531f1004}{line4}}
+\item 
+Q\+Push\+Button $\ast$ \mbox{\hyperlink{classScanSet_a4d2dc251992fdede0e8483f67d0bfd83}{btn\+Mail}}
+\item 
+Q\+Push\+Button $\ast$ \mbox{\hyperlink{classScanSet_ac3450891c39d09c5adec9e501cbae5b8}{btn\+Save}}
+\item 
+Q\+Push\+Button $\ast$ \mbox{\hyperlink{classScanSet_a048e7069e2197b2b09bd3ad073f9aeea}{btn\+Location}}
+\item 
+Q\+Label $\ast$ \mbox{\hyperlink{classScanSet_a0e23c4fbbdec5ac76016b5347e0a21fc}{text\+Device}}
+\item 
+Q\+Label $\ast$ \mbox{\hyperlink{classScanSet_a0137b21dc0073f061772dee6c72a10de}{text\+Type}}
+\item 
+\mbox{\hyperlink{classKylinComboBox}{Kylin\+Combo\+Box}} $\ast$ \mbox{\hyperlink{classScanSet_a69f57cd4dd176acd352c6827e17b22bb}{text\+Color}}
+\item 
+\mbox{\hyperlink{classKylinComboBox}{Kylin\+Combo\+Box}} $\ast$ \mbox{\hyperlink{classScanSet_a89e6f1df5fe0a081e5cb11c3b507a07d}{text\+Resolution}}
+\item 
+\mbox{\hyperlink{classKylinComboBox}{Kylin\+Combo\+Box}} $\ast$ \mbox{\hyperlink{classScanSet_a5e13abf2ce2b36169ce24a9aa65290d3}{text\+Size}}
+\item 
+\mbox{\hyperlink{classKylinComboBox}{Kylin\+Combo\+Box}} $\ast$ \mbox{\hyperlink{classScanSet_ae658e75c5dd169fa81dd2f746213b109}{text\+Format}}
+\item 
+Q\+Line\+Edit $\ast$ \mbox{\hyperlink{classScanSet_a7fd3949c189ed751c519c2139c526728}{text\+Name}}
+\item 
+Q\+H\+Box\+Layout $\ast$ \mbox{\hyperlink{classScanSet_ad088bd39767810b16caf1a7857d7ea94}{h\+Box\+Device}}
+\item 
+Q\+H\+Box\+Layout $\ast$ \mbox{\hyperlink{classScanSet_a550f6fb0bcbcbcfb6d20a353b5f8ecb4}{h\+Box\+Type}}
+\item 
+Q\+H\+Box\+Layout $\ast$ \mbox{\hyperlink{classScanSet_a196b8bc72a4ae3a9b03a63ff325828f7}{h\+Box\+Color}}
+\item 
+Q\+H\+Box\+Layout $\ast$ \mbox{\hyperlink{classScanSet_a4474b55ea007d7c4cca44f9f95935e73}{h\+Box\+Resolution}}
+\item 
+Q\+H\+Box\+Layout $\ast$ \mbox{\hyperlink{classScanSet_a29a1b3cbe1763364ff14bb17ea3e782f}{h\+Box\+Size}}
+\item 
+Q\+H\+Box\+Layout $\ast$ \mbox{\hyperlink{classScanSet_abd9b8b4af9a3314a8c244f905e2874fe}{h\+Box\+Format}}
+\item 
+Q\+H\+Box\+Layout $\ast$ \mbox{\hyperlink{classScanSet_a3553f18b835e1f78cdb239c7f784cbe3}{h\+Box\+Name}}
+\item 
+Q\+H\+Box\+Layout $\ast$ \mbox{\hyperlink{classScanSet_a505ba5224f2c89c3668fd8731b2b058d}{h\+Box\+Location}}
+\item 
+Q\+H\+Box\+Layout $\ast$ \mbox{\hyperlink{classScanSet_a89f99195121f70e4c8cd5d9b8cec888d}{h\+Box\+Line3}}
+\item 
+Q\+H\+Box\+Layout $\ast$ \mbox{\hyperlink{classScanSet_a6d9de0a0516bc8d032007e00a9321bf9}{h\+Box\+Line4}}
+\item 
+Q\+H\+Box\+Layout $\ast$ \mbox{\hyperlink{classScanSet_a4a2c067aee8db048c22bf465bba15f57}{h\+Box\+Mail\+Text}}
+\item 
+Q\+V\+Box\+Layout $\ast$ \mbox{\hyperlink{classScanSet_a55e2fc4fa10d5891a66b741ec598c454}{v\+Box\+Scan\+Set}}
+\item 
+Q\+V\+Box\+Layout $\ast$ \mbox{\hyperlink{classScanSet_a600fa8922d0447d64c6acd7273982f21}{v\+Box\+Scan\+Set1}}
+\item 
+Q\+H\+Box\+Layout $\ast$ \mbox{\hyperlink{classScanSet_ad30c4a3e8aeb67f1f18ac1b784d6c3b1}{h\+Box\+Scan\+Set}}
+\item 
+int \mbox{\hyperlink{classScanSet_a185d3acf06fa3bdc24c86f93c678df85}{flag}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{构造及析构函数说明}
+\mbox{\Hypertarget{classScanSet_a78861e41777ec17c0967d65730d9804f}\label{classScanSet_a78861e41777ec17c0967d65730d9804f}} 
+\index{ScanSet@{ScanSet}!ScanSet@{ScanSet}}
+\index{ScanSet@{ScanSet}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{ScanSet()}{ScanSet()}}
+{\footnotesize\ttfamily Scan\+Set\+::\+Scan\+Set (\begin{DoxyParamCaption}\item[{Q\+Widget $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_a78861e41777ec17c0967d65730d9804f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_ad3a9356559fc1cfb17f5cbb139d45149}\label{classScanSet_ad3a9356559fc1cfb17f5cbb139d45149}} 
+\index{ScanSet@{ScanSet}!````~ScanSet@{$\sim$ScanSet}}
+\index{````~ScanSet@{$\sim$ScanSet}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{$\sim$ScanSet()}{~ScanSet()}}
+{\footnotesize\ttfamily Scan\+Set\+::$\sim$\+Scan\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{成员函数说明}
+\mbox{\Hypertarget{classScanSet_aa2665dcba16bf56bdcad8f62b19dd835}\label{classScanSet_aa2665dcba16bf56bdcad8f62b19dd835}} 
+\index{ScanSet@{ScanSet}!getTextFormat@{getTextFormat}}
+\index{getTextFormat@{getTextFormat}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{getTextFormat()}{getTextFormat()}}
+{\footnotesize\ttfamily Q\+String Scan\+Set\+::get\+Text\+Format (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_aa2665dcba16bf56bdcad8f62b19dd835_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_a5887bbd45d1fea75b94881b5c14016f7}\label{classScanSet_a5887bbd45d1fea75b94881b5c14016f7}} 
+\index{ScanSet@{ScanSet}!getTextLocation@{getTextLocation}}
+\index{getTextLocation@{getTextLocation}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{getTextLocation()}{getTextLocation()}}
+{\footnotesize\ttfamily Q\+String Scan\+Set\+::get\+Text\+Location (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_a5887bbd45d1fea75b94881b5c14016f7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_a2658b932f2ef9c6ebdcb034b1135a9aa}\label{classScanSet_a2658b932f2ef9c6ebdcb034b1135a9aa}} 
+\index{ScanSet@{ScanSet}!getTextName@{getTextName}}
+\index{getTextName@{getTextName}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{getTextName()}{getTextName()}}
+{\footnotesize\ttfamily Q\+String Scan\+Set\+::get\+Text\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_a2658b932f2ef9c6ebdcb034b1135a9aa_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_ac5f7303c5e0b6940b05af2af3343faa6}\label{classScanSet_ac5f7303c5e0b6940b05af2af3343faa6}} 
+\index{ScanSet@{ScanSet}!getTextResolution@{getTextResolution}}
+\index{getTextResolution@{getTextResolution}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{getTextResolution()}{getTextResolution()}}
+{\footnotesize\ttfamily Q\+String Scan\+Set\+::get\+Text\+Resolution (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_ac5f7303c5e0b6940b05af2af3343faa6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_a2d562a71e153cf1d2275be35a765e10a}\label{classScanSet_a2d562a71e153cf1d2275be35a765e10a}} 
+\index{ScanSet@{ScanSet}!getTextSize@{getTextSize}}
+\index{getTextSize@{getTextSize}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{getTextSize()}{getTextSize()}}
+{\footnotesize\ttfamily Q\+String Scan\+Set\+::get\+Text\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_a2d562a71e153cf1d2275be35a765e10a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_a2e9b4611168836dfb86627492a651510}\label{classScanSet_a2e9b4611168836dfb86627492a651510}} 
+\index{ScanSet@{ScanSet}!modify\_save\_button@{modify\_save\_button}}
+\index{modify\_save\_button@{modify\_save\_button}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{modify\_save\_button}{modify\_save\_button}}
+{\footnotesize\ttfamily void Scan\+Set\+::modify\+\_\+save\+\_\+button (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{classScanSet_a2e9b4611168836dfb86627492a651510_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_a3d5601607db1f9dde98e6029b665dcc8}\label{classScanSet_a3d5601607db1f9dde98e6029b665dcc8}} 
+\index{ScanSet@{ScanSet}!on\_btnLocation\_clicked@{on\_btnLocation\_clicked}}
+\index{on\_btnLocation\_clicked@{on\_btnLocation\_clicked}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{on\_btnLocation\_clicked}{on\_btnLocation\_clicked}}
+{\footnotesize\ttfamily void Scan\+Set\+::on\+\_\+btn\+Location\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{classScanSet_a3d5601607db1f9dde98e6029b665dcc8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_a873d5ee17ef5abc2eac0b4406415b0cb}\label{classScanSet_a873d5ee17ef5abc2eac0b4406415b0cb}} 
+\index{ScanSet@{ScanSet}!on\_btnMail\_clicked@{on\_btnMail\_clicked}}
+\index{on\_btnMail\_clicked@{on\_btnMail\_clicked}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{on\_btnMail\_clicked}{on\_btnMail\_clicked}}
+{\footnotesize\ttfamily void Scan\+Set\+::on\+\_\+btn\+Mail\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_a873d5ee17ef5abc2eac0b4406415b0cb_cgraph}
+\end{center}
+\end{figure}
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=321pt]{classScanSet_a873d5ee17ef5abc2eac0b4406415b0cb_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_af95d8d0b43e61c93767197be1c4f1fd2}\label{classScanSet_af95d8d0b43e61c93767197be1c4f1fd2}} 
+\index{ScanSet@{ScanSet}!on\_btnSave\_clicked@{on\_btnSave\_clicked}}
+\index{on\_btnSave\_clicked@{on\_btnSave\_clicked}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{on\_btnSave\_clicked}{on\_btnSave\_clicked}}
+{\footnotesize\ttfamily void Scan\+Set\+::on\+\_\+btn\+Save\+\_\+clicked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{classScanSet_af95d8d0b43e61c93767197be1c4f1fd2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_ad51f844a5e01e88c2a2dd92c0dc03c7c}\label{classScanSet_ad51f844a5e01e88c2a2dd92c0dc03c7c}} 
+\index{ScanSet@{ScanSet}!on\_textColor\_current\_text\_changed@{on\_textColor\_current\_text\_changed}}
+\index{on\_textColor\_current\_text\_changed@{on\_textColor\_current\_text\_changed}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{on\_textColor\_current\_text\_changed}{on\_textColor\_current\_text\_changed}}
+{\footnotesize\ttfamily void Scan\+Set\+::on\+\_\+text\+Color\+\_\+current\+\_\+text\+\_\+changed (\begin{DoxyParamCaption}\item[{Q\+String}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_ad51f844a5e01e88c2a2dd92c0dc03c7c_cgraph}
+\end{center}
+\end{figure}
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{classScanSet_ad51f844a5e01e88c2a2dd92c0dc03c7c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_a23940e2bc6d10e27df2d63c65eafd181}\label{classScanSet_a23940e2bc6d10e27df2d63c65eafd181}} 
+\index{ScanSet@{ScanSet}!on\_textResolution\_current\_text\_changed@{on\_textResolution\_current\_text\_changed}}
+\index{on\_textResolution\_current\_text\_changed@{on\_textResolution\_current\_text\_changed}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{on\_textResolution\_current\_text\_changed}{on\_textResolution\_current\_text\_changed}}
+{\footnotesize\ttfamily void Scan\+Set\+::on\+\_\+text\+Resolution\+\_\+current\+\_\+text\+\_\+changed (\begin{DoxyParamCaption}\item[{Q\+String}]{resolution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_a23940e2bc6d10e27df2d63c65eafd181_cgraph}
+\end{center}
+\end{figure}
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_a23940e2bc6d10e27df2d63c65eafd181_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_ac1ed25086fef6e3cc9845c66d7d843b4}\label{classScanSet_ac1ed25086fef6e3cc9845c66d7d843b4}} 
+\index{ScanSet@{ScanSet}!on\_textSize\_current\_text\_changed@{on\_textSize\_current\_text\_changed}}
+\index{on\_textSize\_current\_text\_changed@{on\_textSize\_current\_text\_changed}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{on\_textSize\_current\_text\_changed}{on\_textSize\_current\_text\_changed}}
+{\footnotesize\ttfamily void Scan\+Set\+::on\+\_\+text\+Size\+\_\+current\+\_\+text\+\_\+changed (\begin{DoxyParamCaption}\item[{Q\+String}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_ac1ed25086fef6e3cc9845c66d7d843b4_cgraph}
+\end{center}
+\end{figure}
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{classScanSet_ac1ed25086fef6e3cc9845c66d7d843b4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_aafa146f4fa41b1a40be1ab41ff48ae2f}\label{classScanSet_aafa146f4fa41b1a40be1ab41ff48ae2f}} 
+\index{ScanSet@{ScanSet}!save\_image\_signal@{save\_image\_signal}}
+\index{save\_image\_signal@{save\_image\_signal}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{save\_image\_signal}{save\_image\_signal}}
+{\footnotesize\ttfamily void Scan\+Set\+::save\+\_\+image\+\_\+signal (\begin{DoxyParamCaption}\item[{Q\+String}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_aafa146f4fa41b1a40be1ab41ff48ae2f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_ae5f45de06651a37e6369d3ca46fb5e86}\label{classScanSet_ae5f45de06651a37e6369d3ca46fb5e86}} 
+\index{ScanSet@{ScanSet}!setFontSize@{setFontSize}}
+\index{setFontSize@{setFontSize}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{setFontSize()}{setFontSize()}}
+{\footnotesize\ttfamily void Scan\+Set\+::set\+Font\+Size (\begin{DoxyParamCaption}\item[{Q\+Label $\ast$}]{label,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_ae5f45de06651a37e6369d3ca46fb5e86_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_a2d59445c8a1f1e58b3bfc0f3dcd76f4c}\label{classScanSet_a2d59445c8a1f1e58b3bfc0f3dcd76f4c}} 
+\index{ScanSet@{ScanSet}!setKylinComboBox@{setKylinComboBox}}
+\index{setKylinComboBox@{setKylinComboBox}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{setKylinComboBox()}{setKylinComboBox()}}
+{\footnotesize\ttfamily void Scan\+Set\+::set\+Kylin\+Combo\+Box (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+set\+Kylin\+Combo\+Box 统一设置麒麟扫描组合框\+Combo\+Box 
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_a2d59445c8a1f1e58b3bfc0f3dcd76f4c_cgraph}
+\end{center}
+\end{figure}
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_a2d59445c8a1f1e58b3bfc0f3dcd76f4c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_aeab60c0b5b3e9cbfa3b93c38d49fe10a}\label{classScanSet_aeab60c0b5b3e9cbfa3b93c38d49fe10a}} 
+\index{ScanSet@{ScanSet}!setKylinComboBoxAttributes@{setKylinComboBoxAttributes}}
+\index{setKylinComboBoxAttributes@{setKylinComboBoxAttributes}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{setKylinComboBoxAttributes()}{setKylinComboBoxAttributes()}}
+{\footnotesize\ttfamily void Scan\+Set\+::set\+Kylin\+Combo\+Box\+Attributes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classKylinComboBox}{Kylin\+Combo\+Box}} $\ast$}]{combo,  }\item[{Q\+String\+List}]{str\+List }\end{DoxyParamCaption})}
+
+
+
+set\+Kylin\+Combo\+Box\+Attributes 设置组合框属性 
+
+
+\begin{DoxyParams}{参数}
+{\em combo} & 需要属性设置的组合框 \\
+\hline
+{\em str\+List} & 组合框中文本框值 \\
+\hline
+\end{DoxyParams}
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_aeab60c0b5b3e9cbfa3b93c38d49fe10a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_aeaa81c5804f05a93d3039e9453acbfde}\label{classScanSet_aeaa81c5804f05a93d3039e9453acbfde}} 
+\index{ScanSet@{ScanSet}!setKylinHBoxLayout@{setKylinHBoxLayout}}
+\index{setKylinHBoxLayout@{setKylinHBoxLayout}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{setKylinHBoxLayout()}{setKylinHBoxLayout()}}
+{\footnotesize\ttfamily void Scan\+Set\+::set\+Kylin\+H\+Box\+Layout (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+set\+Kylin\+H\+Box\+Layout 统一设置麒麟扫描水平布局\+H\+Box\+Layout 
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_aeaa81c5804f05a93d3039e9453acbfde_cgraph}
+\end{center}
+\end{figure}
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_aeaa81c5804f05a93d3039e9453acbfde_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_a6b2ec2a3ee1ecc7e3f5703e237962aaf}\label{classScanSet_a6b2ec2a3ee1ecc7e3f5703e237962aaf}} 
+\index{ScanSet@{ScanSet}!setKylinHBoxLayoutAttributes@{setKylinHBoxLayoutAttributes}}
+\index{setKylinHBoxLayoutAttributes@{setKylinHBoxLayoutAttributes}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{setKylinHBoxLayoutAttributes()}{setKylinHBoxLayoutAttributes()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Scan\+Set\+::set\+Kylin\+H\+Box\+Layout\+Attributes (\begin{DoxyParamCaption}\item[{Q\+H\+Box\+Layout $\ast$}]{layout,  }\item[{Q\+Label $\ast$}]{label\+First,  }\item[{\mbox{\hyperlink{classKylinComboBox}{Kylin\+Combo\+Box}} $\ast$}]{combo }\end{DoxyParamCaption})}
+
+
+
+set\+Kylin\+H\+Box\+Layout\+Attributes 重载设置水平布局属性： 标签和组合框 
+
+
+\begin{DoxyParams}{参数}
+{\em layout} & 需要设置的水平布局 \\
+\hline
+{\em label\+First} & 水平布局中的标签 \\
+\hline
+{\em combo} & 水平布局中的组合框 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classScanSet_ae74305f833b3001d17acef9325715861}\label{classScanSet_ae74305f833b3001d17acef9325715861}} 
+\index{ScanSet@{ScanSet}!setKylinHBoxLayoutAttributes@{setKylinHBoxLayoutAttributes}}
+\index{setKylinHBoxLayoutAttributes@{setKylinHBoxLayoutAttributes}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{setKylinHBoxLayoutAttributes()}{setKylinHBoxLayoutAttributes()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Scan\+Set\+::set\+Kylin\+H\+Box\+Layout\+Attributes (\begin{DoxyParamCaption}\item[{Q\+H\+Box\+Layout $\ast$}]{layout,  }\item[{Q\+Label $\ast$}]{label\+First,  }\item[{Q\+Label $\ast$}]{label\+Second }\end{DoxyParamCaption})}
+
+
+
+set\+Kylin\+H\+Box\+Layout\+Attributes 设置水平布局属性： 标签1和标签2 
+
+
+\begin{DoxyParams}{参数}
+{\em layout} & 需要设置的水平布局 \\
+\hline
+{\em label\+First} & 水平布局中的第一个标签 \\
+\hline
+{\em label\+Second} & 水平布局中的第二个标签 \\
+\hline
+\end{DoxyParams}
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_ae74305f833b3001d17acef9325715861_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_adda0fb43ca0309f6ec33432c0cd25119}\label{classScanSet_adda0fb43ca0309f6ec33432c0cd25119}} 
+\index{ScanSet@{ScanSet}!setKylinLabelAttributes@{setKylinLabelAttributes}}
+\index{setKylinLabelAttributes@{setKylinLabelAttributes}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{setKylinLabelAttributes()}{setKylinLabelAttributes()}}
+{\footnotesize\ttfamily void Scan\+Set\+::set\+Kylin\+Label\+Attributes (\begin{DoxyParamCaption}\item[{Q\+Label $\ast$}]{label }\end{DoxyParamCaption})}
+
+
+
+set\+Kylin\+Label\+Attributes 设置标签属性 
+
+
+\begin{DoxyParams}{参数}
+{\em label} & 需要属性设置的标签 \\
+\hline
+\end{DoxyParams}
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_adda0fb43ca0309f6ec33432c0cd25119_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_af2d8053b2b2dbaa3b10442fac427e7a1}\label{classScanSet_af2d8053b2b2dbaa3b10442fac427e7a1}} 
+\index{ScanSet@{ScanSet}!setKylinLable@{setKylinLable}}
+\index{setKylinLable@{setKylinLable}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{setKylinLable()}{setKylinLable()}}
+{\footnotesize\ttfamily void Scan\+Set\+::set\+Kylin\+Lable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+set\+Kylin\+Lable 统一设置麒麟扫描标签\+Label 
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_af2d8053b2b2dbaa3b10442fac427e7a1_cgraph}
+\end{center}
+\end{figure}
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_af2d8053b2b2dbaa3b10442fac427e7a1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_a49614a00751f1abe42414399dd4f2540}\label{classScanSet_a49614a00751f1abe42414399dd4f2540}} 
+\index{ScanSet@{ScanSet}!setKylinScanSetEnable@{setKylinScanSetEnable}}
+\index{setKylinScanSetEnable@{setKylinScanSetEnable}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{setKylinScanSetEnable()}{setKylinScanSetEnable()}}
+{\footnotesize\ttfamily void Scan\+Set\+::set\+Kylin\+Scan\+Set\+Enable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_a49614a00751f1abe42414399dd4f2540_cgraph}
+\end{center}
+\end{figure}
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_a49614a00751f1abe42414399dd4f2540_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classScanSet_a727fcf925858861a0f5fdead468c46e2}\label{classScanSet_a727fcf925858861a0f5fdead468c46e2}} 
+\index{ScanSet@{ScanSet}!setKylinScanSetNotEnable@{setKylinScanSetNotEnable}}
+\index{setKylinScanSetNotEnable@{setKylinScanSetNotEnable}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{setKylinScanSetNotEnable()}{setKylinScanSetNotEnable()}}
+{\footnotesize\ttfamily void Scan\+Set\+::set\+Kylin\+Scan\+Set\+Not\+Enable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+函数调用图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_a727fcf925858861a0f5fdead468c46e2_cgraph}
+\end{center}
+\end{figure}
+这是这个函数的调用关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScanSet_a727fcf925858861a0f5fdead468c46e2_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{结构体成员变量说明}
+\mbox{\Hypertarget{classScanSet_a048e7069e2197b2b09bd3ad073f9aeea}\label{classScanSet_a048e7069e2197b2b09bd3ad073f9aeea}} 
+\index{ScanSet@{ScanSet}!btnLocation@{btnLocation}}
+\index{btnLocation@{btnLocation}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{btnLocation}{btnLocation}}
+{\footnotesize\ttfamily Q\+Push\+Button$\ast$ Scan\+Set\+::btn\+Location\hspace{0.3cm}{\ttfamily [private]}}
+
+扫描至 \mbox{\Hypertarget{classScanSet_a4d2dc251992fdede0e8483f67d0bfd83}\label{classScanSet_a4d2dc251992fdede0e8483f67d0bfd83}} 
+\index{ScanSet@{ScanSet}!btnMail@{btnMail}}
+\index{btnMail@{btnMail}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{btnMail}{btnMail}}
+{\footnotesize\ttfamily Q\+Push\+Button$\ast$ Scan\+Set\+::btn\+Mail\hspace{0.3cm}{\ttfamily [private]}}
+
+发送至邮件 \mbox{\Hypertarget{classScanSet_ac3450891c39d09c5adec9e501cbae5b8}\label{classScanSet_ac3450891c39d09c5adec9e501cbae5b8}} 
+\index{ScanSet@{ScanSet}!btnSave@{btnSave}}
+\index{btnSave@{btnSave}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{btnSave}{btnSave}}
+{\footnotesize\ttfamily Q\+Push\+Button$\ast$ Scan\+Set\+::btn\+Save\hspace{0.3cm}{\ttfamily [private]}}
+
+另存为 \mbox{\Hypertarget{classScanSet_a185d3acf06fa3bdc24c86f93c678df85}\label{classScanSet_a185d3acf06fa3bdc24c86f93c678df85}} 
+\index{ScanSet@{ScanSet}!flag@{flag}}
+\index{flag@{flag}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{flag}{flag}}
+{\footnotesize\ttfamily int Scan\+Set\+::flag = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classScanSet_a196b8bc72a4ae3a9b03a63ff325828f7}\label{classScanSet_a196b8bc72a4ae3a9b03a63ff325828f7}} 
+\index{ScanSet@{ScanSet}!hBoxColor@{hBoxColor}}
+\index{hBoxColor@{hBoxColor}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{hBoxColor}{hBoxColor}}
+{\footnotesize\ttfamily Q\+H\+Box\+Layout$\ast$ Scan\+Set\+::h\+Box\+Color\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classScanSet_ad088bd39767810b16caf1a7857d7ea94}\label{classScanSet_ad088bd39767810b16caf1a7857d7ea94}} 
+\index{ScanSet@{ScanSet}!hBoxDevice@{hBoxDevice}}
+\index{hBoxDevice@{hBoxDevice}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{hBoxDevice}{hBoxDevice}}
+{\footnotesize\ttfamily Q\+H\+Box\+Layout$\ast$ Scan\+Set\+::h\+Box\+Device\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classScanSet_abd9b8b4af9a3314a8c244f905e2874fe}\label{classScanSet_abd9b8b4af9a3314a8c244f905e2874fe}} 
+\index{ScanSet@{ScanSet}!hBoxFormat@{hBoxFormat}}
+\index{hBoxFormat@{hBoxFormat}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{hBoxFormat}{hBoxFormat}}
+{\footnotesize\ttfamily Q\+H\+Box\+Layout$\ast$ Scan\+Set\+::h\+Box\+Format\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classScanSet_a89f99195121f70e4c8cd5d9b8cec888d}\label{classScanSet_a89f99195121f70e4c8cd5d9b8cec888d}} 
+\index{ScanSet@{ScanSet}!hBoxLine3@{hBoxLine3}}
+\index{hBoxLine3@{hBoxLine3}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{hBoxLine3}{hBoxLine3}}
+{\footnotesize\ttfamily Q\+H\+Box\+Layout$\ast$ Scan\+Set\+::h\+Box\+Line3\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classScanSet_a6d9de0a0516bc8d032007e00a9321bf9}\label{classScanSet_a6d9de0a0516bc8d032007e00a9321bf9}} 
+\index{ScanSet@{ScanSet}!hBoxLine4@{hBoxLine4}}
+\index{hBoxLine4@{hBoxLine4}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{hBoxLine4}{hBoxLine4}}
+{\footnotesize\ttfamily Q\+H\+Box\+Layout$\ast$ Scan\+Set\+::h\+Box\+Line4\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classScanSet_a505ba5224f2c89c3668fd8731b2b058d}\label{classScanSet_a505ba5224f2c89c3668fd8731b2b058d}} 
+\index{ScanSet@{ScanSet}!hBoxLocation@{hBoxLocation}}
+\index{hBoxLocation@{hBoxLocation}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{hBoxLocation}{hBoxLocation}}
+{\footnotesize\ttfamily Q\+H\+Box\+Layout$\ast$ Scan\+Set\+::h\+Box\+Location\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classScanSet_a4a2c067aee8db048c22bf465bba15f57}\label{classScanSet_a4a2c067aee8db048c22bf465bba15f57}} 
+\index{ScanSet@{ScanSet}!hBoxMailText@{hBoxMailText}}
+\index{hBoxMailText@{hBoxMailText}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{hBoxMailText}{hBoxMailText}}
+{\footnotesize\ttfamily Q\+H\+Box\+Layout$\ast$ Scan\+Set\+::h\+Box\+Mail\+Text\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classScanSet_a3553f18b835e1f78cdb239c7f784cbe3}\label{classScanSet_a3553f18b835e1f78cdb239c7f784cbe3}} 
+\index{ScanSet@{ScanSet}!hBoxName@{hBoxName}}
+\index{hBoxName@{hBoxName}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{hBoxName}{hBoxName}}
+{\footnotesize\ttfamily Q\+H\+Box\+Layout$\ast$ Scan\+Set\+::h\+Box\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classScanSet_a4474b55ea007d7c4cca44f9f95935e73}\label{classScanSet_a4474b55ea007d7c4cca44f9f95935e73}} 
+\index{ScanSet@{ScanSet}!hBoxResolution@{hBoxResolution}}
+\index{hBoxResolution@{hBoxResolution}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{hBoxResolution}{hBoxResolution}}
+{\footnotesize\ttfamily Q\+H\+Box\+Layout$\ast$ Scan\+Set\+::h\+Box\+Resolution\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classScanSet_ad30c4a3e8aeb67f1f18ac1b784d6c3b1}\label{classScanSet_ad30c4a3e8aeb67f1f18ac1b784d6c3b1}} 
+\index{ScanSet@{ScanSet}!hBoxScanSet@{hBoxScanSet}}
+\index{hBoxScanSet@{hBoxScanSet}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{hBoxScanSet}{hBoxScanSet}}
+{\footnotesize\ttfamily Q\+H\+Box\+Layout$\ast$ Scan\+Set\+::h\+Box\+Scan\+Set\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classScanSet_a29a1b3cbe1763364ff14bb17ea3e782f}\label{classScanSet_a29a1b3cbe1763364ff14bb17ea3e782f}} 
+\index{ScanSet@{ScanSet}!hBoxSize@{hBoxSize}}
+\index{hBoxSize@{hBoxSize}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{hBoxSize}{hBoxSize}}
+{\footnotesize\ttfamily Q\+H\+Box\+Layout$\ast$ Scan\+Set\+::h\+Box\+Size\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classScanSet_a550f6fb0bcbcbcfb6d20a353b5f8ecb4}\label{classScanSet_a550f6fb0bcbcbcfb6d20a353b5f8ecb4}} 
+\index{ScanSet@{ScanSet}!hBoxType@{hBoxType}}
+\index{hBoxType@{hBoxType}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{hBoxType}{hBoxType}}
+{\footnotesize\ttfamily Q\+H\+Box\+Layout$\ast$ Scan\+Set\+::h\+Box\+Type\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classScanSet_a2a840fc7ae1a3849c1d9ca5e47aef862}\label{classScanSet_a2a840fc7ae1a3849c1d9ca5e47aef862}} 
+\index{ScanSet@{ScanSet}!labColor@{labColor}}
+\index{labColor@{labColor}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{labColor}{labColor}}
+{\footnotesize\ttfamily Q\+Label$\ast$ Scan\+Set\+::lab\+Color\hspace{0.3cm}{\ttfamily [private]}}
+
+色彩标签 \mbox{\Hypertarget{classScanSet_a13a6d3170b28bc69b1940a2e30c1b8df}\label{classScanSet_a13a6d3170b28bc69b1940a2e30c1b8df}} 
+\index{ScanSet@{ScanSet}!labDevice@{labDevice}}
+\index{labDevice@{labDevice}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{labDevice}{labDevice}}
+{\footnotesize\ttfamily Q\+Label$\ast$ Scan\+Set\+::lab\+Device\hspace{0.3cm}{\ttfamily [private]}}
+
+设备标签 \mbox{\Hypertarget{classScanSet_a812c265b38e7ca816938526766eed375}\label{classScanSet_a812c265b38e7ca816938526766eed375}} 
+\index{ScanSet@{ScanSet}!labFormat@{labFormat}}
+\index{labFormat@{labFormat}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{labFormat}{labFormat}}
+{\footnotesize\ttfamily Q\+Label$\ast$ Scan\+Set\+::lab\+Format\hspace{0.3cm}{\ttfamily [private]}}
+
+格式标签 \mbox{\Hypertarget{classScanSet_a4945e2befaa68e9bd04db3a29dce9dfa}\label{classScanSet_a4945e2befaa68e9bd04db3a29dce9dfa}} 
+\index{ScanSet@{ScanSet}!labLocation@{labLocation}}
+\index{labLocation@{labLocation}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{labLocation}{labLocation}}
+{\footnotesize\ttfamily Q\+Label$\ast$ Scan\+Set\+::lab\+Location\hspace{0.3cm}{\ttfamily [private]}}
+
+扫描至标签 \mbox{\Hypertarget{classScanSet_a6ca9a9764724946af4d9d2671fbf0597}\label{classScanSet_a6ca9a9764724946af4d9d2671fbf0597}} 
+\index{ScanSet@{ScanSet}!labName@{labName}}
+\index{labName@{labName}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{labName}{labName}}
+{\footnotesize\ttfamily Q\+Label$\ast$ Scan\+Set\+::lab\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+名称标签 \mbox{\Hypertarget{classScanSet_a7f82b14b56a9eaa60c81ea93ec33fb5c}\label{classScanSet_a7f82b14b56a9eaa60c81ea93ec33fb5c}} 
+\index{ScanSet@{ScanSet}!labResolution@{labResolution}}
+\index{labResolution@{labResolution}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{labResolution}{labResolution}}
+{\footnotesize\ttfamily Q\+Label$\ast$ Scan\+Set\+::lab\+Resolution\hspace{0.3cm}{\ttfamily [private]}}
+
+分辨率标签 \mbox{\Hypertarget{classScanSet_ab1fa3198132bcc5f605ab48867556457}\label{classScanSet_ab1fa3198132bcc5f605ab48867556457}} 
+\index{ScanSet@{ScanSet}!labSize@{labSize}}
+\index{labSize@{labSize}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{labSize}{labSize}}
+{\footnotesize\ttfamily Q\+Label$\ast$ Scan\+Set\+::lab\+Size\hspace{0.3cm}{\ttfamily [private]}}
+
+尺寸标签 \mbox{\Hypertarget{classScanSet_a5342a82aa7399b6a962fca4b160189ec}\label{classScanSet_a5342a82aa7399b6a962fca4b160189ec}} 
+\index{ScanSet@{ScanSet}!labType@{labType}}
+\index{labType@{labType}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{labType}{labType}}
+{\footnotesize\ttfamily Q\+Label$\ast$ Scan\+Set\+::lab\+Type\hspace{0.3cm}{\ttfamily [private]}}
+
+类型标签 \mbox{\Hypertarget{classScanSet_a92d156caea4737283c7bebccff5821f0}\label{classScanSet_a92d156caea4737283c7bebccff5821f0}} 
+\index{ScanSet@{ScanSet}!line3@{line3}}
+\index{line3@{line3}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{line3}{line3}}
+{\footnotesize\ttfamily Q\+Frame$\ast$ Scan\+Set\+::line3\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classScanSet_a90a849cc678e8348892910e8531f1004}\label{classScanSet_a90a849cc678e8348892910e8531f1004}} 
+\index{ScanSet@{ScanSet}!line4@{line4}}
+\index{line4@{line4}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{line4}{line4}}
+{\footnotesize\ttfamily Q\+Frame$\ast$ Scan\+Set\+::line4\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classScanSet_a69f57cd4dd176acd352c6827e17b22bb}\label{classScanSet_a69f57cd4dd176acd352c6827e17b22bb}} 
+\index{ScanSet@{ScanSet}!textColor@{textColor}}
+\index{textColor@{textColor}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{textColor}{textColor}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classKylinComboBox}{Kylin\+Combo\+Box}}$\ast$ Scan\+Set\+::text\+Color\hspace{0.3cm}{\ttfamily [private]}}
+
+色彩 \mbox{\Hypertarget{classScanSet_a0e23c4fbbdec5ac76016b5347e0a21fc}\label{classScanSet_a0e23c4fbbdec5ac76016b5347e0a21fc}} 
+\index{ScanSet@{ScanSet}!textDevice@{textDevice}}
+\index{textDevice@{textDevice}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{textDevice}{textDevice}}
+{\footnotesize\ttfamily Q\+Label$\ast$ Scan\+Set\+::text\+Device\hspace{0.3cm}{\ttfamily [private]}}
+
+设备 \mbox{\Hypertarget{classScanSet_ae658e75c5dd169fa81dd2f746213b109}\label{classScanSet_ae658e75c5dd169fa81dd2f746213b109}} 
+\index{ScanSet@{ScanSet}!textFormat@{textFormat}}
+\index{textFormat@{textFormat}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{textFormat}{textFormat}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classKylinComboBox}{Kylin\+Combo\+Box}}$\ast$ Scan\+Set\+::text\+Format\hspace{0.3cm}{\ttfamily [private]}}
+
+格式 \mbox{\Hypertarget{classScanSet_a7fd3949c189ed751c519c2139c526728}\label{classScanSet_a7fd3949c189ed751c519c2139c526728}} 
+\index{ScanSet@{ScanSet}!textName@{textName}}
+\index{textName@{textName}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{textName}{textName}}
+{\footnotesize\ttfamily Q\+Line\+Edit$\ast$ Scan\+Set\+::text\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+名称 \mbox{\Hypertarget{classScanSet_a89e6f1df5fe0a081e5cb11c3b507a07d}\label{classScanSet_a89e6f1df5fe0a081e5cb11c3b507a07d}} 
+\index{ScanSet@{ScanSet}!textResolution@{textResolution}}
+\index{textResolution@{textResolution}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{textResolution}{textResolution}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classKylinComboBox}{Kylin\+Combo\+Box}}$\ast$ Scan\+Set\+::text\+Resolution\hspace{0.3cm}{\ttfamily [private]}}
+
+分辨率 \mbox{\Hypertarget{classScanSet_a5e13abf2ce2b36169ce24a9aa65290d3}\label{classScanSet_a5e13abf2ce2b36169ce24a9aa65290d3}} 
+\index{ScanSet@{ScanSet}!textSize@{textSize}}
+\index{textSize@{textSize}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{textSize}{textSize}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classKylinComboBox}{Kylin\+Combo\+Box}}$\ast$ Scan\+Set\+::text\+Size\hspace{0.3cm}{\ttfamily [private]}}
+
+尺寸 \mbox{\Hypertarget{classScanSet_a0137b21dc0073f061772dee6c72a10de}\label{classScanSet_a0137b21dc0073f061772dee6c72a10de}} 
+\index{ScanSet@{ScanSet}!textType@{textType}}
+\index{textType@{textType}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{textType}{textType}}
+{\footnotesize\ttfamily Q\+Label$\ast$ Scan\+Set\+::text\+Type\hspace{0.3cm}{\ttfamily [private]}}
+
+类型 \mbox{\Hypertarget{classScanSet_a55e2fc4fa10d5891a66b741ec598c454}\label{classScanSet_a55e2fc4fa10d5891a66b741ec598c454}} 
+\index{ScanSet@{ScanSet}!vBoxScanSet@{vBoxScanSet}}
+\index{vBoxScanSet@{vBoxScanSet}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{vBoxScanSet}{vBoxScanSet}}
+{\footnotesize\ttfamily Q\+V\+Box\+Layout$\ast$ Scan\+Set\+::v\+Box\+Scan\+Set\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classScanSet_a600fa8922d0447d64c6acd7273982f21}\label{classScanSet_a600fa8922d0447d64c6acd7273982f21}} 
+\index{ScanSet@{ScanSet}!vBoxScanSet1@{vBoxScanSet1}}
+\index{vBoxScanSet1@{vBoxScanSet1}!ScanSet@{ScanSet}}
+\doxysubsubsection{\texorpdfstring{vBoxScanSet1}{vBoxScanSet1}}
+{\footnotesize\ttfamily Q\+V\+Box\+Layout$\ast$ Scan\+Set\+::v\+Box\+Scan\+Set1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+该类的文档由以下文件生成\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{scan__set_8h}{scan\+\_\+set.\+h}}\item 
+src/\mbox{\hyperlink{scan__set_8cpp}{scan\+\_\+set.\+cpp}}\end{DoxyCompactItemize}

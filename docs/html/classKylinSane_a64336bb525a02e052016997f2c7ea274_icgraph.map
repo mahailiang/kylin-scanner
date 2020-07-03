@@ -1,0 +1,15 @@
+<map id="KylinSane::getKylinSaneStatus" name="KylinSane::getKylinSaneStatus">
+<area shape="rect" id="node1" title=" " alt="" coords="592,242,796,269"/>
+<area shape="rect" id="node2" href="$classFuncBar.html#a3f8d9918c550d04f5260c1ad088d610d" title=" " alt="" coords="374,5,522,47"/>
+<area shape="rect" id="node4" href="$classscanThread.html#af054be6deb010e3aa247a27e0924d579" title=" " alt="" coords="390,434,506,461"/>
+<area shape="rect" id="node5" href="$classScanSet.html#a2d59445c8a1f1e58b3bfc0f3dcd76f4c" title="setKylinComboBox 统一设置麒麟扫描组合框ComboBox" alt="" coords="352,333,544,359"/>
+<area shape="rect" id="node9" href="$classScanSet.html#af2d8053b2b2dbaa3b10442fac427e7a1" title="setKylinLable 统一设置麒麟扫描标签Label" alt="" coords="369,383,527,410"/>
+<area shape="rect" id="node10" href="$classFuncBar.html#ad012de161cf511dbb664c4ad63662fa2" title=" " alt="" coords="360,136,536,177"/>
+<area shape="rect" id="node11" href="$classScanSet.html#a49614a00751f1abe42414399dd4f2540" title=" " alt="" coords="359,201,537,243"/>
+<area shape="rect" id="node12" href="$classFuncBar.html#a62cd1876bfb29a558120e22a5fdf5358" title=" " alt="" coords="360,71,536,112"/>
+<area shape="rect" id="node13" href="$classScanSet.html#a727fcf925858861a0f5fdead468c46e2" title=" " alt="" coords="359,267,537,308"/>
+<area shape="rect" id="node3" href="$classFuncBar.html#a2741015b1797df5058ad22ce8b825818" title=" " alt="" coords="171,46,299,73"/>
+<area shape="rect" id="node6" href="$classWidget.html#aea825217028d9e17635ed10be11bd88f" title="Widget::scan_result 处理初始化设备的控件可用情况 当ret为true时，表示在处理线程中连接上了设备，此时扫描设置等按钮可用， 否则，按钮不可用。" alt="" coords="165,242,304,269"/>
+<area shape="rect" id="node8" href="$classScanSet.html#a78861e41777ec17c0967d65730d9804f" title=" " alt="" coords="169,358,300,385"/>
+<area shape="rect" id="node7" href="$classWidget.html#a29531c7f141e461322981b3b579d4590" title=" " alt="" coords="5,242,117,269"/>
+</map>

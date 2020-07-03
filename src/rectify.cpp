@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2019 Tianjin KYLIN Information Technology Co., Ltd.
+* Copyright (C) 2020 KYLIN SOFTWARE Information Technology Co., Ltd.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -125,7 +125,6 @@ int ImageRectify(char * pInFileName)
 {
     double degree;
     Mat src = imread(pInFileName);
-    //        imshow("原始图", src);
     Mat dst;
     //倾斜角度矫正
     degree = CalcDegree(src,dst);

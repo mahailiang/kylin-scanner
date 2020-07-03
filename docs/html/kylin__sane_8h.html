@@ -1,0 +1,641 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kylin-scanner API: src/kylin_sane.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Kylin-scanner API
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#enum-members">枚举</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle">
+<div class="title">kylin_sane.h 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;assert.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &lt;sys/types.h&gt;</code><br />
+<code>#include &lt;sys/stat.h&gt;</code><br />
+<code>#include &lt;QObject&gt;</code><br />
+<code>#include &lt;QWidget&gt;</code><br />
+<code>#include &lt;QDebug&gt;</code><br />
+<code>#include &lt;QString&gt;</code><br />
+<code>#include &lt;QStringList&gt;</code><br />
+<code>#include &quot;sane/sane.h&quot;</code><br />
+<code>#include &quot;sane/saneopts.h&quot;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+kylin_sane.h 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kylin__sane_8h__incl.png" border="0" usemap="#src_2kylin__sane_8h" alt=""/></div>
+<map name="src_2kylin__sane_8h" id="src_2kylin__sane_8h">
+<area shape="rect" title=" " alt="" coords="691,5,808,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,75,107"/>
+<area shape="rect" title=" " alt="" coords="99,80,160,107"/>
+<area shape="rect" title=" " alt="" coords="185,80,250,107"/>
+<area shape="rect" title=" " alt="" coords="275,80,339,107"/>
+<area shape="rect" title=" " alt="" coords="363,80,429,107"/>
+<area shape="rect" title=" " alt="" coords="453,80,521,107"/>
+<area shape="rect" title=" " alt="" coords="545,80,636,107"/>
+<area shape="rect" title=" " alt="" coords="660,80,740,107"/>
+<area shape="rect" title=" " alt="" coords="765,80,835,107"/>
+<area shape="rect" title=" " alt="" coords="859,80,933,107"/>
+<area shape="rect" title=" " alt="" coords="957,80,1027,107"/>
+<area shape="rect" title=" " alt="" coords="1052,80,1119,107"/>
+<area shape="rect" title=" " alt="" coords="1143,80,1230,107"/>
+<area shape="rect" title=" " alt="" coords="1255,80,1348,107"/>
+<area shape="rect" title=" " alt="" coords="1373,80,1491,107"/>
+<area shape="rect" title=" " alt="" coords="1516,80,1588,107"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件直接或间接的被哪些文件引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="kylin__sane_8h__dep__incl.png" border="0" usemap="#src_2kylin__sane_8hdep" alt=""/></div>
+<map name="src_2kylin__sane_8hdep" id="src_2kylin__sane_8hdep">
+<area shape="rect" title=" " alt="" coords="456,5,573,32"/>
+<area shape="rect" href="func__bar_8h.html" title=" " alt="" coords="233,80,337,107"/>
+<area shape="rect" href="widget_8cpp.html" title=" " alt="" coords="552,304,658,331"/>
+<area shape="rect" href="scan__display_8cpp.html" title=" " alt="" coords="111,229,254,256"/>
+<area shape="rect" href="kylin__sane_8cpp.html" title=" " alt="" coords="673,80,804,107"/>
+<area shape="rect" href="scan__set_8h.html" title=" " alt="" coords="460,80,568,107"/>
+<area shape="rect" href="func__bar_8cpp.html" title=" " alt="" coords="26,155,144,181"/>
+<area shape="rect" href="scan__display_8h.html" title=" " alt="" coords="220,155,350,181"/>
+<area shape="rect" href="widget_8h.html" title=" " alt="" coords="401,229,494,256"/>
+<area shape="rect" href="main_8cpp.html" title=" " alt="" coords="399,304,496,331"/>
+<area shape="rect" href="scan__set_8cpp.html" title=" " alt="" coords="425,155,548,181"/>
+</map>
+</div>
+</div>
+<p><a href="kylin__sane_8h_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdevice__info.html">device_info</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuser__selected__info.html">user_selected_info</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKylinSane.html">KylinSane</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:ae688d728e1acdfe5988c7db45d6f0166"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kylin__sane_8h.html#ae688d728e1acdfe5988c7db45d6f0166">PATH_MAX</a>&#160;&#160;&#160;1024</td></tr>
+<tr class="separator:ae688d728e1acdfe5988c7db45d6f0166"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:a6074762471f04f38b7fa42359ae4fe27"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kylin__sane_8h.html#a6074762471f04f38b7fa42359ae4fe27">sizes_type</a> { <br />
+&#160;&#160;<a class="el" href="kylin__sane_8h.html#a6074762471f04f38b7fa42359ae4fe27a47329f455692c2a8284d7594405f16d4">A2</a> = 1, 
+<a class="el" href="kylin__sane_8h.html#a6074762471f04f38b7fa42359ae4fe27a47dbfcefc8fabadcd82806b21de14bfc">A3</a>, 
+<a class="el" href="kylin__sane_8h.html#a6074762471f04f38b7fa42359ae4fe27ada06582608e19a3f2438f54eeb0bcad5">A4</a>, 
+<a class="el" href="kylin__sane_8h.html#a6074762471f04f38b7fa42359ae4fe27aacdd5acf9dd0376a4073a1f27d8df74e">A5</a>, 
+<br />
+&#160;&#160;<a class="el" href="kylin__sane_8h.html#a6074762471f04f38b7fa42359ae4fe27a260faf43232fc57a22e280e8912d6689">A6</a>
+<br />
+ }</td></tr>
+<tr class="separator:a6074762471f04f38b7fa42359ae4fe27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a02fd73d861ef2e4aabb38c0c9ff82947"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kylin__sane_8h.html#a02fd73d861ef2e4aabb38c0c9ff82947">init</a> ()</td></tr>
+<tr class="memdesc:a02fd73d861ef2e4aabb38c0c9ff82947"><td class="mdescLeft">&#160;</td><td class="mdescRight">init 扫描设备初始化  <a href="kylin__sane_8h.html#a02fd73d861ef2e4aabb38c0c9ff82947">更多...</a><br /></td></tr>
+<tr class="separator:a02fd73d861ef2e4aabb38c0c9ff82947"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a7c1f5e91c82fa924d2518001ff2a10"><td class="memItemLeft" align="right" valign="top">SANE_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kylin__sane_8h.html#a2a7c1f5e91c82fa924d2518001ff2a10">get_devices</a> (const SANE_Device ***device_list)</td></tr>
+<tr class="memdesc:a2a7c1f5e91c82fa924d2518001ff2a10"><td class="mdescLeft">&#160;</td><td class="mdescRight">get_devices 查询所有连接设备 注意： 这里会很耗时  <a href="kylin__sane_8h.html#a2a7c1f5e91c82fa924d2518001ff2a10">更多...</a><br /></td></tr>
+<tr class="separator:a2a7c1f5e91c82fa924d2518001ff2a10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50e187f7016b94fc606f0633e5468ca8"><td class="memItemLeft" align="right" valign="top">SANE_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kylin__sane_8h.html#a50e187f7016b94fc606f0633e5468ca8">open_sane_device</a> (SANE_Device *<a class="el" href="widget_8cpp.html#a8ffc7c6efbe25ea34aa0aefa819a558d">device</a>, SANE_Handle *sane_handle)</td></tr>
+<tr class="memdesc:a50e187f7016b94fc606f0633e5468ca8"><td class="mdescLeft">&#160;</td><td class="mdescRight">open_sane_device 使用设备名字打开设备  <a href="kylin__sane_8h.html#a50e187f7016b94fc606f0633e5468ca8">更多...</a><br /></td></tr>
+<tr class="separator:a50e187f7016b94fc606f0633e5468ca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b640f15a12501131e316d17025fb5ac"><td class="memItemLeft" align="right" valign="top">SANE_Status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kylin__sane_8h.html#a2b640f15a12501131e316d17025fb5ac">start_scan</a> (SANE_Handle sane_handle, SANE_String_Const fileName)</td></tr>
+<tr class="memdesc:a2b640f15a12501131e316d17025fb5ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">start_scan 开始扫描  <a href="kylin__sane_8h.html#a2b640f15a12501131e316d17025fb5ac">更多...</a><br /></td></tr>
+<tr class="separator:a2b640f15a12501131e316d17025fb5ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9f4ca655267f3a703c60fd3e876cc63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kylin__sane_8h.html#ad9f4ca655267f3a703c60fd3e876cc63">cancle_scan</a> (SANE_Handle sane_handle)</td></tr>
+<tr class="memdesc:ad9f4ca655267f3a703c60fd3e876cc63"><td class="mdescLeft">&#160;</td><td class="mdescRight">cancle_scan 结束扫描  <a href="kylin__sane_8h.html#ad9f4ca655267f3a703c60fd3e876cc63">更多...</a><br /></td></tr>
+<tr class="separator:ad9f4ca655267f3a703c60fd3e876cc63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8550d3bcc382a085ca06334733742949"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kylin__sane_8h.html#a8550d3bcc382a085ca06334733742949">close_device</a> (SANE_Handle sane_handle)</td></tr>
+<tr class="memdesc:a8550d3bcc382a085ca06334733742949"><td class="mdescLeft">&#160;</td><td class="mdescRight">close_device 关闭扫描设备  <a href="kylin__sane_8h.html#a8550d3bcc382a085ca06334733742949">更多...</a><br /></td></tr>
+<tr class="separator:a8550d3bcc382a085ca06334733742949"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82ecc8db19b2f6268059b949233deaeb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kylin__sane_8h.html#a82ecc8db19b2f6268059b949233deaeb">my_sane_exit</a> ()</td></tr>
+<tr class="memdesc:a82ecc8db19b2f6268059b949233deaeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">my_sane_exit 释放所有扫描资源  <a href="kylin__sane_8h.html#a82ecc8db19b2f6268059b949233deaeb">更多...</a><br /></td></tr>
+<tr class="separator:a82ecc8db19b2f6268059b949233deaeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19951099c109584e16272de674b88778"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kylin__sane_8h.html#a19951099c109584e16272de674b88778">kylin_display_scan_parameters</a> (SANE_Handle <a class="el" href="widget_8cpp.html#a8ffc7c6efbe25ea34aa0aefa819a558d">device</a>)</td></tr>
+<tr class="memdesc:a19951099c109584e16272de674b88778"><td class="mdescLeft">&#160;</td><td class="mdescRight">kylin_display_scan_parameters 连接设备后，显示扫描参数  <a href="kylin__sane_8h.html#a19951099c109584e16272de674b88778">更多...</a><br /></td></tr>
+<tr class="separator:a19951099c109584e16272de674b88778"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a9d84ad48c6968cdae6ad5d8fcf90d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kylin__sane_8h.html#a6a9d84ad48c6968cdae6ad5d8fcf90d5">kylinNorScanOpen</a> ()</td></tr>
+<tr class="memdesc:a6a9d84ad48c6968cdae6ad5d8fcf90d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">kylinNorScanOpen 扫描设备打开统一接口 提供给页面调用  <a href="kylin__sane_8h.html#a6a9d84ad48c6968cdae6ad5d8fcf90d5">更多...</a><br /></td></tr>
+<tr class="separator:a6a9d84ad48c6968cdae6ad5d8fcf90d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="ae688d728e1acdfe5988c7db45d6f0166"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae688d728e1acdfe5988c7db45d6f0166">&#9670;&nbsp;</a></span>PATH_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PATH_MAX&#160;&#160;&#160;1024</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">枚举类型说明</h2>
+<a id="a6074762471f04f38b7fa42359ae4fe27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6074762471f04f38b7fa42359ae4fe27">&#9670;&nbsp;</a></span>sizes_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="kylin__sane_8h.html#a6074762471f04f38b7fa42359ae4fe27">sizes_type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a6074762471f04f38b7fa42359ae4fe27a47329f455692c2a8284d7594405f16d4"></a>A2&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6074762471f04f38b7fa42359ae4fe27a47dbfcefc8fabadcd82806b21de14bfc"></a>A3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6074762471f04f38b7fa42359ae4fe27ada06582608e19a3f2438f54eeb0bcad5"></a>A4&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6074762471f04f38b7fa42359ae4fe27aacdd5acf9dd0376a4073a1f27d8df74e"></a>A5&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6074762471f04f38b7fa42359ae4fe27a260faf43232fc57a22e280e8912d6689"></a>A6&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="ad9f4ca655267f3a703c60fd3e876cc63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9f4ca655267f3a703c60fd3e876cc63">&#9670;&nbsp;</a></span>cancle_scan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cancle_scan </td>
+          <td>(</td>
+          <td class="paramtype">SANE_Handle&#160;</td>
+          <td class="paramname"><em>sane_handle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>cancle_scan 结束扫描 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sane_handle</td><td>扫描句柄 </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kylin__sane_8h_ad9f4ca655267f3a703c60fd3e876cc63_icgraph.png" border="0" usemap="#kylin__sane_8h_ad9f4ca655267f3a703c60fd3e876cc63_icgraph" alt=""/></div>
+<map name="kylin__sane_8h_ad9f4ca655267f3a703c60fd3e876cc63_icgraph" id="kylin__sane_8h_ad9f4ca655267f3a703c60fd3e876cc63_icgraph">
+<area shape="rect" title="cancle_scan 结束扫描" alt="" coords="615,35,709,61"/>
+<area shape="rect" href="kylin__sane_8h.html#a6a9d84ad48c6968cdae6ad5d8fcf90d5" title="kylinNorScanOpen 扫描设备打开统一接口 提供给页面调用" alt="" coords="414,8,545,35"/>
+<area shape="rect" href="classKylinSane.html#a29d2f79464933411a02b433993cd85e2" title="KylinSane::start_scanning 统一接口供页面调用，开始扫描 根据扫描设置页面情况info字段进行设置扫描设备参数，并进行扫描" alt="" coords="392,60,567,87"/>
+<area shape="rect" href="classKylinSane.html#aa23bba91b7d6e561b462fa1ebf2eb319" title="KylinSane::open_device 统一接口供页面调用，打开扫描设备" alt="" coords="181,5,344,32"/>
+<area shape="rect" href="classscanThread.html#af054be6deb010e3aa247a27e0924d579" title=" " alt="" coords="11,5,127,32"/>
+<area shape="rect" href="classFuncBar.html#a3f8d9918c550d04f5260c1ad088d610d" title=" " alt="" coords="189,57,337,98"/>
+<area shape="rect" href="classFuncBar.html#a2741015b1797df5058ad22ce8b825818" title=" " alt="" coords="5,64,133,91"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8550d3bcc382a085ca06334733742949"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8550d3bcc382a085ca06334733742949">&#9670;&nbsp;</a></span>close_device()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void close_device </td>
+          <td>(</td>
+          <td class="paramtype">SANE_Handle&#160;</td>
+          <td class="paramname"><em>sane_handle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>close_device 关闭扫描设备 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sane_handle</td><td>扫描句柄 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2a7c1f5e91c82fa924d2518001ff2a10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a7c1f5e91c82fa924d2518001ff2a10">&#9670;&nbsp;</a></span>get_devices()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SANE_Status get_devices </td>
+          <td>(</td>
+          <td class="paramtype">const SANE_Device ***&#160;</td>
+          <td class="paramname"><em>device_list</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get_devices 查询所有连接设备 注意： 这里会很耗时 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">device_list</td><td>设备链表 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>查询可连接设备结果 </dd></dl>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kylin__sane_8h_a2a7c1f5e91c82fa924d2518001ff2a10_icgraph.png" border="0" usemap="#kylin__sane_8h_a2a7c1f5e91c82fa924d2518001ff2a10_icgraph" alt=""/></div>
+<map name="kylin__sane_8h_a2a7c1f5e91c82fa924d2518001ff2a10_icgraph" id="kylin__sane_8h_a2a7c1f5e91c82fa924d2518001ff2a10_icgraph">
+<area shape="rect" title="get_devices 查询所有连接设备 注意： 这里会很耗时" alt="" coords="619,31,711,57"/>
+<area shape="rect" href="kylin__sane_8cpp.html#ab89dca2ce021e2b0bf8eef44382f3faf" title="check_search_scan_devices 可以借此整理出未识别设备的情况" alt="" coords="380,5,571,32"/>
+<area shape="rect" href="kylin__sane_8h.html#a6a9d84ad48c6968cdae6ad5d8fcf90d5" title="kylinNorScanOpen 扫描设备打开统一接口 提供给页面调用" alt="" coords="410,56,541,83"/>
+<area shape="rect" href="classKylinSane.html#aa23bba91b7d6e561b462fa1ebf2eb319" title="KylinSane::open_device 统一接口供页面调用，打开扫描设备" alt="" coords="169,56,332,83"/>
+<area shape="rect" href="classscanThread.html#af054be6deb010e3aa247a27e0924d579" title=" " alt="" coords="5,56,121,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a02fd73d861ef2e4aabb38c0c9ff82947"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02fd73d861ef2e4aabb38c0c9ff82947">&#9670;&nbsp;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>init 扫描设备初始化 </p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kylin__sane_8h_a02fd73d861ef2e4aabb38c0c9ff82947_cgraph.png" border="0" usemap="#kylin__sane_8h_a02fd73d861ef2e4aabb38c0c9ff82947_cgraph" alt=""/></div>
+<map name="kylin__sane_8h_a02fd73d861ef2e4aabb38c0c9ff82947_cgraph" id="kylin__sane_8h_a02fd73d861ef2e4aabb38c0c9ff82947_cgraph">
+<area shape="rect" title="init 扫描设备初始化" alt="" coords="5,5,44,32"/>
+<area shape="rect" href="kylin__sane_8cpp.html#aa4088e6601580a69ba998f046cda5240" title=" " alt="" coords="92,5,195,32"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kylin__sane_8h_a02fd73d861ef2e4aabb38c0c9ff82947_icgraph.png" border="0" usemap="#kylin__sane_8h_a02fd73d861ef2e4aabb38c0c9ff82947_icgraph" alt=""/></div>
+<map name="kylin__sane_8h_a02fd73d861ef2e4aabb38c0c9ff82947_icgraph" id="kylin__sane_8h_a02fd73d861ef2e4aabb38c0c9ff82947_icgraph">
+<area shape="rect" title="init 扫描设备初始化" alt="" coords="619,31,657,57"/>
+<area shape="rect" href="kylin__sane_8cpp.html#ab89dca2ce021e2b0bf8eef44382f3faf" title="check_search_scan_devices 可以借此整理出未识别设备的情况" alt="" coords="380,5,571,32"/>
+<area shape="rect" href="kylin__sane_8h.html#a6a9d84ad48c6968cdae6ad5d8fcf90d5" title="kylinNorScanOpen 扫描设备打开统一接口 提供给页面调用" alt="" coords="410,56,541,83"/>
+<area shape="rect" href="classKylinSane.html#aa23bba91b7d6e561b462fa1ebf2eb319" title="KylinSane::open_device 统一接口供页面调用，打开扫描设备" alt="" coords="169,56,332,83"/>
+<area shape="rect" href="classscanThread.html#af054be6deb010e3aa247a27e0924d579" title=" " alt="" coords="5,56,121,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a19951099c109584e16272de674b88778"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19951099c109584e16272de674b88778">&#9670;&nbsp;</a></span>kylin_display_scan_parameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* kylin_display_scan_parameters </td>
+          <td>(</td>
+          <td class="paramtype">SANE_Handle&#160;</td>
+          <td class="paramname"><em>device</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>kylin_display_scan_parameters 连接设备后，显示扫描参数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">device</td><td>扫描句柄 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>从扫描设备上获取的扫描设置默认信息 </dd></dl>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kylin__sane_8h_a19951099c109584e16272de674b88778_cgraph.png" border="0" usemap="#kylin__sane_8h_a19951099c109584e16272de674b88778_cgraph" alt=""/></div>
+<map name="kylin__sane_8h_a19951099c109584e16272de674b88778_cgraph" id="kylin__sane_8h_a19951099c109584e16272de674b88778_cgraph">
+<area shape="rect" title="kylin_display_scan_parameters 连接设备后，显示扫描参数" alt="" coords="5,201,137,242"/>
+<area shape="rect" href="kylin__sane_8cpp.html#af892e52d691cd52602c4d2b5c72f6e02" title="get_option_value 统一获取扫描参数" alt="" coords="185,208,305,235"/>
+<area shape="rect" href="kylin__sane_8cpp.html#a795e1d5597a19ad20130c11e3ba8a6c7" title="get_optdesc_by_name 根据扫描参数名称获取选项描述参数句柄" alt="" coords="376,5,529,32"/>
+<area shape="rect" href="kylin__sane_8cpp.html#a9ac28b4470ab91b0df9b5e64bcf50eb4" title="get_option_colors 获取色彩选项 可以输出扫描设备支持的所有色彩值： Color =&gt; 彩色 Gray =&gt; 灰度 Lineart =&gt; 黑白" alt="" coords="391,157,515,184"/>
+<area shape="rect" href="classKylinSane.html#a6e4754e2e68e6f4ed9d8ad037a052be4" title=" " alt="" coords="639,107,796,133"/>
+<area shape="rect" href="kylin__sane_8cpp.html#ae379875b7301f3c94cf82fa45b0e205d" title="get_option_resolutions 获取扫描软件的分辨率 可以获取扫描设备支持的所有分辨率，如下： 2400, 1200, 600, 300, 150, 100,..." alt="" coords="377,56,529,83"/>
+<area shape="rect" href="kylin__sane_8cpp.html#a453e3eb935354b62e5b251a3ddee7214" title="get_option_sizes 获取扫描设备尺寸 获取扫描尺寸根据不同的扫描选项值进行获取左上和右下坐标，从而确定扫描尺寸 Option 8(Top&#45;left x),..." alt="" coords="393,259,513,285"/>
+<area shape="rect" href="kylin__sane_8cpp.html#af28757ac800a7acc9c99e45075b9bc75" title="get_option_sources 获取扫描设备的资源情况 可以获取扫描设备的设备分类， 平板式(Flatbed)，其他为馈纸式" alt="" coords="385,208,520,235"/>
+<area shape="rect" href="kylin__sane_8cpp.html#abb0019b6c2b93cbf5de1bc5362919fca" title=" " alt="" coords="407,309,498,336"/>
+<area shape="rect" href="kylin__sane_8cpp.html#a2309fa8ac99d7f1938a8863fc318570e" title=" " alt="" coords="399,360,506,387"/>
+<area shape="rect" href="classKylinSane.html#ad90cb3e7c08b67312cbc0fbca9f9daec" title=" " alt="" coords="353,411,552,437"/>
+<area shape="rect" href="classKylinSane.html#ae5c74097887f99bc5a87d62d625bd3a0" title=" " alt="" coords="615,157,819,184"/>
+<area shape="rect" href="classKylinSane.html#a0c56656745ef490f3579293c630e4b1a" title=" " alt="" coords="600,56,835,83"/>
+<area shape="rect" href="classKylinSane.html#a9ff0db8d55360a336707926c3b9bc75d" title=" " alt="" coords="620,208,815,235"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kylin__sane_8h_a19951099c109584e16272de674b88778_icgraph.png" border="0" usemap="#kylin__sane_8h_a19951099c109584e16272de674b88778_icgraph" alt=""/></div>
+<map name="kylin__sane_8h_a19951099c109584e16272de674b88778_icgraph" id="kylin__sane_8h_a19951099c109584e16272de674b88778_icgraph">
+<area shape="rect" title="kylin_display_scan_parameters 连接设备后，显示扫描参数" alt="" coords="559,5,691,47"/>
+<area shape="rect" href="kylin__sane_8h.html#a6a9d84ad48c6968cdae6ad5d8fcf90d5" title="kylinNorScanOpen 扫描设备打开统一接口 提供给页面调用" alt="" coords="380,13,511,39"/>
+<area shape="rect" href="classKylinSane.html#aa23bba91b7d6e561b462fa1ebf2eb319" title="KylinSane::open_device 统一接口供页面调用，打开扫描设备" alt="" coords="169,13,332,39"/>
+<area shape="rect" href="classscanThread.html#af054be6deb010e3aa247a27e0924d579" title=" " alt="" coords="5,13,121,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6a9d84ad48c6968cdae6ad5d8fcf90d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a9d84ad48c6968cdae6ad5d8fcf90d5">&#9670;&nbsp;</a></span>kylinNorScanOpen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kylinNorScanOpen </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>kylinNorScanOpen 扫描设备打开统一接口 提供给页面调用 </p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kylin__sane_8h_a6a9d84ad48c6968cdae6ad5d8fcf90d5_cgraph.png" border="0" usemap="#kylin__sane_8h_a6a9d84ad48c6968cdae6ad5d8fcf90d5_cgraph" alt=""/></div>
+<map name="kylin__sane_8h_a6a9d84ad48c6968cdae6ad5d8fcf90d5_cgraph" id="kylin__sane_8h_a6a9d84ad48c6968cdae6ad5d8fcf90d5_cgraph">
+<area shape="rect" title="kylinNorScanOpen 扫描设备打开统一接口 提供给页面调用" alt="" coords="5,577,136,604"/>
+<area shape="rect" href="kylin__sane_8cpp.html#ad9f4ca655267f3a703c60fd3e876cc63" title="cancle_scan 结束扫描" alt="" coords="239,5,333,32"/>
+<area shape="rect" href="kylin__sane_8cpp.html#a2a7c1f5e91c82fa924d2518001ff2a10" title="get_devices 查询所有连接设备 注意： 这里会很耗时" alt="" coords="240,56,332,83"/>
+<area shape="rect" href="classKylinSane.html#a6e4754e2e68e6f4ed9d8ad037a052be4" title=" " alt="" coords="889,259,1047,285"/>
+<area shape="rect" href="kylin__sane_8cpp.html#a02fd73d861ef2e4aabb38c0c9ff82947" title="init 扫描设备初始化" alt="" coords="267,628,305,655"/>
+<area shape="rect" href="kylin__sane_8cpp.html#a19951099c109584e16272de674b88778" title="kylin_display_scan_parameters 连接设备后，显示扫描参数" alt="" coords="220,450,352,491"/>
+<area shape="rect" href="classKylinSane.html#a9ff0db8d55360a336707926c3b9bc75d" title=" " alt="" coords="871,588,1065,615"/>
+<area shape="rect" href="kylin__sane_8cpp.html#a50e187f7016b94fc606f0633e5468ca8" title="open_sane_device 使用设备名字打开设备" alt="" coords="221,679,351,705"/>
+<area shape="rect" href="classKylinSane.html#afa8b177431546568e05e7ecf54b7ecc3" title=" " alt="" coords="185,729,387,756"/>
+<area shape="rect" href="classKylinSane.html#a8163e5eacc0f843c24b9332a91cc9838" title=" " alt="" coords="184,780,388,807"/>
+<area shape="rect" href="kylin__sane_8cpp.html#aa4088e6601580a69ba998f046cda5240" title=" " alt="" coords="445,628,547,655"/>
+<area shape="rect" href="kylin__sane_8cpp.html#af892e52d691cd52602c4d2b5c72f6e02" title="get_option_value 统一获取扫描参数" alt="" coords="436,385,556,412"/>
+<area shape="rect" href="kylin__sane_8cpp.html#a795e1d5597a19ad20130c11e3ba8a6c7" title="get_optdesc_by_name 根据扫描参数名称获取选项描述参数句柄" alt="" coords="627,208,780,235"/>
+<area shape="rect" href="kylin__sane_8cpp.html#a9ac28b4470ab91b0df9b5e64bcf50eb4" title="get_option_colors 获取色彩选项 可以输出扫描设备支持的所有色彩值： Color =&gt; 彩色 Gray =&gt; 灰度 Lineart =&gt; 黑白" alt="" coords="641,157,765,184"/>
+<area shape="rect" href="kylin__sane_8cpp.html#ae379875b7301f3c94cf82fa45b0e205d" title="get_option_resolutions 获取扫描软件的分辨率 可以获取扫描设备支持的所有分辨率，如下： 2400, 1200, 600, 300, 150, 100,..." alt="" coords="627,512,779,539"/>
+<area shape="rect" href="kylin__sane_8cpp.html#a453e3eb935354b62e5b251a3ddee7214" title="get_option_sizes 获取扫描设备尺寸 获取扫描尺寸根据不同的扫描选项值进行获取左上和右下坐标，从而确定扫描尺寸 Option 8(Top&#45;left x),..." alt="" coords="643,309,763,336"/>
+<area shape="rect" href="kylin__sane_8cpp.html#af28757ac800a7acc9c99e45075b9bc75" title="get_option_sources 获取扫描设备的资源情况 可以获取扫描设备的设备分类， 平板式(Flatbed)，其他为馈纸式" alt="" coords="636,563,771,589"/>
+<area shape="rect" href="kylin__sane_8cpp.html#abb0019b6c2b93cbf5de1bc5362919fca" title=" " alt="" coords="658,360,749,387"/>
+<area shape="rect" href="kylin__sane_8cpp.html#a2309fa8ac99d7f1938a8863fc318570e" title=" " alt="" coords="650,411,757,437"/>
+<area shape="rect" href="classKylinSane.html#ad90cb3e7c08b67312cbc0fbca9f9daec" title=" " alt="" coords="604,461,803,488"/>
+<area shape="rect" href="classKylinSane.html#ae5c74097887f99bc5a87d62d625bd3a0" title=" " alt="" coords="866,157,1070,184"/>
+<area shape="rect" href="classKylinSane.html#a0c56656745ef490f3579293c630e4b1a" title=" " alt="" coords="851,512,1085,539"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kylin__sane_8h_a6a9d84ad48c6968cdae6ad5d8fcf90d5_icgraph.png" border="0" usemap="#kylin__sane_8h_a6a9d84ad48c6968cdae6ad5d8fcf90d5_icgraph" alt=""/></div>
+<map name="kylin__sane_8h_a6a9d84ad48c6968cdae6ad5d8fcf90d5_icgraph" id="kylin__sane_8h_a6a9d84ad48c6968cdae6ad5d8fcf90d5_icgraph">
+<area shape="rect" title="kylinNorScanOpen 扫描设备打开统一接口 提供给页面调用" alt="" coords="380,5,511,32"/>
+<area shape="rect" href="classKylinSane.html#aa23bba91b7d6e561b462fa1ebf2eb319" title="KylinSane::open_device 统一接口供页面调用，打开扫描设备" alt="" coords="169,5,332,32"/>
+<area shape="rect" href="classscanThread.html#af054be6deb010e3aa247a27e0924d579" title=" " alt="" coords="5,5,121,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a82ecc8db19b2f6268059b949233deaeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82ecc8db19b2f6268059b949233deaeb">&#9670;&nbsp;</a></span>my_sane_exit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void my_sane_exit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>my_sane_exit 释放所有扫描资源 </p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kylin__sane_8h_a82ecc8db19b2f6268059b949233deaeb_icgraph.png" border="0" usemap="#kylin__sane_8h_a82ecc8db19b2f6268059b949233deaeb_icgraph" alt=""/></div>
+<map name="kylin__sane_8h_a82ecc8db19b2f6268059b949233deaeb_icgraph" id="kylin__sane_8h_a82ecc8db19b2f6268059b949233deaeb_icgraph">
+<area shape="rect" title="my_sane_exit 释放所有扫描资源" alt="" coords="244,5,347,32"/>
+<area shape="rect" href="kylin__sane_8cpp.html#ab89dca2ce021e2b0bf8eef44382f3faf" title="check_search_scan_devices 可以借此整理出未识别设备的情况" alt="" coords="5,5,196,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a50e187f7016b94fc606f0633e5468ca8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50e187f7016b94fc606f0633e5468ca8">&#9670;&nbsp;</a></span>open_sane_device()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SANE_Status open_sane_device </td>
+          <td>(</td>
+          <td class="paramtype">SANE_Device *&#160;</td>
+          <td class="paramname"><em>device</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SANE_Handle *&#160;</td>
+          <td class="paramname"><em>sane_handle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>open_sane_device 使用设备名字打开设备 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">device</td><td>设备结构体字段 </td></tr>
+    <tr><td class="paramname">sane_handle</td><td>扫描句柄 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>返回打开设备结果 </dd></dl>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kylin__sane_8h_a50e187f7016b94fc606f0633e5468ca8_icgraph.png" border="0" usemap="#kylin__sane_8h_a50e187f7016b94fc606f0633e5468ca8_icgraph" alt=""/></div>
+<map name="kylin__sane_8h_a50e187f7016b94fc606f0633e5468ca8_icgraph" id="kylin__sane_8h_a50e187f7016b94fc606f0633e5468ca8_icgraph">
+<area shape="rect" title="open_sane_device 使用设备名字打开设备" alt="" coords="559,5,689,32"/>
+<area shape="rect" href="kylin__sane_8h.html#a6a9d84ad48c6968cdae6ad5d8fcf90d5" title="kylinNorScanOpen 扫描设备打开统一接口 提供给页面调用" alt="" coords="380,5,511,32"/>
+<area shape="rect" href="classKylinSane.html#aa23bba91b7d6e561b462fa1ebf2eb319" title="KylinSane::open_device 统一接口供页面调用，打开扫描设备" alt="" coords="169,5,332,32"/>
+<area shape="rect" href="classscanThread.html#af054be6deb010e3aa247a27e0924d579" title=" " alt="" coords="5,5,121,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2b640f15a12501131e316d17025fb5ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b640f15a12501131e316d17025fb5ac">&#9670;&nbsp;</a></span>start_scan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SANE_Status start_scan </td>
+          <td>(</td>
+          <td class="paramtype">SANE_Handle&#160;</td>
+          <td class="paramname"><em>sane_handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SANE_String_Const&#160;</td>
+          <td class="paramname"><em>fileName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>start_scan 开始扫描 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sane_handle</td><td>扫描句柄 </td></tr>
+    <tr><td class="paramname">fileName</td><td>扫描文件名 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>扫描结果 </dd></dl>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kylin__sane_8h_a2b640f15a12501131e316d17025fb5ac_cgraph.png" border="0" usemap="#kylin__sane_8h_a2b640f15a12501131e316d17025fb5ac_cgraph" alt=""/></div>
+<map name="kylin__sane_8h_a2b640f15a12501131e316d17025fb5ac_cgraph" id="kylin__sane_8h_a2b640f15a12501131e316d17025fb5ac_cgraph">
+<area shape="rect" title="start_scan 开始扫描" alt="" coords="5,31,88,57"/>
+<area shape="rect" href="kylin__sane_8cpp.html#a1ed7aa2ebad2fbd9de26ce1c5de31e37" title=" " alt="" coords="136,31,207,57"/>
+<area shape="rect" href="kylin__sane_8cpp.html#ad5b41ac303afbd6a47a7e13ce11c5204" title=" " alt="" coords="255,31,319,57"/>
+<area shape="rect" href="kylin__sane_8cpp.html#a680c83c0c42d51cbd85fd780db96bc01" title=" " alt="" coords="395,5,466,32"/>
+<area shape="rect" href="kylin__sane_8cpp.html#ac16114e3818f3e2420b247bc7d9ef6a6" title=" " alt="" coords="367,56,495,83"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kylin__sane_8h_a2b640f15a12501131e316d17025fb5ac_icgraph.png" border="0" usemap="#kylin__sane_8h_a2b640f15a12501131e316d17025fb5ac_icgraph" alt=""/></div>
+<map name="kylin__sane_8h_a2b640f15a12501131e316d17025fb5ac_icgraph" id="kylin__sane_8h_a2b640f15a12501131e316d17025fb5ac_icgraph">
+<area shape="rect" title="start_scan 开始扫描" alt="" coords="600,13,683,39"/>
+<area shape="rect" href="classKylinSane.html#a29d2f79464933411a02b433993cd85e2" title="KylinSane::start_scanning 统一接口供页面调用，开始扫描 根据扫描设置页面情况info字段进行设置扫描设备参数，并进行扫描" alt="" coords="377,13,552,39"/>
+<area shape="rect" href="classFuncBar.html#a3f8d9918c550d04f5260c1ad088d610d" title=" " alt="" coords="181,5,329,47"/>
+<area shape="rect" href="classFuncBar.html#a2741015b1797df5058ad22ce8b825818" title=" " alt="" coords="5,13,133,39"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者 &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

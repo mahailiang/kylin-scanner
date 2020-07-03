@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2019 Tianjin KYLIN Information Technology Co., Ltd.
+* Copyright (C) 2020 KYLIN SOFTWARE Information Technology Co., Ltd.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -24,12 +24,22 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    /*
-    // For translator
+    // For translations with different language environments
     QTranslator translator;
-    translator.load(QString("/home/yusq/back/zh_cn.qm"));
+    QString locale = "/usr/share/kylin-scanner/translations/kylin-scanner." + QLocale::system().name();
+    qDebug() << locale ;
 
+    translator.load(locale);
     a.installTranslator(&translator);
+
+    /*
+    QTranslator qtTranslator;
+    QString dir = a.applicationDirPath() + "/" + "translations";
+
+    if (qtTranslator.load(QLocale(), "language", ".", dir, ".qm"))
+    {
+        a.installTranslator(&qtTranslator);
+    }
     */
 
     Widget w;

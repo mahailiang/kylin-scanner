@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2019 Tianjin KYLIN Information Technology Co., Ltd.
+* Copyright (C) 2020 KYLIN SOFTWARE Information Technology Co., Ltd.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -47,18 +47,20 @@ int readImagesAndTimes(vector<Mat> &images, vector<float> &times)
                                     "/tmp/img/img_0.25.jpg",
                                     "/tmp/img/img_2.5.jpg",
                                     "/tmp/img/img_15.jpg"};
-  for(int i=0; i < numImages; i++)
+  for (int i=0; i<numImages; i++)
   {
     Mat im = imread(filenames[i]);
 
     //判断图像是否加载成功
-    if(!im.data)
+    if (im.data == NULL)
     {
-        cout << "图像加载失败!" << endl;
+        qDebug() << "图像加载失败!";
         return false;
     }
     else
-        cout << "图像加载成功!" << endl << endl;
+    {
+        qDebug() << "图像加载成功!";
+    }
 
     images.push_back(im);
     //times.push_back(timesArray[i]);
@@ -170,7 +172,6 @@ void psBilateralFilterCV(Mat src, Mat &dst)
     bilateralFilter(src, dst, 5, 100, 3);
 }
 
-
 QImage * psSharpen(QImage * origin)
 {
     QImage * novelImage = new QImage(* origin);
@@ -183,15 +184,15 @@ QImage * psSharpen(QImage * origin)
     int r,g,b;
     QColor color;
 
-    for(int x=kernelSize/2; x<novelImage->width()-(kernelSize/2); x++){
-        for(int y=kernelSize/2; y<novelImage->height()-(kernelSize/2); y++){
+    for (int x=kernelSize/2; x<novelImage->width()-(kernelSize/2); x++){
+        for (int y=kernelSize/2; y<novelImage->height()-(kernelSize/2); y++){
 
             r = 0;
             g = 0;
             b = 0;
 
-            for(int i = -kernelSize/2; i<= kernelSize/2; i++){
-                for(int j = -kernelSize/2; j<= kernelSize/2; j++){
+            for (int i = -kernelSize/2; i<= kernelSize/2; i++){
+                for (int j = -kernelSize/2; j<= kernelSize/2; j++){
                     color = QColor(origin->pixel(x+i, y+j));
                     r += color.red()*kernel[kernelSize/2+i][kernelSize/2+j];
                     g += color.green()*kernel[kernelSize/2+i][kernelSize/2+j];
@@ -221,7 +222,7 @@ QImage * psSharpen(QImage * origin)
  */
 void psSharpenCV(Mat src, Mat &dst)
 {
-    cout << "sharp()"<<endl;
+    qDebug() << "sharp()";
 
     Point2i anchor(-1,-1);
     double delta = 0;
@@ -232,7 +233,7 @@ void psSharpenCV(Mat src, Mat &dst)
                   0, -1, 0);
 
     filter2D(src, dst, dst.depth(), kernel, anchor, delta);
-    cout << "sharp() end" << endl;
+    qDebug() << "sharp() end";
 }
 
 static void checkHsl(int &hue, int &saturation, int &lumination)
@@ -269,9 +270,9 @@ static void checkHsl(int &hue, int &saturation, int &lumination)
 void psHslCV(Mat src, Mat &dst)
 {
     // H:0~180, S:0~255, V:0~255
-    int hue = 0; //色调
-    int saturation = 10; //饱和度
-    int lumination = 0; //亮度
+    int hue = 5; // 色调
+    int saturation = 10; // 饱和度
+    int lumination = 0; // 亮度
     if ( dst.empty())
             dst.create(src.rows, src.cols, src.type());
 
@@ -284,6 +285,7 @@ void psHslCV(Mat src, Mat &dst)
     Size size = src.size();
     int chns = src.channels();
 
+    // creat()创建的矩阵都是连续的，但是也不绝对，依然需要判断才可以进行连续性操作
     if (temp.isContinuous())
     {
         size.width *= size.height;
@@ -293,10 +295,10 @@ void psHslCV(Mat src, Mat &dst)
     // 验证参数范围
     checkHsl(hue, saturation, lumination);
 
-    for (  i= 0; i<size.height; ++i)
+    for ( i= 0; i<size.height; ++i)
     {
         unsigned char* src = (unsigned char*)temp.data+temp.step*i;
-        for (  j=0; j<size.width; ++j)
+        for ( j=0; j<size.width; ++j)
         {
             float val = src[j*chns]+hue;
             if ( val < 0) val = 0.0;
@@ -332,18 +334,18 @@ void psHslCV(Mat src, Mat &dst)
  */
 void psLuminanceContrastCV(Mat src, Mat &dst)
 {
-    cout << "psLuminanceContrastCV()"<<endl;
+    qDebug() << "psLuminanceContrastCV()";
     Mat new_image = Mat::zeros(src.size(), src.type());
-    double alpha = 1.0; /*< Simple contrast control */
-    int beta = 0;       /*< Simple brightness control */
+    double alpha = 1.0; // contrast
+    int beta = 5;       // brightness
     int i=0, j=0;
     int c=0;
 
-    for(i=0; i<src.rows; i++)
+    for (i=0; i<src.rows; i++)
     {
-        for(j=0; j<src.cols; j++)
+        for (j=0; j<src.cols; j++)
         {
-            for(c=0; c<3; c++)
+            for (c=0; c<3; c++)
             {
                 new_image.at<Vec3b>(i,j)[c] =
                         saturate_cast<uchar>( alpha*(src.at<Vec3b>(i,j)[c]) + beta );
@@ -353,7 +355,7 @@ void psLuminanceContrastCV(Mat src, Mat &dst)
     }
 
     dst = new_image.clone();
-    cout << "psLuminanceContrastCV() end"<<endl;
+    qDebug() << "psLuminanceContrastCV() end";
 }
 
 
@@ -366,7 +368,7 @@ void psLuminanceContrastCV(Mat src, Mat &dst)
  */
 void psSaturationCV(Mat src, Mat &dst)
 {
-    cout << "saturation" <<endl;
+    qDebug() << "saturation()";
     Mat new_img;
 
     const int max_increment = 200;
@@ -404,15 +406,21 @@ void psSaturationCV(Mat src, Mat &dst)
             light = value / 2;
 
             if (light < 0.5f)
+            {
                 sat = delta / value;
+            }
             else
+            {
                 sat = delta / (2 - value);
+            }
 
             cout << "1" <<endl;
             if (increment >= 0)
             {
                 if ((increment + sat) >= 1)
+                {
                     alpha = sat;
+                }
                 else
                 {
                     alpha = 1 - increment;
@@ -440,7 +448,7 @@ void psSaturationCV(Mat src, Mat &dst)
     }
 
     dst = new_img.clone();
-    cout << "saturation end" <<endl;
+    qDebug() << "saturation() end";
 }
 
 
@@ -556,18 +564,15 @@ void psGammaCV(Mat src, Mat &dst)
     dst = imageGamma.clone();
 }
 
-
-
-
 QImage * psGreyScale(QImage * origin)
 {
     QImage * novelImage = new QImage(origin->width(), origin->height(), QImage::Format_ARGB32);
 
     QColor oldColor;
 
-    for(int x = 0; x<novelImage->width(); x++)
+    for (int x = 0; x<novelImage->width(); x++)
     {
-        for(int y = 0; y<novelImage->height(); y++)
+        for (int y = 0; y<novelImage->height(); y++)
         {
             oldColor = QColor(origin->pixel(x,y));
 
@@ -587,9 +592,9 @@ QImage * psLumimance(int delta, QImage * origin)
 
     QColor oldColor;
 
-    for(int x = 0; x<novelImage->width(); x++)
+    for (int x = 0; x<novelImage->width(); x++)
     {
-        for(int y = 0; y<novelImage->height(); y++)
+        for (int y = 0; y<novelImage->height(); y++)
         {
             oldColor = QColor(origin->pixel(x,y));
 
@@ -612,9 +617,9 @@ QImage *psSaturation(int delta, QImage * origin)
     QColor novelColor;
     int h,s,l;
 
-    for(int x=0; x<novelImage->width(); x++)
+    for (int x=0; x<novelImage->width(); x++)
     {
-        for(int y=0; y<novelImage->height(); y++){
+        for (int y=0; y<novelImage->height(); y++){
             oldColor = QColor(origin->pixel(x,y));
 
             novelColor = oldColor.toHsl();
@@ -641,9 +646,9 @@ QImage * psWarmToned(int delta, QImage * origin)
     QColor oldColor;
     int r,g,b;
 
-    for(int x=0; x<newImage->width(); x++)
+    for (int x=0; x<newImage->width(); x++)
     {
-        for(int y=0; y<newImage->height(); y++)
+        for (int y=0; y<newImage->height(); y++)
         {
             oldColor = QColor(origin->pixel(x,y));
 
@@ -670,9 +675,9 @@ QImage * psCoolToned(int delta, QImage * origin)
     QColor oldColor;
     int r,g,b;
 
-    for(int x=0; x<newImage->width(); x++)
+    for (int x=0; x<newImage->width(); x++)
     {
-        for(int y=0; y<newImage->height(); y++)
+        for (int y=0; y<newImage->height(); y++)
         {
             oldColor = QColor(origin->pixel(x,y));
 
@@ -712,20 +717,26 @@ void oneClickEmbelish(const char *filename)
     src = imread(filename);
 
     //判断图像是否加载成功
-    if(!src.data)
+    if (src.data == NULL)
     {
-        cout << "图像加载失败!" << endl;
+        qDebug() << "图像加载失败!";
         return;
     }
     else
-        cout << "图像加载成功!" << endl << endl;
+    {
+        qDebug() << "图像加载成功!";
+    }
 
+    // 双边滤波
     psBilateralFilterCV(src, dst);
 
+    // 线性变换，进行亮度和对比度调整
     psLuminanceContrastCV(dst, dst);
 
+    // 转换色彩空间进行饱和度设置
     psHslCV(dst, dst);
 
+    // 锐化
     psSharpenCV(dst, dst);
 
     imwrite(filename, dst);

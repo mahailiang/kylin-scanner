@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kylin-scanner API: src/rectify.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Kylin-scanner API
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle">
+<div class="title">rectify.h 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;opencv2/imgproc.hpp&quot;</code><br />
+<code>#include &quot;opencv2/highgui.hpp&quot;</code><br />
+<code>#include &lt;cmath&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;QImage&gt;</code><br />
+<code>#include &lt;QPixmap&gt;</code><br />
+<code>#include &lt;QDebug&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+rectify.h 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="rectify_8h__incl.png" border="0" usemap="#src_2rectify_8h" alt=""/></div>
+<map name="src_2rectify_8h" id="src_2rectify_8h">
+<area shape="rect" title=" " alt="" coords="415,5,505,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,152,107"/>
+<area shape="rect" title=" " alt="" coords="176,80,317,107"/>
+<area shape="rect" title=" " alt="" coords="341,80,400,107"/>
+<area shape="rect" title=" " alt="" coords="424,80,496,107"/>
+<area shape="rect" title=" " alt="" coords="521,80,589,107"/>
+<area shape="rect" title=" " alt="" coords="613,80,689,107"/>
+<area shape="rect" title=" " alt="" coords="713,80,783,107"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件直接或间接的被哪些文件引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="rectify_8h__dep__incl.png" border="0" usemap="#src_2rectify_8hdep" alt=""/></div>
+<map name="src_2rectify_8hdep" id="src_2rectify_8hdep">
+<area shape="rect" title=" " alt="" coords="212,5,301,32"/>
+<area shape="rect" href="scan__display_8h.html" title=" " alt="" coords="123,80,252,107"/>
+<area shape="rect" href="rectify_8cpp.html" title=" " alt="" coords="276,80,379,107"/>
+<area shape="rect" href="widget_8h.html" title=" " alt="" coords="70,155,163,181"/>
+<area shape="rect" href="scan__display_8cpp.html" title=" " alt="" coords="188,155,331,181"/>
+<area shape="rect" href="main_8cpp.html" title=" " alt="" coords="5,229,103,256"/>
+<area shape="rect" href="widget_8cpp.html" title=" " alt="" coords="127,229,234,256"/>
+</map>
+</div>
+</div>
+<p><a href="rectify_8h_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a8fe83ac76edc595f6b98cd4a4127aed5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rectify_8h.html#a8fe83ac76edc595f6b98cd4a4127aed5">ERROR</a>&#160;&#160;&#160;1234</td></tr>
+<tr class="separator:a8fe83ac76edc595f6b98cd4a4127aed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a1b9e973142eea368912cde667ce406af"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rectify_8h.html#a1b9e973142eea368912cde667ce406af">ImageRectify</a> (char *pInFileName)</td></tr>
+<tr class="separator:a1b9e973142eea368912cde667ce406af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="a8fe83ac76edc595f6b98cd4a4127aed5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fe83ac76edc595f6b98cd4a4127aed5">&#9670;&nbsp;</a></span>ERROR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ERROR&#160;&#160;&#160;1234</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="a1b9e973142eea368912cde667ce406af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b9e973142eea368912cde667ce406af">&#9670;&nbsp;</a></span>ImageRectify()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ImageRectify </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>pInFileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="rectify_8h_a1b9e973142eea368912cde667ce406af_cgraph.png" border="0" usemap="#rectify_8h_a1b9e973142eea368912cde667ce406af_cgraph" alt=""/></div>
+<map name="rectify_8h_a1b9e973142eea368912cde667ce406af_cgraph" id="rectify_8h_a1b9e973142eea368912cde667ce406af_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,105,57"/>
+<area shape="rect" href="rectify_8cpp.html#ada51a5034e3fb3996a3641df2faccb53" title=" " alt="" coords="153,5,244,32"/>
+<area shape="rect" href="rectify_8cpp.html#abae41e0e3a62ae5a1f3c9f4f6c658d2d" title=" " alt="" coords="295,56,386,83"/>
+<area shape="rect" href="rectify_8cpp.html#a61c63b3c0bec23891ff1201abc2f4815" title=" " alt="" coords="292,5,389,32"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="rectify_8h_a1b9e973142eea368912cde667ce406af_icgraph.png" border="0" usemap="#rectify_8h_a1b9e973142eea368912cde667ce406af_icgraph" alt=""/></div>
+<map name="rectify_8h_a1b9e973142eea368912cde667ce406af_icgraph" id="rectify_8h_a1b9e973142eea368912cde667ce406af_icgraph">
+<area shape="rect" title=" " alt="" coords="365,31,465,57"/>
+<area shape="rect" href="classscan__display.html#a351e1bfbc821c6d2e8d0289379e0b5ed" title=" " alt="" coords="165,5,317,32"/>
+<area shape="rect" href="classscan__display.html#a0ddd06f46687802a1a9b01e650537d8b" title=" " alt="" coords="170,56,313,83"/>
+<area shape="rect" href="classWidget.html#a29531c7f141e461322981b3b579d4590" title=" " alt="" coords="5,31,117,57"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者 &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>
