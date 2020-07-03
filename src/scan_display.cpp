@@ -479,6 +479,9 @@ void scan_display::scan()
     vStackedLayout->setCurrentIndex(1);
     vStackedLayout->setCurrentIndex(2);
     vStackedLayout->setCurrentIndex(3);
+
+    stack.clear();
+
     img5->load("/tmp/scanner/scan.pnm");
     pixmap_scaled(*img5,labDisplay5);
     vStackedLayout->setCurrentWidget(myWidget1);

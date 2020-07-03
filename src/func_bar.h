@@ -53,6 +53,7 @@ public:
     void keyPressEvent(QKeyEvent *e);
     void setKylinScanSetNotEnable();
     void setKylinScanSetEnable();
+    void setBtnScanEnable();
     void setFontSize(QLabel *label, int n);
     int flagBeautify = 0; //一键美化标志
     int flagRectify = 0; //智能纠偏标志

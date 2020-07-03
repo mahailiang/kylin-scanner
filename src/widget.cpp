@@ -196,6 +196,9 @@ void Widget::save_image(QString fileName)
 void Widget::save_scan_file()
 {
     QImage img;
+
+    pFuncBar->setKylinScanSetEnable();
+
     img.load("/tmp/scanner/scan.pnm");
     QString pathName = pScanSet->getTextLocation() + "/" + pScanSet->getTextName();
     qDebug()<<"pathName:"<<pathName;
@@ -243,7 +246,7 @@ void Widget::scan_result(bool ret)
         device = true;
         pScanSet->setKylinComboBox();
         pScanSet->setKylinLable();
-        pFuncBar->setKylinScanSetEnable();
+        pFuncBar->setBtnScanEnable();
         pScanSet->setKylinScanSetEnable();
      //   thread.terminate();
     }

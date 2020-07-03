@@ -95,7 +95,7 @@ FuncBar::FuncBar(QWidget *parent)
     line2->setFrameStyle(QFrame::VLine);
     line2->setStyleSheet("QFrame{color:rgb(32,30,29)}");
 
-//    setKylinScanSetNotEnable();
+    setKylinScanSetNotEnable();
 
     vBoxLay1 = new QVBoxLayout();
     vBoxLay2 = new QVBoxLayout();
@@ -250,6 +250,19 @@ void FuncBar::setKylinScanSetEnable()
         btnBeautify->setEnabled(true);
         btnRectify->setEnabled(true);
         btnOrc->setEnabled(true);
+        btnScan->setEnabled(true);
+    }
+}
+
+void FuncBar::setBtnScanEnable()
+{
+    KylinSane& instance = KylinSane::getInstance();
+    bool device_status = true;
+
+    device_status = instance.getKylinSaneStatus();
+
+    if(device_status)
+    {
         btnScan->setEnabled(true);
     }
 }
