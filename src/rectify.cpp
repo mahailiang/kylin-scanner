@@ -34,12 +34,12 @@ void rotateImage(Mat src, Mat& img_rotate, double degree)
     center.y = float(src.rows / 2.0);
     cout<<"center.x"<<center.x<<endl;
     cout<<"center.y"<<center.y<<endl;
-    cout <<"a"<<endl;
+
     int length = 0;
     length = sqrt(src.cols*src.cols + src.rows*src.rows);
     //计算二维旋转的仿射变换矩阵
     Mat M = getRotationMatrix2D(center, degree, 1);
-    //warpAffine(src, img_rotate, M, Size(length, length), 1, 0, Scalar(255,255,255));//仿射变换，背景色填充为白色
+//    warpAffine(src, img_rotate, M, Size(length, length), 1, 0, Scalar(255,255,255));//仿射变换，背景色填充为白色
     warpAffine(src, img_rotate, M, img_rotate.size(), 1, 0, Scalar(255,255,255));//仿射变换，背景色填充为白色
 }
 //通过霍夫变换计算角度
@@ -124,6 +124,7 @@ double CalcDegree(const Mat &srcImage, Mat &dst)
 int ImageRectify(char * pInFileName)
 {
     double degree;
+
     Mat src = imread(pInFileName);
     Mat dst;
     //倾斜角度矫正
@@ -140,7 +141,7 @@ int ImageRectify(char * pInFileName)
 
     }
     else
-    {
+    {   src = imread(pInFileName);
         rotateImage(src, dst, degree);
         imwrite("/tmp/scanner/scan1.png",dst);
         return 0;

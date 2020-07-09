@@ -65,6 +65,8 @@ private slots:
     void save_image(QString fileName);
     void save_scan_file();
     void scan_result(bool ret);
+    void set_mask_clear();
+    void set_mask();
 };
 
 #endif // WIDGET_H

@@ -24,7 +24,7 @@ KylinComboBox::KylinComboBox(QWidget *parent) : QComboBox(parent)
                 "QComboBox QLineEdit{border-radios:4px;}"
                 "QComboBox:hover{border-radius:4px;background-color:#0D0400;color:white;}"
                 "QComboBox::drop-down{border-radius:4px;}" //下拉按钮
-                "QComboBox::down-arrow{border-radius:4px;border-image:url(:/icon/icon/down.png);}"//下拉箭头
+                "QComboBox::down-arrow{border-radius:4px;border-image:url(:/icon/icon/down.svg);}"//下拉箭头
                 "QComboBox QAbstractItemView{margin-top:4px solid #0D0400;color:white;border-radius:4px;background-color:#888888;}"
                 "QComboBox QAbstractItemView::item{width:180px;height: 32px;border-radius:4px;}"//下拉列表框样式
                 "QComboBox QAbstractItemView::item:hover:selected{background-color:#6F6F6F;}"
@@ -54,7 +54,7 @@ void KylinComboBox::hidePopup()
                 "QComboBox QLineEdit{border-radios:4px;}"
                 "QComboBox:hover{border-radius:4px;background-color:#0D0400;color:white;}"
                 "QComboBox::drop-down{border-radius:4px;}" //下拉按钮
-                "QComboBox::down-arrow{border-radius:4px;border-image:url(:/icon/icon/down.png);}"//下拉箭头
+                "QComboBox::down-arrow{border-radius:4px;border-image:url(:/icon/icon/down.svg);}"//下拉箭头
                 "QComboBox QAbstractItemView{margin-top:4px solid #0D0400;color:white;border-radius:4px;background-color:#888888;}"
                 "QComboBox QAbstractItemView::item{width:180px;height: 32px;border-radius:4px;}"//下拉列表框样式
                 "QComboBox QAbstractItemView::item:hover:selected{background-color:#6F6F6F;}"
@@ -67,11 +67,11 @@ void KylinComboBox::showPopup()
 {
     QComboBox::setEditable(true);
     QComboBox::setStyleSheet(
-                "QComboBox{border:2px solid blue;border-radius:4px;background-color:#0D0400;color:white;}"
+                "QComboBox{border:2px solid #3D6BE5;border-radius:4px;background-color:#0D0400;color:white;}"
                 "QComboBox QLineEdit{border-radios:4px;}"
                 "QComboBox:hover{border-radius:4px;background-color:#0D0400;color:white;}"
                 "QComboBox::drop-down{border-radius:4px;}" //下拉按钮
-                "QComboBox::down-arrow{border-radius:4px;border-image:url(:/icon/icon/down.png);}"//下拉箭头
+                "QComboBox::down-arrow{border-radius:4px;border-image:url(:/icon/icon/down.svg);}"//下拉箭头
                 "QComboBox QAbstractItemView{margin-top:4px solid #0D0400;color:white;border-radius:4px;background-color:#888888;}"
                 "QComboBox QAbstractItemView::item{width:180px;height: 32px;border-radius:4px;}"//下拉列表框样式
                 "QComboBox QAbstractItemView::item:hover:selected{background-color:#6F6F6F;}"
@@ -87,7 +87,7 @@ void KylinComboBox::colorGray()
                 "QComboBox QLineEdit{border-radios:4px;}"
                 "QComboBox:hover{border-radius:4px;background-color:#0D0400;color:white;}"
                 "QComboBox::drop-down{border-radius:4px;}" //下拉按钮
-                "QComboBox::down-arrow{border-radius:4px;border-image:url(:/icon/icon/down.png);}"//下拉箭头
+                "QComboBox::down-arrow{border-radius:4px;border-image:url(:/icon/icon/down.svg);}"//下拉箭头
                 "QComboBox QAbstractItemView{margin-top:4px solid #0D0400;color:white;border-radius:4px;background-color:#888888;}"
                 "QComboBox QAbstractItemView::item{width:180px;height: 32px;border-radius:4px;}"//下拉列表框样式
                 "QComboBox QAbstractItemView::item:hover:selected{background-color:#6F6F6F;}"
@@ -103,7 +103,7 @@ void KylinComboBox::colorNormal()
                 "QComboBox QLineEdit{border-radios:4px;}"
                 "QComboBox:hover{border-radius:4px;background-color:#0D0400;color:white;}"
                 "QComboBox::drop-down{border-radius:4px;}" //下拉按钮
-                "QComboBox::down-arrow{border-radius:4px;border-image:url(:/icon/icon/down.png);}"//下拉箭头
+                "QComboBox::down-arrow{border-radius:4px;border-image:url(:/icon/icon/down.svg);}"//下拉箭头
                 "QComboBox QAbstractItemView{margin-top:4px solid #0D0400;color:white;border-radius:4px;background-color:#888888;}"
                 "QComboBox QAbstractItemView::item{width:180px;height: 32px;border-radius:4px;}"//下拉列表框样式
                 "QComboBox QAbstractItemView::item:hover:selected{background-color:#6F6F6F;}"

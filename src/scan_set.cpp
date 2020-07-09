@@ -89,15 +89,15 @@ ScanSet::ScanSet(QWidget *parent)
     btnLocation->setText(elideFont.elidedText(curPath,Qt::ElideRight,150));
     btnLocation->setFixedSize(180,32);
 
-
-
     btnMail->setStyleSheet("QPushButton{background-color:rgb(32,30,29);border:1px solid #939393;color:rgb(232,232,232);border-radius:16px;}"
                               "QPushButton:hover{border:none;background-color:rgb(39,208,127);border:rgb(147,147,147);color:rgb(232,232,232);border-radius:16px;}"
                                 "QPushButton:checked{border:none;background-color:rgb(39,208,127);border:rgb(147,147,147);color:rgb(232,232,232);border-radius:16px;}");
     btnSave->setStyleSheet("QPushButton{background-color:rgb(32,30,29);border:1px solid #939393;color:rgb(232,232,232);border-radius:16px;}"
                               "QPushButton:hover{border:none;background-color:rgb(39,208,127);color:rgb(232,232,232);border-radius:16px;}"
                                 "QPushButton:checked{border:none;background-color:rgb(39,208,127);color:rgb(232,232,232)border-radius:16px;}");
-    btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/down.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:rgb(232,232,232);border-radius:6px;text-align:left;}");
+    btnLocation->setStyleSheet("QPushButton{border:4px solid #0D0400;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:rgb(232,232,232);border-radius:6px;text-align:left;}");
+    btnLocation->setIcon(QIcon::fromTheme("folder-open"));
+    btnLocation->setLayoutDirection(Qt::LayoutDirection::RightToLeft);
 
     setKylinLable();
     setKylinComboBox();
@@ -302,16 +302,16 @@ void ScanSet::setKylinScanSetNotEnable()
         textFormat->colorGray();
 
         textName->setEnabled(false);
-        textName->setStyleSheet("QLineEdit{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
+        textName->setStyleSheet("QLineEdit{border:1px solid #0D0400;background-color:rgb(15,08,01);color:gray;border-radius:4px;}");
 
         btnLocation->setEnabled(false);
-        btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/down.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:gray;border-radius:6px;text-align:left;}");
+        btnLocation->setStyleSheet("QPushButton{border:4px solid #0D0400;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:gray;border-radius:4px;text-align:left;}");
 
         btnMail->setEnabled(false);
         btnSave->setEnabled(false);
 
-        textDevice->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
-        textType->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
+        textDevice->setStyleSheet("QLabel{border:1px solid #0D0400;background-color:rgb(15,08,01);color:gray;border-radius:4px;}");
+        textType->setStyleSheet("QLabel{border:1px solid #0D0400;background-color:rgb(15,08,01);color:gray;border-radius:4px;}");
     }
 }
 
@@ -339,7 +339,7 @@ void ScanSet::setKylinScanSetEnable()
         textName->setEnabled(true);
 
         btnLocation->setEnabled(true);
-        btnLocation->setStyleSheet("QPushButton{background-image:url(:/icon/icon/down.png);border:none;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:rgb(232,232,232);border-radius:6px;text-align:left;}");
+        btnLocation->setStyleSheet("QPushButton{border:4px solid #0D0400;background-repeat:no-repeat;background-position:right;background-color:#0D0400;color:rgb(232,232,232);border-radius:4px;text-align:left;}");
 
         btnMail->setEnabled(true);
         btnSave->setEnabled(true);
@@ -389,12 +389,12 @@ void ScanSet::setKylinLable()
     {
         // No find scan device
         textDevice->setText(tr("No available device"));
-        textDevice->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:6px;}");
+        textDevice->setStyleSheet("QLabel{border:1px solid #0D0400;background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:4px;}");
     //    textDevice->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
     }
     else {
         textDevice->setText(instance.getKylinSaneName());
-        textDevice->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:6px;}");
+        textDevice->setStyleSheet("QLabel{border:1px solid #0D0400;background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:4px;}");
     }
     textDevice->setFixedSize(180,32);
 
@@ -402,17 +402,17 @@ void ScanSet::setKylinLable()
     {
         // No find scan device
         textType->setText(tr("Device type"));
-        textType->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:6px;}");
+        textType->setStyleSheet("QLabel{border:1px solid #0D0400;background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:4px;}");
      //   textType->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
     }
     else {
         textType->setText(instance.getKylinSaneType());
-        textType->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:6px;}");
+        textType->setStyleSheet("QLabel{border:1px solid #0D0400;background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:4px;}");
     }
     textType->setFixedSize(180,32);
 
     textName->setText(tr("Scan filename"));
-    textName->setStyleSheet("QLineEdit{background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:6px;}");
+    textName->setStyleSheet("QLineEdit{border:1px solid #0D0400;background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:4px;}");
     textName->setFixedSize(180,32);
 }
 
@@ -445,18 +445,22 @@ void ScanSet::setKylinHBoxLayout()
     hBoxFormat->setContentsMargins(0,16,0,4);
 
     hBoxName->setSpacing(0);
+    hBoxName->addSpacing(16);
     hBoxName->addWidget(labName);
     hBoxName->addSpacing(8);
     hBoxName->addWidget(textName);
+    hBoxName->addSpacing(16);
 //    setKylinHBoxLayoutAttributes(hBoxName, labName, textName);
     hBoxName->setContentsMargins(0,4,0,4);
 
 //    setKylinHBoxLayoutAttributes(hBoxLocation, labLocation, btnLocation);
 //    hBoxLocation->setContentsMargins(0,4,0,4);
     hBoxLocation->setSpacing(0);
+    hBoxLocation->addSpacing(16);
     hBoxLocation->addWidget(labLocation);
     hBoxLocation->addSpacing(8);
     hBoxLocation->addWidget(btnLocation);
+    hBoxLocation->addSpacing(16);
     hBoxLocation->setContentsMargins(0,4,0,4);
 
     hBoxLine3->setSpacing(0);
@@ -478,17 +482,21 @@ void ScanSet::setKylinHBoxLayout()
 void ScanSet::setKylinHBoxLayoutAttributes(QHBoxLayout *layout, QLabel *labelFirst, QLabel *labelSecond)
 {
     layout->setSpacing(0);
+    layout->addSpacing(16);
     layout->addWidget(labelFirst);
     layout->addSpacing(8);
     layout->addWidget(labelSecond);
+    layout->addSpacing(16);
 }
 
 void ScanSet::setKylinHBoxLayoutAttributes(QHBoxLayout *layout, QLabel *labelFirst, KylinComboBox *combo)
 {
     layout->setSpacing(0);
+    layout->addSpacing(16);
     layout->addWidget(labelFirst);
     layout->addSpacing(8);
     layout->addWidget(combo);
+    layout->addSpacing(16);
 }
 
 QString ScanSet::getTextResolution()

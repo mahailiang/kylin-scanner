@@ -21,6 +21,7 @@ FuncBar::FuncBar(QWidget *parent)
     : QWidget(parent)
 {
     setFixedHeight(80);
+    setMinimumWidth(860);
     btnNorScan = new QPushButton();
     btnBeautify = new QPushButton();
     btnRectify = new QPushButton();
@@ -272,6 +273,18 @@ void FuncBar::setFontSize(QLabel *label, int n)
     QFont ft;
     ft.setPointSize(n);
     label->setFont(ft);
+}
+
+void FuncBar::setStackClear()
+{
+        stack.clear();
+        flagOrc = 0;
+        flagRectify = 0;
+        flagBeautify = 0;
+        qDebug()<<"flagorc:"<<flagOrc;
+        qDebug()<<"flagrec:"<<flagRectify;
+        qDebug()<<"flagbea:"<<flagBeautify;
+        qDebug()<<"stack is em:"<<stack.isEmpty();
 }
 
 //QString orc_text;

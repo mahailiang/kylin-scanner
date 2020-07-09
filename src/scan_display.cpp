@@ -161,6 +161,7 @@ scan_display::scan_display(QWidget *parent)
     vBoxScanSet1->setContentsMargins(0,0,0,0);
     setLayout(vBoxScanSet1);
     vStackedLayout->setCurrentWidget(labDisplay1);
+    vStackedLayout->setContentsMargins(0,0,0,0);
 
     // For switch page
     connect(btnTool,SIGNAL(clicked()),this,SLOT(switchPage()));
@@ -481,6 +482,9 @@ void scan_display::scan()
     vStackedLayout->setCurrentIndex(3);
 
     stack.clear();
+    flagOrc = 0;
+    flagRectify = 0;
+    flagBeautify = 0;
 
     img5->load("/tmp/scanner/scan.pnm");
     pixmap_scaled(*img5,labDisplay5);
@@ -556,7 +560,7 @@ void scan_display::beautify()
         {
             img2->save("/tmp/scanner/scan1.png");
             *imgBeautify = img2->copy();
-            ImageRectify("/tmp/scanner/scan1.png");
+            oneClickEmbelish("/tmp/scanner/scan1.png");
             img2->load("/tmp/scanner/scan1.png");
             pixmap_scaled(*img2,labDisplay7);
             *img5 = img2->copy();
@@ -655,6 +659,7 @@ edit_bar::edit_bar(QWidget *parent)
     btnTailor->setFixedSize(30,30);
     btnSymmetry->setFixedSize(30,30);
     btnWatermark->setFixedSize(30,30);
+    btnSymmetry->setToolTip("对称翻转");
 
     btnRotate->setStyleSheet("QPushButton{border-image: url(:/icon/icon/rotate.png);border:none;background-color:rgb(232,232,232);border-radius:0px;}"
                               "QPushButton:hover{border-image: url(:/icon/icon/rotate-click.png);border:none;background-color:rgb(232,232,232);border-radius:0px;}"
