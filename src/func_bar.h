@@ -42,7 +42,6 @@ signals:
     void scanFinished(int);
 };
 
-
 class FuncBar : public QWidget
 {
     Q_OBJECT

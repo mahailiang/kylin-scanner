@@ -482,6 +482,7 @@ void scan_display::scan()
     vStackedLayout->setCurrentIndex(3);
 
     stack.clear();
+    list.clear();
     flagOrc = 0;
     flagRectify = 0;
     flagBeautify = 0;
@@ -503,6 +504,7 @@ void scan_display::rectify()
         {
             img5->save("/tmp/scanner/scan1.png");
             *imgRectify = img5->copy();
+            list.append("Rectify");
             ImageRectify("/tmp/scanner/scan1.png");
             img5->load("/tmp/scanner/scan1.png");
             pixmap_scaled(*img5,labDisplay5);
@@ -513,6 +515,7 @@ void scan_display::rectify()
         {
             img2->save("/tmp/scanner/scan1.png");
             *imgRectify = img2->copy();
+            list.append("Rectify");
             ImageRectify("/tmp/scanner/scan1.png");
             img2->load("/tmp/scanner/scan1.png");
             pixmap_scaled(*img2,labDisplay7);
@@ -526,6 +529,22 @@ void scan_display::rectify()
         if(vStackedLayout->currentWidget() == myWidget1)
         {
             *img5 = imgRectify->copy();
+            if(list.count() == 2)
+            {
+                if(list[0] == "Rectify")
+                {
+                    list.clear();
+                    img5->save("/tmp/scanner/scan1.png");
+                    *imgBeautify = img5->copy();
+                    list.append("Beautify");
+                    oneClickEmbelish("/tmp/scanner/scan1.png");
+                    img5->load("/tmp/scanner/scan1.png");
+                }
+                else
+                    list.removeLast();
+            }
+            else
+                list.clear();
             pixmap_scaled(*img5,labDisplay5);
             *img2 = img5->copy();
             pixmap_scaled(*img2,labDisplay7);
@@ -533,6 +552,22 @@ void scan_display::rectify()
         else
         {
             *img2 = imgRectify->copy();
+            if(list.count() == 2)
+            {
+                if(list[0] == "Rectify")
+                {
+                    list.clear();
+                    img2->save("/tmp/scanner/scan1.png");
+                    *imgBeautify = img2->copy();
+                    list.append("Beautify");
+                    oneClickEmbelish("/tmp/scanner/scan1.png");
+                    img2->load("/tmp/scanner/scan1.png");
+                }
+                else
+                    list.removeLast();
+            }
+            else
+                list.clear();
             pixmap_scaled(*img2,labDisplay7);
             *img5 = img2->copy();
             pixmap_scaled(*img5,labDisplay5);
@@ -550,6 +585,7 @@ void scan_display::beautify()
         {
             img5->save("/tmp/scanner/scan1.png");
             *imgBeautify = img5->copy();
+            list.append("Beautify");
             oneClickEmbelish("/tmp/scanner/scan1.png");
             img5->load("/tmp/scanner/scan1.png");
             pixmap_scaled(*img5,labDisplay5);
@@ -560,6 +596,7 @@ void scan_display::beautify()
         {
             img2->save("/tmp/scanner/scan1.png");
             *imgBeautify = img2->copy();
+            list.append("Beautify");
             oneClickEmbelish("/tmp/scanner/scan1.png");
             img2->load("/tmp/scanner/scan1.png");
             pixmap_scaled(*img2,labDisplay7);
@@ -573,6 +610,22 @@ void scan_display::beautify()
         if(vStackedLayout->currentWidget() == myWidget1)
         {
             *img5 = imgBeautify->copy();
+            if(list.count() == 2)
+            {
+                if(list[0] == "Beautify")
+                {
+                    list.clear();
+                    img5->save("/tmp/scanner/scan1.png");
+                    *imgRectify = img5->copy();
+                    list.append("Rectify");
+                    ImageRectify("/tmp/scanner/scan1.png");
+                    img5->load("/tmp/scanner/scan1.png");
+                }
+                else
+                    list.removeLast();
+            }
+            else
+                list.clear();
             pixmap_scaled(*img5,labDisplay5);
             *img2 = img5->copy();
             pixmap_scaled(*img2,labDisplay7);
@@ -580,6 +633,22 @@ void scan_display::beautify()
         else
         {
             *img2 = imgBeautify->copy();
+            if(list.count() == 2)
+            {
+                if(list[0] == "Beautify")
+                {
+                    list.clear();
+                    img2->save("/tmp/scanner/scan1.png");
+                    *imgRectify = img2->copy();
+                    list.append("Rectify");
+                    ImageRectify("/tmp/scanner/scan1.png");
+                    img2->load("/tmp/scanner/scan1.png");
+                }
+                else
+                    list.removeLast();
+            }
+            else
+                list.clear();
             pixmap_scaled(*img2,labDisplay7);
             *img5 = img2->copy();
             pixmap_scaled(*img5,labDisplay5);
