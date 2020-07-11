@@ -84,8 +84,8 @@ public:
     int n = 0;
 
 private:
-    QLabel *labDisplay1;
-    QLabel *labDisplay2;
+    QLabel *labDisplayInit; // 初始化界面，即空白界面
+    QLabel *labDisplayConnectError; // 连接或者打开扫描仪出错界面
     QLabel *labDisplay3;
     QLabel *labDisplay4;
     QLabel *labDisplay5;
