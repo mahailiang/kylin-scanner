@@ -39,6 +39,7 @@ Widget::Widget(QWidget *parent)
     installEventFilter(pTitleBar);
     resize(860, 680);
 
+//    setStyleSheet("QWidget{border-bottom-left-radius:5px;border-bottom-right-radius:5px;}");
     QPalette pal(palette());
     pal.setColor(QPalette::Background, QColor(47, 44, 43));
     setAutoFillBackground(true);
@@ -61,6 +62,7 @@ Widget::Widget(QWidget *parent)
     pHboxLayout->setSpacing(0);
     pHboxLayout->addWidget(pScanSet);
     pHboxLayout->addWidget(pScandisplay);
+    pHboxLayout->setContentsMargins(0,0,0,0);
 
     pLayout = new QVBoxLayout();
     pLayout->setSpacing(0);
@@ -70,6 +72,7 @@ Widget::Widget(QWidget *parent)
     pLayout->addLayout(pHboxLayout);
     pLayout->setContentsMargins(0, 0, 0, 0);
 
+    set_mask();
     setLayout(pLayout);
 
     // For save
@@ -84,7 +87,6 @@ Widget::Widget(QWidget *parent)
     // For scan
     connect(&thread,SIGNAL(scan_finished(bool)),this,SLOT(scan_result(bool)));
     connect(pScanSet, SIGNAL(open_device_status(bool)), this, SLOT(scan_result_detail(bool)));
-    //connect(&thread,SIGNAL(open_scan_device_finished(bool)),this,SLOT(scan_result_detail(bool)));
     connect(pFuncBar,&FuncBar::send_Scan_End,pScandisplay,&scan_display::scan);
     connect(pFuncBar,&FuncBar::send_Scan_End,this,&Widget::save_scan_file);
 
@@ -95,6 +97,8 @@ Widget::Widget(QWidget *parent)
     // For beauty
     connect(pFuncBar, &FuncBar::send_Beautify_Begin, pScandisplay, &scan_display::beautify);
     connect(pFuncBar, &FuncBar::send_Beautify_End, pScandisplay, &scan_display::beautify);
+    connect(pTitleBar,&TitleBar::isNormal,this,&Widget::set_mask);
+    connect(pTitleBar,&TitleBar::isMax,this,&Widget::set_mask_clear);
 }
 
 Widget::~Widget()
@@ -231,7 +235,7 @@ void Widget::save_scan_file()
     QImage img;
 
     pFuncBar->setKylinScanSetEnable();
-
+    pFuncBar->setStackClear();
     img.load("/tmp/scanner/scan.pnm");
     QString pathName = pScanSet->getTextLocation() + "/" + pScanSet->getTextName();
     qDebug()<<"pathName:"<<pathName;
@@ -332,6 +336,30 @@ void Widget::scan_result_detail(bool ret)
 
 }
 
+void Widget::set_mask_clear()
+{
+    clearMask();
+
+}
+void Widget::set_mask()
+{
+        clearMask();
+        QBitmap bitMap(860,680); // A bit map has the same size with current widget
+
+        bitMap.fill();
+
+        QPainter painter(&bitMap);
+
+        painter.setBrush(Qt::black);
+
+        painter.setPen(Qt::NoPen); // Any color that is not QRgb(0,0,0) is right
+
+        painter.setRenderHint(QPainter::Antialiasing, true);
+
+        painter.drawRoundedRect(bitMap.rect(),6,6); //设置圆角弧度
+
+        setMask(bitMap);
+}
 void scanThread::run()
 {
     KylinSane &instance = KylinSane::getInstance();

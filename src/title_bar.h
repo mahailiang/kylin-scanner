@@ -54,7 +54,9 @@ private:
 
     // 最大化/还原
     void updateMaximize();
-
+Q_SIGNALS:
+    void isNormal();
+    void isMax();
 private:
     bool mMoving;
     QPoint mLastMousePosition;

@@ -42,7 +42,6 @@ signals:
     void scanFinished(int);
 };
 
-
 class FuncBar : public QWidget
 {
     Q_OBJECT
@@ -55,6 +54,7 @@ public:
     void setKylinScanSetEnable();
     void setBtnScanEnable();
     void setFontSize(QLabel *label, int n);
+    void setStackClear();
     int flagBeautify = 0; //一键美化标志
     int flagRectify = 0; //智能纠偏标志
     int flagOrc = 0; //文字识别标志

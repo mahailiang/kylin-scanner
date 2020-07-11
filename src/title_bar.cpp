@@ -24,60 +24,48 @@
 #include "title_bar.h"
 
 #include <QDebug>
-
+#include <QPainter>
 
 TitleBar::TitleBar(QWidget *parent)
     : QWidget(parent)
 {
     setFixedHeight(32);
+    setMinimumWidth(860);
 
-    m_pIconLabel = new QLabel(this);
-    m_pTitleLabel = new QLabel(this);
-    m_pMinimizeButton = new QPushButton(this);
-    m_pMaximizeButton = new QPushButton(this);
-    m_pCloseButton = new QPushButton(this);
+    m_pMinimizeButton = new QPushButton();
+    m_pMaximizeButton = new QPushButton();
+    m_pCloseButton = new QPushButton();
 
- //   m_pIconLabel->setFixedSize(10,10);
-    m_pIconLabel->setScaledContents(true);
-
-    m_pTitleLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-  //  m_pTitleLabel->setFixedSize(10,10);
-    m_pMinimizeButton->setFixedSize(12, 12);
-    m_pMaximizeButton->setFixedSize(12, 12);
-    m_pCloseButton->setFixedSize(12, 12);
-
-    m_pTitleLabel->setObjectName("whiteLabel");
-    m_pMinimizeButton->setObjectName("minimizeButton");
-    m_pMaximizeButton->setObjectName("maximizeButton");
-    m_pCloseButton->setObjectName("closeButton");
+    m_pMinimizeButton->setFixedSize(30, 30);
+    m_pMaximizeButton->setFixedSize(30, 30);
+    m_pCloseButton->setFixedSize(30, 30);
 
     m_pMinimizeButton->setToolTip("Minimize");
     m_pMaximizeButton->setToolTip("Maximize");
     m_pCloseButton->setToolTip("Close");
 
-    m_pMinimizeButton->setStyleSheet("QPushButton{border-image: url(:/icon/icon/min.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
-                              "QPushButton:hover{border-image: url(:/icon/icon/min-click.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
-                                "QPushButton:checked{border-image: url(:/icon/icon/min-click.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}");
+    m_pMinimizeButton->setStyleSheet("QPushButton{border-image: url(:/icon/icon/min.svg);border:none;background-color:rgb(47,44,43);border-radius:4px;}"
+                              "QPushButton:hover{border-image: url(:/icon/icon/min.svg);border:none;background-color:rgb(61,107,229);border-radius:4px;}"
+                                "QPushButton:checked{border-image: url(:/icon/icon/min.svg);border:none;background-color:rgb(50,87,202);border-radius:4px;}");
 
-    m_pMaximizeButton->setStyleSheet("QPushButton{border-image: url(:/icon/icon/normal.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
-                              "QPushButton:hover{border-image: url(:/icon/icon/normal-click.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
-                                "QPushButton:checked{border-image: url(:/icon/icon/max-click.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}");
+    m_pMaximizeButton->setStyleSheet("QPushButton{border-image: url(:/icon/icon/max.svg);border:none;background-color:rgb(47,44,43);border-radius:4px;}"
+                              "QPushButton:hover{border-image: url(:/icon/icon/max.svg);border:none;background-color:rgb(61,107,229);border-radius:4px;}"
+                                "QPushButton:checked{border-image: url(:/icon/icon/max.svg);border:none;background-color:rgb(50,87,202);border-radius:4px;}");
 
-    m_pCloseButton->setStyleSheet("QPushButton{border-image: url(:/icon/icon/close.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
-                              "QPushButton:hover{border-image: url(:/icon/icon/close-click.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
-                                "QPushButton:checked{border-image: url(:/icon/icon/close-click.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}");
+    m_pCloseButton->setStyleSheet("QPushButton{border-image: url(:/icon/icon/close.svg);border:none;background-color:rgb(47,44,43);border-radius:4px;}"
+                              "QPushButton:hover{border-image: url(:/icon/icon/close.svg);border:none;background-color:rgb(240,65,52);border-radius:4px;}"
+                                "QPushButton:checked{border-image: url(:/icon/icon/close.svg);border:none;background-color:rgb(215,52,53);border-radius:4px;}");
 
     QHBoxLayout *pLayout = new QHBoxLayout(this);
- //   pLayout->addWidget(m_pIconLabel);
+
     pLayout->addSpacing(0);
-  //  pLayout->addWidget(m_pTitleLabel);
     pLayout->addStretch();
     pLayout->addWidget(m_pMinimizeButton);
     pLayout->addWidget(m_pMaximizeButton);
     pLayout->addWidget(m_pCloseButton);
-    pLayout->setSpacing(28);
+    pLayout->setSpacing(7);
     pLayout->setAlignment(Qt::AlignCenter);
-    pLayout->setContentsMargins(0, 0, 14, 0);
+    pLayout->setContentsMargins(0, 0, 7, 0);
 
     setLayout(pLayout);
 
@@ -169,6 +157,10 @@ void TitleBar::onClicked()
         else if (pButton == m_pMaximizeButton)
         {
             pWindow->isMaximized() ? pWindow->showNormal() : pWindow->showMaximized();
+            if(pWindow->isMaximized())
+                emit isMax();
+            else
+                emit isNormal();
         }
         else if (pButton == m_pCloseButton)
         {
@@ -176,6 +168,7 @@ void TitleBar::onClicked()
             pWindow->close();
         }
     }
+//    emit m_pMaximizeButtonClicked();
 }
 
 void TitleBar::updateMaximize()
@@ -188,17 +181,17 @@ void TitleBar::updateMaximize()
         {
             m_pMaximizeButton->setToolTip(tr("Restore"));
             m_pMaximizeButton->setProperty("maximizeProperty", "restore");
-            m_pMaximizeButton->setStyleSheet("QPushButton{border-image: url(:/icon/icon/max.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
-                                      "QPushButton:hover{border-image: url(:/icon/icon/max-click.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
-                                        "QPushButton:checked{border-image: url(:/icon/icon/max-click.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}");
+            m_pMaximizeButton->setStyleSheet("QPushButton{border-image: url(:/icon/icon/revert.svg);border:none;background-color:rgb(47,44,43);border-radius:4px;}"
+                                      "QPushButton:hover{border-image: url(:/icon/icon/revert.svg);border:none;background-color:rgb(61,107,229);border-radius:4px;}"
+                                        "QPushButton:checked{border-image: url(:/icon/icon/revert.svg);border:none;background-color:rgb(50,87,202);border-radius:4px;}");
         }
         else
         {
             m_pMaximizeButton->setProperty("maximizeProperty", "maximize");
             m_pMaximizeButton->setToolTip(tr("Maximize"));
-            m_pMaximizeButton->setStyleSheet("QPushButton{border-image: url(:/icon/icon/normal.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
-                                      "QPushButton:hover{border-image: url(:/icon/icon/normal-click.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}"
-                                        "QPushButton:checked{border-image: url(:/icon/icon/max-click.png);border:none;background-color:rgb(47,44,43);border-radius:0px;}");
+            m_pMaximizeButton->setStyleSheet("QPushButton{border-image: url(:/icon/icon/max.svg);border:none;background-color:rgb(47,44,43);border-radius:4px;}"
+                                      "QPushButton:hover{border-image: url(:/icon/icon/max.svg);border:none;background-color:rgb(61,107,229);border-radius:4px;}"
+                                        "QPushButton:checked{border-image: url(:/icon/icon/max.svg);border:none;background-color:rgb(50,87,202);border-radius:4px;}");
         }
 
         m_pMaximizeButton->setStyle(QApplication::style());

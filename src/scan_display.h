@@ -129,6 +129,7 @@ private:
     myThread thread;
     QScrollArea *scrollArea;
     int widgetindex;
+    QList<QString> list;
 
 public slots:
     void orc();

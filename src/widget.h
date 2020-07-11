@@ -71,6 +71,8 @@ private slots:
     void save_scan_file();
     void scan_result(bool ret);
     void scan_result_detail(bool ret);
+    void set_mask_clear();
+    void set_mask();
 };
 
 #endif // WIDGET_H
