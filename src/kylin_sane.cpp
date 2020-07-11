@@ -39,6 +39,8 @@ static int verbose;
 static SANE_Byte *buffer;
 static size_t buffer_size;
 
+const SANE_Device ** device_list = nullptr;
+
 #define SET_1_BIT(n,i) ((1<<(i))|(n))
 #define SET_0_BIT(n,i) ((~(1<<(i)))&(n))
 #define SET_R_BIT(n,i) ((n)^(1<<(i)))
@@ -366,7 +368,7 @@ cleanup:
 
 SANE_Status kylin_sane_get_parameters(SANE_Handle device)
 {
-    SANE_Status status;
+    SANE_Status status = SANE_STATUS_INVAL;
     SANE_Parameters parm;
 
     status = sane_get_parameters (device, &parm);
@@ -472,7 +474,7 @@ SANE_Status do_scan(const char *fileName)
 
 static void auth_callback (SANE_String_Const resource, SANE_Char * username, SANE_Char * password)
 {
-    qDebug() << "auth_callback";
+    qDebug() << "auth_callback" << resource << username << password;
 }
 
 /**
@@ -496,17 +498,17 @@ void init()
  */
 SANE_Status get_devices(const SANE_Device ***device_list)
 {
-    SANE_Status sane_status = SANE_STATUS_GOOD;
+    SANE_Status status = SANE_STATUS_GOOD;
 
     qDebug("Get all devices...\n");
 
-    sane_status = sane_get_devices (device_list, SANE_FALSE);
+    status = sane_get_devices (device_list, SANE_FALSE);
 
-    if (sane_status)
+    if (status)
 	{
-        qDebug("sane_get_devices status: %s\n", sane_strstatus(sane_status));
+        qDebug("sane_get_devices status: %s\n", sane_strstatus(status));
 	}	
-    return sane_status;
+    return status;
 }
 
 /**
@@ -517,18 +519,18 @@ SANE_Status get_devices(const SANE_Device ***device_list)
  */
 SANE_Status open_sane_device(SANE_Device *device, SANE_Handle *sane_handle)
 {
-    SANE_Status sane_status = SANE_STATUS_GOOD;
+    SANE_Status status = SANE_STATUS_INVAL;
 
     qDebug("Name: %s, vendor: %s, model: %s, type: %s\n",
 		 device->name, device->model, device->vendor, device->type);
 
-    sane_status = sane_open(device->name, sane_handle);
-    if (sane_status)
+    status = sane_open(device->name, sane_handle);
+    if (status)
     {
-        qDebug("sane_open status: %s\n", sane_strstatus(sane_status));
+        qDebug("sane_open status: %s\n", sane_strstatus(status));
     }
 
-    return sane_status;
+    return status;
 }
 
 /**
@@ -540,25 +542,25 @@ SANE_Status open_sane_device(SANE_Device *device, SANE_Handle *sane_handle)
  * @param optnum 扫描选项值
  * @return 获取色彩选项返回值
  */
-int get_option_colors(SANE_Handle sane_handle, int optnum)
+SANE_Status get_option_colors(SANE_Handle sane_handle, int optnum)
 {
     KylinSane& instance = KylinSane::getInstance();
     QStringList colors;
 
     const SANE_Option_Descriptor *opt;
-    const char *tmp = nullptr;
-    int ret = 0;
-    int i = 0;
+    SANE_Status status = SANE_STATUS_INVAL;
 
     qDebug("begin get option[%d] colors\n", optnum);
 
     opt = sane_get_option_descriptor(sane_handle, optnum);
 
     qDebug("begin print all colors:\n");
-    for (i=0; opt->constraint.string_list[i] != nullptr; i++)
+    for (int i=0; opt->constraint.string_list[i] != nullptr; i++)
 	{
-        tmp = *(opt->constraint.string_list+i);
+        const char *tmp = *(opt->constraint.string_list+i);
+        status = SANE_STATUS_GOOD;
         qDebug("optnum[%d] colors string: %s \n", optnum, *(opt->constraint.string_list+i));
+
         if (!strcmp("Color", tmp))
         {
             colors << QObject::tr("Color");
@@ -574,7 +576,7 @@ int get_option_colors(SANE_Handle sane_handle, int optnum)
     }
 
     instance.setKylinSaneColors(colors);
-    return ret;
+    return status;
 }
 
 /**
@@ -587,7 +589,7 @@ int get_option_colors(SANE_Handle sane_handle, int optnum)
  */
 SANE_Status set_option_colors(SANE_Handle sane_handle, SANE_String val_color)
 {
-    SANE_Status status;
+    SANE_Status status = SANE_STATUS_INVAL;
 
     qDebug("\nbegin set option[2] color: %s \n", val_color);
 
@@ -610,25 +612,25 @@ SANE_Status set_option_colors(SANE_Handle sane_handle, SANE_String val_color)
  * @param optnum 扫描选项参数，资源种类为3
  * @return 返回资源获取情况
  */
-int get_option_sources(SANE_Handle sane_handle, int optnum)
-{ 
+SANE_Status get_option_sources(SANE_Handle sane_handle, int optnum)
+{
     KylinSane& instance = KylinSane::getInstance();
     QString type;
 
+    SANE_Status status = SANE_STATUS_INVAL; // 没有读取到设备类型
     const SANE_Option_Descriptor *opt;
-    const char *tmp = nullptr;
     int flag = 0;
-    int ret = 0;
-    int i = 0;
 
     qDebug("begin get option[%d] sources\n", optnum);
 
     opt = sane_get_option_descriptor(sane_handle, optnum);
 
     qDebug("begin print all sources:\n");
-    for (i=0; opt->constraint.string_list[i] != nullptr; i++)
+    for (int i=0; opt->constraint.string_list[i] != nullptr; i++)
 	{
-        tmp = *(opt->constraint.string_list+i);
+        const char *tmp = *(opt->constraint.string_list+i);
+        status = SANE_STATUS_GOOD;
+
         qDebug("optnum[%d] sources string: %s \n", optnum, tmp);
         if (!strcmp("Flatbed", tmp))
         {
@@ -642,7 +644,7 @@ int get_option_sources(SANE_Handle sane_handle, int optnum)
     }
 
     instance.setKylinSaneType(type);
-    return ret;
+    return status;
 }
 
 /**
@@ -680,24 +682,24 @@ SANE_Status set_option_sources(SANE_Handle sane_handle, int optnum, SANE_String 
   * @param optnum 分辨率扫描选项，此处为6
   * @return 返回扫描软件分辨率获取情况
   */
- int get_option_resolutions(SANE_Handle sane_handle, int optnum)
+SANE_Status get_option_resolutions(SANE_Handle sane_handle, int optnum)
 {
     KylinSane& instance = KylinSane::getInstance();
     QStringList resolutions;
-
+    SANE_Status status = SANE_STATUS_INVAL;
     const SANE_Option_Descriptor *opt;
-    int res = 0;
-    int i = 0;
 
     qDebug("begin get option[%d] resolution \n", optnum);
 
     opt = sane_get_option_descriptor(sane_handle, optnum);
 
     qDebug("begin print all resolutions:\n");
-    for (i=0; opt->constraint.word_list[i]; i++)
+    for (int i=0; opt->constraint.word_list[i]; i++)
     {
-        res = *(opt->constraint.word_list+i);
+        int res = *(opt->constraint.word_list+i);
+        status = SANE_STATUS_GOOD;
         qDebug("optnum[%d] resolutions int: %d \n", optnum, res);
+
         switch (res)
         {
             case 4800:
@@ -732,7 +734,7 @@ SANE_Status set_option_sources(SANE_Handle sane_handle, int optnum, SANE_String 
 
     instance.setKylinSaneResolutions(resolutions);
 
-    return 0;
+    return status;
 }
 
  /**
@@ -777,24 +779,27 @@ SANE_Status set_option_resolutions(SANE_Handle sane_handle, SANE_Int val_resolut
  * 9 => 扫描设备左上角中的y坐标tl-y
  * 10 => 扫描设备右下角中的x坐标br-x
  * 11 => 扫描设备右下角中的y坐标br-y
+ *
+ * @return 获取设备尺寸结果
  */
-void get_option_sizes(SANE_Handle sane_handle, int optnum)
+SANE_Status get_option_sizes(SANE_Handle sane_handle, int optnum)
 {
     const SANE_Option_Descriptor *opt;
+    SANE_Status status = SANE_STATUS_INVAL;
     int res = 0;
-    int i = 0;
 
     qDebug("begin get option[%d] size \n", optnum);
 
     opt = sane_get_option_descriptor(sane_handle, optnum);
 
     qDebug("begin print all sizes:\n");
-    for (i=0; opt->constraint.word_list[i]; i++)
+    for (int i=0; opt->constraint.word_list[i]; i++)
 	{
         res = *(opt->constraint.word_list+i);
+        status = SANE_STATUS_GOOD;
         qDebug("optnum[%d] sizes int: %d \n", optnum, res);
-
     }
+    return status;
 }
 
 /**
@@ -927,7 +932,7 @@ static const SANE_Option_Descriptor *get_optdesc_by_name(SANE_Handle device, con
 	
 	/* Get the number of options. */
     status = sane_control_option (device, 0, SANE_ACTION_GET_VALUE, &num_dev_options, nullptr);
-    qDebug("get option 0 value (%s)\n", sane_strstatus(status));
+    qDebug("get option %s value (%s)\n", name, sane_strstatus(status));
 
 	for (*option_num = 0; *option_num < num_dev_options; (*option_num)++) {
 
@@ -966,16 +971,17 @@ void display_option_value(SANE_Handle device, int optnum)
  * @param option_name 获取的扫描参数选项
  * @return 返回获取的扫描参数
  */
-static char *get_option_value(SANE_Handle device, const char *option_name)
+SANE_Status get_option_value(SANE_Handle device, const char *option_name)
 {
     KylinSane& instance = KylinSane::getInstance();
     QStringList sizes;
+
+    SANE_Status status = SANE_STATUS_GOOD;
 
     const SANE_Option_Descriptor *opt;
     void *optval; //扫描选项值
     int optnum;
     static char str[100];
-    int status = 0;
 
     SANE_String val_string_source; // 来源
     SANE_String val_string_color; // 颜色
@@ -1009,8 +1015,13 @@ static char *get_option_value(SANE_Handle device, const char *option_name)
                 {
                     val_string_source = static_cast<SANE_String>(optval);
                     qDebug("Default source= %s constraint_type=%d\n", val_string_source, opt->constraint_type);
+                    status = get_option_sources(device, optnum);
                 }
-                status = get_option_sources(device, optnum);
+                else
+                {
+                    // Canon Lide 400 本地连接失败，参数非法
+                    status = SANE_STATUS_INVAL;
+                }
                 break;
 
             case 6:
@@ -1135,33 +1146,62 @@ static char *get_option_value(SANE_Handle device, const char *option_name)
         strcpy(str, "backend default");
     }
 
-    return(str);
+    qDebug() << "option_name = " << option_name << "str = " << str;
+
+    return status;
 }
 
 /**
  * @brief kylin_display_scan_parameters 连接设备后，显示扫描参数
  * @param device 扫描句柄
- * @return 从扫描设备上获取的扫描设置默认信息
+ * @return 从扫描设备上获取的扫描设置默认信息状态
  */
-char *kylin_display_scan_parameters(SANE_Handle device)
+SANE_Status kylin_display_scan_parameters(SANE_Handle device)
 {
     static char str[150];
     char *p = str;
 
+    SANE_Status  status = SANE_STATUS_GOOD;
+
     *p = 0;
 
     // Default source
-    p += sprintf(p, "scan source=[%s] ", get_option_value(device, SANE_NAME_SCAN_SOURCE));
+    status = get_option_value(device, SANE_NAME_SCAN_SOURCE);
+    if (status != SANE_STATUS_GOOD)
+    {
+        status = SANE_STATUS_INVAL;
+        qDebug() << "parameters error!";
+        return status;
+    }
 
     // Default color mode
-    p += sprintf(p, "scan mode=[%s] ", get_option_value(device, SANE_NAME_SCAN_MODE));
+    status = get_option_value(device, SANE_NAME_SCAN_MODE);
+    if (status != SANE_STATUS_GOOD)
+    {
+        status = SANE_STATUS_INVAL;
+        qDebug() << "parameters error!";
+        return status;
+    }
 
     // Default resolution
-    p += sprintf(p, "resolution=[%s] ", get_option_value(device, SANE_NAME_SCAN_RESOLUTION));
+    status = get_option_value(device, SANE_NAME_SCAN_RESOLUTION);
+    if (status != SANE_STATUS_GOOD)
+    {
+        status = SANE_STATUS_INVAL;
+        qDebug() << "parameters error!";
+        return status;
+    }
 
     // Default size coordination, top_left(x, y)
-    p += sprintf(p, "tl_x=[%s] ", get_option_value(device, SANE_NAME_SCAN_TL_X));
-    p += sprintf(p, "tl_y=[%s] ", get_option_value(device, SANE_NAME_SCAN_TL_Y));
+    get_option_value(device, SANE_NAME_SCAN_TL_X);
+    if (status != SANE_STATUS_GOOD)
+    {
+        status = SANE_STATUS_INVAL;
+        qDebug() << "parameters error!";
+        return status;
+    }
+
+    get_option_value(device, SANE_NAME_SCAN_TL_Y);
 
     /* Default size coordination, botton_right(x, y)
      *
@@ -1169,10 +1209,11 @@ char *kylin_display_scan_parameters(SANE_Handle device)
      * s->val[OPT_BR_X].w = SANE_FIX(210);
      * s->val[OPT_BR_Y].w = SANE_FIX(297);
      */
-    p += sprintf(p, "br_x=[%s] ", get_option_value(device, SANE_NAME_SCAN_BR_X));
-    p += sprintf(p, "br_y=[%s] ", get_option_value(device, SANE_NAME_SCAN_BR_Y));
+    get_option_value(device, SANE_NAME_SCAN_BR_X);
 
-    return(str);
+    status = get_option_value(device, SANE_NAME_SCAN_BR_Y);
+
+    return status;
 }
 
 /**
@@ -1239,13 +1280,15 @@ int check_search_scan_devices()
 }
 
 /**
- * @brief kylinNorScanOpen 扫描设备打开统一接口
+ * @brief kylinNorScanFindDevice 查询扫描设备统一接口
  * 提供给页面调用
  */
-void kylinNorScanOpen()
+void kylinNorScanFindDevice()
 {
-    SANE_Status sane_status;
     KylinSane& instance = KylinSane::getInstance();
+    QStringList names;
+
+    SANE_Status sane_status;
     char name[512] = {0};
 
     // 1. initialize SANE
@@ -1255,7 +1298,7 @@ void kylinNorScanOpen()
     do
     {
         // 2. get all devices
-        const SANE_Device ** device_list = nullptr;
+        //const SANE_Device ** device_list = nullptr;
         sane_status = get_devices((&device_list));
         if (sane_status)
         {
@@ -1284,8 +1327,6 @@ void kylinNorScanOpen()
         }
         fputc ('\n', stdout);
 
-
-
         for (i = 0; device_list[i]; ++i)
         {
             qDebug ("device `%s' is a %s %s %s\n",
@@ -1294,12 +1335,81 @@ void kylinNorScanOpen()
 
             // just for one scan device
             snprintf(name, 512, "%s %s", device_list[i]->vendor, device_list[i]->model);
+            qDebug() << "device name:  " << name;
 
-            instance.setKylinSaneName(name);
+            names << name;
+
             //instance.setKylinSaneName(device_list[i]->name);
-            instance.setKylinSaneType(device_list[i]->type);
+            if (i == 0)
+            {
+                // Same device have same type
+                instance.setKylinSaneType(device_list[i]->type);
+            }
+            //break;
+        }
+
+        // For devices name
+        qDebug() << names;
+        instance.setKylinSaneNames(names);
+
+        if (!device_list[0])
+        {
+            qDebug ("no SANE devices found\n");
+            sane_status = SANE_STATUS_UNSUPPORTED;
+            instance.setKylinSaneStatus(false);
             break;
         }
+
+        sane_status = SANE_STATUS_GOOD;
+
+    }while(0);
+
+    if (sane_status)
+    {
+        instance.setKylinSaneStatus(false);
+        qDebug() << "set status false";
+    }
+    else
+    {
+        instance.setKylinSaneStatus(true);
+    }
+}
+
+void kylinNorScanOpenDevice(int index)
+{
+    KylinSane& instance = KylinSane::getInstance();
+    QStringList names;
+
+    SANE_Status sane_status;
+    char name[512] = {0};
+
+    do
+    {
+        for (int i = 0; device_list[i]; ++i)
+        {
+            qDebug ("device `%s' is a %s %s %s\n",
+                     device_list[i]->name, device_list[i]->vendor,
+                     device_list[i]->model, device_list[i]->type);
+
+            // just for one scan device
+            snprintf(name, 512, "%s %s", device_list[i]->vendor, device_list[i]->model);
+            qDebug() << "device name:  " << name;
+
+            names << name;
+
+            //instance.setKylinSaneName(device_list[i]->name);
+            if (i == 0)
+            {
+                // Same device have same type
+                instance.setKylinSaneType(device_list[i]->type);
+            }
+            //break;
+        }
+
+        // For devices name
+        qDebug() << names;
+        instance.setKylinSaneNames(names);
+
         if (!device_list[0])
         {
             qDebug ("no SANE devices found\n");
@@ -1311,7 +1421,7 @@ void kylinNorScanOpen()
         // 3. open a device
         qDebug("Open a device\n");
         SANE_Handle sane_handle;
-        SANE_Device *device = const_cast<SANE_Device *>(*device_list);
+        SANE_Device *device = const_cast<SANE_Device *>(*(device_list + index));
         if (!device)
         {
             qDebug("No device connected!\n");
@@ -1333,11 +1443,11 @@ void kylinNorScanOpen()
         qDebug("Scanning...\n");
 
         // 此处可以获取页面设置所需的扫描信息
-        qDebug("start_scan: %s\n", kylin_display_scan_parameters(sane_handle));
+        sane_status = kylin_display_scan_parameters(sane_handle);
 
         cancle_scan(sane_handle);
 
-        sane_status = SANE_STATUS_GOOD;
+        //sane_status = SANE_STATUS_GOOD;
     }while(0);
 
     if (sane_status)
@@ -1350,7 +1460,6 @@ void kylinNorScanOpen()
         instance.setKylinSaneStatus(true);
     }
 }
-
 #ifdef __cplusplus
 }
 #endif
@@ -1370,7 +1479,7 @@ bool KylinSane::getKylinSaneStatus()
     return devicesInfo.status;
 }
 
-QString KylinSane::getKylinSaneName()
+QStringList KylinSane::getKylinSaneNames()
 {
     return devicesInfo.name;
 }
@@ -1405,7 +1514,7 @@ void KylinSane::setKylinSaneType(QString type)
     devicesInfo.type = type;
 }
 
-void KylinSane::setKylinSaneName(QString name)
+void KylinSane::setKylinSaneNames(QStringList name)
 {
     devicesInfo.name = name;
 }
@@ -1426,13 +1535,25 @@ void KylinSane::setKylinSaneColors(QStringList color)
 }
 
 /**
- * @brief KylinSane::open_device 统一接口供页面调用，打开扫描设备
- * @return 返回打开扫描设备的扫描参数情况
+ * @brief KylinSane::find_device 统一接口供页面调用，找到扫描设备
+ * @return 返回找到扫描设备的扫描参数情况
  */
-device_info KylinSane::open_device()
+device_info KylinSane::find_device()
 {
     KylinSane& instance = KylinSane::getInstance();
-    kylinNorScanOpen();
+    kylinNorScanFindDevice();
+
+    return instance.devicesInfo;
+}
+
+/**
+ * @brief KylinSane::open_device 统一接口供页面调用，找到扫描设备
+ * @return 返回找到扫描设备的扫描参数情况
+ */
+device_info KylinSane::open_device(int index)
+{
+    KylinSane& instance = KylinSane::getInstance();
+    kylinNorScanOpenDevice(index);
 
     return instance.devicesInfo;
 }

@@ -25,7 +25,9 @@
 #include <QDebug>
 #include <QBitmap>
 #include "kylin_sane.h"
+
 bool device = true;
+
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
 {
@@ -84,6 +86,7 @@ Widget::Widget(QWidget *parent)
 
     // For scan
     connect(&thread,SIGNAL(scan_finished(bool)),this,SLOT(scan_result(bool)));
+    connect(pScanSet, SIGNAL(open_device_status(bool)), this, SLOT(scan_result_detail(bool)));
     connect(pFuncBar,&FuncBar::send_Scan_End,pScandisplay,&scan_display::scan);
     connect(pFuncBar,&FuncBar::send_Scan_End,this,&Widget::save_scan_file);
 
@@ -187,6 +190,35 @@ void Widget::save_to_pdf(QImage img, QString pathName)
     pdfFile.close();
 }
 
+/**
+ * @brief Widget::result_detail 处理初始化时设备选择组合框情况
+ * 初始化时，应该根据获取的扫描信息进行设置textDevice，所以应该为setKylinComboBox 的参数为 false
+ * @param ret 获取的扫描结果状态
+ */
+void Widget::result_detail(bool ret)
+{
+    qDebug()<<"result_detail"<<endl;
+
+    if(ret)
+    {
+
+        device = true;
+        pScanSet->setKylinComboBox(false);
+        pScanSet->setKylinLable();
+        pFuncBar->setBtnScanEnable();
+        pScanSet->setKylinScanSetEnable();
+    }
+    else
+    {
+        device = false;
+        pScandisplay->set_no_device();
+        pFuncBar->setKylinScanSetNotEnable();
+        pScanSet->setKylinScanSetNotEnable();
+    }
+
+
+}
+
 void Widget::save_image(QString fileName)
 {
     QImage *img = NULL;
@@ -246,14 +278,53 @@ void Widget::save_scan_file()
 void Widget::scan_result(bool ret)
 {
     qDebug()<<"scan_result"<<endl;
+    KylinSane &instance = KylinSane::getInstance();
+
     if(ret)
     {
         device = true;
+
+        pScanSet->setKylinComboBoxScanDeviceName();
+        instance.open_device(0);
+
+        bool ret = instance.getKylinSaneStatus();
+        result_detail(ret);
+
+        /*
         pScanSet->setKylinComboBox();
         pScanSet->setKylinLable();
         pFuncBar->setBtnScanEnable();
         pScanSet->setKylinScanSetEnable();
-     //   thread.terminate();
+        */
+    }
+    else
+    {
+        device = false;
+        pScandisplay->set_no_device();
+        pFuncBar->setKylinScanSetNotEnable();
+        pScanSet->setKylinScanSetNotEnable();
+    }
+
+}
+
+/**
+ * @brief Widget::scan_result_detail 设置扫描信息可见情况
+ * 初始化时，应该根据获取的扫描信息进行设置textDevice，
+ * 此时不应该重新设置该字段，所以应该为setKylinComboBox 的参数为 true 进行跳过设置该字段
+ * @param ret
+ */
+void Widget::scan_result_detail(bool ret)
+{
+    qDebug()<<"scan_result_detail"<<endl;
+
+    if(ret)
+    {
+        device = true;
+        pScandisplay->set_init_device();
+        pScanSet->setKylinComboBox(true);
+        pScanSet->setKylinLable();
+        pFuncBar->setBtnScanEnable();
+        pScanSet->setKylinScanSetEnable();
     }
     else
     {
@@ -294,8 +365,11 @@ void scanThread::run()
     KylinSane &instance = KylinSane::getInstance();
 again:
     do {
-        instance.open_device();
-        qDebug() << instance.getKylinSaneResolutions();
+        instance.find_device();
+
+        //instance.open_device(0);
+
+        //qDebug() << instance.getKylinSaneResolutions();
         if(instance.getKylinSaneStatus() == false)
         {
             emit scan_finished(false);

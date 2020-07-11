@@ -39,7 +39,7 @@ ScanSet::ScanSet(QWidget *parent)
     btnSave = new QPushButton();
     btnLocation = new QPushButton();
 
-    textDevice = new QLabel();
+    textDevice = new KylinComboBox();
     textType = new QLabel();
     textColor = new KylinComboBox();
     textResolution = new KylinComboBox();
@@ -100,7 +100,7 @@ ScanSet::ScanSet(QWidget *parent)
     btnLocation->setLayoutDirection(Qt::LayoutDirection::RightToLeft);
 
     setKylinLable();
-    setKylinComboBox();
+    setKylinComboBox(false);
     setKylinHBoxLayout();
 
     vBoxScanSet->setSpacing(0);
@@ -128,7 +128,10 @@ ScanSet::ScanSet(QWidget *parent)
 
     // For current combobox text, while not change current text
     KylinSane & instance = KylinSane::getInstance();
-    QString curSize, curColor, curResolution;
+    QString curDeviceName, curSize, curColor, curResolution;
+
+    curDeviceName = textDevice->currentText();
+    instance.userInfo.name = curDeviceName;
 
     curSize = textSize->currentText();
     instance.userInfo.size = curSize;
@@ -164,6 +167,9 @@ ScanSet::ScanSet(QWidget *parent)
     // For save file
     connect(btnSave,SIGNAL(clicked()),this,SLOT(on_btnSave_clicked()));
 
+    // For device name changed
+    connect(textDevice, SIGNAL(currentTextChanged(QString)), this, SLOT(on_textDevice_current_text_changed(QString)));
+
     // For color mode changed
     connect(textColor, SIGNAL(currentTextChanged(QString)), this, SLOT(on_textColor_current_text_changed(QString)));
 
@@ -192,9 +198,9 @@ void ScanSet::setKylinComboBoxAttributes(KylinComboBox *combo, QStringList strLi
     combo->setView(listView);   //使下拉选项样式生效
 }
  
-void ScanSet::setKylinComboBox()
+void ScanSet::setKylinComboBox(bool curIndexChanged)
 {
-    QStringList strListColor, strListResolution, strListFormat, strListSize,strListLocation;
+    QStringList strListDevice, strListColor, strListResolution, strListFormat, strListSize,strListLocation;
     KylinSane& instance = KylinSane::getInstance();
     bool device_status = true;
     int defaultResolution = 0;
@@ -205,6 +211,9 @@ void ScanSet::setKylinComboBox()
     if (!device_status)
     {
         // If not find scan device
+        strListDevice << tr("No available device");
+        setKylinComboBoxAttributes(textDevice, strListDevice);
+
         strListColor<<tr("Lineart")<<tr("Color")<<tr("Gray");
         setKylinComboBoxAttributes(textColor, strListColor);
 
@@ -227,6 +236,14 @@ void ScanSet::setKylinComboBox()
         setKylinComboBoxAttributes(textFormat, strListFormat);
 
         return;
+    }
+
+    // For  default device
+    if (!curIndexChanged) // 当选择设备时，索引发生改变，此时不应该按照读取的字符串进行默认设置
+    {
+        strListDevice = instance.getKylinSaneNames();
+        qDebug() << "sane names: " << strListDevice;
+        setKylinComboBoxAttributes(textDevice, strListDevice);
     }
 
     // For  default color
@@ -278,6 +295,29 @@ void ScanSet::setKylinComboBox()
 
     strListFormat << "jpg" << "png" << "pdf" << "bmp";
     setKylinComboBoxAttributes(textFormat, strListFormat);
+}
+
+void ScanSet::setKylinComboBoxScanDeviceName()
+{
+    QStringList strListDevice;
+    KylinSane& instance = KylinSane::getInstance();
+    bool device_status = true;
+
+    device_status = instance.getKylinSaneStatus();
+
+    if (!device_status)
+    {
+        // If not find scan device
+        strListDevice << tr("No available device");
+        setKylinComboBoxAttributes(textDevice, strListDevice);
+
+        return;
+    }
+
+    // For  default device
+    strListDevice = instance.getKylinSaneNames();
+    qDebug() << "sane names: " << strListDevice;
+    setKylinComboBoxAttributes(textDevice, strListDevice);
 }
 
 void ScanSet::setKylinScanSetNotEnable()
@@ -384,19 +424,6 @@ void ScanSet::setKylinLable()
     labLocation->setText(tr("Scan to"));
     setFontSize(labLocation,10);
     setKylinLabelAttributes(labLocation);
-
-    if(!device_status)
-    {
-        // No find scan device
-        textDevice->setText(tr("No available device"));
-        textDevice->setStyleSheet("QLabel{border:1px solid #0D0400;background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:4px;}");
-    //    textDevice->setStyleSheet("QLabel{background-color:rgb(15,08,01);color:gray;border-radius:6px;}");
-    }
-    else {
-        textDevice->setText(instance.getKylinSaneName());
-        textDevice->setStyleSheet("QLabel{border:1px solid #0D0400;background-color:rgb(15,08,01);color:rgb(232,232,232);border-radius:4px;}");
-    }
-    textDevice->setFixedSize(180,32);
 
     if(!device_status)
     {
@@ -581,6 +608,38 @@ void ScanSet::on_btnSave_clicked()
         emit save_image_signal(aFileName);
 }
 
+void ScanSet::on_textDevice_current_text_changed(QString device)
+{
+    bool status = true;
+
+    KylinSane & instance = KylinSane::getInstance();
+    instance.userInfo.name = device;
+    qDebug() << "device name: "<< instance.userInfo.name;
+
+    int index = textDevice->currentIndex(); // index是根据所选的进行判断,或者open_device直接根据所选进行判断
+    if (index == -1)
+    {
+        index = 0;
+    }
+    qDebug() << "device index: " << index;
+    //char *deviceName =
+
+    //int index = 1;
+    instance.open_device(index);
+
+    status = instance.getKylinSaneStatus();
+    if (status)
+    {
+        qDebug() << "open_device true";
+        emit open_device_status(true);
+    }
+    else
+    {
+        qDebug() << "open_device false";
+        emit open_device_status(false);
+    }
+}
+
 void ScanSet::modify_save_button()
 {
     if(flag == 0)
@@ -615,12 +674,14 @@ void ScanSet::on_textColor_current_text_changed(QString color)
     }
     qDebug() << "color: "<< instance.userInfo.color;
 }
+
 void ScanSet::on_textResolution_current_text_changed(QString resolution)
 {
     KylinSane & instance = KylinSane::getInstance();
     instance.userInfo.resolution = resolution;
     qDebug() << "resolution: "<< instance.userInfo.resolution;
 }
+
 void ScanSet::on_textSize_current_text_changed(QString size)
 {
     KylinSane & instance = KylinSane::getInstance();

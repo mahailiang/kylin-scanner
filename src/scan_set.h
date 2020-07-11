@@ -53,8 +53,12 @@ public:
     /**
      * @brief setKylinComboBox 统一设置麒麟扫描组合框ComboBox
      */
-    void setKylinComboBox();
+    void setKylinComboBox(bool curIndexChanged);
 
+    /**
+     * @brief setKylinComboBoxScanName 设置麒麟扫描组合框的扫描设备名
+     */
+    void setKylinComboBoxScanDeviceName();
 
     void setKylinScanSetNotEnable();
     void setKylinScanSetEnable();
@@ -102,9 +106,12 @@ public:
     QString getTextName();
     QString getTextLocation();
     void setFontSize(QLabel *label, int n);
+
 Q_SIGNALS:
 //signals:
     void save_image_signal(QString);
+    void open_device_status(bool);
+
 private:
     QLabel *labDevice;              /**< 设备标签 */
     QLabel *labType;                /**< 类型标签 */
@@ -118,17 +125,17 @@ private:
     QFrame *line3;
     QFrame *line4;
 
-    QPushButton *btnMail;         /**< 发送至邮件 */
-    QPushButton *btnSave;         /**< 另存为 */
-    QPushButton *btnLocation;    /**< 扫描至 */
+    QPushButton *btnMail;           /**< 发送至邮件 */
+    QPushButton *btnSave;           /**< 另存为 */
+    QPushButton *btnLocation;       /**< 扫描至 */
 
-    QLabel *textDevice;             /**< 设备 */
+    KylinComboBox *textDevice;      /**< 设备 */
     QLabel *textType;               /**< 类型 */
     KylinComboBox *textColor;       /**< 色彩 */
     KylinComboBox *textResolution;  /**< 分辨率 */
     KylinComboBox *textSize;        /**< 尺寸 */
     KylinComboBox *textFormat;      /**< 格式 */
-    QLineEdit *textName;               /**< 名称 */
+    QLineEdit *textName;            /**< 名称 */
 
 
     QHBoxLayout *hBoxDevice;
@@ -155,6 +162,7 @@ private slots:
     void on_btnMail_clicked();
     void on_btnSave_clicked();
 
+    void on_textDevice_current_text_changed(QString device);
     void on_textColor_current_text_changed(QString color);
     void on_textResolution_current_text_changed(QString resolution);
     void on_textSize_current_text_changed(QString size);

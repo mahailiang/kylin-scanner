@@ -27,8 +27,8 @@ scan_display::scan_display(QWidget *parent)
 {
 
     setMinimumSize(600,567);
-    labDisplay1 = new QLabel();
-    labDisplay2 = new QLabel();
+    labDisplayInit = new QLabel();
+    labDisplayConnectError = new QLabel();
     labDisplay3 = new QLabel();
     labDisplay4 = new QLabel();
     labDisplay5 = new QLabel();
@@ -57,10 +57,10 @@ scan_display::scan_display(QWidget *parent)
 
     vStackedLayout = new QStackedLayout();
 
-    labDisplay2->setParent(myWidget);
+    labDisplayConnectError->setParent(myWidget);
     labDisplay3->setParent(myWidget);
-    labDisplay1->setMinimumSize(600,567);
-    labDisplay2->setMinimumSize(600,320);
+    labDisplayInit->setMinimumSize(600,567);
+    labDisplayConnectError->setMinimumSize(600,320);
     labDisplay3->setMinimumSize(600,231);
     labDisplay4->setMinimumSize(600,567);
     labDisplay5->setMinimumSize(360,490);
@@ -68,12 +68,12 @@ scan_display::scan_display(QWidget *parent)
     labDisplay7->setMinimumSize(360,490);
 
 
-    labDisplay1->setText(" ");
+    labDisplayInit->setText(" ");
 
 
     img->load(":/icon/icon/connect_device.png");
-    labDisplay2->setPixmap(QPixmap::fromImage(*img));
-    labDisplay2->setAlignment(Qt::AlignHCenter|Qt::AlignBottom);
+    labDisplayConnectError->setPixmap(QPixmap::fromImage(*img));
+    labDisplayConnectError->setAlignment(Qt::AlignHCenter|Qt::AlignBottom);
 
 //    img1->load("/home/test/e.png");
     img1->load("scan.pnm");
@@ -90,7 +90,7 @@ scan_display::scan_display(QWidget *parent)
 
     vBoxScanSet->setSpacing(0);
     vBoxScanSet->addStretch();
-    vBoxScanSet->addWidget(labDisplay2);
+    vBoxScanSet->addWidget(labDisplayConnectError);
     vBoxScanSet->addSpacing(16);
     vBoxScanSet->addWidget(labDisplay3);
     vBoxScanSet->addStretch();
@@ -147,7 +147,7 @@ scan_display::scan_display(QWidget *parent)
     vStackedLayout->addWidget(myWidget1);
     vStackedLayout->addWidget(myWidget2);
     vStackedLayout->addWidget(myWidget);
-    vStackedLayout->addWidget(labDisplay1);
+    vStackedLayout->addWidget(labDisplayInit);
     vStackedLayout->addWidget(labDisplay4);
 
     QPalette pal(palette());
@@ -160,7 +160,7 @@ scan_display::scan_display(QWidget *parent)
     vBoxScanSet1->addLayout(vStackedLayout);
     vBoxScanSet1->setContentsMargins(0,0,0,0);
     setLayout(vBoxScanSet1);
-    vStackedLayout->setCurrentWidget(labDisplay1);
+    vStackedLayout->setCurrentWidget(labDisplayInit);
     vStackedLayout->setContentsMargins(0,0,0,0);
 
     // For switch page
@@ -258,6 +258,11 @@ QImage *scan_display::imageSave(QString fileName)
 void scan_display::set_no_device()
 {
     vStackedLayout->setCurrentWidget(myWidget);
+}
+
+void scan_display::set_init_device()
+{
+    vStackedLayout->setCurrentWidget(labDisplayInit);
 }
 
 void scan_display::set_pixmap(QImage img, QLabel *lab)
