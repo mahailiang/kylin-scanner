@@ -46,7 +46,7 @@ using namespace std;
 struct device_info
 {
     bool status;			// 是否存在设备，存在status值为true，否则为false
-    QString name;			// 设备名
+    QStringList name;		// 设备名
     QString type;			// 设备类型
     QStringList color;		// 设备支持的色彩
     QStringList resolution;	// 设备支持的分辨率
@@ -55,6 +55,7 @@ struct device_info
 
 struct user_selected_info
 {
+    QString name;			// 用户选择设备名
     QString color;			// 用户选择色彩
     QString resolution;		// 用户选择分辨率
     QString size;			// 用户选择尺寸
@@ -86,20 +87,21 @@ public:
     }
 
     bool getKylinSaneStatus();
-    QString getKylinSaneName();
+    QStringList getKylinSaneNames();
     QString getKylinSaneType();
     QStringList getKylinSaneResolutions();
     QStringList getKylinSaneSizes();
     QStringList getKylinSaneColors();
 
     void setKylinSaneStatus(bool status);
-    void setKylinSaneName(QString name);
+    void setKylinSaneNames(QStringList name);
     void setKylinSaneType(QString type);
     void setKylinSaneResolutions(QStringList resolution);
     void setKylinSaneSizes(QStringList size);
     void setKylinSaneColors(QStringList color);
 
-    device_info open_device();
+    device_info find_device();
+    device_info open_device(int index);
     int start_scanning(user_selected_info info);
 
     SANE_Handle handle;
@@ -130,9 +132,9 @@ void close_device(SANE_Handle sane_handle); // close scan device
 
 void my_sane_exit(); // Release scan resources
 
-char *kylin_display_scan_parameters(SANE_Handle device); // display parameters
+SANE_Status kylin_display_scan_parameters(SANE_Handle device); // display parameters
 
-void kylinNorScanOpen(); // open scan device
+void kylinNorScanFindDevice(); // open scan device
 
 
 #ifdef __cplusplus

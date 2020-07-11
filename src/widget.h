@@ -23,6 +23,7 @@
 #include <QString>
 #include <QPdfWriter>
 #include <QPainter>
+#include <QMap>
 #include "scan_display.h"
 #include <scan_set.h>
 #include "title_bar.h"
@@ -50,6 +51,7 @@ public:
 
     void set_pdf_size(QPdfWriter *pdfWriter,QString size);
     void save_to_pdf(QImage img, QString pathName);
+    void result_detail(bool ret);
 
 private:
     TitleBar *pTitleBar;
@@ -61,10 +63,14 @@ private:
     QVBoxLayout *pLayout;
     scanThread thread;
 
+Q_SIGNALS:
+    void open_scan_device_finished(bool);
+
 private slots:
     void save_image(QString fileName);
     void save_scan_file();
     void scan_result(bool ret);
+    void scan_result_detail(bool ret);
 };
 
 #endif // WIDGET_H

@@ -4,13 +4,16 @@ Source: <url://example.com>
 #
 # Please double check copyright with the licensecheck(1) command.
 
-Files:     README.md
+Files:     Doxyfile
+           README.md
            README_CN.md
+           autodoxygen.sh
+           clear.sh
            docs/scan.jpg
            kylin-scanner.pro
            sider.yml
            src/data/kylin-scanner.desktop
-           src/data/kylin-scanner.jpg
+           src/data/scanner.png
            src/icon/a.png
            src/icon/beautify.png
            src/icon/close-click.png
@@ -41,6 +44,7 @@ Files:     README.md
            src/icon/×î´ó»¯-hover-click.png
            src/icon/×î´ó»¯.png
            src/src.pro
+           src/translations/generate_translations_pm.sh
 Copyright: __NO_COPYRIGHT_NOR_LICENSE__
 License:   __NO_COPYRIGHT_NOR_LICENSE__
 
@@ -89,8 +93,9 @@ License:   GPL-3.0+
 
 #----------------------------------------------------------------------------
 # xml and html files (skipped):
-#         kylin-scanner.pro.user
 #         src/res.qrc
+#         src/translations/kylin-scanner.zh_CN.ts
+#         src/translations/kylin-scanner.zh_CN.qm
 
 #----------------------------------------------------------------------------
 # Files marked as NO_LICENSE_TEXT_FOUND may be covered by the following

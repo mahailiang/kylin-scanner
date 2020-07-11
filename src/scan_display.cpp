@@ -259,6 +259,11 @@ void scan_display::set_no_device()
     vStackedLayout->setCurrentWidget(myWidget);
 }
 
+void scan_display::set_init_device()
+{
+    vStackedLayout->setCurrentWidget(labDisplay1);
+}
+
 void scan_display::set_pixmap(QImage img, QLabel *lab)
 {
     int width = lab->width();
