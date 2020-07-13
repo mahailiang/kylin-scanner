@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2020 KYLIN SOFTWARE Information Technology Co., Ltd.
+* Copyright (C) 2020, Tianjin KYLIN Information Technology Co., Ltd.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -997,7 +997,107 @@ SANE_Status get_option_value(SANE_Handle device, const char *option_name)
         /* Get default optval(different format) */
         status = sane_control_option (device, optnum, SANE_ACTION_GET_VALUE, optval, nullptr);
 
+        if (opt->desc != NULL)
+        {
+            qDebug() << opt->desc;
+        }
+
         qDebug("opt->type = %d\n", opt->type);
+        switch (opt->type) {
+            case SANE_TYPE_INT:
+                qDebug() << "type = int" << "size = %d" << opt->size;
+                break;
+            case SANE_TYPE_BOOL:
+                qDebug() << "type = bool" << "size = %d" << opt->size;
+                break;
+            case SANE_TYPE_FIXED:
+                qDebug() << "type = fixed" << "size = %d" << opt->size;
+                break;
+            case SANE_TYPE_STRING:
+                qDebug() << "type = string" << "size = %d" << opt->size;
+                break;
+            case SANE_TYPE_BUTTON:
+                qDebug() << "type = button" << "size = %d" << opt->size;
+                break;
+            case SANE_TYPE_GROUP:
+                qDebug() << "type = button" << "size = %d" << opt->size;
+                break;
+            default:
+                qDebug() << "type = %d" << opt->type << "size = %d" << opt->size;
+                break;
+        }
+
+        switch (opt->unit) {
+            case SANE_UNIT_NONE:
+                qDebug() << "unit = none";
+                break;
+            case SANE_UNIT_PIXEL:
+                qDebug() << "unit = pixel";
+                break;
+            case SANE_UNIT_BIT:
+                qDebug() << "unit = bit";
+                break;
+            case SANE_UNIT_MM:
+                qDebug() << "unit = mm";
+                break;
+            case SANE_UNIT_DPI:
+                qDebug() << "unit = dpi";
+                break;
+            case SANE_UNIT_PERCENT:
+                qDebug() << "unit = percent";
+                break;
+            case SANE_UNIT_MICROSECOND:
+                qDebug() << "unit = microsecond";
+                break;
+            default:
+                qDebug() << "unit = " << opt->unit;
+                break;
+        }
+
+        switch (opt->constraint_type) {
+            case SANE_CONSTRAINT_RANGE:
+                if (opt->type == SANE_TYPE_FIXED)
+                {
+                    qDebug() << "min = " << SANE_UNFIX(opt->constraint.range->min) \
+                             << "max = " << SANE_UNFIX(opt->constraint.range->max) \
+                             << "quant = " << opt->constraint.range->quant;
+                }
+                else
+                {
+                    qDebug() << "min = " << opt->constraint.range->min \
+                             << "max = " << opt->constraint.range->max \
+                             << "quant = " << SANE_UNFIX(opt->constraint.range->quant);
+                }
+                break;
+            case SANE_CONSTRAINT_WORD_LIST:
+                for (int i=0; i<opt->constraint.word_list[0]; i++)
+                {
+                    if (opt->type == SANE_TYPE_INT)
+                    {
+                        qDebug() << opt->constraint.word_list[i+1];
+                    }
+                    else
+                    {
+                        qDebug() << SANE_UNFIX(opt->constraint.word_list[i+1]);
+                    }
+                }
+                break;
+            case SANE_CONSTRAINT_STRING_LIST:
+                for (int i=0; opt->constraint.string_list[i] != NULL; i++)
+                {
+                    qDebug() << opt->constraint.string_list[i];
+                }
+                break;
+            default:
+                qDebug() << "case = %d not found" ;
+                break;
+        }
+
+        if(opt->cap != 0)
+        {
+            //if (opt->cap & sane_cap)
+        }
+
         switch(optnum)
         {
             case 2:
@@ -1010,12 +1110,22 @@ SANE_Status get_option_value(SANE_Handle device, const char *option_name)
                 status = get_option_colors(device, optnum);
                 break;
 
-            case 3:
+            case 3: // 3在HTTP设备中，也可以是分辨率
                 if (opt->type == SANE_TYPE_STRING)
                 {
                     val_string_source = static_cast<SANE_String>(optval);
                     qDebug("Default source= %s constraint_type=%d\n", val_string_source, opt->constraint_type);
                     status = get_option_sources(device, optnum);
+                }
+                else if (opt->type == SANE_TYPE_INT) // For resolution
+                {
+                    val_resolution = *(SANE_Word*)optval;
+                    qDebug("resolution = %d constraint_type=%d\n", val_resolution, opt->constraint_type);
+
+                    if (opt->constraint_type == SANE_CONSTRAINT_WORD_LIST)
+                    {
+                        status = get_option_resolutions(device, optnum);
+                    }
                 }
                 else
                 {
