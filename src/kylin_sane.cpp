@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2020 KYLIN SOFTWARE Information Technology Co., Ltd.
+* Copyright (C) 2020, Tianjin KYLIN Information Technology Co., Ltd.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -40,6 +40,12 @@ static SANE_Byte *buffer;
 static size_t buffer_size;
 
 const SANE_Device ** device_list = nullptr;
+
+static int opt_num_color_mode = 2;
+static int opt_num_source = 3;
+static int opt_num_resolution = 6;
+static int opt_num_size_br_x = 10;
+static int opt_num_size_br_y = 11;
 
 #define SET_1_BIT(n,i) ((1<<(i))|(n))
 #define SET_0_BIT(n,i) ((~(1<<(i)))&(n))
@@ -414,7 +420,8 @@ SANE_Status do_scan(const char *fileName)
         qDebug("picture name: %s\n", path);
 
 		status = sane_start (device);
-		if (status != SANE_STATUS_GOOD)
+        qDebug() << "status error: " << sane_strstatus(status);
+        if (status != SANE_STATUS_GOOD)
 		{
 			break;
 		}
@@ -535,6 +542,7 @@ SANE_Status open_sane_device(SANE_Device *device, SANE_Handle *sane_handle)
 
 /**
  * @brief get_option_colors 获取色彩选项
+ * optnum = 2
  * 可以输出扫描设备支持的所有色彩值：
  * Color => 彩色  Gray => 灰度  Lineart => 黑白
  *
@@ -593,7 +601,7 @@ SANE_Status set_option_colors(SANE_Handle sane_handle, SANE_String val_color)
 
     qDebug("\nbegin set option[2] color: %s \n", val_color);
 
-    status = sane_control_option(sane_handle, 2, SANE_ACTION_SET_VALUE, val_color, nullptr);
+    status = sane_control_option(sane_handle, opt_num_color_mode, SANE_ACTION_SET_VALUE, val_color, nullptr);
     if (status != SANE_STATUS_GOOD)
 	{
         qDebug("Option did not set\n");
@@ -606,6 +614,7 @@ SANE_Status set_option_colors(SANE_Handle sane_handle, SANE_String val_color)
 
 /**
  * @brief get_option_sources 获取扫描设备的资源情况
+ * optnum = 3
  * 可以获取扫描设备的设备分类， 平板式(Flatbed)，其他为馈纸式
  *
  * @param sane_handle 扫描句柄
@@ -675,6 +684,7 @@ SANE_Status set_option_sources(SANE_Handle sane_handle, int optnum, SANE_String 
 
 /**
   * @brief get_option_resolutions 获取扫描软件的分辨率
+  * optnum = 3 | 6
   * 可以获取扫描设备支持的所有分辨率，如下：
   * 2400, 1200, 600, 300, 150, 100, 75
   *
@@ -751,7 +761,7 @@ SANE_Status set_option_resolutions(SANE_Handle sane_handle, SANE_Int val_resolut
 
     qDebug("\nbegin set option 6 resolution: %d \n", val_resolution);
 
-    status = sane_control_option(sane_handle, 6, SANE_ACTION_SET_VALUE, &val_resolution, nullptr);
+    status = sane_control_option(sane_handle, opt_num_resolution, SANE_ACTION_SET_VALUE, &val_resolution, nullptr);
     if (status != SANE_STATUS_GOOD)
 	{
         qDebug("Option did not set\n");
@@ -785,7 +795,7 @@ SANE_Status set_option_resolutions(SANE_Handle sane_handle, SANE_Int val_resolut
 SANE_Status get_option_sizes(SANE_Handle sane_handle, int optnum)
 {
     const SANE_Option_Descriptor *opt;
-    SANE_Status status = SANE_STATUS_INVAL;
+    SANE_Status status = SANE_STATUS_GOOD;
     int res = 0;
 
     qDebug("begin get option[%d] size \n", optnum);
@@ -796,7 +806,6 @@ SANE_Status get_option_sizes(SANE_Handle sane_handle, int optnum)
     for (int i=0; opt->constraint.word_list[i]; i++)
 	{
         res = *(opt->constraint.word_list+i);
-        status = SANE_STATUS_GOOD;
         qDebug("optnum[%d] sizes int: %d \n", optnum, res);
     }
     return status;
@@ -844,9 +853,8 @@ SANE_Status set_option_sizes_real(SANE_Handle sane_handle, SANE_Int val_size_br_
     SANE_Status status = SANE_STATUS_GOOD;
     qDebug("size Bottom-right xy=[%d, %d]\n", val_size_br_x, val_size_br_y);
 
-
-    status = set_option_sizes(sane_handle, 10, SANE_FIX(val_size_br_x));
-    status = set_option_sizes(sane_handle, 11, SANE_FIX(val_size_br_y));
+    status = set_option_sizes(sane_handle, opt_num_size_br_x, SANE_FIX(val_size_br_x));
+    status = set_option_sizes(sane_handle, opt_num_size_br_y, SANE_FIX(val_size_br_y));
 
     return status;
 }
@@ -989,7 +997,7 @@ SANE_Status get_option_value(SANE_Handle device, const char *option_name)
     SANE_Word val_resolution; // 分辨率
 
     opt = get_optdesc_by_name(device, option_name, &optnum);
-    qDebug("optnum = %d\n", optnum);
+    qDebug("optname = %s optnum = %d\n", option_name, optnum);
 
     if (opt)
     {
@@ -997,119 +1005,29 @@ SANE_Status get_option_value(SANE_Handle device, const char *option_name)
         /* Get default optval(different format) */
         status = sane_control_option (device, optnum, SANE_ACTION_GET_VALUE, optval, nullptr);
 
-        qDebug("opt->type = %d\n", opt->type);
-        switch(optnum)
+        if (opt->desc != NULL)
         {
-            case 2:
-                if (opt->type == SANE_TYPE_STRING)
-                {
-                    val_string_color = static_cast<SANE_String>(optval);
-                    qDebug("Default color= %s constraint_type=%d\n", val_string_color, opt->constraint_type);
-                }
-
-                status = get_option_colors(device, optnum);
-                break;
-
-            case 3:
-                if (opt->type == SANE_TYPE_STRING)
-                {
-                    val_string_source = static_cast<SANE_String>(optval);
-                    qDebug("Default source= %s constraint_type=%d\n", val_string_source, opt->constraint_type);
-                    status = get_option_sources(device, optnum);
-                }
-                else
-                {
-                    // Canon Lide 400 本地连接失败，参数非法
-                    status = SANE_STATUS_INVAL;
-                }
-                break;
-
-            case 6:
-                if (opt->type == SANE_TYPE_INT)
-                {
-                    val_resolution = *(SANE_Word*)optval;
-                    qDebug("resolution = %d constraint_type=%d\n", val_resolution, opt->constraint_type);
-
-                }
-
-                if (opt->constraint_type == SANE_CONSTRAINT_WORD_LIST)
-                {
-                    status = get_option_resolutions(device, optnum);
-                }
-                break;
-
-            case 8:
-                if (opt->type == SANE_TYPE_FIXED)
-                {
-                    val_size = SANE_UNFIX(*(SANE_Word*) optval);
-                    qDebug("size Top-left x= %d constraint_type=%d\n", val_size, opt->constraint_type);
-                }
-
-                if (opt->constraint_type == SANE_CONSTRAINT_RANGE)
-                {
-                    get_option_sizes(device, optnum);
-                }
-                break;
-            case 9:
-                if (opt->type == SANE_TYPE_FIXED)
-                {
-                    val_size = SANE_UNFIX(*(SANE_Word*) optval);
-                    qDebug("size Top-left y= %d constraint_type=%d\n", val_size, opt->constraint_type);
-                }
-
-                if (opt->constraint_type == SANE_CONSTRAINT_RANGE)
-                {
-                    get_option_sizes(device, optnum);
-                }
-                break;
-            case 10:
-                if (opt->type == SANE_TYPE_FIXED)
-                {
-                    val_size = SANE_UNFIX(*(SANE_Word*) optval);
-                    qDebug("size Botton-right x= %d constraint_type=%d\n", val_size, opt->constraint_type);
-                    // Via br_x to decide scan sizes
-                    {
-                        if (val_size >= 420)
-                            sizes << "A2";
-                        if (val_size >= 297)
-                            sizes << "A3";
-                        if (val_size >= 210)
-                            sizes << "A4";
-                        if (val_size >= 148)
-                            sizes << "A5";
-                        if (val_size >= 105)
-                            sizes << "A6";
-                    }
-                    instance.setKylinSaneSizes(sizes);
-                }
-
-                if (opt->constraint_type == SANE_CONSTRAINT_RANGE)
-                {
-                    get_option_sizes(device, optnum);
-                }
-                break;
-            case 11:
-                if (opt->type == SANE_TYPE_FIXED)
-                {
-                    val_size = SANE_UNFIX(*(SANE_Word*) optval);
-                    qDebug("size Botton-right y= %d constraint_type=%d\n", val_size, opt->constraint_type);
-                }
-
-                if (opt->constraint_type == SANE_CONSTRAINT_RANGE)
-                {
-                    get_option_sizes(device, optnum);
-                }
-                break;
-
-            default:
-                qDebug("optnum = %d\n", optnum);
+            qDebug() << opt->desc;
         }
 
-        //display_option_value(device, optnum);
-
-        //if (status == SANE_STATUS_GOOD) {
+        qDebug("opt->type = %d\n", opt->type);
         switch (opt->type)
         {
+            case SANE_TYPE_INT:
+                qDebug() << "type = int" << "size = " << opt->size;
+
+                if (!strcmp(option_name, SANE_NAME_SCAN_RESOLUTION))
+                {
+                    val_resolution = *(SANE_Word*)optval;
+
+                    opt_num_resolution = optnum;
+                    if (opt->constraint_type == SANE_CONSTRAINT_WORD_LIST)
+                    {
+                        status = get_option_resolutions(device, optnum);
+                    }
+                    qDebug("optnum=%d resolution = %d constraint_type=%d\n",opt_num_resolution, val_resolution, opt->constraint_type);
+                }
+                break;
             case SANE_TYPE_BOOL:
                 if (*(SANE_Word*) optval == SANE_FALSE)
                 {
@@ -1119,29 +1037,168 @@ SANE_Status get_option_value(SANE_Handle device, const char *option_name)
                 {
                     strcpy(str, "TRUE");
                 }
+                qDebug() << "type = bool" << "size = " << opt->size << str;
                 break;
-
-            case SANE_TYPE_INT:
-                sprintf(str, "%d", *(SANE_Word*) optval);
-                break;
-
             case SANE_TYPE_FIXED:
-                int i;
-                i = SANE_UNFIX(*(SANE_Word*) optval);
-                sprintf(str, "%d", i);
-                break;
+                qDebug() << "type = fixed" << "size = " << opt->size;
 
+                val_size = SANE_UNFIX(*(SANE_Word*) optval);
+                if (opt->constraint_type == SANE_CONSTRAINT_RANGE)
+                {
+                    status = get_option_sizes(device, optnum);
+                }
+
+                qDebug() << "str_status = " << sane_strstatus(status);
+
+                if (!strcmp(option_name, SANE_NAME_SCAN_TL_X))
+                {
+                    qDebug("size tl_x = %d constraint_type=%d\n", val_size, opt->constraint_type);
+                }
+                else if (!strcmp(option_name, SANE_NAME_SCAN_TL_Y))
+                {
+                    qDebug("size tl_y= %d constraint_type=%d\n", val_size, opt->constraint_type);
+                }
+                else if (!strcmp(option_name, SANE_NAME_SCAN_BR_X))
+                {
+                    opt_num_size_br_x = optnum;
+                    // Via br_x to decide scan sizes
+                    int size_range = static_cast<int>( SANE_UNFIX(opt->constraint.range->max) - SANE_UNFIX(opt->constraint.range->min));
+                    qDebug() << "min = " << SANE_UNFIX(opt->constraint.range->min) \
+                             << "max = " << SANE_UNFIX(opt->constraint.range->max) \
+                             << "size_range = " << size_range;
+                    {
+                        if (val_size >= 420)
+                            sizes << "A2";
+                        if (size_range >= 297)
+                            sizes << "A3";
+                        if (size_range >= 210)
+                            sizes << "A4";
+                        if (size_range >= 148)
+                            sizes << "A5";
+                        if (size_range >= 105)
+                            sizes << "A6";
+                    }
+                    instance.setKylinSaneSizes(sizes);
+                    qDebug("size optnum=%d br_x = %d constraint_type=%d\n",opt_num_size_br_x, val_size, opt->constraint_type);
+                }
+                else if (!strcmp(option_name, SANE_NAME_SCAN_BR_Y))
+                {
+                    opt_num_size_br_y = optnum;
+                    qDebug("size opt_num=%d br_y = %d constraint_type=%d\n",opt_num_size_br_y, val_size, opt->constraint_type);
+                }
+
+                break;
             case SANE_TYPE_STRING:
-                strcpy(str, (char *)optval);
-                break;
+                qDebug() << "type = string" << "size = " << opt->size;
 
+                if (!strcmp(option_name, SANE_NAME_SCAN_MODE))
+                {
+                    val_string_color = static_cast<SANE_String>(optval);
+                    opt_num_color_mode = optnum;
+                    status = get_option_colors(device, optnum);
+                    qDebug("Default optnum=%d color= %s constraint_type=%d\n",opt_num_color_mode, val_string_color, opt->constraint_type);
+                }
+                else if (!strcmp(option_name, SANE_NAME_SCAN_SOURCE))
+                {
+                    val_string_source = static_cast<SANE_String>(optval);
+                    opt_num_source = optnum;
+                    status = get_option_sources(device, optnum);
+                    qDebug("Default optnum=%d source= %s constraint_type=%d\n",opt_num_source, val_string_source, opt->constraint_type);
+                }
+                else
+                {
+                    // Canon Lide 400 本地连接失败，参数非法
+                    status = SANE_STATUS_INVAL;
+                }
+                break;
+            case SANE_TYPE_BUTTON:
+                qDebug() << "type = button" << "size = " << opt->size;
+                break;
+            case SANE_TYPE_GROUP:
+                qDebug() << "type = button" << "size = " << opt->size;
+                break;
             default:
-                str[0] = 0;
+                qDebug() << "type = %d" << opt->type << "size = " << opt->size;
+                break;
+        }
+
+        switch (opt->unit)
+        {
+            case SANE_UNIT_NONE:
+                qDebug() << "unit = none";
+                break;
+            case SANE_UNIT_PIXEL:
+                qDebug() << "unit = pixel";
+                break;
+            case SANE_UNIT_BIT:
+                qDebug() << "unit = bit";
+                break;
+            case SANE_UNIT_MM:
+                qDebug() << "unit = mm";
+                break;
+            case SANE_UNIT_DPI:
+                qDebug() << "unit = dpi";
+                break;
+            case SANE_UNIT_PERCENT:
+                qDebug() << "unit = percent";
+                break;
+            case SANE_UNIT_MICROSECOND:
+                qDebug() << "unit = microsecond";
+                break;
+            default:
+                qDebug() << "unit = " << opt->unit;
+                break;
+        }
+
+        switch (opt->constraint_type)
+        {
+            case SANE_CONSTRAINT_RANGE:
+                if (opt->type == SANE_TYPE_FIXED)
+                {
+                    qDebug() << "min = " << SANE_UNFIX(opt->constraint.range->min) \
+                             << "max = " << SANE_UNFIX(opt->constraint.range->max) \
+                             << "quant = " << opt->constraint.range->quant;
+                }
+                else
+                {
+                    qDebug() << "min = " << opt->constraint.range->min \
+                             << "max = " << opt->constraint.range->max \
+                             << "quant = " << SANE_UNFIX(opt->constraint.range->quant);
+                }
+                break;
+            case SANE_CONSTRAINT_WORD_LIST:
+                for (int i=0; i<opt->constraint.word_list[0]; i++)
+                {
+                    if (opt->type == SANE_TYPE_INT)
+                    {
+                        qDebug() << opt->constraint.word_list[i+1];
+                    }
+                    else
+                    {
+                        qDebug() << SANE_UNFIX(opt->constraint.word_list[i+1]);
+                    }
+                }
+                break;
+            case SANE_CONSTRAINT_STRING_LIST:
+                for (int i=0; opt->constraint.string_list[i] != NULL; i++)
+                {
+                    qDebug() << opt->constraint.string_list[i];
+                }
+                break;
+            default:
+                qDebug() << "case = %d not found" ;
+                break;
+        }
+
+        if(opt->cap != 0)
+        {
+            //if (opt->cap & sane_cap)
         }
 
         guards_free(optval);
-
-    } else {
+    }
+    else
+    {
         /* The option does not exists. */
         strcpy(str, "backend default");
     }
@@ -1170,7 +1227,7 @@ SANE_Status kylin_display_scan_parameters(SANE_Handle device)
     if (status != SANE_STATUS_GOOD)
     {
         status = SANE_STATUS_INVAL;
-        qDebug() << "parameters error!";
+        qDebug() << "source parameters error!";
         return status;
     }
 
@@ -1179,7 +1236,7 @@ SANE_Status kylin_display_scan_parameters(SANE_Handle device)
     if (status != SANE_STATUS_GOOD)
     {
         status = SANE_STATUS_INVAL;
-        qDebug() << "parameters error!";
+        qDebug() << "color mode parameters error!";
         return status;
     }
 
@@ -1188,7 +1245,7 @@ SANE_Status kylin_display_scan_parameters(SANE_Handle device)
     if (status != SANE_STATUS_GOOD)
     {
         status = SANE_STATUS_INVAL;
-        qDebug() << "parameters error!";
+        qDebug() << "resolution parameters error!";
         return status;
     }
 
@@ -1197,11 +1254,17 @@ SANE_Status kylin_display_scan_parameters(SANE_Handle device)
     if (status != SANE_STATUS_GOOD)
     {
         status = SANE_STATUS_INVAL;
-        qDebug() << "parameters error!";
+        qDebug() << "tl_x parameters error!";
         return status;
     }
 
     get_option_value(device, SANE_NAME_SCAN_TL_Y);
+    if (status != SANE_STATUS_GOOD)
+    {
+        status = SANE_STATUS_INVAL;
+        qDebug() << "tl_y parameters error!";
+        return status;
+    }
 
     /* Default size coordination, botton_right(x, y)
      *
@@ -1210,8 +1273,20 @@ SANE_Status kylin_display_scan_parameters(SANE_Handle device)
      * s->val[OPT_BR_Y].w = SANE_FIX(297);
      */
     get_option_value(device, SANE_NAME_SCAN_BR_X);
+    if (status != SANE_STATUS_GOOD)
+    {
+        status = SANE_STATUS_INVAL;
+        qDebug() << "br_x parameters error!";
+        return status;
+    }
 
     status = get_option_value(device, SANE_NAME_SCAN_BR_Y);
+    if (status != SANE_STATUS_GOOD)
+    {
+        status = SANE_STATUS_INVAL;
+        qDebug() << "br_y parameters error!";
+        return status;
+    }
 
     return status;
 }
@@ -1367,7 +1442,7 @@ void kylinNorScanFindDevice()
     if (sane_status)
     {
         instance.setKylinSaneStatus(false);
-        qDebug() << "set status false";
+        qDebug() << "find device set status false";
     }
     else
     {
@@ -1453,7 +1528,7 @@ void kylinNorScanOpenDevice(int index)
     if (sane_status)
     {
         instance.setKylinSaneStatus(false);
-        qDebug() << "set status false";
+        qDebug() << "open device set status false";
     }
     else
     {
